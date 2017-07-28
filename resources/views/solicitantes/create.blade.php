@@ -131,36 +131,36 @@
                                                 <span class="input-group-addon">
                                                     <i class="material-icons">face</i>
                                                 </span>
-                                                <input type="text" class="form-control" placeholder="Nome Completo">
+                                                <input name="nome" type="text" class="form-control" placeholder="Nome Completo">
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                     <i class="material-icons">email</i>
                                                 </span>
-                                                <input type="text" class="form-control" placeholder="Email">
+                                                <input name="email" type="text" class="form-control" placeholder="Email">
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                     <i class="material-icons">credit_card</i>
                                                 </span>
-                                                <input id="cpf" type="text" class="form-control" placeholder="CPF">
+                                                <input name="cpf" id="cpf" type="text" class="form-control" placeholder="CPF">
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                     <i class="material-icons">lock_outline</i>
                                                 </span>
-                                                <input type="password" placeholder="Senha" class="form-control" />
+                                                <input name="password" type="password" placeholder="Senha" class="form-control" />
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                     <i class="material-icons">lock_outline</i>
                                                 </span>
-                                                <input type="password" placeholder="Confirmar Senha" class="form-control" />
+                                                <input name="password-confirm" type="password" placeholder="Confirmar Senha" class="form-control" />
                                             </div>
                                             <!-- If you want to add a checkbox to this form, uncomment this code -->
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="optionsCheckboxes" checked> Eu Concordo com os
+                                                    <input name="aceite" type="checkbox" name="optionsCheckboxes" checked> Eu Concordo com os
                                                     <a href="#something">termos e condições</a>.
                                                 </label>
                                             </div>

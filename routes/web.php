@@ -22,16 +22,16 @@ Route::get('/', function () {
 });
 
 
-Route::get('/register', function () {
+/*Route::get('/registro', function () {
     return view('solicitantes.create');
 });
-
+*/
 
 
 
 //resources
 Route::resource('solicitante','SolicitanteController');
-Route::resource('funcionario','FuncionarioController');
+
 //Route::resource('users', 'UsersController');
 
 Auth::routes();
