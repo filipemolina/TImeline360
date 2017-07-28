@@ -1,9 +1,5 @@
 $(function(){
-
-    //////////////////////////////////// Vanilla Masker
-
-    // VMasker($("#cpf")).maskPattern("999.999.999-99");
-
+    VMasker ($("#cpf")).maskPattern("999.999.999-99");
 
     //////////////////////////////////// Mapa
 

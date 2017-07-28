@@ -1,13 +1,3 @@
-@extends('layouts.material')
-
-@section('titulo')
-
-	Dashboard | Principal
-
-@endsection
-
-@section('content')
-
 <div class="col-md-4">
     <div class="card card-chart">
         <div class="card-header" data-background-color="orange" data-header-animation="true">
@@ -36,5 +26,3 @@
         </div>
     </div>
 </div>
-
-@endsection

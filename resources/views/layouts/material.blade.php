@@ -23,7 +23,7 @@
 
         {{-- Menu Lateral --}}
         
-        @include('includes.layouts.sidebar')
+       {{--  @include('includes.layouts.sidebar') --}}
 
         <div class="main-panel">
 

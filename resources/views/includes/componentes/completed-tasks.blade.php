@@ -1,17 +1,7 @@
-@extends('layouts.material')
-
-@section('titulo')
-
-	Dashboard | Principal
-
-@endsection
-
-@section('content')
-
 <div class="col-md-4">
     <div class="card card-chart">
-        <div class="card-header" data-background-color="orange" data-header-animation="true">
-            <div class="ct-chart" id="dailySalesChart"></div>
+        <div class="card-header" data-background-color="blue" data-header-animation="true">
+            <div class="ct-chart" id="completedTasksChart"></div>
         </div>
         <div class="card-content">
             <div class="card-actions">
@@ -25,16 +15,13 @@
                     <i class="material-icons">edit</i>
                 </button>
             </div>
-            <h4 class="card-title">Daily Sales</h4>
-            <p class="category">
-                <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+            <h4 class="card-title">Completed Tasks</h4>
+            <p class="category">Last Campaign Performance</p>
         </div>
         <div class="card-footer">
             <div class="stats">
-                <i class="material-icons">access_time</i> updated 4 minutes ago
+                <i class="material-icons">access_time</i> campaign sent 2 days ago
             </div>
         </div>
     </div>
 </div>
-
-@endsection
