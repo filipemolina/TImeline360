@@ -242,7 +242,7 @@
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
-    @include('includes.login.scripts')
+    @include('includes.scripts')
 
 </body>
 </html>

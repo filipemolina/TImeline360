@@ -21,25 +21,33 @@
                                 <div class="card-content">
                                     <ul class="timeline">
                                         <li class="timeline-inverted">
-                                            <div class="timeline-badge danger">
+                                            <a href="#" class="timeline-badge danger mais-menos">
                                                 <i class="material-icons">card_travel</i>
-                                            </div>
-                                            <div class="timeline-panel">
-                                                <div class="timeline-heading">
-                                                    <span class="label label-danger">Some Title</span>
+                                            </a>
+                                            <div class="timeline-panel card card-product card-profile">
+                                                <div class="timeline-heading card-avatar">
+                                                    <a href="#pablo">
+                                                        <img class="img" src="{{ asset('img/default-avatar.png') }}" />
+                                                    </a>
                                                 </div>
                                                 <div class="timeline-body">
+                                                    <div class="card-image">
+                                                        <span class="label label-danger" style="position: absolute;">Some Title</span>
+                                                        <a href="#pablo">
+                                                            <img class="img" src="{{ asset('img/image_placeholder.jpg') }}">
+                                                        </a>
+                                                    </div>
                                                     <p>Wifey made the best Father's Day meal ever. So thankful so happy so blessed. Thank you for making my family We just had fun with the “future” theme !!! It was a fun night all together ... The always rude Kanye Show at 2am Sold Out Famous viewing @ Figueroa and 12th in downtown.</p>
                                                 </div>
                                                 <h6>
                                                     <i class="ti-time"></i> 11 hours ago via Twitter
                                                 </h6>
                                             </div>
-                                        </li>
+                                        </li><br><br>
                                         <li>
-                                            <div class="timeline-badge success">
+                                            <a href="#" class="timeline-badge success mais-menos">
                                                 <i class="material-icons">extension</i>
-                                            </div>
+                                            </a>
                                             <div class="timeline-panel">
                                                 <div class="timeline-heading">
                                                     <span class="label label-success">Another One</span>
@@ -48,11 +56,11 @@
                                                     <p>Thank God for the support of my wife and real friends. I also wanted to point out that it’s the first album to go number 1 off of streaming!!! I love you Ellen and also my number one design rule of anything I do from shoes to music to homes is that Kim has to like it....</p>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li><br><br>
                                         <li class="timeline-inverted">
-                                            <div class="timeline-badge info">
+                                            <a href="#" class="timeline-badge info mais-menos">
                                                 <i class="material-icons">fingerprint</i>
-                                            </div>
+                                            </a>
                                             <div class="timeline-panel">
                                                 <div class="timeline-heading">
                                                     <span class="label label-info">Another Title</span>
@@ -79,16 +87,16 @@
                                                             <li class="divider"></li>
                                                             <li>
                                                                 <a href="#link">Separated link</a>
-                                                            </li>
+                                                            </li><br><br>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li><br><br>
                                         <li>
-                                            <div class="timeline-badge warning">
+                                            <a href="#" class="timeline-badge warning mais-menos">
                                                 <i class="material-icons">flight_land</i>
-                                            </div>
+                                            </a>
                                             <div class="timeline-panel">
                                                 <div class="timeline-heading">
                                                     <span class="label label-warning">Another One</span>
@@ -97,7 +105,7 @@
                                                     <p>Tune into Big Boy's 92.3 I'm about to play the first single from Cruel Winter Tune into Big Boy's 92.3 I'm about to play the first single from Cruel Winter also to Kim’s hair and makeup Lorraine jewelry and the whole style squad at Balmain and the Yeezy team. Thank you Anna for the invite thank you to the whole Vogue team</p>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li><br><br>
                                     </ul>
                                 </div>
                             </div>
