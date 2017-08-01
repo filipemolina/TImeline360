@@ -19,6 +19,10 @@
 </head>
 
 <body>
+
+        @if (Auth::check()) 
+             {{ Auth::user()->email }}
+        @endif
     <div class="wrapper">
 
         {{-- Menu Lateral --}}

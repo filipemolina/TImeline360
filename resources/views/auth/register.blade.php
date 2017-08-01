@@ -19,14 +19,22 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
-<<<<<<< HEAD
-    
-=======
- <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />    
->>>>>>> origin/luciano
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />    
 </head>
 
 <body>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
     <nav class="navbar navbar-primary navbar-transparent navbar-absolute">
         <div class="container">
             <div class="navbar-header">
@@ -124,7 +132,7 @@
                                     </div>
 
 
-                                    <form class="form" method="POST" action="{{ route('solicitante.store') }}">
+                                    <form class="form" method="POST" action="{{ route('user.store') }}">
                                             {{ csrf_field() }}
                                         <div class="card-content">
                                             <div class="input-group">
@@ -155,7 +163,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="material-icons">lock_outline</i>
                                                 </span>
-                                                <input name="password-confirm" type="password" placeholder="Confirmar Senha" class="form-control" />
+                                                <input name="password_confirmation" type="password" placeholder="Confirmar Senha" class="form-control" />
                                             </div>
                                             <!-- If you want to add a checkbox to this form, uncomment this code -->
                                             <div class="checkbox">
