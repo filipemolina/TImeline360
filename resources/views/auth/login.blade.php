@@ -174,17 +174,7 @@
                         </div>
                     </div>
                 </div>
-                <footer class="footer">
-                    <div class="container">
-                        <p class="copyright pull-left">
-                            &copy;
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            <a href="http://tecnologia.mesquita.rj.gov.br" target="_blank" style="font-size: 12px">Subsecretaria da Tecnologia da Informação Equipe de Desenvolvimento de Sistemas Prefeitura Municipal de Mesquita RJ - Rua Arthur Oliveira Vecchi, 120 Centro Mesquita - RJ CEP: 26553-080 2017</a>
-                        </p>
-                    </div>
-                </footer>
+                @include('includes.layouts.footer')
             </div>
         </div>
 

@@ -51,7 +51,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="{{ url( "login" ) }}">
                         <i class="material-icons">person</i>
                         <p class="hidden-lg hidden-md">Profile</p>
                     </a>

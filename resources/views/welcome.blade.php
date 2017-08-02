@@ -24,24 +24,97 @@
                                             <a href="#" class="timeline-badge danger mais-menos">
                                                 <i class="material-icons">card_travel</i>
                                             </a>
-                                            <div class="timeline-panel card card-product card-profile">
-                                                <div class="timeline-heading card-avatar">
-                                                    <a href="#pablo">
+                                            <div class="timeline-panel card card-product">
+                                                <div class="card-profile">
+                                                    <span class="superior-esquerdo label label-danger" style="position: absolute;z-index: 100">Nome da pessoa</span>
+                                                    <a href="#pablo" class="timeline-heading card-avatar superior-esquerdo">
                                                         <img class="img" src="{{ asset('img/default-avatar.png') }}" />
                                                     </a>
                                                 </div>
                                                 <div class="timeline-body">
                                                     <div class="card-image">
-                                                        <span class="label label-danger" style="position: absolute;">Some Title</span>
+                                                        <span class="label label-danger" style="position: absolute;">Tema da solicitação</span>
                                                         <a href="#pablo">
                                                             <img class="img" src="{{ asset('img/image_placeholder.jpg') }}">
                                                         </a>
-                                                    </div>
+                                                    </div><br>
                                                     <p>Wifey made the best Father's Day meal ever. So thankful so happy so blessed. Thank you for making my family We just had fun with the “future” theme !!! It was a fun night all together ... The always rude Kanye Show at 2am Sold Out Famous viewing @ Figueroa and 12th in downtown.</p>
                                                 </div>
-                                                <h6>
-                                                    <i class="ti-time"></i> 11 hours ago via Twitter
-                                                </h6>
+                                                <div class="form-group">
+                                                    <label class="label-control">Criado em:</label>
+                                                    <input type="text" class="form-control datetimepicker" value="10/05/2016"/ disabled="true">
+                                                </div>
+                                                <ul class=" nav navbar-nav col-sm-12">
+                                                    <li class="col-sm-4">
+                                                        <button class="btn btn-simple">
+                                                            <span class="btn-label">
+                                                                <i class="material-icons">thumb_up</i>
+                                                            </span>
+                                                            Curtir
+                                                        </button>
+                                                    </li>
+                                                    <li class="col-sm-4">
+                                                        <button class="btn btn-simple collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                            <span class="btn-label">
+                                                                <i class="material-icons">chat</i>
+                                                            </span>
+                                                            Comentar
+                                                        </button>
+                                                    </li>
+                                                    <li class="col-sm-4">
+                                                        <button class="btn btn-simple">
+                                                            <span class="btn-label">
+                                                                <i class="material-icons inverterX">reply</i>
+                                                            </span>
+                                                            Compartilhar
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                                <footer id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                                        <div class="panel-title form-group form-search is-empty ">
+                                                        <div class="row">
+                                                            <label class="card-testimonial col-sm-2 label-on-left" style="top: 40px;">
+                                                                <div class="card-avatar">
+                                                                    <img class="img" src="{{ asset('img/default-avatar.png') }}"">
+                                                                </div>
+                                                            </label>
+                                                            <div class="col-sm-9">
+                                                            <div class="form-group label-floating is-empty">
+                                                            <label class="control-label"></label>
+                                                            <input type="text" class="form-control" placeholder="Escreva um comentário">
+                                                            <span class="material-input"></span>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                        <div class="panel-body">
+                                        <ul>
+                                        <li>
+                                            <a href="#" class="timeline-badge success mais-menos col-sm-2">
+                                                <i class="material-icons"><img class="img" src="{{ asset('img/default-avatar.png') }}""></i>
+                                            </a>
+                                            <div class="timeline-panel col-sm-10">
+                                                <div class="timeline-body card" data-background-color="roxo">
+                                                    <p>Thank God for the support of my wife and real friends. I also wanted to point out that it’s the first album to go number 1 off of streaming!!! I love you Ellen and also my number one design rule of anything I do from shoes to music to homes is that Kim has to like it....</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        </ul>
+                                        <br><br>
+                                        <ul>
+                                        <li>
+                                            <a href="#" class="timeline-badge success mais-menos col-sm-2">
+                                                <i class="material-icons"><img class="img" src="{{ asset('img/default-avatar.png') }}""></i>
+                                            </a>
+                                            <div class="timeline-panel col-sm-10">
+                                                <div class="timeline-body card" data-background-color="roxo">
+                                                    <p>Thank God for the support of my wife and real friends. I also wanted to point out that it’s the first album to go number 1 off of streaming!!! I love you Ellen and also my number one design rule of anything I do from shoes to music to homes is that Kim has to like it....</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        </footer>
+                                        <br><br>
+                                        </div>
                                             </div>
                                         </li><br><br>
                                         <li>
@@ -56,7 +129,8 @@
                                                     <p>Thank God for the support of my wife and real friends. I also wanted to point out that it’s the first album to go number 1 off of streaming!!! I love you Ellen and also my number one design rule of anything I do from shoes to music to homes is that Kim has to like it....</p>
                                                 </div>
                                             </div>
-                                        </li><br><br>
+                                        </li>
+                                        <br><br>
                                         <li class="timeline-inverted">
                                             <a href="#" class="timeline-badge info mais-menos">
                                                 <i class="material-icons">fingerprint</i>
