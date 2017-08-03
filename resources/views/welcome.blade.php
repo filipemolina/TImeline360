@@ -88,30 +88,34 @@
                                                         </div>
                                                         </div>
                                         <div class="panel-body">
-                                        <ul>
-                                        <li>
-                                            <a href="#" class="timeline-badge success mais-menos col-sm-2">
-                                                <i class="material-icons"><img class="img" src="{{ asset('img/default-avatar.png') }}""></i>
-                                            </a>
-                                            <div class="timeline-panel col-sm-10">
-                                                <div class="timeline-body card" data-background-color="roxo">
-                                                    <p>Thank God for the support of my wife and real friends. I also wanted to point out that it’s the first album to go number 1 off of streaming!!! I love you Ellen and also my number one design rule of anything I do from shoes to music to homes is that Kim has to like it....</p>
+                                        <div class="col-md-12">
+                                            <div class="card" data-header-animation="true">
+                                                <div class="card-header card-header-icon" data-background-color="default">
+                                                    <i class="material-icons"><img class="img" src="{{ asset('img/default-avatar.png') }}""></i>
+                                                </div>
+                                                <div class="card-content">
+                                                    <h4 class="card-title">Nome da pessoa</h4>
+                                                        <div class="tim-typo">
+                                                        <p>
+                                                        The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Barcelona...</p>
+                                                        </div>
                                                 </div>
                                             </div>
-                                        </li>
-                                        </ul>
-                                        <br><br>
-                                        <ul>
-                                        <li>
-                                            <a href="#" class="timeline-badge success mais-menos col-sm-2">
-                                                <i class="material-icons"><img class="img" src="{{ asset('img/default-avatar.png') }}""></i>
-                                            </a>
-                                            <div class="timeline-panel col-sm-10">
-                                                <div class="timeline-body card" data-background-color="roxo">
-                                                    <p>Thank God for the support of my wife and real friends. I also wanted to point out that it’s the first album to go number 1 off of streaming!!! I love you Ellen and also my number one design rule of anything I do from shoes to music to homes is that Kim has to like it....</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-header card-header-icon" data-background-color="default">
+                                                    <i class="material-icons"><img class="img" src="{{ asset('img/default-avatar.png') }}""></i>
+                                                </div>
+                                                <div class="card-content">
+                                                    <h4 class="card-title">Nome da pessoa</h4>
+                                                        <div class="tim-typo">
+                                                        <p>
+                                                        The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Barcelona...</p>
+                                                        </div>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </div>
                                         </footer>
                                         <br><br>
                                         </div>
