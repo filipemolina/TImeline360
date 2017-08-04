@@ -33,5 +33,10 @@ $(function(){
 	
 	});
 
+	$('.mais-menos').click(function(){
+		event.preventDefault();
+   		$(this).parent().find('.timeline-panel').slideToggle(); 
+	});
+
 });
 </script>
