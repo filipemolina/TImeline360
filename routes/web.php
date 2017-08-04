@@ -22,10 +22,10 @@ Route::get('/', function () {
 });
 
 
-/*Route::get('/registro', function () {
+Route::get('/registro', function () {
     return view('solicitantes.create');
 });
-*/
+
 
 
 

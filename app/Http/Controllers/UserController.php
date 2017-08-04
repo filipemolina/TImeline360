@@ -111,11 +111,6 @@ class UserController extends Controller
         //return redirect('lojas.edit')->whith(['erros' => 'Falha ao editar']); 
 */    }
 
-    public function show($id)
-    {
-        //
-
-    }
 
     public function edit($id)
     {
@@ -166,38 +161,6 @@ class UserController extends Controller
         return view('usuarios.edit',compact('usuario','titulo','tipo_acesso'));
 */    }
 
-    public function update(Request $request, $id)
-    {
-        // Validar
-
-/*        $this->validate($request, [
-            'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users,email,'.$id,
-            'acesso'    => 'required',
-        ]);
-
-        // Obter o usuário
-
-        $usuario = User::find($id);
-
-
-
-        // Atualizar as informações
-
-        $status = $usuario->update($request->all());
-
-
-        
-        
-
-        if ($status) {
-            return redirect("/usuarios/$usuario->id/edit")->with('sucesso', 'Informações do usuário atualizadas com sucesso.');
-        } else {
-            //return redirect(back); 
-            return redirect("/usuarios/$usuario->id/edit")->with(['erros' => 'Falha ao editar']);
-        }
-*/        
-    }
 
     public function destroy($id)
     {
@@ -213,11 +176,10 @@ class UserController extends Controller
             return redirect("/user/$usuario->id/edit")->with(['erros' => 'Falha ao deletar o usuário']);
         }
 
-
-    }
-}
 /*        $user=User::find($id);
 
         $user->delete();
 */
+
     }
+}
