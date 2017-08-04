@@ -26,6 +26,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+<<<<<<< HEAD
 
     public function solicitante()
     {
@@ -33,3 +34,6 @@ class User extends Authenticatable
     }
 }
 
+=======
+}
+>>>>>>> leandro

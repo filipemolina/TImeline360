@@ -21,7 +21,11 @@ class SolicitanteController extends Controller
 
     public function store(Request $request)
     {
+<<<<<<< HEAD
         //        return $request->all();
+=======
+        return $request->all();
+>>>>>>> leandro
     }
 
     public function show($id)

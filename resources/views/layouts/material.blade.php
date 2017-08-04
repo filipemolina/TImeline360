@@ -19,11 +19,15 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 
         @if (Auth::check()) 
              {{ Auth::user()->email }}
         @endif
     <div class="wrapper">
+=======
+    <div class="wrapper" style=" margin-left:-259px;">
+>>>>>>> leandro
 
         {{-- Menu Lateral --}}
         
@@ -42,7 +46,11 @@
     
                     @yield('content')
 
+<<<<<<< HEAD
                     <input type="text" class="input-teste">
+=======
+                    {{-- <input type="text" class="input-teste"> --}}
+>>>>>>> leandro
 
                 </div>
             </div>

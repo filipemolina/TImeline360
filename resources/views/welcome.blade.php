@@ -2,12 +2,17 @@
 
 @section('titulo')
 
+<<<<<<< HEAD
 	Dashboard | Principal
+=======
+	Página Inicial
+>>>>>>> leandro
 
 @endsection
 
 @section('content')
 
+<<<<<<< HEAD
 <div class="col-md-4">
     <div class="card card-chart">
         <div class="card-header" data-background-color="orange" data-header-animation="true">
@@ -36,5 +41,8 @@
         </div>
     </div>
 </div>
+=======
+
+>>>>>>> leandro
 
 @endsection

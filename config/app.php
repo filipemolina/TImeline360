@@ -162,7 +162,10 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+<<<<<<< HEAD
         ValidadorCpf\CpfServiceProvider54::class,
+=======
+>>>>>>> leandro
 
         /*
          * Package Service Providers...
@@ -178,7 +181,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> leandro
     ],
 
     /*

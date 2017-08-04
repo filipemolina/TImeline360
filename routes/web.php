@@ -32,6 +32,10 @@ Route::get('/', function () {
 //resources
 Route::resource('solicitante','SolicitanteController');
 
+<<<<<<< HEAD
 Route::resource('user', 'UserController');
+=======
+//Route::resource('users', 'UsersController');
+>>>>>>> leandro
 
 Auth::routes();
