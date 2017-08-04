@@ -20,10 +20,11 @@
 
 <body>
 
-        @if (Auth::check()) 
-             {{ Auth::user()->email }}
-        @endif
+    @if (Auth::check()) 
+         {{ Auth::user()->email }}
+    @endif
     <div class="wrapper">
+
 
         {{-- Menu Lateral --}}
         
@@ -41,8 +42,6 @@
                     {{-- Conteúdo Principal --}}
     
                     @yield('content')
-
-                    <input type="text" class="input-teste">
 
                 </div>
             </div>

@@ -34,7 +34,6 @@
     </div>
 @endif
 
-
     <nav class="navbar navbar-primary navbar-transparent navbar-absolute">
         <div class="container">
             <div class="navbar-header">
@@ -73,12 +72,22 @@
         </div>
     </nav>
     <div class="wrapper wrapper-full-page">
-        <div class="full-page register-page" filter-color="black" data-image="{{ asset('img/register.jpeg') }}">
+        <div class="full-page register-page" filter-color="black" data-image="{{ asset('img/prefeitura.png') }}">
             <div class="container">
+
+            <div class="alert alert-primary alert-with-icon" data-notify="container">
+                                        <i class="material-icons" data-notify="icon">notifications</i>
+                                        <button type="button" aria-hidden="true" class="close">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                        <span data-notify="message">This is a notification with close button and icon and is made with ".alert-rose". You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
+            </div>
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
-                        <div class="card card-signup" style="opacity: 0.7;">
-                            <h2 class="card-title text-center">Registro</h2>
+                    <img src="{{ asset('img/logo-360-roxo.png') }}"  style="margin: 0 auto -80px auto; width: 20%; position: relative; display: block; z-index: 1;">
+                        <div class="card card-signup" style="opacity: 0.7;  margin-left: inherit; width: 80%; left: 1%;">
+                       <br>
+                            <h2 class="card-title text-center" style="color: #000;">Registro</h2>
                             <div class="row">
                                 <div class="col-md-5 col-md-offset-1">
                                     <div class="card-content">
@@ -117,20 +126,21 @@
                                         </div> --}}
                                     </div>
                                 </div>
-                                <div class="col-md-6" style="margin: 0 auto; float: none;">
-                                    <div class="social text-center" style="margin-top: 20px;">
+                                <div class="col-md-6" style="margin: 0 auto; float: none; color: #000;">
+                                    <div class="social text-center" style="margin-top: 20px; ">
+
                                        {{--  <button class="btn btn-just-icon btn-round btn-twitter">
                                             <i class="fa fa-twitter"></i>
                                         </button>
                                         <button class="btn btn-just-icon btn-round btn-dribbble">
                                             <i class="fa fa-dribbble"></i>
                                         </button> --}}
-                                        <button class="btn btn-just-icon btn-round btn-facebook">
+
+                                        <button class="btn btn-just-icon btn-round btn-facebook" style="left: 25px;">
                                             <i class="fa fa-facebook"> </i>
                                         </button>
                                         <h4> Entre com Facebook ou Crie sua Conta!</h4>
                                     </div>
-
 
                                     <form class="form" method="POST" action="{{ route('user.store') }}">
                                             {{ csrf_field() }}

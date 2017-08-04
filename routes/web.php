@@ -31,7 +31,7 @@ Route::get('/', function () {
 
 //resources
 Route::resource('solicitante','SolicitanteController');
-
 Route::resource('user', 'UserController');
 
+// Rotas da autenticação
 Auth::routes();

@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
-
 use App\Models\User;
 use App\Models\Solicitante;
 
@@ -27,12 +26,12 @@ class UserController extends Controller
     {
          // Mostrar a lista de usuários
 
-        
         $usuarios = User::all();
 
         return $usuarios;
         //return view('usuarios.lista', compact('usuarios'));
     }
+
 
     
     public function create()
@@ -49,8 +48,7 @@ class UserController extends Controller
 
     
     public function store(Request $request)
-    {
-        
+    {        
         //dd($request->all());
 
         $this->validate($request, [
@@ -96,7 +94,6 @@ class UserController extends Controller
 
     public function edit($id)
     {
-
         $user = $this->user->find($id); 
         
         //return view('user.edit',compact('user'));
