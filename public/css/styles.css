@@ -467,3 +467,13 @@ z-index: -1;
 .inverterX {
  transform: scaleX(-1);
 }
+
+.card .card-avatar.card-header-icon {
+  float: left;
+}
+.card .card-avatar.card-header-icon i {
+  width: 33px;
+  height: 33px;
+  text-align: center;
+  line-height: 33px;
+}
