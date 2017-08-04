@@ -28,7 +28,6 @@
     @endif
     <div class="wrapper">
 
-
         {{-- Menu Lateral --}}
         
        {{--  @include('includes.layouts.sidebar') --}}
@@ -45,6 +44,7 @@
                     {{-- Conteúdo Principal --}}
     
                     @yield('content')
+
 
                 </div>
             </div>

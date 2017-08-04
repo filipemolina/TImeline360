@@ -142,7 +142,7 @@
                                         <h4> Entre com Facebook ou Crie sua Conta!</h4>
                                     </div>
 
-                                    <form class="form" method="POST" action="{{ route('user.store') }}">
+                                    <form class="form" method="POST" action="{{ route('solicitante.store') }}">
                                             {{ csrf_field() }}
                                         <div class="card-content">
                                             <div class="input-group">
@@ -174,6 +174,7 @@
                                                     <i class="material-icons">lock_outline</i>
                                                 </span>
                                                 <input name="password_confirmation" type="password" placeholder="Confirmar Senha" class="form-control" />
+
                                             </div>
                                             <!-- If you want to add a checkbox to this form, uncomment this code -->
                                             <div class="checkbox">

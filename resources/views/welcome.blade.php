@@ -2,12 +2,21 @@
 
 @section('titulo')
 
+<<<<<<< HEAD
 	Página Inicial
+=======
+<<<<<<< HEAD
+	Dashboard | Principal
+=======
+	Página Inicial
+>>>>>>> leandro
+>>>>>>> e77905bfabcd39e71b4a9fe2e8584e78c9d1e90e
 
 @endsection
 
 @section('content')
 
+<<<<<<< HEAD
 <div class="wrapper">
 
             <div class="content">
@@ -193,5 +202,5 @@
             </div>
             
     </div>
-    
+</div>
 @endsection

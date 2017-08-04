@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-transparent navbar-absolute" style="background: #3d276b; color: #fff; background-image: linear-gradient(to left, transparent 75%, #FFF);"> 
     <div class="container-fluid">
         {{-- <div class="navbar-minimize">
@@ -23,7 +22,6 @@
                     <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="material-icons">dashboard</i>
                         minhas solicitações
-
                     </a>
                 </li>
                 <li class="dropdown">
@@ -32,7 +30,6 @@
                         <span class="notification" style="right: 100px;">5</span>
                         
                             Notificações
-                        
                     </a>
                     <ul class="dropdown-menu">
                         <li>
