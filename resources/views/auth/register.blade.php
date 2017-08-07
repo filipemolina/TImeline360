@@ -45,13 +45,9 @@
                             <i class="material-icons">dashboard</i> Dashboard
                         </a> --}}
                     </li>
-                    <li class=" active ">
-                        <a href="register.html">
-                            <i class="material-icons">person_add</i> Register
-                        </a>
-                    </li>
+                    
                     <li class="">
-                        <a href="login.html">
+                        <a href="{{url ("/login")}}">
                             <i class="material-icons">fingerprint</i> Login
                         </a>
                     </li>

@@ -19,13 +19,13 @@
 </head>
 
 <body>
-    <div class="wrapper" style=" margin-left:-259px;">
+    <div class="wrapper">
 
         {{-- Menu Lateral --}}
         
        {{--  @include('includes.layouts.sidebar') --}}
 
-        <div class="main-panel">
+        <div class="main-panel " style="float: none; width: 100%;">
 
             {{-- Menu Superior --}}
             
@@ -38,7 +38,7 @@
     
                     @yield('content')
 
-                    {{-- <input type="text" class="input-teste"> --}}
+                    {{-- <input type="text" class="input-teste">t --}}
 
                 </div>
             </div>
