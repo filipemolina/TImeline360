@@ -56,9 +56,10 @@ class UserController extends Controller
         $this->validate($request, [
             'nome'                  => 'required|max:255',
             'email'                 => 'required|email|max:255|unique:users',
-            'cpf'                   => 'cpf|unique:users',
+            'cpf'                   => 'cpf|unique:solicitantes',
             'password'              => 'required|min:6|confirmed',
-            'password_confirmation' => 'required|min:6'
+            'password_confirmation' => 'required|min:6',
+            'aceite'                => 'required'
         ]);
 
         //dd($request->whith(['erros']));

@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 
 Route::get('/registro', function () {
-    return view('solicitantes.create');
+    return view('auth.register');
 });
 
 
@@ -34,4 +34,5 @@ Route::resource('solicitante','SolicitanteController');
 Route::resource('user', 'UserController');
 
 // Rotas da autenticação
-Auth::routes();
+//Auth::routes();
+
