@@ -82,7 +82,7 @@
 
                     <li class=" active ">
                         <a href="{{url ("/register")}}">
-                            <i class="material-icons">person_add</i> Register
+                            <i class="material-icons">person_add</i> Registrar
                         </a>
                     </li>
                     <li class="">
