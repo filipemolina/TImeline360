@@ -23,16 +23,13 @@
 
 <body>
 
-    @if (Auth::check()) 
-         {{ Auth::user()->email }}
-    @endif
     <div class="wrapper">
 
         {{-- Menu Lateral --}}
         
        {{--  @include('includes.layouts.sidebar') --}}
 
-        <div class="main-panel">
+        <div class="main-panel " style="float: none; width: 100%;">
 
             {{-- Menu Superior --}}
             
@@ -44,6 +41,7 @@
                     {{-- Conteúdo Principal --}}
     
                     @yield('content')
+
 
 
                 </div>

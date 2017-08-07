@@ -42,11 +42,7 @@
                          <i class="material-icons">dashboard</i> Dashboard
                      </a> --}}
                </li>
-               <li class=" active ">
-                  <a href="register.html">
-                     <i class="material-icons">person_add</i> Register
-                  </a>
-               </li>
+               
                <li class="">
                   <a href="login.html">
                      <i class="material-icons">fingerprint</i> Login
@@ -131,6 +127,8 @@
                                      <button class="btn btn-just-icon btn-round btn-dribbble">
                                          <i class="fa fa-dribbble"></i>
                                      </button> --}}
+
+
 
                                  <button class="btn btn-just-icon btn-round btn-facebook" style="left: 25px;">
                                     <i class="fa fa-facebook"> </i>

@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-	Dashboard | Principal
+	Página Inicial
 
 @endsection
 

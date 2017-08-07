@@ -18,6 +18,9 @@
 
             <div class="collapse navbar-collapse">
              <ul class="nav navbar-nav navbar-right">
+
+            @if(Auth::check())
+
                 <li>
                     <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="material-icons">dashboard</i>
@@ -73,6 +76,22 @@
                     </ul>
                 </li>
                 <li class="separator hidden-lg hidden-md"></li>
+
+                @else
+
+                    <li class=" active ">
+                        <a href="{{url ("/registro")}}">
+                            <i class="material-icons">person_add</i> Registrar
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{{url ("/login")}}">
+                            <i class="material-icons">fingerprint</i> Login
+                        </a>
+                    </li>
+                    <li class="">
+
+                @endif
             </ul>
             <form class="navbar-form navbar-right" role="search">
                 <div class="form-group form-search is-empty">
