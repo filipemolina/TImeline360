@@ -8,6 +8,7 @@
 
 @section('content')
 
+
 <div class="wrapper">
     <div class="content">
         <div class="container-fluid">
@@ -530,5 +531,8 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 @endsection
