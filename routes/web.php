@@ -31,6 +31,7 @@ Route::get('/registro', function () {
 
 //resources
 Route::resource('solicitante','SolicitanteController');
+Route::resource('solicitacao','SolicitacaoController');
 Route::resource('user', 'UserController');
 
 // Rotas da autenticação
