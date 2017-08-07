@@ -16,9 +16,13 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
+
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
 </head>
 
 <body>
+
     <div class="wrapper">
 
         {{-- Menu Lateral --}}
@@ -38,7 +42,7 @@
     
                     @yield('content')
 
-                    {{-- <input type="text" class="input-teste">t --}}
+
 
                 </div>
             </div>
@@ -95,5 +99,7 @@
 
 {{-- Javascript do Projeto --}}
 <script src="{{ asset('js/scripts.js') }}"></script>
+
+@include('includes.scripts')
 
 </html>

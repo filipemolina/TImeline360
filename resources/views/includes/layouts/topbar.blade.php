@@ -33,7 +33,6 @@
                         <span class="notification" style="right: 100px;">5</span>
                         
                             Notificações
-                        
                     </a>
                     <ul class="dropdown-menu">
                         <li>
@@ -81,7 +80,7 @@
                 @else
 
                     <li class=" active ">
-                        <a href="{{url ("/register")}}">
+                        <a href="{{url ("/registro")}}">
                             <i class="material-icons">person_add</i> Registrar
                         </a>
                     </li>
