@@ -44,4 +44,3 @@ Route::resource('solicitacao','SolicitacaoController');
 Route::resource('user', 'UserController');
 
 
-//Auth::routes();
