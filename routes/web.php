@@ -24,10 +24,11 @@ Route::get ('/perfil', 'SolicitanteController@telaPerfil');
 Route::post ('/perfil', 'SolicitanteController@Perfil');
 
 
-
+Route::get ('/', 'PrincipalController@index');
+/*
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('principal');
+});*/
 
 
 Route::get('/registro', function () {
@@ -43,4 +44,4 @@ Route::resource('solicitacao','SolicitacaoController');
 Route::resource('user', 'UserController');
 
 
-Auth::routes();
+//Auth::routes();

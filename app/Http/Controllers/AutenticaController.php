@@ -20,8 +20,8 @@ class AutenticaController extends Controller
         {
            return redirect("/");
         } else {
-            return redirect("/login")->with('erros');
-            //return redirect("/user/$usuario->id/edit")->with(['erros' => 'Falha ao editar']);
+            //return redirect("/login")->with('erros');
+            return redirect("/user/$usuario->id/edit")->with(['erros' => 'Falha ao editar']);
         }
     }
 
