@@ -50,7 +50,7 @@
                </li>
                
                <li class="">
-                  <a href="login.html">
+                  <a href="{{ url( "login" ) }}">
                      <i class="material-icons">fingerprint</i> Login
                   </a>
                </li>
