@@ -33,10 +33,20 @@ $(function(){
 	
 	});
 
-	$('.mais-menos').click(function(){
+	$('.slide-coment').click(function(){
 		event.preventDefault();
-   		$(this).parent().find('.timeline-panel').slideToggle(); 
+   		$(this).parent().parent().parent().find('.colapso').slideToggle();
+   		console.log('teste teste')
 	});
+
+	$('.apoiar').click(function(){
+		event.preventDefault();
+		if ($(this).hasClass('btn-primary')){
+			$(this).removeClass('btn-primary')
+		} else {
+			$(this).addClass('btn-primary')
+		}
+	})
 
 });
 </script>
