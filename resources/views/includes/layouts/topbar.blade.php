@@ -1,5 +1,6 @@
-<nav class="navbar navbar-transparent navbar-absolute" style="background: #3d276b; color: #fff; background-image: linear-gradient(to left, transparent 75%, #FFF);"> 
-    <div class="container-fluid">
+  <nav class="navbar navbar-default navbar-static-top animated fadeInDownBig">
+  
+  <div class="container-fluid">
         {{-- <div class="navbar-minimize">
             <button id="minimizeSidebar" class="btn btn-round btn-white btn-fill btn-just-icon" style="background: #bfa15f; color:#fff;">
                 <i class="material-icons visible-on-sidebar-regular">more_vert</i>
@@ -95,10 +96,10 @@
             </ul>
             <form class="navbar-form navbar-right" role="search">
                 <div class="form-group form-search is-empty">
-                    <input type="text" class="form-control" style="background-image: linear-gradient(#bfa15f, #bfa15f), linear-gradient(#D2D2D2, #D2D2D2);" placeholder="Pesquisar">
+                    <input type="text" class="form-control" style="background-image: linear-gradient(#3d276b, #3d276b), linear-gradient(#D2D2D2, #D2D2D2);" placeholder="Pesquisar">
                     <span class="material-input"></span>
                 </div>
-                <button type="submit" class="btn btn-white btn-round btn-just-icon" style="background: #bfa15f;
+                <button type="submit" class="btn btn-white btn-round btn-just-icon" style="background: #3d276b;
     color: #fff">
                     <i class="material-icons">search</i>
                     <div class="ripple-container"></div>
