@@ -19,6 +19,7 @@
 
 Route::get ('/login', 'AutenticaController@telaLogin');
 Route::post ('/login', 'AutenticaController@login');
+Route::get ('/logout', 'AutenticaController@logout');
 
 
 Route::get('/', function () {
