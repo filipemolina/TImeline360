@@ -23,7 +23,8 @@
 
 <body>
 
-    <div class="wrapper">
+    <div class="wrapper wrapper-full-page">
+        <div class="full-page login-page" filter-color="black">
 
         {{-- Menu Lateral --}}
         
@@ -46,6 +47,7 @@
 
                 </div>
             </div>
+        </div>
 
             {{-- Rodapé --}}
 
@@ -96,6 +98,9 @@
 
 {{-- Vanilla Masker --}}
 <script src="{{ asset('js/vanillaMasker.min.js') }}"></script>
+
+{{-- Masonry --}}
+<script src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
 
 {{-- Javascript do Projeto --}}
 <script src="{{ asset('js/scripts.js') }}"></script>
