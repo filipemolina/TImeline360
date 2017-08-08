@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -87,9 +88,31 @@
                 <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
                 <div class="content">
                     <div class="container">
+
+                        @if ($errors->any())
+                            {{ dd("erro") }}
+                           <div class="alert alert-primary alert-with-icon" data-notify="container">
+                              <i class="material-icons" data-notify="icon">notifications</i>
+                              <button type="button" aria-hidden="true" class="close">
+                                 <i class="material-icons">close</i>
+                              </button>
+                              <ul>
+                                 @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                 @endforeach
+                              </ul>                    
+                           </div>
+                        @endif
+
+
+
+
+
+
                         <div class="row">
                             <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                                <form method="#" action="#">
+                                <form method="POST" action="{{ url('login') }}">
+                                    {{ csrf_field() }}
 
                                     {{-- DIV login-municipe --}}
                                     <div id="login-municipe" class="card card-login card-hidden">
@@ -115,7 +138,7 @@
                                                 </span>
                                                 <div class="form-group label-floating has-roxo">
                                                     <label class="control-label">E-mail</label>
-                                                    <input type="email" class="form-control">
+                                                    <input name="email" type="email" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="input-group">
@@ -124,7 +147,7 @@
                                                 </span>
                                                 <div class="form-group label-floating has-roxo">
                                                     <label class="control-label">Senha</label>
-                                                    <input type="password" class="form-control">
+                                                    <input name="password" type="password" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
