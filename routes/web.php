@@ -13,13 +13,16 @@
 
 
 // Rotas da autenticação
-//Auth::routes();
-//Route::get('/home', 					'HomeController@index')->name('home');
-//Route::get ('/logout', 					'Auth\LoginController@logout');
 
 Route::get ('/login', 'AutenticaController@telaLogin');
 Route::post ('/login', 'AutenticaController@login');
 Route::get ('/logout', 'AutenticaController@logout');
+
+
+
+Route::get ('/perfil', 'SolicitanteController@telaPerfil');
+Route::post ('/perfil', 'SolicitanteController@Perfil');
+
 
 
 Route::get('/', function () {
@@ -40,3 +43,4 @@ Route::resource('solicitacao','SolicitacaoController');
 Route::resource('user', 'UserController');
 
 
+Auth::routes();

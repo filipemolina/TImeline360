@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Solicitante;
-use App\Models\User;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+use App\Models\User;
+use App\Models\Solicitante;
+
+
 
 class SolicitanteController extends Controller
 {
@@ -57,4 +62,26 @@ class SolicitanteController extends Controller
     {
         //
     }
+
+
+    //==================================================================================
+    //             PERFIL    
+    //==================================================================================
+
+    public function telaPerfil()
+    {
+
+        $usuario = User::find(Auth::user()->id);
+        $solicitante = $usuario->solicitante;
+
+        dd($solicitante);
+
+
+
+        /*$usuario = User::find($id);
+        $usuario = $this->users->find($id);
+*/
+        return redirect("/");
+    }
+
 }

@@ -60,7 +60,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="{{ url("/perfil") }}" >
                                 <i class="material-icons">person</i>
                                     Editar Perfil
                             </a>
