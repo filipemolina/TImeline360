@@ -11,7 +11,11 @@ class Setor extends Model
     protected $fillable =[
     	'nome',
     ];
-
+    
+    public function funcionarios()
+    {
+        return $this->hasMany('App\Models\Funcionario');
+    }
 
     public function secretaria()
     {

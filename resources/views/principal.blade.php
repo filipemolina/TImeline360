@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-	Página Inicial
+    Página Inicial
 
 @endsection
 
@@ -11,7 +11,7 @@
 
         {{-- Início da Solicitação --}}
 
-        @foreach ($solicitacoes as $item)
+        @foreach ($solicitacoes as $solicitacao)
             
         
                     
@@ -19,7 +19,7 @@
                 <div class="card">
                     <div class="card-profile col-md-2 col">
                         <div class="card-avatar card-header-icon">
-                            <img class="img" src="{{ $item->solicitante->foto }}"/>
+                            <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
                         </div>
                     </div>
                     <div class="card-header card-header-icon pull-right" data-background-color="red">
@@ -28,7 +28,7 @@
                     <div class="card-image">
                         <span class="label label-danger"></span>
                         <a href="#pablo">
-                            <img class="img" src="{{ $item->foto }}">
+                            <img class="img" src="{{ $solicitacao->foto }}">
                         </a>
                     </div>
                     <div class="card-content">
@@ -37,13 +37,13 @@
                                 <button class="btn btn-just-icon btn-simple btn-xs btn-primary">
                                     <i class="material-icons">label_outline</i>
                                 </button>
-                                {{ $item->id }}
-                                {{ $item->servico->nome }} - {{ $item->servico->setor->secretaria->sigla }}
+                                {{ $solicitacao->id }}
+                                {{ $solicitacao->servico->nome }} - {{ $solicitacao->servico->setor->secretaria->sigla }}
                             </p>
                         </div>
                         <div class="timeline-body col-md-12">
 
-                            {{ $item->conteudo }}
+                            {{ $solicitacao->conteudo }}
 
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                         </div>
 
                         {{-- card de comentarios --}}
-                        @foreach ($item->mensagens as $mensagem)
+                        @foreach ($solicitacao->mensagens as $mensagem)
 
                             <div class="panel-body">
                                 <div class="card">
@@ -103,7 +103,8 @@
                                         </div>
 
                                         <div class="card-content">
-                                            <h4 class="card-title">{{ $mensagem->funcionario->nome  }}</h4>
+                                            <h4 class="card-title">      {{ $mensagem->funcionario->setor->secretaria->nome }} - 
+                                                                    {{ $mensagem->funcionario->setor->secretaria->sigla }}</h4>
                                             <div class="tim-typo">
                                                 <label>
                                                     {{ $mensagem->mensagem }}
@@ -115,12 +116,12 @@
 
                                         <div class="card-profile col-md-2">
                                             <div class="card-avatar card-header-icon">
-                                                {{-- <img class="img" src="{{ $item->solicitante->foto}}"> --}}
-                                                <img class="img" src="{{ $item->solicitante->foto}}">
+                                                {{-- <img class="img" src="{{ $solicitacao->solicitante->foto}}"> --}}
+                                                <img class="img" src="{{ $solicitacao->solicitante->foto}}">
                                             </div>
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="card-title">{{ $item->solicitante->nome}}</h4>
+                                            <h4 class="card-title">{{ $solicitacao->solicitante->nome}}</h4>
                                             <div class="tim-typo">
                                                 <label>
                                                     {{ $mensagem->mensagem }}
