@@ -33,7 +33,7 @@
             
             @include('includes.layouts.topbar')
 
-            <div class="wrapper full-page">
+            <div class="wrapper">
                 <div class="content">
                     <div class="container-fluid">
 
