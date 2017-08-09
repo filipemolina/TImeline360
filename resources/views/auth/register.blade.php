@@ -69,9 +69,12 @@
                 <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
                 <div class="content">
                     <div class="container">
+
+               
                         <div class="row">
                             <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                                <form method="#" action="#">
+                                <form class="form" method="POST" action="{{ route('user.store') }}">
+                                        {{ csrf_field() }}
 
                                     {{-- DIV login-municipe --}}
                                     <div id="login-municipe" class="card card-login card-hidden">
@@ -106,7 +109,7 @@
                                                 </span>
                                                 <div class="form-group label-floating has-roxo">
                                                     <label class="control-label">E-mail</label>
-                                                    <input type="email" class="form-control">
+                                                    <input name="email" type="email" class="form-control" value="{{ old('email') }}">
                                                 </div>
                                             </div>
                                             <div class="input-group">
@@ -124,7 +127,7 @@
                                                 </span>
                                                 <div class="form-group label-floating has-roxo">
                                                     <label class="control-label">Senha</label>
-                                                    <input type="password" class="form-control">
+                                                    <input  name="password" type="password" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="input-group">
@@ -133,7 +136,7 @@
                                                 </span>
                                                 <div class="form-group label-floating has-roxo">
                                                     <label class="control-label">Confirmar Senha</label>
-                                                    <input type="password" class="form-control">
+                                                    <input  name="password_confirmation" type="password" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="checkbox">
@@ -208,6 +211,25 @@
 
 <script type="text/javascript">
     $().ready(function() {
+
+        var tempo = 0;
+        var incremento = 500;
+
+        // Testar se há algum erro, e mostrar a notificação
+
+         @if ($errors->any())
+            
+             @foreach ($errors->all() as $error)
+
+                setTimeout(function(){
+                    demo.notificationRight("top", "right", "rose", "{{ $error }}");   
+                }, tempo);
+
+                tempo += incremento;
+
+             @endforeach
+                
+        @endif
 
         VMasker ($("#cpf")).maskPattern("999.999.999-99");
 

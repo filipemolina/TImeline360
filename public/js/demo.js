@@ -962,6 +962,23 @@ demo = {
                 align: align
             }
         });
-	}
+	},
+
+    notificationRight: function(from, align, cor, mensagem){
+        // type = ['','info','success','warning','danger','rose','primary'];
+
+        $.notify({
+            icon: "notifications",
+            message: mensagem,
+
+        },{
+            type: cor,
+            timer: 3000,
+            placement: {
+                from: from,
+                align: align
+            }
+        });
+    },
 
 }

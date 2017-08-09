@@ -482,3 +482,12 @@ z-index: -1;
 .colapso {
   display: none;
 }
+
+.col-md-4.publicacao {
+    margin-bottom: 30px;
+}
+
+.card .foto-funcionario {
+    position: absolute;
+    right: 0;
+}

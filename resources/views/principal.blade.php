@@ -2,19 +2,24 @@
 
 @section('titulo')
 
-	Página Inicial
+    Página Inicial
 
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row ">
+
+        {{-- Início da Solicitação --}}
+
+        @foreach ($solicitacoes as $solicitacao)
+            
+        
                     
-            <div id="publicacao#" class="col-md-4">
+            <div class="col-md-offset-2 col-md-7 publicacao">
                 <div class="card">
-                    <div class="card-profile col-md-3 col">
+                    <div class="card-profile col-md-2 col">
                         <div class="card-avatar card-header-icon">
-                            <img class="img" src="{{ asset('img/default-avatar.png') }}"/>
+                            <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
                         </div>
                     </div>
                     <div class="card-header card-header-icon pull-right" data-background-color="red">
@@ -23,7 +28,7 @@
                     <div class="card-image">
                         <span class="label label-danger"></span>
                         <a href="#pablo">
-                            <img class="img" src="{{ asset('img/image_placeholder.jpg')}}">
+                            <img class="img" src="{{ $solicitacao->foto }}">
                         </a>
                     </div>
                     <div class="card-content">
@@ -32,11 +37,14 @@
                                 <button class="btn btn-just-icon btn-simple btn-xs btn-primary">
                                     <i class="material-icons">label_outline</i>
                                 </button>
-                                Título da solicitação
+                                {{ $solicitacao->id }}
+                                {{ $solicitacao->servico->nome }} - {{ $solicitacao->servico->setor->secretaria->sigla }}
                             </p>
                         </div>
                         <div class="timeline-body col-md-12">
-                            The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Barcelona...
+
+                            {{ $solicitacao->conteudo }}
+
                         </div>
                     </div>
 
@@ -78,43 +86,63 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-body">
-                            <div class="card">
-                                <div class="card-profile col-md-3">
-                                    <div class="card-avatar card-header-icon">
-                                        <img class="img" src="{{ asset('img/default-avatar.png') }}"">
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h4 class="card-title">Nome da pessoa</h4>
-                                    <div class="tim-typo">
-                                        <label>
-                                            The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Barcelona...
-                                        </label>
-                                    </div>
+
+                        {{-- card de comentarios --}}
+                        @foreach ($solicitacao->mensagens as $mensagem)
+
+                            <div class="panel-body">
+                                <div class="card">
+
+                                    {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
+
+                                    @if ($mensagem->funcionario_id)
+                                        <div class="card-profile foto-funcionario col-md-2">
+                                            <div class="card-avatar card-header-icon">
+                                                <img class="img" src="{{ asset('img/brasao.png')}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="card-content">
+                                            <h4 class="card-title">      {{ $mensagem->funcionario->setor->secretaria->nome }} - 
+                                                                    {{ $mensagem->funcionario->setor->secretaria->sigla }}</h4>
+                                            <div class="tim-typo">
+                                                <label>
+                                                    {{ $mensagem->mensagem }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    
+                                    @else
+
+                                        <div class="card-profile col-md-2">
+                                            <div class="card-avatar card-header-icon">
+                                                {{-- <img class="img" src="{{ $solicitacao->solicitante->foto}}"> --}}
+                                                <img class="img" src="{{ $solicitacao->solicitante->foto}}">
+                                            </div>
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="card-title">{{ $solicitacao->solicitante->nome}}</h4>
+                                            <div class="tim-typo">
+                                                <label>
+                                                    {{ $mensagem->mensagem }}
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    @endif
+
+
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-profile col-md-3">
-                                    <div class="card-avatar card-header-icon">
-                                        <img class="img" src="{{ asset('img/default-avatar.png') }}"">
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h4 class="card-title">Nome da pessoa</h4>
-                                    <div class="tim-typo">
-                                        </label>
-                                            The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Barcelona...
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                        @endforeach
+                        {{-- fim do card de comentarios --}}
                     </footer>
                 </div>
             </div> {{-- Fim ID PUBLICAÇÃO --}}
-                
 
-                </div>
-            </div>
+            {{-- Fim da Solicitação --}}
+        @endforeach
+
+    </div> {{-- Fim da ROW --}}
 @endsection

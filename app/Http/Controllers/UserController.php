@@ -25,11 +25,7 @@ class UserController extends Controller
     public function index()
     {
         // Mostrar a lista de usuários
-
-
         $usuarios = User::all();
-
-
         return $usuarios;
         //return view('usuarios.lista', compact('usuarios'));
     }
@@ -46,13 +42,12 @@ class UserController extends Controller
 
         // return "entrou";
         return view('usuarios.create',compact(['titulo','tipo_acesso']));
-*/    }
+*/    
+    }
 
     
     public function store(Request $request)
     {        
-        //dd($request->all());
-
         $this->validate($request, [
             'nome'                  => 'required|max:255',
             'email'                 => 'required|email|max:255|unique:users',
@@ -62,17 +57,12 @@ class UserController extends Controller
             'aceite'                => 'required'
         ]);
 
-        //dd($request->whith(['erros']));
-
         // Cria um solicitante
         $solicitante = new Solicitante($request->all());
         $solicitante->save();
 
-
         $user = User::create($request->all());
         $user->password = bcrypt($request->password);
-        
-
         
         // Associar user ao solicitante
         $user->solicitante()->associate($solicitante);
@@ -80,9 +70,7 @@ class UserController extends Controller
 
         Auth::loginUsingId($user->id);
 
-
         return redirect(url('/'))->with('sucesso', 'Usuário cadastrado com sucesso.');
-        //return redirect('lojas.edit')->whith(['erros' => 'Falha ao editar']); 
     }
 
     public function show($id)
@@ -91,42 +79,21 @@ class UserController extends Controller
         $user = $this->user->find($id);
 
         //return view('user.show',compact('user');
-
         return $user;
-        //dd($request->all());
-/*
-        $this->validate($request, [
-            'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-            'acesso'    => 'required',
-        ]);
-
-        $user = User::create($request->all());
-
-        $user->password = bcrypt($request->password);
-
-        $user->save();
-
-        return redirect(url('usuarios/create'))->with('sucesso', 'Usuário cadastrado com sucesso.');
-        //return redirect('lojas.edit')->whith(['erros' => 'Falha ao editar']); 
-*/    }
+    }
 
 
     public function edit($id)
     {
         $user = $this->user->find($id); 
-        
+       
         //return view('user.edit',compact('user'));
-
         return $user;
     }
 
     public function update(Request $request, $id)
     {
-
         // Validar
-
         $this->validate($request, [
             'nome'                  => 'required|max:255',
             'email'                 => 'required|email|max:255|unique:users,'.$id,
@@ -135,15 +102,11 @@ class UserController extends Controller
             'password_confirmation' => 'required|min:6'
         ]);
 
-
         // Obter o usuário
         $usuario = User::find($id);
 
-
         // Atualizar as informações
         $status = $usuario->update($request->all());
-      
-        
 
         if ($status) {
             return redirect("/user/$usuario->id/edit")->with('sucesso', 'Informações do usuário atualizadas com sucesso.');
@@ -176,11 +139,6 @@ class UserController extends Controller
             //return redirect(back); 
             return redirect("/user/$usuario->id/edit")->with(['erros' => 'Falha ao deletar o usuário']);
         }
-
-/*        $user=User::find($id);
-
-        $user->delete();
-*/
-
     }
+
 }
