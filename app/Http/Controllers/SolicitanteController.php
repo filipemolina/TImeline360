@@ -47,9 +47,9 @@ class SolicitanteController extends Controller
     {
         $solicitante = $this->solicitante->find($id);
         
-        dd($solicitante);
+        //dd($solicitante);
 
-        //return view('solicitantes.edit',compact('solicitante'));
+        return view('solicitantes.edit',compact('solicitante'));
 
     }
 
