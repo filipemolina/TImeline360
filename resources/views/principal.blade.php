@@ -103,7 +103,7 @@
                                         </div>
 
                                         <div class="card-content">
-                                            <h4 class="card-title">      {{ $mensagem->funcionario->setor->secretaria->nome }} - 
+                                            <h5 class="card-title">      {{ $mensagem->funcionario->setor->secretaria->nome }} - 
                                                                     {{ $mensagem->funcionario->setor->secretaria->sigla }}</h4>
                                             <div class="tim-typo">
                                                 <label>
