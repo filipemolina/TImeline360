@@ -8,14 +8,11 @@
 
 @section('content')
 
-
 <div class="row ">
 
     {{-- Início da Solicitação --}}
 
     @foreach ($solicitacoes as $solicitacao)
-            
-        
                     
     <div class="col-md-offset-1 col-md-10 publicacao">
         <div class="card">
@@ -74,9 +71,14 @@
                     </button>
                 </li>
             </ul>
-                            
+
             <footer class="colapso col-md-12">
                 <div class="panel-title">
+                    @isset($usuario)
+                    {{-- {{ dd($usuario) }} --}}
+                    {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
+                    @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
+                    
                     <div class="card card-product col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">
@@ -87,63 +89,77 @@
                             <input type="text" class="form-control" placeholder="Escreva um comentário">
                         </div>
                     </div>
+                    
+                    @endif
+
+                    @endisset
+
                 </div>
 
                 {{-- card de comentarios --}}
                 @foreach ($solicitacao->mensagens as $mensagem)
 
-                    <div class="panel-body">
-                        <div class="card">
+                <div class="panel-body">
+                    <div class="card">
 
-                            {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
+                        {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
 
-                            @if ($mensagem->funcionario_id)
-                                <div class="card-profile foto-funcionario col-md-2">
-                                    <div class="card-avatar card-header-icon">
-                                        <img class="img" src="{{ asset('img/brasao.png')}}">
-                                    </div>
-                                </div>
+                        @if ($mensagem->funcionario_id)
 
-                                <div class="card-content">
-                                <h5 class="card-title">      {{ $mensagem->funcionario->setor->secretaria->nome }} - 
-                                                                    {{ $mensagem->funcionario->setor->secretaria->sigla }}</h4>
-                                            <div class="tim-typo">
-                                                <label>
-                                                    {{ $mensagem->mensagem }}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    
-                                    @else
-
-                                        <div class="card-profile col-md-2">
-                                            <div class="card-avatar card-header-icon">
-                                                {{-- <img class="img" src="{{ $solicitacao->solicitante->foto}}"> --}}
-                                                <img class="img" src="{{ $solicitacao->solicitante->foto}}">
-                                            </div>
-                                        </div>
-                                        <div class="card-content">
-                                            <h4 class="card-title">{{ $solicitacao->solicitante->nome}}</h4>
-                                            <div class="tim-typo">
-                                                <label>
-                                                    {{ $mensagem->mensagem }}
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                    @endif
-
-
-                                </div>
+                        <div class="card-profile foto-funcionario col-md-2">
+                            <div class="card-avatar card-header-icon">
+                                <img class="img" src="{{ asset('img/brasao.png')}}">
                             </div>
+                        </div>
 
-                        @endforeach
-                        {{-- fim do card de comentarios --}}
-                    </footer>
-                </div>
-            </div> {{-- Fim ID PUBLICAÇÃO --}}
+                        <div class="card-content">
+                            <h5 class="card-title">
+                                {{ $mensagem->funcionario->setor->secretaria->nome }} - 
+                                {{ $mensagem->funcionario->setor->secretaria->sigla }}
+                            </h5>
+                            <div class="tim-typo">
+                                <label>
+                                    {{ $mensagem->mensagem }}
+                                </label>
+                            </div>
+                        </div>
+                                    
+                        @else
 
-            {{-- Fim da Solicitação --}}
-        @endforeach
+                        <div class="card-profile col-md-2">
+                            <div class="card-avatar card-header-icon">
+                                {{-- <img class="img" src="{{ $solicitacao->solicitante->foto}}"> --}}
+                                <img class="img" src="{{ $solicitacao->solicitante->foto}}">
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">
+                                {{ $solicitacao->solicitante->nome}}
+                            </h4>
+                            
+                            <div class="tim-typo">
+                                <label>
+                                    {{ $mensagem->mensagem }}
+                                </label>
+                            </div>
+                        </div>
+
+                        @endif
+
+
+                    </div> {{-- fim card em panel-body --}}
+                </div> {{-- fim panel-body --}}
+
+                @endforeach
+                {{-- fim do card de comentarios --}}
+
+            </footer>
+        </div> {{-- fim card em DIV publicação --}}
+    </div> {{-- Fim DIV PUBLICAÇÃO --}}
+    
+    @endforeach
+    {{-- Fim da Solicitação --}}
+
 </div> {{-- Fim da ROW --}}
+
 @endsection
