@@ -17,33 +17,33 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
+    {{-- Animated CSS --}}
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet" />
+
+    {{-- CSS personalizado --}}
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
 </head>
 
-<body class="fundo_roxo">
+<body>
+    <div class="wrapper">
 
         {{-- Menu Lateral --}}
         
-       {{--  @include('includes.layouts.sidebar') --}}
+        @include('includes.layouts.sidebar')
 
-        {{-- <div class="main-panel"> --}}
+        <div class="main-panel">
 
             {{-- Menu Superior --}}
             
             @include('includes.layouts.topbar')
 
-            <div class="wrapper full-page">
-                <div class="content">
-                    <div class="container-fluid">
+            <div class="content">
+                <div class="container-fluid">
 
-                        {{-- Conteúdo Principal --}}
-        
-                        @yield('content')
+                    {{-- Conteúdo Principal --}}
+    
+                    @yield('content')
 
-
-
-                    </div>
                 </div>
             </div>
 
@@ -51,7 +51,8 @@
 
             @include('includes.layouts.footer')
             
-        {{-- </div> --}}
+        </div>
+    </div>
 </body>
 <!--   Core JS Files   -->
 <script src="{{ asset('js/jquery-3.1.1.min.js') }}"  type="text/javascript"></script>
@@ -96,12 +97,7 @@
 {{-- Vanilla Masker --}}
 <script src="{{ asset('js/vanillaMasker.min.js') }}"></script>
 
-{{-- Masonry --}}
-<script src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
-
 {{-- Javascript do Projeto --}}
 <script src="{{ asset('js/scripts.js') }}"></script>
-
-@include('includes.scripts')
 
 </html>
