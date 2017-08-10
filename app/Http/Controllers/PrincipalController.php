@@ -18,12 +18,14 @@ class PrincipalController extends Controller
 
 	public function index()
     {
-        //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
-        $solicitacoes = Solicitacao::where('moderado', 1)->orderBy('created_at', 'desc')->take(10)->get();
-    	//$solicitacoes = Solicitacao::orderBy('created_at', 'desc')->take(10)->get();
-    	
+        
     	if (Auth::check()) {
+            //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas e TODAS as do usuário logado
     		$usuario =  User::find(Auth::user()->id);
+            $solicitacoes = Solicitacao::where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
+        }else{
+            //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
+            $solicitacoes = Solicitacao::where('moderado', 1)->orderBy('created_at', 'desc')->paginate(5);
 		}
     	
     	
@@ -34,8 +36,8 @@ class PrincipalController extends Controller
     {
    		$usuario =  User::find(Auth::user()->id);
 
-        //carrega as solicitações do usuário logado
-    	$solicitacoes = Solicitacao::where('solicitante_id', $usuario->solicitante->id)->orderBy('created_at', 'desc')->take(10)->get();
+        //carrega as solicitações do usuário logado MODERADA ou NÃO
+    	$solicitacoes = Solicitacao::where('solicitante_id', $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
         return view('principal', compact('solicitacoes','usuario'));
     }
     
