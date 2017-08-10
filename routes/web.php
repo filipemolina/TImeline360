@@ -14,7 +14,9 @@
 
 // Rotas da autenticação
 
-Route::get ('/login', 'AutenticaController@telaLogin');
+//Route::get ('/login', 'AutenticaController@telaLogin');
+Route::get('login', ['as' => 'login', 'uses' => 'AutenticaController@telaLogin']);
+
 Route::post ('/login', 'AutenticaController@login');
 Route::get ('/logout', 'AutenticaController@logout');
 
@@ -25,6 +27,8 @@ Route::post ('/perfil', 'SolicitanteController@Perfil');
 
 
 Route::get ('/', 'PrincipalController@index');
+Route::get ('/minhassolicitacoes', 'PrincipalController@minhassolicitacoes');
+
 /*
 Route::get('/', function () {
     return view('principal');

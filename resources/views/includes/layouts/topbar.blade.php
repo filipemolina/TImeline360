@@ -14,7 +14,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" style="color: #000"> @section('titulo')  @show </a>
+            <a class="navbar-brand" href="{{ url("/") }}" style="color: #000"> @section('titulo')  @show </a>
         </div>
 
             <div class="collapse navbar-collapse">
@@ -23,7 +23,7 @@
             @if(Auth::check())
 
                 <li>
-                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle" >
                         <i class="material-icons">dashboard</i>
                         minhas solicitações
                     </a>
