@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-Registrar
+Registre-se
 
 @endsection
 

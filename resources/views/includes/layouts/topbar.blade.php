@@ -90,7 +90,7 @@
 
                     <li class=" active ">
                         <a href="{{url ("/registro")}}">
-                            <i class="material-icons">person_add</i> Registrar
+                            <i class="material-icons">person_add</i> Registre-se
                         </a>
                     </li>
                     

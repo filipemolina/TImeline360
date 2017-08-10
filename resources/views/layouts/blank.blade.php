@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-Título
+Informe o Título
 
 @endsection
 
