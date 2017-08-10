@@ -14,7 +14,7 @@
 
     @foreach ($solicitacoes as $solicitacao)
                     
-    <div class="col-md-offset-1 col-md-10 publicacao">
+    <div class="col-md-offset-2 col-md-7 publicacao">
         <div class="card">
             <div class="card-profile col-md-2 col">
                 <div class="card-avatar card-header-icon">
@@ -36,8 +36,7 @@
                         <button class="btn btn-just-icon btn-simple btn-xs btn-primary">
                             <i class="material-icons">label_outline</i>
                         </button>
-                        {{ $solicitacao->id }}
-                        {{ $solicitacao->servico->nome }} - {{ $solicitacao->servico->setor->secretaria->sigla }}
+                        solicitacao_id {{ $solicitacao->id }} - {{ $solicitacao->moderado }}
                     </p>
                 </div>
                 <div class="timeline-body col-md-12">
@@ -153,7 +152,7 @@
                 @endforeach
                 {{-- fim do card de comentarios --}}
 
-            </footer>
+                
         </div> {{-- fim card em DIV publicação --}}
     </div> {{-- Fim DIV PUBLICAÇÃO --}}
     
@@ -161,5 +160,10 @@
     {{-- Fim da Solicitação --}}
 
 </div> {{-- Fim da ROW --}}
+
+<a href="{{ ($solicitacoes->url(1)) }}"                             class="btn btn-info" role="button">Primeira</a>
+<a href="{{ ($solicitacoes->previousPageUrl()) }}"                  class="btn btn-info" role="button">Anterior</a>
+<a href="{{ ($solicitacoes->nextPageUrl()) }}"                      class="btn btn-info" role="button">Próxima</a>
+<a href="{{ ($solicitacoes->url($solicitacoes->lastPage())) }}"     class="btn btn-info" role="button">Ultima</a>
 
 @endsection
