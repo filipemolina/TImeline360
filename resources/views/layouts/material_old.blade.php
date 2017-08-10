@@ -1,68 +1,61 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>Registro</title>
-
-    <!-- Styles -->
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/apple-icon.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title> @section('titulo') @show </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
-    <link href="css/material-dashboard.css" rel="stylesheet" />
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="css/demo.css" rel="stylesheet" />
+    <link href="{{ asset('css/material-dashboard.css') }}" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
+    {{-- Animated CSS --}}
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet" />
+
+    {{-- CSS personalizado --}}
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
 </head>
 
-<body class="fundo_roxo">
+<body>
+    <div class="wrapper">
 
         {{-- Menu Lateral --}}
         
-       {{--  @include('includes.layouts.sidebar') --}}
+        @include('includes.layouts.sidebar')
 
-        {{-- <div class="main-panel"> --}}
+        <div class="main-panel">
 
             {{-- Menu Superior --}}
             
             @include('includes.layouts.topbar')
 
-            <div class="wrapper wrapper-full-page full-page" filter-color>
-                <div class="content">
-                    <div class="container-fluid">
+            <div class="content">
+                <div class="container-fluid">
 
-                        {{-- Conteúdo Principal --}}
-        
-                        @yield('content')
+                    {{-- Conteúdo Principal --}}
+    
+                    @yield('content')
 
-
-
-                    </div>
                 </div>
-                
-                {{-- Rodapé --}}
-                @include('includes.layouts.footer')
-            
             </div>
+
+            {{-- Rodapé --}}
+
+            @include('includes.layouts.footer')
             
-        {{-- </div> --}}
+        </div>
+    </div>
 </body>
 <!--   Core JS Files   -->
-<script src="{{ asset('js/jquery-3.1.1.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/jquery-3.1.1.min.js') }}"  type="text/javascript"></script>
 <script src="{{ asset('js/jquery-ui.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/material.min.js') }}" type="text/javascript"></script>
@@ -83,13 +76,16 @@
 <script src="{{ asset('js/jquery-jvectormap.js') }}"></script>
 <!-- Sliders Plugin -->
 <script src="{{ asset('js/nouislider.min.js') }}"></script>
+<!--  Google Maps Plugin    -->
+{{-- <script src="https://maps.googleapis.com/maps/api/js"></script> --}}
+
 <!-- Select Plugin -->
 <script src="{{ asset('js/jquery.select-bootstrap.js') }}"></script>
 <!--  DataTables.net Plugin    -->
 <script src="{{ asset('js/jquery.datatables.js') }}"></script>
 <!-- Sweet Alert 2 plugin -->
 <script src="{{ asset('js/sweetalert2.js') }}"></script>
-<!--    Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
 <script src="{{ asset('js/jasny-bootstrap.min.js') }}"></script>
 <!--  Full Calendar Plugin    -->
 <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
@@ -98,15 +94,10 @@
 <!-- Material Dashboard javascript methods -->
 <script src="{{ asset('js/material-dashboard.js') }}"></script>
 
+{{-- Vanilla Masker --}}
 <script src="{{ asset('js/vanillaMasker.min.js') }}"></script>
 
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="{{ asset('js/demo.js') }}"></script>
-
-<script src="{{ asset('js/vanillaMasker.min.js') }}"></script>
-
+{{-- Javascript do Projeto --}}
 <script src="{{ asset('js/scripts.js') }}"></script>
-
-@include('includes.scripts')
 
 </html>

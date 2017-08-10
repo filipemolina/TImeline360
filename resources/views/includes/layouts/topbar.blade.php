@@ -22,12 +22,6 @@
 
             @if(Auth::check())
 
-                <li>
-                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">dashboard</i>
-                        minhas solicitações
-                    </a>
-                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="material-icons">notifications</i>
@@ -52,6 +46,20 @@
                             <a href="#">Another One</a>
                         </li>
                     </ul>
+                </li>
+                
+                <li>
+                    <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle" >
+                        <i class="material-icons">dashboard</i>
+                        minhas solicitações
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="{{ url('/')}}" class="dropdown-toggle">
+                        <i class="material-icons">home</i>
+                                    Início
+                    </a>
                 </li>
                 
                 <li>
@@ -82,9 +90,17 @@
 
                     <li class=" active ">
                         <a href="{{url ("/registro")}}">
-                            <i class="material-icons">person_add</i> Registrar
+                            <i class="material-icons">person_add</i> Registre-se
                         </a>
                     </li>
+                    
+                    <li>
+                    <a href="{{ url('/')}}" class="dropdown-toggle">
+                        <i class="material-icons">home</i>
+                                    Início
+                    </a>
+                    </li>
+                    
                     <li class="">
                         <a href="{{url ("/login")}}">
                             <i class="material-icons">fingerprint</i> Login
