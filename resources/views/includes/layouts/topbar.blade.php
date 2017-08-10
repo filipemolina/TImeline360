@@ -14,7 +14,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url("/") }}" style="color: #000"> @section('titulo')  @show </a>
+            <a class="navbar-brand" href="#" style="color: #000"> @section('titulo')  @show </a>
         </div>
 
             <div class="collapse navbar-collapse">
@@ -22,12 +22,6 @@
 
             @if(Auth::check())
 
-                <li>
-                    <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle" >
-                        <i class="material-icons">dashboard</i>
-                        minhas solicitações
-                    </a>
-                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="material-icons">notifications</i>
@@ -52,6 +46,20 @@
                             <a href="#">Another One</a>
                         </li>
                     </ul>
+                </li>
+                
+                <li>
+                    <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle" >
+                        <i class="material-icons">dashboard</i>
+                        minhas solicitações
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="{{ url('/')}}" class="dropdown-toggle">
+                        <i class="material-icons">home</i>
+                                    Início
+                    </a>
                 </li>
                 
                 <li>
@@ -85,6 +93,14 @@
                             <i class="material-icons">person_add</i> Registrar
                         </a>
                     </li>
+                    
+                    <li>
+                    <a href="{{ url('/')}}" class="dropdown-toggle">
+                        <i class="material-icons">home</i>
+                                    Início
+                    </a>
+                    </li>
+                    
                     <li class="">
                         <a href="{{url ("/login")}}">
                             <i class="material-icons">fingerprint</i> Login
