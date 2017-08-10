@@ -40,7 +40,7 @@ Título
                                                </span>
                                                <div class="form-group label-floating has-roxo">
                                                     <label class="control-label">Nome</label>
-                                                    <input name="nome" type="text" class="form-control" value="{{ old('nome') }}">
+                                                    <input name="nome" type="text" class="form-control error" aria-required="true" aria-invalid="true" value="{{ old('nome') }}">
                                                </div>
                                             </div>
                                             <div class="input-group">
@@ -49,7 +49,7 @@ Título
                                                 </span>
                                                 <div class="form-group label-floating has-roxo">
                                                     <label class="control-label">E-mail</label>
-                                                    <input name="email" type="email" class="form-control" value="{{ old('email') }}">
+                                                    <input name="email" type="email" class="form-control error" aria-required="true" aria-invalid="true" value="{{ old('email') }}">
                                                 </div>
                                             </div>
                                             <div class="input-group">
@@ -58,7 +58,7 @@ Título
                                                </span>
                                                 <div class="form-group label-floating has-roxo">
                                                    <label class="control-label">CPF</label>
-                                                   <input name="cpf" id="cpf" type="text" class="form-control" value="{{ old('cpf') }}">
+                                                   <input name="cpf" id="cpf" type="text" class="form-control error" aria-required="true" aria-invalid="true" value="{{ old('cpf') }}">
                                                 </div>
                                            </div>
                                             <div class="input-group">
@@ -67,7 +67,7 @@ Título
                                                 </span>
                                                 <div class="form-group label-floating has-roxo">
                                                     <label class="control-label">Senha</label>
-                                                    <input  name="password" type="password" class="form-control">
+                                                    <input  name="password" type="password" class="form-control error" aria-required="true" aria-invalid="true">
                                                 </div>
                                             </div>
                                             <div class="input-group">
@@ -76,7 +76,7 @@ Título
                                                 </span>
                                                 <div class="form-group label-floating has-roxo">
                                                     <label class="control-label">Confirmar Senha</label>
-                                                    <input  name="password_confirmation" type="password" class="form-control">
+                                                    <input  name="password_confirmation" type="password" class="form-control error" aria-required="true" aria-invalid="true">
                                                 </div>
                                             </div>
                                             <div class="checkbox">
