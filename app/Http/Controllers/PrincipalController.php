@@ -18,9 +18,10 @@ class PrincipalController extends Controller
 
 	public function index()
     {
-    	$solicitacoes = Solicitacao::orderBy('created_at', 'desc')->take(10)->get();
-
-    	//dd($solicitacoes);
+        //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
+        $solicitacoes = Solicitacao::where('moderado', 1)->orderBy('created_at', 'desc')->take(10)->get();
+    	//$solicitacoes = Solicitacao::orderBy('created_at', 'desc')->take(10)->get();
+    	
     	if (Auth::check()) {
     		$usuario =  User::find(Auth::user()->id);
 		}
@@ -32,6 +33,8 @@ class PrincipalController extends Controller
     public function minhassolicitacoes()
     {
    		$usuario =  User::find(Auth::user()->id);
+
+        //carrega as solicitações do usuário logado
     	$solicitacoes = Solicitacao::where('solicitante_id', $usuario->solicitante->id)->orderBy('created_at', 'desc')->take(10)->get();
         return view('principal', compact('solicitacoes','usuario'));
     }

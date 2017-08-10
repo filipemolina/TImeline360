@@ -11,6 +11,7 @@ class Solicitacao extends Model
     protected $fillable =[
 		'foto',
         'conteudo',
+        'moderado',
         'status',
         'prioridade',
     ];
