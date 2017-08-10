@@ -30,8 +30,8 @@ Login
                                     {{ csrf_field() }}
 
             {{-- DIV login-municipe --}}
-            <br><br><br><br><br><br>
-            <div id="login" class="card card-login">
+            <br><br><br><br><br><br><br>
+            <div id="login" class="card card-login card-hidden">
                 
                 {{-- Logo --}}
                 <div class="logo-roxo logo-pn"></div>

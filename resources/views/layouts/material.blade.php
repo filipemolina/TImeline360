@@ -1,18 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/apple-icon.png') }}" />
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>Registro</title>
+
+    <!-- Styles -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title> @section('titulo') @show </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
-    <link href="{{ asset('css/material-dashboard.css') }}" rel="stylesheet" />
+    <link href="css/material-dashboard.css" rel="stylesheet" />
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="css/demo.css" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
@@ -33,7 +41,7 @@
             
             @include('includes.layouts.topbar')
 
-            <div class="wrapper">
+            <div class="wrapper wrapper-full-page full-page" filter-color>
                 <div class="content">
                     <div class="container-fluid">
 
@@ -45,16 +53,16 @@
 
                     </div>
                 </div>
+                
+                {{-- Rodapé --}}
+                @include('includes.layouts.footer')
+            
             </div>
-
-            {{-- Rodapé --}}
-
-            @include('includes.layouts.footer')
             
         {{-- </div> --}}
 </body>
 <!--   Core JS Files   -->
-<script src="{{ asset('js/jquery-3.1.1.min.js') }}"  type="text/javascript"></script>
+<script src="{{ asset('js/jquery-3.1.1.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/jquery-ui.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/material.min.js') }}" type="text/javascript"></script>
@@ -75,16 +83,13 @@
 <script src="{{ asset('js/jquery-jvectormap.js') }}"></script>
 <!-- Sliders Plugin -->
 <script src="{{ asset('js/nouislider.min.js') }}"></script>
-<!--  Google Maps Plugin    -->
-{{-- <script src="https://maps.googleapis.com/maps/api/js"></script> --}}
-
 <!-- Select Plugin -->
 <script src="{{ asset('js/jquery.select-bootstrap.js') }}"></script>
 <!--  DataTables.net Plugin    -->
 <script src="{{ asset('js/jquery.datatables.js') }}"></script>
 <!-- Sweet Alert 2 plugin -->
 <script src="{{ asset('js/sweetalert2.js') }}"></script>
-<!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<!--    Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
 <script src="{{ asset('js/jasny-bootstrap.min.js') }}"></script>
 <!--  Full Calendar Plugin    -->
 <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
@@ -93,13 +98,13 @@
 <!-- Material Dashboard javascript methods -->
 <script src="{{ asset('js/material-dashboard.js') }}"></script>
 
-{{-- Vanilla Masker --}}
 <script src="{{ asset('js/vanillaMasker.min.js') }}"></script>
 
-{{-- Masonry --}}
-<script src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="{{ asset('js/demo.js') }}"></script>
 
-{{-- Javascript do Projeto --}}
+<script src="{{ asset('js/vanillaMasker.min.js') }}"></script>
+
 <script src="{{ asset('js/scripts.js') }}"></script>
 
 @include('includes.scripts')
