@@ -491,3 +491,7 @@ z-index: -1;
     position: absolute;
     right: 0;
 }
+
+h4.card-title {
+    width: 80%;
+}

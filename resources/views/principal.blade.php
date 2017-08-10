@@ -12,8 +12,6 @@
         {{-- Início da Solicitação --}}
 
         @foreach ($solicitacoes as $solicitacao)
-            
-        
                     
             <div class="col-md-offset-2 col-md-7 publicacao">
                 <div class="card">
@@ -75,16 +73,23 @@
                             
                     <footer class="colapso col-md-12">
                         <div class="panel-title">
-                            <div class="card card-product col-md-8">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                            Enviar
-                                        </button>
-                                    </span>
-                                    <input type="text" class="form-control" placeholder="Escreva um comentário">
-                                </div>
-                            </div>
+                            @isset($usuario)
+                                {{-- {{ dd($usuario) }} --}}
+                                {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
+                                @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
+                                    <div class="card card-product col-md-8">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <button type="button" class="btn btn-primary btn-sm">
+                                                    Enviar
+                                                </button>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="Escreva um comentário">
+                                        </div>
+                                    </div>
+                                @endif
+
+                            @endisset
                         </div>
 
                         {{-- card de comentarios --}}
@@ -103,7 +108,7 @@
                                         </div>
 
                                         <div class="card-content">
-                                            <h4 class="card-title">      {{ $mensagem->funcionario->setor->secretaria->nome }} - 
+                                            <h5 class="card-title">      {{ $mensagem->funcionario->setor->secretaria->nome }} - 
                                                                     {{ $mensagem->funcionario->setor->secretaria->sigla }}</h4>
                                             <div class="tim-typo">
                                                 <label>
