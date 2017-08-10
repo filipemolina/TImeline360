@@ -60,7 +60,7 @@
                                                </span>
                                                 <div class="form-group label-floating has-roxo">
                                                     <label class="control-label">Nascimento</label>
-                                                    <input name="nascimento" type="tex" class="form-control " value="{{ old('nascimento') }}">
+                                                    <input name="nascimento" type="text" class="form-control datepicker " value="{{ old('nascimento') }}">
                                                </div>
                                             </div>
                                             <div class="input-group">
@@ -138,8 +138,8 @@
                                                      <i class="material-icons">event</i>
                                                </span>
                                                 <div class="form-group label-floating has-roxo">
-                                                    <label class="control-label">Nascimento</label>
-                                                    <input name="nascimento" type="text" class="form-control " value="{{ old('nascimento') }}">
+                                                    <label class="label-control">Nascimento</label>
+                                                    <input name="nascimento" type="text" class="form-control datepicker " value="{{ old('nascimento') }}">
                                                </div>
                                             </div>
                                             <div class="input-group">
@@ -177,8 +177,16 @@
 @endsection
 
 @push("scripts")
+
     
     <!-- DateTimePicker Plugin -->
-<script src="../../assets/js/bootstrap-datetimepicker.js"></script>
+<script src="{{ asset('js/bootstrap-datetimepicker.js') }}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        
+        demo.initFormExtendedDatetimepickers();
+    });
+</script>
 
 @endpush
