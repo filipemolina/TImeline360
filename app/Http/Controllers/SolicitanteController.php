@@ -47,7 +47,6 @@ class SolicitanteController extends Controller
     {
         $solicitante = $this->solicitante->find($id);
         
-        //dd($solicitante);
 
         return view('solicitantes.edit',compact('solicitante'));
 
@@ -74,14 +73,9 @@ class SolicitanteController extends Controller
         $usuario = User::find(Auth::user()->id);
         $solicitante = $usuario->solicitante;
 
-        dd($solicitante);
+        //dd($solicitante);
 
-
-
-        /*$usuario = User::find($id);
-        $usuario = $this->users->find($id);
-*/
-        return redirect("/");
+        return view('solicitantes.edit',compact('solicitante'));
     }
 
 }
