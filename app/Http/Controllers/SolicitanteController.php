@@ -73,9 +73,23 @@ class SolicitanteController extends Controller
         $usuario = User::find(Auth::user()->id);
         $solicitante = $usuario->solicitante;
 
+        
+    
         //dd($solicitante);
+        $escolaridades      = pegaValorEnum('solicitantes','escolaridade');                                                   
+        $estados_civil      = pegaValorEnum('solicitantes','estado_civil'); 
+        $sexos              = pegaValorEnum('solicitantes','sexo'); 
+        $tipos_telefone     = pegaValorEnum('telefones','tipo_telefone'); 
+        
+        
+        
 
-        return view('solicitantes.edit',compact('solicitante'));
+        
+
+
+
+        return view('solicitantes.edit',compact('solicitante','escolaridades','estados_civil','sexos','tipos_telefone'));
+        
     }
 
 }
