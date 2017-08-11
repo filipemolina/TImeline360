@@ -49,16 +49,16 @@
                 </li>
                 
                 <li>
-                    <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle" >
-                        <i class="material-icons">dashboard</i>
-                        minhas solicitações
-                    </a>
-                </li>
-                
-                <li>
                     <a href="{{ url('/')}}" class="dropdown-toggle">
                         <i class="material-icons">home</i>
                                     Início
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle" >
+                        <i class="material-icons">dashboard</i>
+                        minhas solicitações
                     </a>
                 </li>
                 
@@ -88,17 +88,17 @@
 
                 @else
 
-                    <li class=" active ">
-                        <a href="{{url ("/registro")}}">
-                            <i class="material-icons">person_add</i> Registre-se
-                        </a>
-                    </li>
-                    
                     <li>
                     <a href="{{ url('/')}}" class="dropdown-toggle">
                         <i class="material-icons">home</i>
                                     Início
                     </a>
+                    </li>
+                    
+                    <li class=" active ">
+                        <a href="{{url ("/registro")}}">
+                            <i class="material-icons">person_add</i> Registre-se
+                        </a>
                     </li>
                     
                     <li class="">
