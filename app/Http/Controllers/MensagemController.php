@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Solicitacao;
 use App\Models\Solicitante;
+use App\Models\Mensagem;
 use App\Models\User;
 
 class MensagemController extends Controller

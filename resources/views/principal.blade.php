@@ -106,11 +106,11 @@
                             <div class="card card-product col-md-8">
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <button onclick="enviaMensagem()" type="button" class="btn btn-primary btn-sm">
+                                        <button onclick="enviaMensagem({{ $solicitacao->id }})" type="button" class="btn btn-primary btn-sm">
                                             Enviar
                                         </button>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Escreva um comentário" id="mensagem" name="mensagem">
+                                    <input type="text" class="form-control comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" id="mensagem" name="mensagem">
                                 </div>
                             </div>
                         
@@ -192,13 +192,44 @@
 
     <script type="text/javascript">
 
-        function enviaMensagem(){
-            console.log("clicou");
-            /*$.post("{{ url('MensagemController') }}",{mensagem: document.getElementById("mensagem").value,solicitacao_id: {{ $solicitacao->id }}}, function(data){        
+        function enviaMensagem(solicitacao){ 
+
+            //console.log(($(".comentario_"+solicitacao).val().trim()));
+
+            // Testar se a mensagem está em branco
+            if( $(".comentario_"+solicitacao).val().trim() ) {
 
 
+                // Enviar a mensagem para o banco
+                $.post(
+                    "{{ url('/mensagem') }}",
+                    {
+                        mensagem: $(".comentario_"+solicitacao).val(),
+                        solicitacao_id: solicitacao, 
+                        _token: "{{ csrf_token() }}",
+                    
+                    }, function(data){        
 
-            });*/
+                        console.log("Resposta");
+                        console.log(data);
+
+                    });
+
+                // Apagar o campo de envio de mensagem
+                $(".comentario_"+solicitacao).val("");
+
+                // Colocar o novo card de mensagens embaixo da solicitação
+
+
+               
+            }else{
+
+
+                console.log("vazio");
+
+            }
+
+            
         };
 
     </script>
