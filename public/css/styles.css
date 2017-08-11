@@ -483,10 +483,6 @@ z-index: -1;
   display: none;
 }
 
-.col-md-4.publicacao {
-    margin-bottom: 30px;
-}
-
 .card .foto-funcionario {
     position: absolute;
     right: 0;
@@ -494,4 +490,24 @@ z-index: -1;
 
 h4.card-title {
     width: 80%;
+}
+
+.card .card-header.card-header-icon.avatar-fixo {
+  width: 100px;
+  height: 100px;
+  line-height: 1.33;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  margin: -20px 15px 0;
+  padding: 0;
+  background-color: transparent;
+  position: relative;
+}
+
+.card .card-header.card-header-icon.avatar img {
+  width: 100%;
+  height: auto;
+  text-align: center;
+
 }

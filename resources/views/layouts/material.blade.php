@@ -107,6 +107,8 @@
 
 <script src="{{ asset('js/scripts.js') }}"></script>
 
+@stack('scripts')
+
 @include('includes.scripts')
 
 </html>

@@ -36,7 +36,6 @@ $(function(){
 	$('.slide-coment').click(function(){
 		event.preventDefault();
    		$(this).parent().parent().parent().find('.colapso').slideToggle();
-   		console.log('teste teste')
 	});
 
 	$('.apoiar').click(function(){
@@ -47,38 +46,6 @@ $(function(){
 			$(this).addClass('btn-primary')
 		}
 	})
-
-	
-	$().ready(function() {
-
-        var tempo = 0;
-        var incremento = 500;
-
-        // Testar se há algum erro, e mostrar a notificação
-
-         @if ($errors->any())
-            
-             @foreach ($errors->all() as $error)
-
-                setTimeout(function(){
-                    demo.notificationRight("top", "right", "rose", "{{ $error }}");   
-                }, tempo);
-
-                tempo += incremento;
-
-             @endforeach
-                
-        @endif
-
-        VMasker ($("#cpf")).maskPattern("999.999.999-99");
-
-        demo.checkFullPageBackgroundImage();
-
-        setTimeout(function() {
-            // after 1000 ms we add the class animated to the login/register card
-            $('.card').removeClass('card-hidden');
-        }, 700)
-    });
 
 });
 </script>
