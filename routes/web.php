@@ -39,15 +39,12 @@ Route::get('/registro', function () {
     return view('auth.register');
 });
 
-Route::get('/teste', function () {
-    return view('teste');
-});
-
 
 
 //resources
-Route::resource('solicitante','SolicitanteController');
-Route::resource('solicitacao','SolicitacaoController');
-Route::resource('user', 'UserController');
+Route::resource('solicitante',	'SolicitanteController');
+Route::resource('solicitacao',	'SolicitacaoController');
+Route::resource('mensagem',		'MensagemController');
+Route::resource('user', 		'UserController');
 
 

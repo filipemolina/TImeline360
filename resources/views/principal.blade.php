@@ -74,25 +74,23 @@
             <footer class="colapso col-md-12">
                 <div class="panel-title">
                     @isset($usuario)
-                    {{-- {{ dd($usuario) }} --}}
-                    {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
-                    @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
-                    
-                    <div class="card card-product col-md-8">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <button type="button" class="btn btn-primary btn-sm">
-                                    Enviar
-                                </button>
-                            </span>
-                            <input type="text" class="form-control" placeholder="Escreva um comentário">
-                        </div>
-                    </div>
-                    
-                    @endif
+                        {{-- {{ dd($usuario) }} --}}
+                        {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
+                        @if ($usuario->solicitante->id == $solicitacao->solicitante->id )
 
+                            <div class="card card-product col-md-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <button onclick="enviaMensagem()" type="button" class="btn btn-primary btn-sm">
+                                            Enviar
+                                        </button>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Escreva um comentário" id="mensagem" name="mensagem">
+                                </div>
+                            </div>
+                        
+                        @endif
                     @endisset
-
                 </div>
 
                 {{-- card de comentarios --}}
@@ -167,3 +165,20 @@
 <a href="{{ ($solicitacoes->url($solicitacoes->lastPage())) }}"     class="btn btn-info" role="button">Ultima</a>
 
 @endsection
+
+
+@push('scripts')
+
+    <script type="text/javascript">
+
+        function enviaMensagem(){
+            console.log("clicou");
+            /*$.post("{{ url('MensagemController') }}",{mensagem: document.getElementById("mensagem").value,solicitacao_id: {{ $solicitacao->id }}}, function(data){        
+
+
+
+            });*/
+        };
+
+    </script>
+@endpush
