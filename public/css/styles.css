@@ -495,3 +495,8 @@ z-index: -1;
 h4.card-title {
     width: 80%;
 }
+
+.card-esquerdo .input-group{
+
+    margin-top: 9px;
+}

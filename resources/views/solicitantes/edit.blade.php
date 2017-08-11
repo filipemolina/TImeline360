@@ -3,29 +3,23 @@
 @section('content')
 <div class="container">
     <div class="row">
-                            <div class="col-md-6 col-sm-6" >
+                            <div class="col-md-6 col-sm-6 card-esquerdo" >
                                 <form class="form" method="POST" action="{{ route('user.store') }}">
                                         {{ csrf_field() }}
 
-                                    {{-- DIV login-municipe --}}
+                                    {{-- DIV Pessoal --}}
 
                                     <div id="login-municipe" class="card card-login card-hidden">
 
-                                        {{-- <div class="logo-roxo logo-pn" style="margin-top: 25%;"></div> --}}
-                                        <div class="card-header text-center" data-background-color="roxo">
-                                                <div class="social-line">                                                   
-                                                    <h4 style="font-weight: bolder;">PESSOAL</h4>
-                                                    {{-- <a href="#btn" class="btn btn-just-icon btn-simple">
-                                                        <i class="fa fa-facebook-square"></i>
-                                                    </a>
-                                                    <a href="#pablo" class="btn btn-just-icon btn-simple">
-                                                        <i class="fa fa-twitter"></i>
-                                                    </a>
-                                                    <a href="#eugen" class="btn btn-just-icon btn-simple">
-                                                        <i class="fa fa-google-plus"></i>
-                                                    </a> --}}
-                                                </div>
+                                                                          
+                                        <div class="card-header card-header-icon" data-background-color="rose">
+                                            <i class="material-icons">person</i>
                                         </div>
+                                        <div class="card-content">
+                                            <h4 class="card-title">PESSOAL</h4>
+                                            
+                                        </div>
+                                        
                                            <div class="card-content">
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -81,10 +75,29 @@
                                                     <input name="escolaridade" type="text" class="form-control error" value="{{ old('escolaridade') }}">
                                                </div>
                                            </div>
+                                           <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">lock_outline</i>
+                                                </span>
+                                                <div class="form-group label-floating has-roxo">
+                                                    <label class="control-label">Senha</label>
+                                                    <input  name="password" type="password" class="form-control " >
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">lock_outline</i>
+                                                </span>
+                                                <div class="form-group label-floating has-roxo">
+                                                    <label class="control-label">Confirmar Senha</label>
+                                                    <input  name="password_confirmation" type="password" class="form-control ">
+                                                </div>
+                                            </div>
                                                                                         
                                         </div>
                                         
-                                    </div> {{-- FIM DIV login-municipe --}}
+                                    </div> {{-- FIM DIV Pessoal --}}
 
                                     
                                 </form>
@@ -94,69 +107,96 @@
                                 <form class="form" method="POST" action="{{ route('user.store') }}">
                                         {{ csrf_field() }}
 
-                                    {{-- DIV login-municipe --}}
+                                    {{-- DIV Contato --}}
 
                                     <div id="login-municipe" class="card card-login card-hidden">
 
-                                        {{-- <div class="logo-roxo logo-pn" style="margin-top: 25%;"></div> --}}
-                                        <div class="card-header text-center" data-background-color="roxo">
-                                                <div class="social-line">
-                                                     <h4 style="font-weight: bolder;">CONTATO</h4>
-                                                    
-                                                </div>
+                                        <div class="card-header card-header-icon" data-background-color="rose">
+                                            <i class="material-icons">contacts</i>
+                                        </div>
+                                        <div class="card-content">
+                                            <h4 class="card-title">CONTATO</h4>
+                                            
                                         </div>
                                            <div class="card-content">
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                    <i class="material-icons">face</i>
+                                                    <i class="material-icons">call_split</i>
                                                </span>
                                                <div class="form-group label-floating has-roxo">
-                                                    <label class="control-label">Nome</label>
+                                                    <label class="control-label">Logradouro</label>
                                                     <input name="nome" type="text" class="form-control error" value="{{ old('nome') }}">
                                                </div>
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                    <i class="material-icons">email</i>
+                                                    <i class="material-icons">home</i>
+                                               </span>
+                                               <div class="form-group label-floating has-roxo">
+                                                    <label class="control-label">Numero</label>
+                                                    <input name="nome" type="text" class="form-control error" value="{{ old('nome') }}">
+                                               </div>
+                                            </div>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">location_on</i>
+                                               </span>
+                                               <div class="form-group label-floating has-roxo">
+                                                    <label class="control-label">Complemento</label>
+                                                    <input name="nome" type="text" class="form-control error" value="{{ old('nome') }}">
+                                               </div>
+                                            </div>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">explore</i>
                                                 </span>
                                                 <div class="form-group label-floating has-roxo">
-                                                    <label class="control-label">E-mail</label>
+                                                    <label class="control-label">Bairro</label>
                                                     <input name="email" type="email" class="form-control error"  value="{{ old('email') }}">
                                                 </div>
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                     <i class="material-icons">credit_card</i>
+                                                     <i class="material-icons">business</i>
                                                </span>
                                                 <div class="form-group label-floating has-roxo">
-                                                   <label class="control-label">CPF</label>
+                                                   <label class="control-label">Municipio</label>
                                                    <input name="cpf" id="cpf" type="text" class="form-control error" value="{{ old('cpf') }}">
                                                 </div>
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                     <i class="material-icons">event</i>
+                                                     <i class="material-icons">map</i>
                                                </span>
                                                 <div class="form-group label-floating has-roxo">
-                                                    <label class="label-control">Nascimento</label>
+                                                    <label class="control-label">UF</label>
                                                     <input name="nascimento" type="text" class="form-control datepicker " value="{{ old('nascimento') }}">
                                                </div>
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                     <i class="material-icons">credit_card</i>
+                                                     <i class="material-icons">mail_outline</i>
                                                </span>
                                                <div class="form-group label-floating has-roxo">
-                                                    <label class="control-label">Sexo</label>
+                                                    <label class="control-label">CEP</label>
                                                     <input name="sexo" type="text" class="form-control error" value="{{ old('sexo') }}">
                                                </div>
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                     <i class="material-icons">card_membership</i>
+                                                     <i class="material-icons">phone</i>
                                                </span>
                                                <div class="form-group label-floating has-roxo">
-                                                    <label class="control-label">Escolaridade</label>
+                                                    <label class="control-label">Telefone Fixo</label>
+                                                    <input name="escolaridade" type="text" class="form-control error" value="{{ old('escolaridade') }}">
+                                               </div>
+                                           </div>
+                                           <div class="input-group">
+                                                <span class="input-group-addon">
+                                                     <i class="material-icons">stay_current_portrait</i>
+                                               </span>
+                                               <div class="form-group label-floating has-roxo">
+                                                    <label class="control-label">Telefone Celular</label>
                                                     <input name="escolaridade" type="text" class="form-control error" value="{{ old('escolaridade') }}">
                                                </div>
                                            </div>
@@ -164,7 +204,7 @@
                                             
                                         </div>
                                         
-                                    </div> {{-- FIM DIV login-municipe --}}
+                                    </div> {{-- FIM DIV Contato --}}
 
                                 </form>
                                 
