@@ -54,7 +54,7 @@
                                                </span>
                                                 <div class="form-group label-floating has-roxo">
                                                     <label class="label-control" style="color: #3d276b;">Nascimento</label>
-                                                    <input name="nascimento" type="text" class="form-control datepicker " value="{{ old('nascimento') }}">
+                                                    <input name="nascimento" type="date" class="form-control  " value="{{ old('nascimento') }}">
                                                </div>
                                             </div>
                                             <div class="input-group">
