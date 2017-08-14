@@ -13,12 +13,12 @@ var helper = {
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-roxo"
             });
-        } else if (tipo == 'erro'){
+        } else if (tipo == 'info'){
             swal({
                 title: titulo,
-                type: 'error',
+                type: 'info',
                 buttonsStyling: false,
-                confirmButtonClass: "btn btn-danger"
+                confirmButtonClass: "btn btn-info"
             });
 
         } 
@@ -35,7 +35,7 @@ $(function(){
 
     $(".helper-apoio").click(function(){
 
-        helper.showSwal('erro','Efetue o login para apoiar a publicação')
+        helper.showSwal('info','Efetue o login para apoiar a publicação')
 
     })
 
