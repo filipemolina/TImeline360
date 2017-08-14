@@ -39,6 +39,9 @@ Route::get('/registro', function () {
     return view('auth.register');
 });
 
+Route::get('/teste', function () {
+    return view('teste');
+});
 
 
 
