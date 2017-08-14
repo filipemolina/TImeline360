@@ -67,14 +67,30 @@
             {{-- Botões de interação --}}
             <ul class="nav navbar-nav">
                 
-                <li class="col-md-3">
-                    <button class="btn btn-simple apoiar">
-                        <span class="btn-label">
-                            <i class="material-icons">thumb_up</i>
-                            Apoiar
-                        </span>
-                    </button>
-                </li>
+                
+                @if(Auth::check())
+
+                    <li class="col-md-3">
+                        <button class="btn btn-simple apoiar">
+                            <span class="btn-label">
+                                <i class="material-icons">thumb_up</i>
+                                Apoiar
+                            </span>
+                        </button>
+                    </li>
+
+                @else
+
+                    <li class="col-md-3">
+                        <button class="btn btn-simple apoiar">
+                            <span class="btn-label">
+                                <i class="material-icons" >thumb_up</i>
+                                Apoiar
+                            </span>
+                        </button>
+                    </li>
+
+                @endif
 
                 <li class="col-md-3">
                     <button class="btn btn-simple slide-coment">
