@@ -1,16 +1,43 @@
+//////////////////// Funções Principais
+
+var helper = {
+
+    // Como usuar no html:
+    // helper.showSwal(tipo, titulo)
+
+    showSwal: function(tipo, titulo) {
+        
+        if(tipo == 'basico'){
+            swal({
+                title: titulo,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-roxo"
+            });
+        } else if (tipo == 'erro'){
+            swal({
+                title: titulo,
+                type: 'error',
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-danger"
+            });
+
+        } 
+    }
+
+
+
+};
+
+
 $(function(){
     VMasker ($("#cpf")).maskPattern("999.999.999-99");
     VMasker ($(".datepicker")).maskPattern("99/99/9999");
 
-    // showSwal: function(type) {
-        
-    //     if(type == 'apoiar'){
-    //         swal({
-    //             title: "Here's a message!",
-    //             buttonsStyling: false,
-    //             confirmButtonClass: "btn btn-success"
-    //         });
-    // }
+    $(".helper-apoio").click(function(){
+
+        helper.showSwal('erro','Efetue o login para apoiar a publicação')
+
+    })
 
     // Deslizar comentários
     $('.slide-coment').click(function(){

@@ -82,9 +82,9 @@
                 @else
 
                     <li class="col-md-3">
-                        <button class="btn btn-simple apoiar">
+                        <button class="btn btn-simple helper-apoio">
                             <span class="btn-label">
-                                <i class="material-icons" >thumb_up</i>
+                                <i class="material-icons">thumb_up</i>
                                 Apoiar
                             </span>
                         </button>
