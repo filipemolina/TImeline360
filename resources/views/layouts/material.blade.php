@@ -109,6 +109,4 @@
 
 @stack('scripts')
 
-@include('includes.scripts')
-
 </html>

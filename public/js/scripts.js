@@ -2,15 +2,15 @@ $(function(){
     VMasker ($("#cpf")).maskPattern("999.999.999-99");
     VMasker ($(".datepicker")).maskPattern("99/99/9999");
 
-    showSwal: function(type) {
+    // showSwal: function(type) {
         
-        if(type == 'apoiar'){
-            swal({
-                title: "Here's a message!",
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-success"
-            });
-    }
+    //     if(type == 'apoiar'){
+    //         swal({
+    //             title: "Here's a message!",
+    //             buttonsStyling: false,
+    //             confirmButtonClass: "btn btn-success"
+    //         });
+    // }
 
     // Deslizar comentários
     $('.slide-coment').click(function(){
