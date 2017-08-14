@@ -8,12 +8,14 @@
 
 @section('content')
 
-<a href="{{ ($solicitacoes->url(1)) }}"                             class="btn btn-info" role="button">Primeira</a>
-<a href="{{ ($solicitacoes->previousPageUrl()) }}"                  class="btn btn-info" role="button">Anterior</a>
-<a href="{{ ($solicitacoes->nextPageUrl()) }}"                      class="btn btn-info" role="button">Próxima</a>
-<a href="{{ ($solicitacoes->url($solicitacoes->lastPage())) }}"     class="btn btn-info" role="button">Ultima</a>
-
 <br><br>
+
+<div class="col-md-4 col-md-offset-4 h6">
+<a href="{{ ($solicitacoes->url(1)) }}"                             class="btn btn-simple" role="button"> <i class="material-icons">fast_rewind</i> </a>
+<a href="{{ ($solicitacoes->previousPageUrl()) }}"                  class="btn btn-simple" role="button"> <i class="material-icons inverterX">forward</i> </a>
+<a href="{{ ($solicitacoes->nextPageUrl()) }}"                      class="btn btn-simple" role="button">   <i class="material-icons">forward</i> </a>
+<a href="{{ ($solicitacoes->url($solicitacoes->lastPage())) }}"     class="btn btn-simple" role="button">  <i class="material-icons">fast_forward</i> </a>
+</div>
 
 <div class="row ">
 
@@ -65,17 +67,33 @@
             {{-- Botões de interação --}}
             <ul class="nav navbar-nav">
                 
-                <li class="col-md-3">
-                    <button class="btn btn-simple apoiar" rel="tooltip" data-placement="bottom" title="Apoiar">
-                        <span class="btn-label">
-                            <i class="material-icons">thumb_up</i>
-                            Apoiar
-                        </span>
-                    </button>
-                </li>
+                
+                @if(Auth::check())
+
+                    <li class="col-md-3">
+                        <button class="btn btn-simple apoiar">
+                            <span class="btn-label">
+                                <i class="material-icons">thumb_up</i>
+                                Apoiar
+                            </span>
+                        </button>
+                    </li>
+
+                @else
+
+                    <li class="col-md-3">
+                        <button class="btn btn-simple apoiar">
+                            <span class="btn-label">
+                                <i class="material-icons" >thumb_up</i>
+                                Apoiar
+                            </span>
+                        </button>
+                    </li>
+
+                @endif
 
                 <li class="col-md-3">
-                    <button class="btn btn-simple slide-coment" rel="tooltip" data-placement="bottom" title="Comentários">
+                    <button class="btn btn-simple slide-coment">
                         <span class="btn-label">
                             <i class="material-icons">chat</i>
                             Comentários
@@ -84,7 +102,7 @@
                 </li>
 
                 <li class="col-md-3">
-                    <button class="btn btn-simple" rel="tooltip" data-placement="bottom" title="Apoios">
+                    <button class="btn btn-simple">
                         <span class="btn-label">
                             <i class="material-icons">favorite</i>
                             Apoios
@@ -122,13 +140,14 @@
                 @foreach ($solicitacao->mensagens as $mensagem)
 
                 <div class="panel-body">
-                    <div class="card">
+                    {{-- <div class="card" data-header-animation="true"> --}}
 
                         {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
 
                         {{-- mensagem do funcionário --}}
                         @if ($mensagem->funcionario_id)
 
+                        <div class="card">
                         <div class="card-header card-header-icon avatar-fixo pull-right">
                             <img class="img" src="{{ asset('img/brasao.png')}}">
                         </div>
@@ -139,15 +158,17 @@
                                 {{ $mensagem->funcionario->setor->secretaria->sigla }}
                             </h5>
 
-                            <p class="category">
+                            <p class="card-title fc-rtl">
                                 {{ $mensagem->mensagem }}
                             </p>
 
                         </div>
+                        </div>
                                     
+                        {{-- mensagem do solicitante --}}
                         @else
 
-                        {{-- mensagem do solicitante --}}
+                        <div class="card subir">
                         <div class="card-header card-header-icon avatar-fixo">
                             <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
                         </div>
@@ -156,16 +177,17 @@
                                 {{ $solicitacao->solicitante->nome}}
                             </h5>
                             
-                            <p class="category">
+                            <p class="card-title">
                                 {{ $mensagem->mensagem }}
                             </p>
 
+                        </div>
                         </div>
 
                         @endif
 
 
-                    </div> {{-- fim card em panel-body --}}
+                    {{-- </div> fim card em panel-body --}}
                 </div> {{-- fim panel-body --}}
 
                 @endforeach
@@ -180,10 +202,12 @@
 
 </div> {{-- Fim da ROW --}}
 
-<a href="{{ ($solicitacoes->url(1)) }}"                             class="btn btn-info" role="button">Primeira</a>
-<a href="{{ ($solicitacoes->previousPageUrl()) }}"                  class="btn btn-info" role="button">Anterior</a>
-<a href="{{ ($solicitacoes->nextPageUrl()) }}"                      class="btn btn-info" role="button">Próxima</a>
-<a href="{{ ($solicitacoes->url($solicitacoes->lastPage())) }}"     class="btn btn-info" role="button">Ultima</a>
+<div class="col-md-offset-4 h6">
+<a href="{{ ($solicitacoes->url(1)) }}"                             class="btn btn-info btn-simple" role="button">Primeira</a>
+<a href="{{ ($solicitacoes->previousPageUrl()) }}"                  class="btn btn-info btn-simple" role="button">Anterior</a>
+<a href="{{ ($solicitacoes->nextPageUrl()) }}"                      class="btn btn-info btn-simple" role="button">Próxima</a>
+<a href="{{ ($solicitacoes->url($solicitacoes->lastPage())) }}"     class="btn btn-info btn-simple" role="button">Ultima</a>
+</div>
 
 @endsection
 

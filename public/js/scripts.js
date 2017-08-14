@@ -2,6 +2,41 @@ $(function(){
     VMasker ($("#cpf")).maskPattern("999.999.999-99");
     VMasker ($(".datepicker")).maskPattern("99/99/9999");
 
+    // showSwal: function(type) {
+        
+    //     if(type == 'apoiar'){
+    //         swal({
+    //             title: "Here's a message!",
+    //             buttonsStyling: false,
+    //             confirmButtonClass: "btn btn-success"
+    //         });
+    // }
+
+    // Deslizar comentários
+    $('.slide-coment').click(function(){
+        event.preventDefault();
+        $(this).parent().parent().parent().find('.colapso').slideToggle();
+    });
+
+    
+    // Alterar cor do botão apoiar
+    $('.apoiar').click(function(){
+        event.preventDefault();
+        if ($(this).hasClass('btn-primary')){
+            $(this).removeClass('btn-primary')
+        } else {
+            $(this).addClass('btn-primary')
+        }
+    })
+
+    // Remover classe card-hidden
+    $().ready(function() {
+        setTimeout(function() {
+            // after 1000 ms we add the class animated to the login/register card
+            $('.card').removeClass('card-hidden');
+        }, 700)
+    });
+
     //////////////////////////////////// Mapa
 
     // var mapData = {
