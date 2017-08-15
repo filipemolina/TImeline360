@@ -76,6 +76,13 @@
                         </li>
 
                         <li>
+                            <a href="{{ url("/perfil") }}" >
+                                <i class="material-icons">lock_outline</i>
+                                    Alterar Senha
+                            </a>
+                        </li>
+
+                        <li>
                             <a href="{{ url("/logout") }}" >
                                 <i class="material-icons">input</i>
                                     Sair

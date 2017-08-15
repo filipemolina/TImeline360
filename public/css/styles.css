@@ -492,7 +492,15 @@ h4.card-title {
     width: 80%;
 }
 
+<<<<<<< HEAD
 
+=======
+
+.card-esquerdo .input-group{
+
+    margin-top: 9px;}
+
+>>>>>>> leandro
 .card .card-header.card-header-icon.avatar-fixo {
   width: 100px;
   height: 100px;
@@ -536,4 +544,8 @@ h4.card-title {
   -o-transform: translate3d(0, -50px, 0);
   -ms-transform: translate3d(0, -50px, 0);
   transform: translate3d(0, -50px, 0);
+<<<<<<< HEAD
+=======
+
+>>>>>>> leandro
 }

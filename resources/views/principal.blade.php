@@ -2,7 +2,8 @@
 
 @section('titulo')
 
-    Página Inicial
+
+   {{-- <img class="img" style="width: 100px; margin-top: -15px;" src="{{ asset('img/logo-360-roxo.png')}}"> --}}
 
 @endsection
 
