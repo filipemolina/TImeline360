@@ -135,12 +135,8 @@
                         
                         @endif
                     @endisset
-<<<<<<< HEAD
-                </div>
-=======
 
                 </div> <br><br><br><br><br><br>
->>>>>>> luciano
 
                 {{-- card de comentarios --}}
                 @foreach ($solicitacao->mensagens as $mensagem)
