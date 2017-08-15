@@ -17,13 +17,16 @@
 //Route::get ('/login', 'AutenticaController@telaLogin');
 Route::get('login', ['as' => 'login', 'uses' => 'AutenticaController@telaLogin']);
 
-Route::post ('/login', 'AutenticaController@login');
-Route::get ('/logout', 'AutenticaController@logout');
+Route::post ('/login', 	'AutenticaController@login');
+Route::get  ('/logout', 'AutenticaController@logout');
 
 
 
-Route::get ('/perfil', 'SolicitanteController@telaPerfil');
-Route::post ('/perfil', 'SolicitanteController@Perfil');
+Route::get  ('/perfil', 'SolicitanteController@Perfil');
+
+/*Route::get  ('/senha', 	'SolicitanteController@telaSenha');
+Route::post ('/senha', 	'SolicitanteController@Senha');
+*/
 
 
 Route::get ('/', 'PrincipalController@index');
@@ -45,6 +48,6 @@ Route::get('/registro', function () {
 Route::resource('solicitante',	'SolicitanteController');
 Route::resource('solicitacao',	'SolicitacaoController');
 Route::resource('mensagem',		'MensagemController');
-Route::resource('user', 		'UserController');
+Route::resource('user', 			'UserController');
 
 

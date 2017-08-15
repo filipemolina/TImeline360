@@ -8,23 +8,8 @@ Login
 
 @section('content')
 
-
-@if ($errors->any())
-    {{ dd("erro") }}
-    <div class="alert alert-primary alert-with-icon" data-notify="container">
-        <i class="material-icons" data-notify="icon">notifications</i>
-        <button type="button" aria-hidden="true" class="close">
-            <i class="material-icons">close</i>
-        </button>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>                    
-    </div>
-@endif
-
 <div class="row">
+    
     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page">
         <form method="POST" action="{{ url('login') }}">
                                     {{ csrf_field() }}

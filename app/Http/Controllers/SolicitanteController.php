@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Solicitante;
+use App\Models\Endereco;
+use App\Models\Telefone;
+
 
 
 
@@ -16,7 +19,7 @@ class SolicitanteController extends Controller
 {
     public function __construct(Solicitante $solicitante)
     {
-        $this->solicitante = $solicitante; 
+//        $this->solicitante = $solicitante; 
         
         // todas as rotas aqui serão antes autenticadas
         $this->middleware('auth');
@@ -33,8 +36,10 @@ class SolicitanteController extends Controller
 
     public function store(Request $request)
     {
-        //        return $request->all();
+
+     //
     }
+
 
     public function show($id)
     {
@@ -45,16 +50,61 @@ class SolicitanteController extends Controller
 
     public function edit($id)
     {
-        $solicitante = $this->solicitante->find($id);
-        
-
-        return view('solicitantes.edit',compact('solicitante'));
+        //
 
     }
 
     public function update(Request $request, $id)
     {
-        //
+        //dd($request->all());
+
+        $this->validate($request, [
+            'nome'                  => 'required|max:255',
+            'email'                 => 'required|email|max:255|unique:solicitantes,email,'.$id,
+            'cpf'                   => 'cpf|unique:solicitantes,cpf,'.$id,
+            'nascimento'            => 'date',
+            'sexo'                  => 'required',
+
+        ]);
+
+
+        // solcaliza o solicitante
+        $solicitante = Solicitante::find($id);
+
+        $solicitante->update($request->all());
+
+        if($request->has('endereco')) 
+        {
+            $solicitante->endereco->update($request->endereco);
+        }else{
+            $endereco = new Endereco($request->all());
+            $endereco->solicitante()->associate($solicitante);
+            $endereco->save(); 
+        }
+
+        //deleta os telefones para serem inseridos os quem vem do formulário
+        $telefones = Telefone::where("solicitante_id", $solicitante->id);
+        $telefones->delete();
+
+        
+        // Cria um novo telefone com as informações inseridas
+        foreach($request->telefones as $telefone)
+        {
+            //testa se o telefone foi preenchido no formulario
+            //ser for, cadastra, senão, passa para o próximo numero
+            if( $telefone['numero'] )
+            {
+                // Criar um novo telefone com as informações inseridas
+                $solicitante->telefones()->save(new Telefone($telefone));    
+            }
+            
+        }
+
+        
+    
+      
+        return redirect(url('/'))->with('sucesso', 'Informações do Solicitante alteradas com sucesso.');    
+
     }
 
     public function destroy($id)
@@ -67,28 +117,57 @@ class SolicitanteController extends Controller
     //             PERFIL    
     //==================================================================================
 
-    public function telaPerfil()
+    public function Perfil()
     {
 
         $usuario = User::find(Auth::user()->id);
-        $solicitante = $usuario->solicitante;
+        $solicitante = $usuario->solicitante; 
+        
+        //verifica se o solicitante já possui endereço cadastrado, se não possuir cria 
+        if( ! $usuario->solicitante->endereco)
+        {
+            $solicitante->endereco = new Endereco();
+        };
+
+        $fixo       ="";
+        $celular    ="";
+
+        foreach($solicitante->telefones as $telefone)
+        {
+            
+            if( $telefone['tipo_telefone'] == 'Fixo' )
+            {
+                $fixo = $telefone['numero'];
+                
+            };
+
+            if( $telefone['tipo_telefone'] == 'Celular' )
+            {
+              $celular = $telefone['numero'];
+              
+            };
+            
+        }
 
         
+        
+        
+
+
+        //verifica se o solicitante já possui telefone cadastrado, se não possuir cria 
+        /*if( ! $usuario->solicitante->telefone)
+        {
+            $solicitante->telefone = new Telefone();
+        };
+        */
     
-        //dd($solicitante);
-        $escolaridades      = pegaValorEnum('solicitantes','escolaridade');                                                   
-        $estados_civil      = pegaValorEnum('solicitantes','estado_civil'); 
-        $sexos              = pegaValorEnum('solicitantes','sexo'); 
-        $tipos_telefone     = pegaValorEnum('telefones','tipo_telefone'); 
+        $escolaridades      = pegaValorEnum('solicitantes', 'escolaridade');                                                   
+        $estados_civil      = pegaValorEnum('solicitantes', 'estado_civil'); 
+        $sexos              = pegaValorEnum('solicitantes', 'sexo'); 
+        $ufs                = pegaValorEnum('enderecos',    'uf'); 
         
         
-        
-
-        
-
-
-
-        return view('solicitantes.edit',compact('solicitante','escolaridades','estados_civil','sexos','tipos_telefone'));
+        return view('solicitantes.edit',compact('solicitante','escolaridades','estados_civil','sexos','ufs','fixo','celular'));
         
     }
 
