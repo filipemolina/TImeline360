@@ -83,9 +83,9 @@
                 @else
 
                     <li class="col-md-3">
-                        <button class="btn btn-simple apoiar">
+                        <button class="btn btn-simple helper-apoio">
                             <span class="btn-label">
-                                <i class="material-icons" >thumb_up</i>
+                                <i class="material-icons">thumb_up</i>
                                 Apoiar
                             </span>
                         </button>
@@ -135,7 +135,12 @@
                         
                         @endif
                     @endisset
+<<<<<<< HEAD
                 </div>
+=======
+
+                </div> <br><br><br><br><br><br>
+>>>>>>> luciano
 
                 {{-- card de comentarios --}}
                 @foreach ($solicitacao->mensagens as $mensagem)
@@ -146,7 +151,7 @@
                         {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
 
                         {{-- mensagem do funcionário --}}
-                        @if ($mensagem->funcionario_id)
+                        @if ($mensagem->funcionario)
 
                         <div class="card">
                         <div class="card-header card-header-icon avatar-fixo pull-right">
@@ -169,20 +174,41 @@
                         {{-- mensagem do solicitante --}}
                         @else
 
-                        <div class="card subir">
-                        <div class="card-header card-header-icon avatar-fixo">
-                            <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
-                        </div>
-                        <div class="card-content">
-                            <h5 class="card-title">
-                                {{ $solicitacao->solicitante->nome}}
-                            </h5>
+                        <div class="card">
                             
-                            <p class="card-title">
-                                {{ $mensagem->mensagem }}
-                            </p>
+                            {{-- Menu para editar comentário --}}
+                            <nav class="navbar navbar-default navbar-absolute navbar-transparent" role="navigation">
+                                <div class="container-fluid">
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                        <ul class="nav navbar-nav pull-right">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle rodar-icone" data-toggle="dropdown"><i class="material-icons">settings</i> <b class="caret"></b></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li class="divider"></li>
+                                                        <li><a href="#"><i class="material-icons">create</i> Editar</a></li>
+                                                        <li class="divider"></li>
+                                                        <li><a href="#"><i class="material-icons">clear</i>Excluir</a></li>
+                                                    </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
 
-                        </div>
+                            <div class="card-header card-header-icon avatar-fixo">
+                                <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
+                            </div>
+                            
+                            <div class="card-content">
+                                <h5 class="card-title">
+                                    {{ $solicitacao->solicitante->nome}}
+                                </h5>
+                                
+                                <p class="card-title">
+                                    {{ $mensagem->mensagem }}
+                                </p>
+
+                            </div>
                         </div>
 
                         @endif

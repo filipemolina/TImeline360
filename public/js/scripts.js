@@ -1,16 +1,43 @@
+//////////////////// Funções Principais
+
+var helper = {
+
+    // Como usuar no html:
+    // helper.showSwal(tipo, titulo)
+
+    showSwal: function(tipo, titulo) {
+        
+        if(tipo == 'basico'){
+            swal({
+                title: titulo,
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-roxo"
+            });
+        } else if (tipo == 'info'){
+            swal({
+                title: titulo,
+                type: 'info',
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-info"
+            });
+
+        } 
+    }
+
+
+
+};
+
+
 $(function(){
     VMasker ($("#cpf")).maskPattern("999.999.999-99");
     VMasker ($(".datepicker")).maskPattern("99/99/9999");
 
-    // showSwal: function(type) {
-        
-    //     if(type == 'apoiar'){
-    //         swal({
-    //             title: "Here's a message!",
-    //             buttonsStyling: false,
-    //             confirmButtonClass: "btn btn-success"
-    //         });
-    // }
+    $(".helper-apoio").click(function(){
+
+        helper.showSwal('info','Efetue o login para apoiar a publicação')
+
+    })
 
     // Deslizar comentários
     $('.slide-coment').click(function(){
@@ -36,6 +63,26 @@ $(function(){
             $('.card').removeClass('card-hidden');
         }, 700)
     });
+
+    // Adicionar efeito de rotação ao ícone do objeto
+-
+-   $('.rodar-icone')
+        
+        .click(function(){
+            var isto = this;
+            
+            if($(isto).find('i').hasClass('animated girar-rev')) {
+                $(isto).find('i').removeClass('girar-rev').addClass('girar')
+            } else if ($(isto).find('i').hasClass('animated girar')) {
+                $(isto).find('i').removeClass('girar').addClass('girar-rev')
+            }else {
+                $(isto).find('i').addClass('animated girar')
+            }
+        })
+        
+        // .mouseout(function(){
+        //     $(this).find('i').removeClass('animated girar')
+        // });
 
     //////////////////////////////////// Mapa
 
