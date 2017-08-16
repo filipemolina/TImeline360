@@ -15,16 +15,56 @@
 							<i class="material-icons">person</i>
 						</div>
 
+
+
+
+						<div class="fileinput text-center fileinput-exists " data-provides="fileinput">
+	                  <div class="fileinput-new thumbnail img-circle">
+	                      <img src="../../assets/img/placeholder.jpg" alt="...">
+	                  </div>
+	                  <div class="fileinput-preview fileinput-exists thumbnail img-circle" style="">
+	                  	<img src="{{ $solicitante->foto }}" alt="">
+	                  </div>
+
+
+	                  <div>
+	                      <span class="btn btn-round btn-rose btn-file">
+	                          <span class="fileinput-new">Add Photo</span>
+	                          <span class="fileinput-exists">Change</span>
+	                          <input type="hidden" value="" name=""><input type="file" name="...">
+	                      <div class="ripple-container"></div></span>
+	                      <br>
+	                      <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove<div class="ripple-container"><div class="ripple ripple-on ripple-out" style="left: 74.6719px; top: 25px; background-color: rgb(255, 255, 255); transform: scale(15.5488);"></div><div class="ripple ripple-on ripple-out" style="left: 74.6719px; top: 18px; background-color: rgb(255, 255, 255); transform: scale(15.5488);"></div></div></a>
+	                  </div>
+	              	</div>
+
+
+
+
+
+
+
+
+
+
+						{{-- Avatar do usuário --}}
+		            <div class="card-header card-header-icon avatar-fixo pull-right">
+		                <img class="img" src="{{ $solicitante->foto }}"/>
+		            </div>
+
 						<div class="card-content">
 							<h4 class="card-title">PESSOAL</h4>
 						</div>
 
+
 						<div class="card-content">
+
 
 							<div class="input-group">
 								<span class="input-group-addon">
 									<i class="material-icons">face</i>
 								</span>
+								
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">Nome</label>
 									<input name="nome" type="text" class="form-control error" 

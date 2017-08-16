@@ -146,20 +146,8 @@ class SolicitanteController extends Controller
               $celular = $telefone['numero'];
               
             };
-            
         }
 
-        
-        
-        
-
-
-        //verifica se o solicitante já possui telefone cadastrado, se não possuir cria 
-        /*if( ! $usuario->solicitante->telefone)
-        {
-            $solicitante->telefone = new Telefone();
-        };
-        */
     
         $escolaridades      = pegaValorEnum('solicitantes', 'escolaridade');                                                   
         $estados_civil      = pegaValorEnum('solicitantes', 'estado_civil'); 

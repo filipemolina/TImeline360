@@ -141,4 +141,48 @@ class UserController extends Controller
         }
     }
 
+
+    public function Senha()
+    {
+
+/*        $usuario = User::find(Auth::user()->id);
+        $solicitante = $usuario->solicitante; 
+        
+        //verifica se o solicitante já possui endereço cadastrado, se não possuir cria 
+        if( ! $usuario->solicitante->endereco)
+        {
+            $solicitante->endereco = new Endereco();
+        };
+
+        $fixo       ="";
+        $celular    ="";
+
+        foreach($solicitante->telefones as $telefone)
+        {
+            
+            if( $telefone['tipo_telefone'] == 'Fixo' )
+            {
+                $fixo = $telefone['numero'];
+                
+            };
+
+            if( $telefone['tipo_telefone'] == 'Celular' )
+            {
+              $celular = $telefone['numero'];
+              
+            };
+        }
+
+    
+        $escolaridades      = pegaValorEnum('solicitantes', 'escolaridade');                                                   
+        $estados_civil      = pegaValorEnum('solicitantes', 'estado_civil'); 
+        $sexos              = pegaValorEnum('solicitantes', 'sexo'); 
+        $ufs                = pegaValorEnum('enderecos',    'uf'); 
+        
+        
+        return view('solicitantes.edit',compact('solicitante','escolaridades','estados_civil','sexos','ufs','fixo','celular'));
+*/        
+    }
+
+
 }

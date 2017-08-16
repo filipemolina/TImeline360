@@ -237,6 +237,61 @@
 
 @push('scripts')
 
+    <script src="{{ asset("js/handlebars.js") }}" type="text/javascript" charset="utf-8" async defer></script>
+
+    {{-- Template do Handlebars --}}
+
+    <script id="template-mensagem" type="text/x-handlebars-template">
+
+        @verbatim
+
+            <div class="panel-body">
+
+                <div class="card">
+                                
+                    <!-- Menu para editar comentário -->
+                    <nav class="navbar navbar-default navbar-absolute navbar-transparent" role="navigation">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav pull-right">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle rodar-icone" data-toggle="dropdown"><i class="material-icons">settings</i> <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="divider"></li>
+                                                <li><a href="#"><i class="material-icons">create</i> Editar</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#"><i class="material-icons">clear</i>Excluir</a></li>
+                                            </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <div class="card-header card-header-icon avatar-fixo">
+                        <img class="img" src="{{ foto }}"/>
+                    </div>
+                    
+                    <div class="card-content">
+                        <h5 class="card-title">
+                            {{ nome}}
+                        </h5>
+                        
+                        <p class="card-title">
+                            {{ mensagem }}
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+        @endverbatim
+
+    </script>
+
+    {{-- Fim do Template do Handlebars --}}
+
     <script type="text/javascript">
 
         function enviaMensagem(solicitacao){ 

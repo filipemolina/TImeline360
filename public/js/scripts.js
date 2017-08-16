@@ -33,6 +33,19 @@ $(function(){
     VMasker ($("#cpf")).maskPattern("999.999.999-99");
     VMasker ($(".datepicker")).maskPattern("99/99/9999");
 
+    //////////////////////////////// Teste Handlebars
+
+        console.log("Teste Handlebars");
+
+        var source = $("#template-mensagem").html();
+        var template = Handlebars.compile(source);
+
+        var nova_mensagem = template({ nome: "Filipe", mensagem: "Blá blá blá", foto: "https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAdLAAAAJDdhMWE0NDQ0LTFkYjUtNGUyMy04NDhjLTlkYzdhYjc4MWVlNQ.jpg" });
+
+        $("footer.colapso").append(nova_mensagem);
+
+    //////////////////////////////// Teste Handlebars
+
     $(".helper-apoio").click(function(){
 
         helper.showSwal('info','Efetue o login para apoiar a publicação')

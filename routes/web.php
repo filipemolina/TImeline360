@@ -20,28 +20,22 @@ Route::get('login', ['as' => 'login', 'uses' => 'AutenticaController@telaLogin']
 Route::post ('/login', 	'AutenticaController@login');
 Route::get  ('/logout', 'AutenticaController@logout');
 
+//index do site
+Route::get ('/', 'PrincipalController@index');
 
-
+//caminho para a tela de alteração do perfil do Solicitante
 Route::get  ('/perfil', 'SolicitanteController@Perfil');
 
-/*Route::get  ('/senha', 	'SolicitanteController@telaSenha');
-Route::post ('/senha', 	'SolicitanteController@Senha');
-*/
+//caminho para a tela de alteração de senha
+Route::get 	('/senha',	'UserController@Senha');
 
-
-Route::get ('/', 'PrincipalController@index');
+//filtra para mostrar apenas as solicitações do usuário logado
 Route::get ('/minhassolicitacoes', 'PrincipalController@minhassolicitacoes');
-
-/*
-Route::get('/', function () {
-    return view('principal');
-});*/
 
 
 Route::get('/registro', function () {
     return view('auth.register');
 });
-
 
 
 //resources
