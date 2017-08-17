@@ -1,5 +1,6 @@
 //////////////////// Funções Principais
 
+// Sweet Alert
 var helper = {
 
     // Como usuar no html:
@@ -11,28 +12,42 @@ var helper = {
             swal({
                 title: titulo,
                 buttonsStyling: false,
-                confirmButtonClass: "btn btn-roxo"
+                confirmButtonClass: 'btn btn-roxo'
             });
-        } else if (tipo == 'info'){
+        } else if (tipo == 'info') {
             swal({
                 title: titulo,
                 type: 'info',
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-info"
             });
-
-        } 
+        } else if (tipo == 'alterar') {
+            swal({
+                title: titulo,
+                type: 'warning',
+                input: 'text',
+                buttonsStyling: false,
+                showCancelButton: true,
+                cancelButtonClass: 'btn btn-roxo',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Alterar',
+                confirmButtonClass: 'btn btn-danger'
+            });
+        }
     }
 
 
 
 };
 
-
+    
 $(function(){
+    
+    // Mascarás
     VMasker ($("#cpf")).maskPattern("999.999.999-99");
     VMasker ($(".datepicker")).maskPattern("99/99/9999");
 
+<<<<<<< HEAD
     //////////////////////////////// Teste Handlebars
 
         console.log("Teste Handlebars");
@@ -46,10 +61,38 @@ $(function(){
 
     //////////////////////////////// Teste Handlebars
 
+=======
+    // Apoiar publicação apenas logado
+>>>>>>> luciano
     $(".helper-apoio").click(function(){
+
+        event.preventDefault();
 
         helper.showSwal('info','Efetue o login para apoiar a publicação')
 
+    })
+
+    // Alterar comentário
+    // $(".helper-alterar").click(function() {
+
+    //     event.preventDefault();
+
+    //     helper.showSwal('alterar','Deseja alterar seu comentário?')
+    // })
+    $('.alterar').click(function() {
+        
+        var novo = $('<p class="card-title fc-rtl"><div class="form-group"><input type="text" value="" placeholder="Regular" class="form-control" /></div></p>');
+        var antigo = $(this).addClass('hide').parent().parent().find('.desfazer').removeClass('hide').parent().parent().parent().parent().parent().parent().parent().find('p.user-text')
+        antigo.before(novo)
+        novo.append(antigo.children())
+        antigo.addClass('hide')
+        $('.desfazer').click(function() {
+            
+            $(this).addClass('hide').parent().parent().find('.alterar').removeClass('hide').parent().parent().parent().parent().parent().parent().parent().find('p.user-text')
+            novo.remove()
+            antigo.removeClass('hide')
+        
+        })
     })
 
     // Deslizar comentários

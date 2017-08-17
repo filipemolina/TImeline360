@@ -11,12 +11,44 @@
 
 <br><br>
 
-<div class="col-md-4 col-md-offset-4 h6">
-<a href="{{ ($solicitacoes->url(1)) }}"                             class="btn btn-simple" role="button"> <i class="material-icons">fast_rewind</i> </a>
-<a href="{{ ($solicitacoes->previousPageUrl()) }}"                  class="btn btn-simple" role="button"> <i class="material-icons inverterX">forward</i> </a>
-<a href="{{ ($solicitacoes->nextPageUrl()) }}"                      class="btn btn-simple" role="button">   <i class="material-icons">forward</i> </a>
-<a href="{{ ($solicitacoes->url($solicitacoes->lastPage())) }}"     class="btn btn-simple" role="button">  <i class="material-icons">fast_forward</i> </a>
-</div>
+{{-- Navegação entre as páginas --}}
+<div class="col-md-4 col-md-offset-5">
+    <ul class="pagination pagination-primary">
+        <li class="active">
+            <a href="{{ ($solicitacoes->url(1)) }}" role="button">
+                <i class="material-icons">
+                    fast_rewind
+                </i>
+            </a>
+        </li>
+        <li>
+            <a href="{{ ($solicitacoes->previousPageUrl()) }}" role="button">
+                <i class="material-icons inverterX">
+                    forward
+                </i>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);">1</a>
+        </li>
+        <li>
+            <a href="javascript:void(0);">2</a>
+        </li>
+        <li>
+            <a href="{{ ($solicitacoes->nextPageUrl()) }}" role="button">
+                <i class="material-icons">
+                    forward
+                </i>
+            </a>
+        </li>
+        <li>
+            <a href="{{ ($solicitacoes->url($solicitacoes->lastPage())) }}" role="button">
+                <i class="material-icons">
+                    fast_forward</i>
+                </a>
+        </li>
+    </ul>
+</div> {{-- Fim navegação --}}
 
 <div class="row ">
 
@@ -24,7 +56,7 @@
 
     @foreach ($solicitacoes as $solicitacao)
                     
-    <div class="col-sm-4 col-sm-offset-4 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2">
+    <div class="col-sm-2 col-sm-offset-5 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3">
         <div class="card">
 
             {{-- Avatar do usuário --}}
@@ -173,21 +205,50 @@
                         <div class="card">
                             
                             {{-- Menu para editar comentário --}}
-                            <nav class="navbar navbar-default navbar-absolute navbar-transparent" role="navigation">
-                                <div class="container-fluid">
-                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                        <ul class="nav navbar-nav pull-right">
-                                            <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle rodar-icone" data-toggle="dropdown"><i class="material-icons">settings</i> <b class="caret"></b></a>
-                                                    <ul class="dropdown-menu">
-                                                        <li class="divider"></li>
-                                                        <li><a href="#"><i class="material-icons">create</i> Editar</a></li>
-                                                        <li class="divider"></li>
-                                                        <li><a href="#"><i class="material-icons">clear</i>Excluir</a></li>
-                                                    </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
+                            <nav class="navbar navbar-absolute navbar-transparent">
+                                
+                                <div class="collapse navbar-collapse">
+                                    
+                                    <ul class="nav navbar-nav pull-right">
+                                        
+                                        <li class="dropdown">
+                                            
+                                            <a href="#" class="dropdown-toggle rodar-icone" data-toggle="dropdown">
+                                                <i class="material-icons">settings</i>
+                                                <b class="caret"></b>
+                                            </a>
+                                            
+                                            <ul class="dropdown-menu">
+                                                        
+                                                <li>
+                                                    <a href="#eugen" class="alterar">
+                                                        <i class="material-icons">
+                                                            create
+                                                        </i>
+                                                        Editar
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#eugen" class="desfazer hide">
+                                                        <i class="material-icons">
+                                                            create
+                                                        </i>
+                                                        Desfazer
+                                                    </a>
+                                                </li>
+                                                            
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="material-icons">
+                                                            clear
+                                                        </i>
+                                                        Excluir
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </div>
                             </nav>
 
@@ -200,7 +261,7 @@
                                     {{ $solicitacao->solicitante->nome}}
                                 </h5>
                                 
-                                <p class="card-title">
+                                <p class="card-title user-text">
                                     {{ $mensagem->mensagem }}
                                 </p>
 
@@ -225,12 +286,44 @@
 
 </div> {{-- Fim da ROW --}}
 
-<div class="col-md-offset-4 h6">
-<a href="{{ ($solicitacoes->url(1)) }}"                             class="btn btn-info btn-simple" role="button">Primeira</a>
-<a href="{{ ($solicitacoes->previousPageUrl()) }}"                  class="btn btn-info btn-simple" role="button">Anterior</a>
-<a href="{{ ($solicitacoes->nextPageUrl()) }}"                      class="btn btn-info btn-simple" role="button">Próxima</a>
-<a href="{{ ($solicitacoes->url($solicitacoes->lastPage())) }}"     class="btn btn-info btn-simple" role="button">Ultima</a>
-</div>
+{{-- Navegação entre as páginas --}}
+<div class="col-md-4 col-md-offset-4 h6">
+    <ul class="pagination pagination-primary">
+        <li class="active">
+            <a href="{{ ($solicitacoes->url(1)) }}" role="button">
+                <i class="material-icons">
+                    fast_rewind
+                </i>
+            </a>
+        </li>
+        <li>
+            <a href="{{ ($solicitacoes->previousPageUrl()) }}" role="button">
+                <i class="material-icons inverterX">
+                    forward
+                </i>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:void(0);">1</a>
+        </li>
+        <li>
+            <a href="javascript:void(0);">2</a>
+        </li>
+        <li>
+            <a href="{{ ($solicitacoes->nextPageUrl()) }}" role="button">
+                <i class="material-icons">
+                    forward
+                </i>
+            </a>
+        </li>
+        <li>
+            <a href="{{ ($solicitacoes->url($solicitacoes->lastPage())) }}" role="button">
+                <i class="material-icons">
+                    fast_forward</i>
+                </a>
+        </li>
+    </ul>
+</div> {{-- Fim navegação --}}
 
 @endsection
 
