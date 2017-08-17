@@ -171,19 +171,20 @@
 
                 </div> <br><br><br><br><br><br>
 
-                {{-- card de comentarios --}}
+
                 @foreach ($solicitacao->mensagens as $mensagem)
 
+                
+                {{-- card de comentarios --}}
                 <div class="panel-body">
-                    {{-- <div class="card" data-header-animation="true"> --}}
 
-                        {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
+                    {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
 
-                        {{-- mensagem do funcionário --}}
-                        @if ($mensagem->funcionario)
+                    @if ($mensagem->funcionario)
 
-                        <div class="card">
-                        <div class="card-header card-header-icon avatar-fixo pull-right">
+                    {{-- mensagem do funcionário --}}
+                    <div class="card">
+                        <div class="card-header card-header-icon avatar-fixo-pn pull-right">
                             <img class="img" src="{{ asset('img/brasao.png')}}">
                         </div>
 
@@ -198,75 +199,78 @@
                             </p>
 
                         </div>
-                        </div>
+                    </div>
                                     
-                        {{-- mensagem do solicitante --}}
-                        @else
+                    @else
 
-                        <div class="card">
+                    {{-- mensagem do solicitante --}}
+                    <div class="card">
+
+                        {{-- Menu para editar comentário --}}
+                        
+                        <div class="dropdown col-md-12 nav navbar-nav" style="position: absolute;">
                             
-                            {{-- Menu para editar comentário --}}
-                            <nav class="navbar navbar-absolute navbar-transparent">
-                                
-                                <div class="collapse navbar-collapse">
-                                    
-                                    <ul class="nav navbar-nav pull-right">
-                                        
-                                        <li class="dropdown">
-                                            
-                                            <a href="#" class="dropdown-toggle rodar-icone" data-toggle="dropdown">
-                                                <i class="material-icons">settings</i>
-                                                <b class="caret"></b>
-                                            </a>
-                                            
-                                            <ul class="dropdown-menu">
-                                                        
-                                                <li>
-                                                    <a href="#eugen" class="alterar">
-                                                        <i class="material-icons">
-                                                            create
-                                                        </i>
-                                                        Editar
-                                                    </a>
-                                                </li>
+                            <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
+                                <i class="material-icons">settings</i>
+                            </a>
+                            
+                            <ul class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="#eugen" class="alterar">
+                                        Editar
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#eugen" class="desfazer hide">
+                                        <i class="material-icons">create</i>
+                                        Desfazer
+                                    </a>
+                                </li>
+                                <li>
+                                <a href="#eugen">
+                                    <i class="material-icons">clear</i>
+                                    Excluir
+                                </a>
+                                </li>
+                            </ul>
+                        </div>
 
-                                                <li>
-                                                    <a href="#eugen" class="desfazer hide">
-                                                        <i class="material-icons">
-                                                            create
-                                                        </i>
-                                                        Desfazer
-                                                    </a>
-                                                </li>
-                                                            
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="material-icons">
-                                                            clear
-                                                        </i>
-                                                        Excluir
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
+                            
+                            
 
-                            <div class="card-header card-header-icon avatar-fixo">
+                            {{-- Avatar pequeno --}}
+                            <div class="card-header card-header-icon avatar-fixo-pn">
                                 <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
                             </div>
-                            
-                            <div class="card-content">
-                                <h5 class="card-title">
-                                    {{ $solicitacao->solicitante->nome}}
-                                </h5>
-                                
-                                <p class="card-title user-text">
-                                    {{ $mensagem->mensagem }}
-                                </p>
 
-                            </div>
+                            {{-- Comentário --}}
+                            <form class="form-horizontal">
+
+                                <div class="row">
+                                    <label class="col-md-8 h6">
+                                        {{ $solicitacao->solicitante->nome}}
+                                    </label>
+
+                                    {{-- Comentário Fixo --}}
+                                    <div class="col-md-7">
+                                        <div class="form-group no-margin">
+                                            <p class="form-control-static">
+                                                {{ $mensagem->mensagem }}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {{-- Comentário Editável --}}
+                                    <div class="col-md-7 hide">
+                                        <div class="form-group label-floating is-empty no-margin">
+                                            <label class="control-label"></label>
+                                            <input type="text" class="form-control" value="{{ $mensagem->mensagem }}">
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </form> {{-- Fim Comentário --}}
+
                         </div>
 
                         @endif

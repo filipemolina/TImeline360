@@ -67,9 +67,11 @@ $(function(){
         
         var novo = $('<p class="card-title fc-rtl"><div class="form-group"><input type="text" value="" placeholder="Regular" class="form-control" /></div></p>');
         var antigo = $(this).addClass('hide').parent().parent().find('.desfazer').removeClass('hide').parent().parent().parent().parent().parent().parent().parent().find('p.user-text')
+        
         antigo.before(novo)
         novo.append(antigo.children())
         antigo.addClass('hide')
+        
         $('.desfazer').click(function() {
             
             $(this).addClass('hide').parent().parent().find('.alterar').removeClass('hide').parent().parent().parent().parent().parent().parent().parent().find('p.user-text')
