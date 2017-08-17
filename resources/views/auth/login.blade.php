@@ -87,8 +87,8 @@ Login
 
 @push('scripts')
 
-<script type="text/javascript">
+    <script type="text/javascript">
     
-</script>
+    </script>
 
 @endpush
