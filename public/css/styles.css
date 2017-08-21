@@ -375,7 +375,7 @@ z-index: -1;
 .navbar .navbar-nav > li > a.btn.btn-simples.dropdown-toggle:focus, .open >
 .navbar .navbar-nav > li > a.btn.btn-simples.dropdown-toggle:hover {
   background-color: transparent;
-  color: #555555;
+  color: #999999;
 }
 .btn.btn-simples:focus, .btn.btn-simples:active, .btn.btn-simples:hover,
 .navbar .navbar-nav > li > a.btn.btn-simples:focus,
@@ -489,6 +489,11 @@ z-index: -1;
 
 .ripple.ripple-on {
   opacity: 0.2;
+}
+
+.btn-simples .ripple.ripple-on {
+  transition: none;
+  opacity: 0;
 }
 
 .ripple.ripple-out {
@@ -645,4 +650,12 @@ h4.card-title {
 
 .no-margin {
   margin: 0 !important;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.absoluto {
+  position: absolute !important;
 }

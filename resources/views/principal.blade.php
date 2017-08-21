@@ -146,31 +146,6 @@
 
             {{-- Comentários --}}
             <footer class="colapso col-md-12">
-                <div class="panel-title">
-                    @isset($usuario)
-                    {{-- {{ dd($usuario) }} --}}
-                    {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
-                    
-                    {{-- Escrever comentário --}}
-                    @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
-                    
-                    <div class="card card-product col-md-8">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <button type="button" class="btn btn-primary btn-sm">
-                                    Enviar
-                                </button>
-                            </span>
-                            <input type="text" class="form-control" placeholder="Escreva um comentário">
-                        </div>
-                    </div>
-                    
-                    @endif
-
-                    @endisset
-
-                </div> <br><br><br><br><br><br>
-
 
                 @foreach ($solicitacao->mensagens as $mensagem)
 
@@ -208,7 +183,7 @@
 
                         {{-- Menu para editar comentário --}}
                         
-                        <div class="dropdown col-md-12 nav navbar-nav" style="position: absolute;">
+                        <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
                             
                             <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
                                 <i class="material-icons">settings</i>
@@ -216,73 +191,103 @@
                             
                             <ul class="dropdown-menu pull-right">
                                 <li>
-                                    <a href="#eugen" class="alterar">
+                                    <a href="#eugen" class="btn-coment-edit">
+                                        <i class="material-icons">create</i>
                                         Editar
                                     </a>
                                 </li>
+
                                 <li>
-                                    <a href="#eugen" class="desfazer hide">
-                                        <i class="material-icons">create</i>
-                                        Desfazer
+                                    <a href="#eugen">
+                                        <i class="material-icons">clear</i>
+                                        Excluir
                                     </a>
-                                </li>
-                                <li>
-                                <a href="#eugen">
-                                    <i class="material-icons">clear</i>
-                                    Excluir
-                                </a>
                                 </li>
                             </ul>
                         </div>
 
-                            
-                            
-
-                            {{-- Avatar pequeno --}}
-                            <div class="card-header card-header-icon avatar-fixo-pn">
-                                <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
-                            </div>
-
-                            {{-- Comentário --}}
-                            <form class="form-horizontal">
-
-                                <div class="row">
-                                    <label class="col-md-8 h6">
-                                        {{ $solicitacao->solicitante->nome}}
-                                    </label>
-
-                                    {{-- Comentário Fixo --}}
-                                    <div class="col-md-7">
-                                        <div class="form-group no-margin">
-                                            <p class="form-control-static">
-                                                {{ $mensagem->mensagem }}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    {{-- Comentário Editável --}}
-                                    <div class="col-md-7 hide">
-                                        <div class="form-group label-floating is-empty no-margin">
-                                            <label class="control-label"></label>
-                                            <input type="text" class="form-control" value="{{ $mensagem->mensagem }}">
-                                        </div>
-                                    </div>
-                                
-                                </div>
-                            </form> {{-- Fim Comentário --}}
-
+                        {{-- Avatar pequeno --}}
+                        <div class="card-header card-header-icon avatar-fixo-pn">
+                            <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
                         </div>
 
-                        @endif
+                        {{-- Comentário --}}
+                        <form class="form-horizontal">
+
+                            <div class="row">
+                                <label class="col-md-8 h6">
+                                    {{ $solicitacao->solicitante->nome}}
+                                </label>
+
+                                {{-- Comentário Fixo --}}
+                                <div class="col- coment-fix">
+                                    <div class="form-group no-margin col-md-7">
+                                        <p class="form-control-static">
+                                            {{ $mensagem->mensagem }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {{-- Comentário Editável --}}
+                                <div class="hide card-footer col- coment-edit">
+                                    <div class="form-group label-floating is-emptyno-margin col-md-7">
+                                        <label class="control-label"></label>
+                                        <input type="text" class="form-control" value="{{ $mensagem->mensagem }}">
+                                    </div>
+                                    <div class="col-md-5 pull-right">
+                                        <button type="button" value="submit" class="btn btn-primary btn-sm coment-alterar">
+                                            Alterar
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm coment-desfazer">
+                                            Desfazer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form> {{-- Fim Comentário --}}
+                    </div>
+
+                    @endif
 
 
                     {{-- </div> fim card em panel-body --}}
                 </div> {{-- fim panel-body --}}
 
-                @endforeach
                 {{-- fim do card de comentarios --}}
 
+                @endforeach
+
+                {{-- Escrever comentário --}}
                 
+                <div class="">
+                    @isset($usuario)
+                    {{-- {{ dd($usuario) }} --}}
+                    {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
+                    
+                    {{-- Escrever comentário --}}
+                    @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
+                    
+                    <div class="card col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <button type="button" class="btn btn-primary btn-sm">
+                                    Enviar
+                                </button>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Escreva um comentário">
+                        </div>
+                    </div>
+                    
+                    @endif
+
+                    @endisset
+
+                </div>
+
+                {{-- Fim escrever comentário --}}
+
+            </footer>
+
         </div> {{-- fim card em DIV publicação --}}
     </div> {{-- Fim DIV PUBLICAÇÃO --}}
     

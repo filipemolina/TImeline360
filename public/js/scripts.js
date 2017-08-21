@@ -54,31 +54,30 @@ $(function(){
 
         helper.showSwal('info','Efetue o login para apoiar a publicação')
 
+    })    
+    
+    // Ocultar coment-fix e exibir coment-edit
+    $('.btn-coment-edit').click(function() {
+        
+        event.preventDefault();
+
+        $(this).parent().parent().parent().parent().find('.coment-fix').addClass('hide').parent().find('.coment-edit').removeClass('hide')
+
     })
 
-    // Alterar comentário
-    // $(".helper-alterar").click(function() {
+    // Enviar alteração, ocultar coment-edit e exibir coment-fix
+    $('.coment-alterar').click(function() {
+        
+        $(this).parent().parent().addClass('hide').parent().find('.coment-fix').removeClass('hide')
+    })
 
-    //     event.preventDefault();
+    // Ocultar coment-edit e exibir coment-fix
+    $('.coment-desfazer').click(function() {
+        
+        event.preventDefault();
 
-    //     helper.showSwal('alterar','Deseja alterar seu comentário?')
-    // })
-    $('.alterar').click(function() {
-        
-        var novo = $('<p class="card-title fc-rtl"><div class="form-group"><input type="text" value="" placeholder="Regular" class="form-control" /></div></p>');
-        var antigo = $(this).addClass('hide').parent().parent().find('.desfazer').removeClass('hide').parent().parent().parent().parent().parent().parent().parent().find('p.user-text')
-        
-        antigo.before(novo)
-        novo.append(antigo.children())
-        antigo.addClass('hide')
-        
-        $('.desfazer').click(function() {
-            
-            $(this).addClass('hide').parent().parent().find('.alterar').removeClass('hide').parent().parent().parent().parent().parent().parent().parent().find('p.user-text')
-            novo.remove()
-            antigo.removeClass('hide')
-        
-        })
+        $(this).parent().parent().addClass('hide').parent().find('.coment-fix').removeClass('hide')
+
     })
 
     // Deslizar comentários
