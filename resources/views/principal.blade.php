@@ -429,3 +429,31 @@
 
     </script>
 @endpush
+
+
+@push("scripts")
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var tempo = 0;
+            var incremento = 500;
+
+        // Testar se há algum erro, e mostrar a notificação
+
+         @if ($errors->any())
+            
+             @foreach ($errors->all() as $error)
+
+                setTimeout(function(){
+                    demo.notificationRight("top", "right", "rose", "{{ $error }}");   
+                }, tempo);
+
+                tempo += incremento;
+
+             @endforeach
+                
+        @endif
+            demo.initFormExtendedDatetimepickers();
+        });
+    </script>
+
+@endpush

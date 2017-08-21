@@ -73,14 +73,18 @@ class SolicitanteController extends Controller
 
         $solicitante->update($request->all());
 
-        if($request->has('endereco')) 
+
+        //verifica se existe endereço (mesmo que em branco) já cadastrado na tabela de endereços para esse solictante
+        if( Endereco::where('solicitante_id', $id)->first() )
         {
             $solicitante->endereco->update($request->endereco);
+
         }else{
             $endereco = new Endereco($request->all());
             $endereco->solicitante()->associate($solicitante);
             $endereco->save(); 
         }
+
 
         //deleta os telefones para serem inseridos os quem vem do formulário
         $telefones = Telefone::where("solicitante_id", $solicitante->id);
@@ -123,11 +127,16 @@ class SolicitanteController extends Controller
         $usuario = User::find(Auth::user()->id);
         $solicitante = $usuario->solicitante; 
         
+        //dd($solicitante->endereco);
+
         //verifica se o solicitante já possui endereço cadastrado, se não possuir cria 
         if( ! $usuario->solicitante->endereco)
         {
+                //dd("criou");
             $solicitante->endereco = new Endereco();
         };
+
+
 
         $fixo       ="";
         $celular    ="";

@@ -184,8 +184,8 @@
 
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">CEP</label>
-									<input id="cep" name="cep" type="text" class="form-control error" 
-									value="{{ $solicitante->endereco->cep or old('cep') }}">
+									<input id="cep" name="endereco[cep]" type="text" class="form-control error" 
+									value="{{ $solicitante->endereco->cep or old('endereco.cep') }}">
 								</div>
 
 								<span class="input-group-addon">
@@ -193,7 +193,7 @@
 								</span>
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">UF</label>
-									<select   name="uf" id="uf"  class="form-control form-control error">
+									<select   name="endereco[uf]" id="uf"  class="form-control form-control error">
 										<option value=""  selected style="color: #ccc;"> --- </option>
 
 										@foreach($ufs as $uf)
@@ -214,8 +214,8 @@
 								</span>
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">Municipio</label>
-									<input id="cidade" name="municipio"  type="text" class="form-control error" 
-									value="{{ $solicitante->endereco->municipio or old('municipio') }}">
+									<input id="cidade" name="endereco[municipio]"  type="text" class="form-control error" 
+									value="{{ $solicitante->endereco->municipio or old('endereco.municipio') }}">
 								</div>
 							</div>
 
@@ -225,8 +225,8 @@
 								</span>
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">Bairro</label>
-									<input id="bairro" name="bairro" type="bairro" class="form-control error"  
-									value="{{ $solicitante->endereco->bairro or  old('bairro') }}">
+									<input id="bairro" name="endereco[bairro]" type="text" class="form-control error"  
+									value="{{ $solicitante->endereco->bairro or  old('endereco.bairro') }}">
 								</div>
 							</div>
 
@@ -237,8 +237,8 @@
 								</span>
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">Logradouro</label>
-									<input id="rua" name="logradouro" type="text" class="form-control error" 
-									value="{{ $solicitante->endereco->logradouro or old('logradouro') }}">
+									<input id="rua" name="endereco[logradouro]" type="text" class="form-control error" 
+									value="{{ $solicitante->endereco->logradouro or old('endereco.logradouro') }}">
 								</div>
 							</div>
 
@@ -249,8 +249,8 @@
 								</span>
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">Numero</label>
-									<input id="numero" name="numero" type="text" class="form-control error" 
-									value="{{ $solicitante->endereco->numero or old('numero') }}">
+									<input id="numero" name="endereco[numero]" type="text" class="form-control error" 
+									value="{{ $solicitante->endereco->numero or old('endereco.numero') }}">
 								</div>
 
 								<span class="input-group-addon">
@@ -258,8 +258,8 @@
 								</span>
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">Complemento</label>
-									<input name="complemento" type="text" class="form-control error" 
-									value="{{ $solicitante->endereco->complemento  or  old('complemento') }}">
+									<input name="endereco[complemento]" type="text" class="form-control error" 
+									value="{{ $solicitante->endereco->complemento  or  old('endereco.complemento') }}">
 								</div>
 
 							</div>

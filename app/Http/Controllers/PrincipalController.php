@@ -27,8 +27,6 @@ class PrincipalController extends Controller
             //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
             $solicitacoes = Solicitacao::where('moderado', 1)->orderBy('created_at', 'desc')->paginate(5);
 		}
-    	
-    	
         return view('principal', compact('solicitacoes','usuario'));
     }
     
@@ -38,7 +36,26 @@ class PrincipalController extends Controller
 
         //carrega as solicitações do usuário logado MODERADA ou NÃO
     	$solicitacoes = Solicitacao::where('solicitante_id', $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
-        return view('principal', compact('solicitacoes','usuario'));
+
+        if($solicitacoes->total() > 0)
+        {
+            return view('principal', compact('solicitacoes','usuario'));    
+        }else{
+
+            
+
+            $solicitacoes = Solicitacao::where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
+
+
+            return view('principal', compact('solicitacoes','usuario'))->withErrors(['erros' => 'Você ainda não possui Solicitações cadastradas!']);    
+
+            //return redirect()->action('PrincipalController@index')->with(['erros' => 'Usuário não possui Solicitações Cadastradas']);
+            //return view('principal')->with(['erros' => 'Usuário não possui Solicitações Cadastradas']);
+        }
+        
     }
     
 }
+
+
+
