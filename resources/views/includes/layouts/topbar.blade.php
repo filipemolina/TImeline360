@@ -76,7 +76,7 @@
                         </li>
 
                         <li>
-                            <a href="{{ url("/perfil") }}" >
+                            <a href="{{ url("/senha") }}" >
                                 <i class="material-icons">lock_outline</i>
                                     Alterar Senha
                             </a>

@@ -15,26 +15,57 @@
 							<i class="material-icons">person</i>
 						</div>
 
-						{{-- Avatar do usuário --}}
-            <div class="fileinput text-center fileinput-exists foto-edit col-md-4 col-sm-4" data-provides="fileinput">
-                                     
-                
-                  <div class="fileinput-preview fileinput-exists thumbnail img-circle card-header card-header-icon avatar-fixo pull-right" style="margin: 0px 10px 0px; bottom: 22px;">
-                    <img src="{{ $solicitante->foto }}"/>
-                  </div>
 
-                    <span class="btn btn-round btn-rose btn-file edit-foto">
+
+
+						<div class="fileinput text-center fileinput-exists " data-provides="fileinput">
+	                  <div class="fileinput-new thumbnail img-circle">
+	                      <img src="../../assets/img/placeholder.jpg" alt="...">
+	                  </div>
+	                  <div class="fileinput-preview fileinput-exists thumbnail img-circle" style="">
+	                  	<img src="{{ $solicitante->foto }}" alt="">
+	                  </div>
+
+
+	                  {{-- <div>
+	                      <span class="btn btn-round btn-rose btn-file">
+	                         <span class="fileinput-exists">Inserir</span>
+	                          <input type="hidden" value="" name=""><input type="file" name="...">
+	                      </span>
+	                      <br>
+	                      <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Excluir<div class="ripple-container"><div class="ripple ripple-on ripple-out" style="left: 74.6719px; top: 25px; background-color: rgb(255, 255, 255); transform: scale(15.5488);"></div><div class="ripple ripple-on ripple-out" style="left: 74.6719px; top: 18px; background-color: rgb(255, 255, 255); transform: scale(15.5488);"></div></div></a>
+	                  </div> --}}
+	              	</div>
+
+
+
+
+
+
+
+
+
+
+						{{-- Avatar do usuário --}}
+            <div class="pull-right">
+		            <div class="card-header card-header-icon avatar-fixo pull-right">
+		                <img class="img" src="{{ $solicitante->foto }}"/>
+                </div>
+		       
+                <div>
+                    <span class="btn btn-round btn-rose btn-file pull-right">
                            <span class="fileinput-exists">Inserir</span>
                             <input type="hidden" value="" name=""><input type="file" name="...">
                     </span>
-                                  
-                    <a href="#pablo" class="btn btn-danger btn-round fileinput-exists exclui-foto" data-dismiss="fileinput"><i></i> Excluir<div class="ripple ripple-on ripple-out" style=" background-color: rgb(255, 255, 255);"></div></a>
+                    <br>
+                    <span class="btn btn-round btn-rose btn-file pull-right">
+                           <span class="fileinput-exists">Excluir</span>
+                            <input type="hidden" value="" name=""><input type="file" name="...">
+                    </span>
 
-                    
-               
+                </div>
 
             </div>
-            {{-- Fim do Avatar do usuário --}}
                
 
 						<div class="card-content">
@@ -50,7 +81,7 @@
 									<i class="material-icons">face</i>
 								</span>
 								
-								<div class="form-group label-floating has-roxo col-md-10">
+								<div class="form-group label-floating has-roxo">
 									<label class="control-label">Nome</label>
 									<input name="nome" type="text" class="form-control error" 
 									value="{{$solicitante->nome or old('nome')}}" autofocus>
@@ -291,8 +322,8 @@
 						</div>
 					</div> {{-- FIM DIV Contato --}}
 
-					<div class="footer text-center" style="">
-						<button type="submit" class="btn btn-roxo btn-wd btn-lg" style="right: 300px; border-radius: 30px;">Salvar</button>
+					<div class="footer text-center">
+						<button type="submit" class="btn btn-roxo btn-wd btn-lg">Salvar</button>
 					</div>
 
 				</form>
