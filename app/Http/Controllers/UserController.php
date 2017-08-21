@@ -145,7 +145,7 @@ class UserController extends Controller
     public function Senha()
     {
 
-/*        $usuario = User::find(Auth::user()->id);
+        $usuario = User::find(Auth::user()->id);
         $solicitante = $usuario->solicitante; 
         
         //verifica se o solicitante já possui endereço cadastrado, se não possuir cria 
@@ -180,8 +180,8 @@ class UserController extends Controller
         $ufs                = pegaValorEnum('enderecos',    'uf'); 
         
         
-        return view('solicitantes.edit',compact('solicitante','escolaridades','estados_civil','sexos','ufs','fixo','celular'));
-*/        
+        return view('auth.senha',compact('solicitante','escolaridades','estados_civil','sexos','ufs','fixo','celular'));
+        
     }
 
 
