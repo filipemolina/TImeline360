@@ -4,9 +4,10 @@
 var helper = {
 
     // Como usuar no html:
-    // helper.showSwal(tipo, titulo)
-
-    showSwal: function(tipo, titulo) {
+    // helper.showSwal1('tipo', 'titulo')
+    // helper.showSwal2('tipo', 'titulo', 'texto')
+    
+    showSwal1: function(tipo, titulo) {
         
         if(tipo == 'basico'){
             swal({
@@ -34,11 +35,38 @@ var helper = {
                 confirmButtonClass: 'btn btn-danger'
             });
         }
-    }
+
+
+    }, //Fim showSwal1
+
+    showSwal2: function(tipo, titulo, texto) {
+
+        if (tipo == 'deletar') {
+            swal({
+                title: titulo,
+                type: 'warning',
+                html: texto,
+                buttonsStyling: false,
+                showCancelButton: true,
+                cancelButtonClass: 'btn btn-roxo',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Excluir',
+                confirmButtonClass: 'btn btn-danger'
+            }).then(function () {
+                swal({
+                    title: 'Deleted!',
+                    type: 'success',
+                    text: 'Your file has been deleted.'
+                })
+            });
+        }
+
+
+    } //Fim showSwal2
 
 
 
-};
+}; //Fim Helper
 
     
 $(function(){
@@ -63,6 +91,32 @@ $(function(){
 
         $(this).parent().parent().parent().parent().find('.coment-fix').addClass('hide').parent().find('.coment-edit').removeClass('hide')
 
+    })
+
+    // Ocultar coment-fix, exibir mensagem com horário da "exclusão", demonstrar botão desfazer e oculstar botões editar e excluir
+    $('.btn-coment-del').click(function (e) {
+
+        var isto = this;
+        var text = $(this).parent().parent().parent().parent().find('div.coment-fix p').show('p');
+
+        e.preventDefault();
+
+        $(isto).parent().parent().find('a.btn-coment-des').removeClass('hide');
+        $(isto).parent().parent().find('a.btn-coment-edit').addClass('hide');
+        $(isto).parent().parent().find('a.btn-coment-del').addClass('hide');
+        helper.showSwal2('deletar', 'Excluir o comentário abaixo?', text);
+        console.log($(isto).parent().parent().find('btn-coment-des').removeClass('hide'))
+
+    })
+
+    //Exibir coment-fix, ocultar botão desfazer, demonstrar botões editar e excluir
+    $('.btn-coment-des').click(function () {
+
+        event.preventDefault();
+
+        $(this).addClass('hide')
+        $(this).parent().parent().find('a.btn-coment-edit').removeClass('hide');
+        $(this).parent().parent().find('a.btn-coment-del').removeClass('hide');
     })
 
     // Enviar alteração, ocultar coment-edit e exibir coment-fix

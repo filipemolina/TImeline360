@@ -198,9 +198,16 @@
                                 </li>
 
                                 <li>
-                                    <a href="#eugen">
+                                    <a href="#eugen" class="btn-coment-del">
                                         <i class="material-icons">clear</i>
                                         Excluir
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#eugen" class="hide btn-coment-des">
+                                        <i class="material-icons">undo</i>
+                                        Desfazer
                                     </a>
                                 </li>
                             </ul>
