@@ -5,27 +5,27 @@ var helper = {
 
     // Como usuar no html:
     // helper.showSwal1('tipo', 'titulo')
-    // helper.showSwal2('tipo', 'titulo', 'texto')
+    // helper.showSwal2('tipo', 'texto1', 'texto2', 'texto1Sucesso', 'texto2Sucesso', 'funcaoSucesso')
     
-    showSwal1: function(tipo, titulo) {
+    showSwal1: function(tipo, texto1) {
         
         if(tipo == 'basico'){
             swal({
-                title: titulo,
+                title: texto1,
                 buttonsStyling: false,
                 confirmButtonClass: 'btn btn-roxo'
             });
         } else if (tipo == 'info') {
             swal({
-                title: titulo,
                 type: 'info',
+                title: texto1,
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-info"
             });
-        } else if (tipo == 'alterar') {
+        } else if (tipo == 'aviso') {
             swal({
-                title: titulo,
                 type: 'warning',
+                title: texto1,
                 input: 'text',
                 buttonsStyling: false,
                 showCancelButton: true,
@@ -38,33 +38,6 @@ var helper = {
 
 
     }, //Fim showSwal1
-
-    showSwal2: function(tipo, titulo, texto) {
-
-        if (tipo == 'deletar') {
-            swal({
-                title: titulo,
-                type: 'warning',
-                html: texto,
-                buttonsStyling: false,
-                showCancelButton: true,
-                cancelButtonClass: 'btn btn-roxo',
-                cancelButtonText: 'Cancelar',
-                confirmButtonText: 'Excluir',
-                confirmButtonClass: 'btn btn-danger'
-            }).then(function () {
-                swal({
-                    title: 'Deleted!',
-                    type: 'success',
-                    text: 'Your file has been deleted.'
-                })
-            });
-        }
-
-
-    } //Fim showSwal2
-
-
 
 }; //Fim Helper
 
@@ -94,18 +67,36 @@ $(function(){
     })
 
     // Ocultar coment-fix, exibir mensagem com horário da "exclusão", demonstrar botão desfazer e oculstar botões editar e excluir
-    $('.btn-coment-del').click(function (e) {
+    $('.btn-coment-del').click(function () {
 
         var isto = this;
         var text = $(this).parent().parent().parent().parent().find('div.coment-fix p').show('p');
 
-        e.preventDefault();
+        event.preventDefault();
 
-        $(isto).parent().parent().find('a.btn-coment-des').removeClass('hide');
-        $(isto).parent().parent().find('a.btn-coment-edit').addClass('hide');
-        $(isto).parent().parent().find('a.btn-coment-del').addClass('hide');
-        helper.showSwal2('deletar', 'Excluir o comentário abaixo?', text);
-        console.log($(isto).parent().parent().find('btn-coment-des').removeClass('hide'))
+        swal({
+                type: 'warning',
+                title: 'Excluir o comentário abaixo?',
+                html: text,
+                buttonsStyling: false,
+                showCancelButton: true,
+                cancelButtonClass: 'btn btn-roxo',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Excluir',
+                confirmButtonClass: 'btn btn-danger'
+            }).then(function () {
+                swal({
+                    type: 'success',
+                    title: 'Sucesso!',
+                    text: 'Seu comentário foi removido',
+                    
+                }),
+
+                    console.log('funfa');
+                    $(isto).parent().parent().find('a.btn-coment-des').removeClass('hide');
+                    $(isto).parent().parent().find('a.btn-coment-edit').addClass('hide');
+                    $(isto).parent().parent().find('a.btn-coment-del').addClass('hide');
+            });
 
     })
 
