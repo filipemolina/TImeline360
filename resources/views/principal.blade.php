@@ -76,7 +76,10 @@
             <div class="card-image">
                 <span class="label label-danger"></span>
                     <a href="#pablo">
-                        <img class="img" src="{{ $solicitacao->foto }}">
+                        <img class="img" 
+                        
+                        src="data:image/jpg;base64,{{ $solicitacao->foto }}" 
+                        >
                     </a>
             </div>
 
@@ -386,6 +389,12 @@
     {{-- Fim do Template do Handlebars --}}
 
     <script type="text/javascript">
+
+        @if(Auth::check())
+
+            var id_usuario = {{ Auth::user()->id }};
+
+        @endif
 
         function enviaMensagem(solicitacao){ 
 

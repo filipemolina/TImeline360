@@ -37,6 +37,9 @@ Route::get('/registro', function () {
     return view('auth.register');
 });
 
+///////////////////////////// Rotas para Ajax
+Route::get("/solicitacoes/minhas/{id}", "SolicitacaoController@minhassolicitacoes");
+
 
 //resources
 Route::resource('solicitante',	'SolicitanteController');

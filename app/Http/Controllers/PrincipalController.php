@@ -47,7 +47,7 @@ class PrincipalController extends Controller
             $solicitacoes = Solicitacao::where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
 
 
-            return view('principal', compact('solicitacoes','usuario'))->withErrors(['erros' => 'Você ainda não possui Solicitações cadastradas!']);    
+            return view('principal', compact('solicitacoes','usuario'))->withErrors(['erros' => 'Você não possui Solicitações cadastradas!']);    
 
             //return redirect()->action('PrincipalController@index')->with(['erros' => 'Usuário não possui Solicitações Cadastradas']);
             //return view('principal')->with(['erros' => 'Usuário não possui Solicitações Cadastradas']);
