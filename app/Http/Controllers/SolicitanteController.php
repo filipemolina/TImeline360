@@ -71,6 +71,8 @@ class SolicitanteController extends Controller
         // solcaliza o solicitante
         $solicitante = Solicitante::find($id);
 
+        $solicitante->foto = $request->foto;
+
         $solicitante->update($request->all());
 
 

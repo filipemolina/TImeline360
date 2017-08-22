@@ -15,27 +15,39 @@
 							<i class="material-icons">person</i>
 						</div>
 
+
+
+
+
+
 						{{-- Avatar do usuário --}}
-            <div class="fileinput fileinput-new text-center foto-edit col-md-4 col-sm-4" data-provides="fileinput">
-                                     
-                
-                <div class="fileinput-preview thumbnail img-circle card-header card-header-icon avatar-fixo pull-right" style="margin: 0px 10px 0px; bottom: 22px;">
-                    <img src="{{ $solicitante->foto }}"/>
-                </div>
+            		<div class="fileinput fileinput-new text-center foto-edit col-md-4 col-sm-4" data-provides="fileinput">
+                		<div class="fileinput-preview thumbnail img-circle card-header card-header-icon avatar-fixo pull-right" style="margin: 0px 10px 0px; bottom: 22px;">
 
-                    <span class="btn btn-round btn-rose btn-file edit-foto">
-                           <span class="fileinput-new">Adicionar</span>
-                           <span class="fileinput-exists">Alterar</span>
-                              <input type="hidden" value="" name=""><input type="file" name="...">
-                    </span>
+                			@if($solicitante->foto)
+                    			<img src="{{ $solicitante->foto }}"/>
+                    		@elseif(old('foto'))
+                    			<img src="{{ old('foto') }}"/>
+                    		@else
+                    			<img src="{{ asset('img/placeholder.jpg') }}"/>
+                    		@endif
+
+                		</div>
+
+                		<input type="hidden" name="foto">
+                    	<span class="btn btn-round btn-rose btn-file edit-foto">
+                           <span class="fileinput-new">				Adicionar 	</span>
+                           <span class="fileinput-exists">			Alterar		</span>
+                           <input type="file" name="abacaxi">
+                    	</span>
                                   
-                    <a href="#pablo" class="btn btn-danger btn-round fileinput-exists exclui-foto" data-dismiss="fileinput"><i></i> Excluir<div class="ripple ripple-on ripple-out" style=" background-color: rgb(255, 255, 255);"></div></a>
-                  
-               
-            </div>
+                    	<a href="#pablo" class="btn btn-danger btn-round fileinput-exists exclui-foto" data-dismiss="fileinput"><i></i> Excluir<div class="ripple ripple-on ripple-out" style=" background-color: rgb(255, 255, 255);"></div></a>
+            		</div>
+           			{{-- Fim do Avatar do usuário --}}
 
-           {{-- Fim do Avatar do usuário --}}
-               
+
+           			
+
 
 						<div class="card-content">
 							<h4 class="card-title">PESSOAL</h4>
@@ -126,8 +138,6 @@
 									</select>
 								</div>
 							</div>
-																		
-							
 						</div>
 					</div> {{-- FIM DIV Pessoal --}}
 				</div>
@@ -293,6 +303,15 @@
 			VMasker ($("#cep")).maskPattern("99999-999");
 			VMasker ($("#telefone_fixo")).maskPattern("(99) 9999-9999");
 			VMasker ($("#telefone_celular")).maskPattern("(99) 99999-9999");
+
+
+			//para adicionar a foto 
+			$("body").on("change.bs.fileinput", function(e){ 
+				var base64 = $(".fileinput-preview img").attr('src');
+				$("input[name=foto]").val(base64);
+		 	});
+
+
 
 			var tempo = 0;
         	var incremento = 500;

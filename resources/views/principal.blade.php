@@ -76,10 +76,7 @@
             <div class="card-image">
                 <span class="label label-danger"></span>
                     <a href="#pablo">
-                        <img class="img" 
-                        
-                        src="data:image/jpg;base64,{{ $solicitacao->foto }}" 
-                        >
+                        <img class="img" src="{{ $solicitacao->foto }}" >
                     </a>
             </div>
 
