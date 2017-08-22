@@ -16,7 +16,7 @@
 						</div>
 
 						{{-- Avatar do usuário --}}
-            <div class="fileinput text-center fileinput-exists foto-edit col-md-4 col-sm-4" data-provides="fileinput">
+            <div class="fileinput fileinput-new text-center foto-edit col-md-4 col-sm-4" data-provides="fileinput">
                                      
                 
                   <div class="fileinput-preview thumbnail img-circle card-header card-header-icon avatar-fixo pull-right" style="margin: 0px 10px 0px; bottom: 22px;">
@@ -26,19 +26,17 @@
                     <span class="btn btn-round btn-rose btn-file edit-foto">
                            <span class="fileinput-new">Adicionar</span>
                            <span class="fileinput-exists">Alterar</span>
-                            <input type="hidden" value="" name=""><input type="file" name="...">
+                              <input type="hidden" value="" name=""><input type="file" name="...">
                     </span>
 
                                   
                     <a href="#pablo" class="btn btn-danger btn-round fileinput-exists exclui-foto" data-dismiss="fileinput"><i></i> Excluir<div class="ripple ripple-on ripple-out" style=" background-color: rgb(255, 255, 255);"></div></a>
-
-
-
-                    
+                  
                
 
             </div>
-            {{-- Fim do Avatar do usuário --}}
+
+           {{-- Fim do Avatar do usuário --}}
                
 
 						<div class="card-content">

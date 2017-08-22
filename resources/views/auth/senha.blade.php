@@ -59,29 +59,8 @@
 					</div>
 							
 													
-							{{-- <div class="input-group">
-								<span class="input-group-addon">
-									<i class="material-icons">lock_outline</i>
-								</span>
-								<div class="form-group label-floating has-roxo">
-									<label class="control-label">Senha</label>
-									<input  name="password" type="password" class="form-control " 
-									value="{{  $solicitante->password }}">
-								</div>
-							</div>
-
-							<div class="input-group">
-								<span class="input-group-addon">
-									<i class="material-icons">lock_outline</i>
-								</span>
-								<div class="form-group label-floating has-roxo">
-									<label class="control-label">Confirmar Senha</label>
-									<input  name="password_confirmation" type="password" class="form-control "
-									value="{{  $solicitante->password_confirmation }}">
-								</div>
-							</div> --}}
-
-						</div>
+							
+					</div>
 					</div> {{-- FIM DIV Pessoal --}}
 				</div>
 
