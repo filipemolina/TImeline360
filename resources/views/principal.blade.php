@@ -67,7 +67,7 @@
             </h4> --}}
 
             {{-- Status da solicitação --}}
-            <div class="card-header card-header-icon pull-right" data-background-color="red">
+            <div class="card-header card-header-icon pull-right icone-direita" data-background-color="red">
                 <i class="material-icons">language</i>
             </div>
             
@@ -103,7 +103,7 @@
                 @if(Auth::check())
 
                     <li class="col-md-3">
-                        <button class="btn btn-simple apoiar">
+                        <button class="btn btn-simples btn-apoiar">
                             <span class="btn-label">
                                 <i class="material-icons">thumb_up</i>
                                 Apoiar
@@ -134,7 +134,7 @@
                 </li>
 
                 <li class="col-md-3">
-                    <button class="btn btn-simple">
+                    <button class="btn btn-simples">
                         <span class="btn-label">
                             <i class="material-icons">favorite</i>
                             Apoios
@@ -151,38 +151,53 @@
 
                 
                 {{-- card de comentarios --}}
-                <div class="panel-body">
+                <div class="panel-body no-padding">
 
                     {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
 
-                    @if ($mensagem->funcionario)
+                    @if ($mensagem->funcionario)                    
 
                     {{-- mensagem do funcionário --}}
-                    <div class="card">
+                    <div class="card margin10">
+
+                        {{-- Avatar pequeno --}}
                         <div class="card-header card-header-icon avatar-fixo-pn pull-right">
-                            <img class="img" src="{{ asset('img/brasao.png')}}">
+                            <img class="img" src="{{ asset('img/brasao.png')}}"/>
                         </div>
 
-                        <div class="card-content pull-right">
-                            <h5 class="card-title">
-                                {{ $mensagem->funcionario->setor->secretaria->nome }} - 
-                                {{ $mensagem->funcionario->setor->secretaria->sigla }}
-                            </h5>
+                        {{-- Comentário --}}
+                        <form class="form-horizontal">
 
-                            <p class="card-title fc-rtl">
-                                {{ $mensagem->mensagem }}
-                            </p>
+                            <div class="row">
+                                
+                                {{-- Nome da secretária --}}
+                                <label class="col-md-11 h6 pull-right fc-rtl">
+                                    {{ $mensagem->funcionario->setor->secretaria->nome }} - {{ $mensagem->funcionario->setor->secretaria->sigla }}
+                                </label>
 
-                        </div>
+                                {{-- Comentário --}}
+                                <div class="col- fc-rtl">
+                                    <div class="form-group col-md-7 pull-right no-margin">
+                                        <p class="form-control-static">
+                                            {{ $mensagem->mensagem }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form> {{-- Fim Comentário --}}
                     </div>
                                     
                     @else
 
                     {{-- mensagem do solicitante --}}
-                    <div class="card">
+                    <div class="card margin10">
 
                         {{-- Menu para editar comentário --}}
                         
+                        @isset($usuario)
+
+                        @if ($usuario->solicitante->id == $solicitacao->solicitante->id )
+
                         <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
                             
                             <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
@@ -213,6 +228,10 @@
                             </ul>
                         </div>
 
+                        @endif
+
+                        @endisset
+
                         {{-- Avatar pequeno --}}
                         <div class="card-header card-header-icon avatar-fixo-pn">
                             <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
@@ -221,6 +240,7 @@
                         {{-- Comentário --}}
                         <form class="form-horizontal">
 
+                            {{-- Nome do usuário --}}
                             <div class="row">
                                 <label class="col-md-8 h6">
                                     {{ $solicitacao->solicitante->nome}}
@@ -228,21 +248,33 @@
 
                                 {{-- Comentário Fixo --}}
                                 <div class="col- coment-fix">
-                                    <div class="form-group no-margin col-md-7">
+                                    <div class="form-group col-md-7 no-margin">
+                                    <span class="label nota hide">
+                                        {{ $solicitacao->solicitante->nome}} alterou a mensagem em {{-- variável --}} às {{-- variável --}}.
+                                    </span>
                                         <p class="form-control-static">
                                             {{ $mensagem->mensagem }}
                                         </p>
                                     </div>
                                 </div>
 
+                                {{-- Comentário Removido --}}
+                                <div class="col- coment-fix-rem hide">
+                                    <div class="form-group col-md-7 no-margin">
+                                        <p class="form-control-static col- nota">
+                                            {{ $solicitacao->solicitante->nome}} removeu a mensagem em {{-- variável --}} às {{-- variável --}}.
+                                        </p>
+                                    </div>
+                                </div>
+
                                 {{-- Comentário Editável --}}
-                                <div class="hide card-footer col- coment-edit">
-                                    <div class="form-group label-floating is-emptyno-margin col-md-7">
+                                <div class="card-footer col- coment-edit hide">
+                                    <div class="form-group label-floating is-empty col-md-7 no-margin">
                                         <label class="control-label"></label>
                                         <input type="text" class="form-control" value="{{ $mensagem->mensagem }}">
                                     </div>
                                     <div class="col-md-5 pull-right">
-                                        <button type="button" value="submit" class="btn btn-primary btn-sm coment-alterar">
+                                        <button type="button" value="submit" class="btn btn-primary btn-sm btn-coment-alterar">
                                             Alterar
                                         </button>
                                         <button type="button" class="btn btn-primary btn-sm coment-desfazer">
@@ -274,7 +306,7 @@
                     {{-- Escrever comentário --}}
                     @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
                     
-                    <div class="card col-md-10">
+                    <div class="card col-md-10 margin10">
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <button type="button" class="btn btn-primary btn-sm">

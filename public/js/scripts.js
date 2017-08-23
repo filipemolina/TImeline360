@@ -5,7 +5,7 @@ var helper = {
 
     // Como usuar no html:
     // helper.showSwal1('tipo', 'titulo')
-    // helper.showSwal2('tipo', 'texto1', 'texto2', 'texto1Sucesso', 'texto2Sucesso', 'funcaoSucesso')
+    // helper.showSwal2('tipo', 'texto1', 'texto2','texto1Sucesso', 'texto2Sucesso', 'funcaoSucesso')
     
     showSwal1: function(tipo, texto1) {
         
@@ -39,6 +39,8 @@ var helper = {
 
     }, //Fim showSwal1
 
+    
+
 }; //Fim Helper
 
     
@@ -53,11 +55,11 @@ $(function(){
 
         event.preventDefault();
 
-        helper.showSwal('info','Efetue o login para apoiar a publicação')
+        helper.showSwal1('info','Efetue o login para apoiar a publicação')
 
     })    
     
-    // Ocultar coment-fix e exibir coment-edit
+    // Botão editar, ocultar coment-fix e exibir coment-edit
     $('.btn-coment-edit').click(function() {
         
         event.preventDefault();
@@ -66,7 +68,7 @@ $(function(){
 
     })
 
-    // Ocultar coment-fix, exibir mensagem com horário da "exclusão", demonstrar botão desfazer e oculstar botões editar e excluir
+    // Botão Excluir, ocultar coment-fix, exibir mensagem com horário da "exclusão", demonstrar botão desfazer e oculstar botões editar e excluir
     $('.btn-coment-del').click(function () {
 
         var isto = this;
@@ -76,13 +78,13 @@ $(function(){
 
         swal({
                 type: 'warning',
-                title: 'Excluir o comentário abaixo?',
+                title: 'Remover o comentário abaixo?',
                 html: text,
                 buttonsStyling: false,
                 showCancelButton: true,
                 cancelButtonClass: 'btn btn-roxo',
                 cancelButtonText: 'Cancelar',
-                confirmButtonText: 'Excluir',
+                confirmButtonText: 'Remover',
                 confirmButtonClass: 'btn btn-danger'
             }).then(function () {
                 swal({
@@ -91,16 +93,31 @@ $(function(){
                     text: 'Seu comentário foi removido',
                     
                 }),
+                
+                $(isto).parent().parent().find('a.btn-coment-des').removeClass('hide');
+                $(isto).parent().parent().find('a.btn-coment-edit').addClass('hide');
+                $(isto).parent().parent().find('a.btn-coment-del').addClass('hide');
+                $(isto).parent().parent().parent().parent().find('.coment-fix').addClass('hide');
+                $(isto).parent().parent().parent().parent().find('.coment-edit').addClass('hide');
+                $(isto).parent().parent().parent().parent().find('.coment-fix-rem').removeClass('hide');
 
-                    console.log('funfa');
-                    $(isto).parent().parent().find('a.btn-coment-des').removeClass('hide');
-                    $(isto).parent().parent().find('a.btn-coment-edit').addClass('hide');
-                    $(isto).parent().parent().find('a.btn-coment-del').addClass('hide');
+            }, function (dismiss) {
+                if (dismiss === 'cancel') {
+                swal({
+                    type: 'error',
+                    title: 'Cancelado!',
+                    html: 'Seu comentário não foi removido',
+                    buttonsStyling: false,
+                    confirmButtonClass: 'btn btn-roxo'
+                })
+            }
+
+
             });
 
     })
 
-    //Exibir coment-fix, ocultar botão desfazer, demonstrar botões editar e excluir
+    //Botão desfazer, exibir coment-fix, ocultar botão desfazer, demonstrar botões editar e excluir
     $('.btn-coment-des').click(function () {
 
         event.preventDefault();
@@ -108,12 +125,15 @@ $(function(){
         $(this).addClass('hide')
         $(this).parent().parent().find('a.btn-coment-edit').removeClass('hide');
         $(this).parent().parent().find('a.btn-coment-del').removeClass('hide');
+        $(this).parent().parent().parent().parent().find('.coment-fix-rem').addClass('hide');
+        $(this).parent().parent().parent().parent().find('.coment-fix').removeClass('hide');
+
     })
 
     // Enviar alteração, ocultar coment-edit e exibir coment-fix
-    $('.coment-alterar').click(function() {
+    $('.btn-coment-alterar').click(function() {
         
-        $(this).parent().parent().addClass('hide').parent().find('.coment-fix').removeClass('hide')
+        $(this).parent().parent().addClass('hide').parent().find('.coment-fix').removeClass('hide').find('span.label').removeClass('hide')
     })
 
     // Ocultar coment-edit e exibir coment-fix
@@ -133,14 +153,27 @@ $(function(){
 
     
     // Alterar cor do botão apoiar
-    $('.apoiar').click(function(){
+    $('.btn-apoiar').click(function(){
+        
         event.preventDefault();
-        if ($(this).hasClass('btn-primary')){
-            $(this).removeClass('btn-primary')
+
+        if ($(this).hasClass('apoiar')){
+
+            $(this).removeClass('apoiar')
+
         } else {
-            $(this).addClass('btn-primary')
+
+            $(this).addClass('apoiar')
         }
-    })
+        
+    });
+
+    // $('.btn-desapoiar').click(function(){
+        
+    //     event.preventDefault();
+
+    //     $(this).removeClass('apoiar btn-desapoiar').addClass('desapoiar btn-apoiar')
+    // });
 
     // Remover classe card-hidden
     $().ready(function() {

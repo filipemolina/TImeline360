@@ -593,7 +593,20 @@ h4.card-title {
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-  margin: -20px 15px 0;
+  margin: -20px 15px 0 -50px;
+  padding: 0;
+  background-color: transparent;
+  position: relative;
+}
+
+.card .card-header.card-header-icon.avatar-fixo.pull-right {
+  width: 100px;
+  height: 100px;
+  line-height: 1.33;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  margin: -20px -50px 0 15px;
   padding: 0;
   background-color: transparent;
   position: relative;
@@ -606,7 +619,20 @@ h4.card-title {
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-  margin: -20px -5px 0 -15px;
+  margin: -20px -5px 0 -40px;
+  padding: 0;
+  background-color: transparent;
+  position: relative;
+}
+
+.card .card-header.card-header-icon.avatar-fixo-pn.pull-right {
+  width: 60px;
+  height: 60px;
+  line-height: 1.33;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  margin: -20px -40px 0 -5px;
   padding: 0;
   background-color: transparent;
   position: relative;
@@ -658,4 +684,25 @@ h4.card-title {
 
 .absoluto {
   position: absolute !important;
+}
+
+.nota {
+  color: #c0c1c2 !important;
+}
+.card .margin10 {
+  margin: 10px 0;
+}
+
+.icone-direita {
+  margin: -20px -30px 0 15px !important;
+}
+
+.apoiar {
+   color:#3D276B !important;
+  animation: apioar 1s;
+}
+
+@keyframes apioar {
+  0% { color:#999999; }
+  100% { color:#3D276B; } 
 }
