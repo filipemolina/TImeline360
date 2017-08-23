@@ -30,8 +30,7 @@
                     </span>
                                   
                     <a href="#pablo" class="btn btn-danger btn-round fileinput-exists exclui-foto" data-dismiss="fileinput"><i></i> Excluir<div class="ripple ripple-on ripple-out" style=" background-color: rgb(255, 255, 255);"></div></a>
-                  
-               
+                               
             </div>
 
            {{-- Fim do Avatar do usuário --}}
