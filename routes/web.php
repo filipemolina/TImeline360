@@ -21,7 +21,7 @@ Route::post ('/login', 	'AutenticaController@login');
 Route::get  ('/logout', 'AutenticaController@logout');
 
 //index do site
-Route::get ('/', 'PrincipalController@index');
+Route::get ('/', ['as' => 'index', 'uses' => 'PrincipalController@index']);
 
 //caminho para a tela de alteração do perfil do Solicitante
 Route::get  ('/perfil', 'SolicitanteController@Perfil');
@@ -36,6 +36,9 @@ Route::get ('/minhassolicitacoes', 'PrincipalController@minhassolicitacoes');
 Route::get('/registro', function () {
     return view('auth.register');
 });
+
+///////////////////////////// Rotas para Ajax
+Route::get("/solicitacoes/minhas/{id}", "SolicitacaoController@minhassolicitacoes");
 
 
 //resources

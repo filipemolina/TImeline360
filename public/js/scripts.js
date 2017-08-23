@@ -56,6 +56,24 @@ $(function(){
 
     })
 
+
+    $('.minhas_solicitacoes').click(function(e) {
+
+        e.preventDefault();
+
+        $.get('/solicitacoes/minhas/'+id_usuario, function(resultado){
+
+            if (resultado == "0")
+                demo.notificationRight("top", "right", "rose", "Você ainda não possui Solicitações cadastradas!");   
+            else
+                window.location.href='/minhassolicitacoes';
+
+        })
+    })
+
+
+
+
     // Alterar comentário
     // $(".helper-alterar").click(function() {
 

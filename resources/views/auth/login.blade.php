@@ -26,7 +26,7 @@ Login
 
 <div class="row">
     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page">
-        <form method="POST" action="{{ url('login') }}">
+        <form method="GET" action="{{ url('login') }}">
                                     {{ csrf_field() }}
 
             {{-- DIV login-municipe --}}

@@ -56,7 +56,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle" >
+                    <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle minhas_solicitacoes">
                         <i class="material-icons">dashboard</i>
                         minhas solicitações
                     </a>

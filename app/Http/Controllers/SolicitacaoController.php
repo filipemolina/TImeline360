@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Solicitacao;
+use App\Models\User;
 
 class SolicitacaoController extends Controller
 {
@@ -44,5 +46,13 @@ class SolicitacaoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function minhassolicitacoes($id)
+    {
+        $solicitante_id = User::find($id)->solicitante->id;
+        
+        return $solicitacoes = Solicitacao::where('solicitante_id',$solicitante_id)->count();
     }
 }

@@ -15,26 +15,39 @@
 							<i class="material-icons">person</i>
 						</div>
 
-						{{-- Avatar do usuário --}}
-            <div class="fileinput fileinput-new text-center foto-edit col-md-4 col-sm-4" data-provides="fileinput">
-                                     
-                
-                <div class="fileinput-preview thumbnail img-circle card-header card-header-icon avatar-fixo pull-right" style="margin: 0px 10px 0px; bottom: 22px;">
-                    <img src="{{ $solicitante->foto }}"/>
-                </div>
 
-                    <span class="btn btn-round btn-rose btn-file edit-foto">
-                           <span class="fileinput-new">Adicionar</span>
-                           <span class="fileinput-exists">Alterar</span>
-                              <input type="hidden" value="" name=""><input type="file" name="...">
-                    </span>
+
+
+
+
+						{{-- Avatar do usuário --}}
+            		<div class="fileinput fileinput-new text-center foto-edit col-md-4 col-sm-4" data-provides="fileinput">
+                		<div class="fileinput-preview thumbnail img-circle card-header card-header-icon avatar-fixo pull-right" style="margin: 0px 10px 0px; bottom: 22px;">
+
+                			@if($solicitante->foto)
+                    			<img src="{{ $solicitante->foto }}"/>
+                    		@elseif(old('foto'))
+                    			<img src="{{ old('foto') }}"/>
+                    		@else
+                    			<img src="{{ asset('img/placeholder.jpg') }}"/>
+                    		@endif
+
+                		</div>
+
+                		<input type="hidden" name="foto">
+                    	<span class="btn btn-round btn-rose btn-file edit-foto">
+                           <span class="fileinput-new">				Adicionar 	</span>
+                           <span class="fileinput-exists">			Alterar		</span>
+                           <input type="file" name="abacaxi">
+                    	</span>
                                   
+
                     <a href="#pablo" class="btn btn-danger btn-round fileinput-exists exclui-foto" data-dismiss="fileinput"><i></i> Excluir<div class="ripple ripple-on ripple-out" style=" background-color: rgb(255, 255, 255);"></div></a>
                                
             </div>
 
-           {{-- Fim do Avatar do usuário --}}
-               
+           		{{-- Fim do Avatar do usuário --}}
+       			
 
 						<div class="card-content">
 							<h4 class="card-title">PESSOAL</h4>
@@ -125,8 +138,6 @@
 									</select>
 								</div>
 							</div>
-																		
-							
 						</div>
 					</div> {{-- FIM DIV Pessoal --}}
 				</div>
@@ -157,8 +168,8 @@
 
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">CEP</label>
-									<input id="cep" name="cep" type="text" class="form-control error" 
-									value="{{ $solicitante->endereco->cep or old('cep') }}">
+									<input id="cep" name="endereco[cep]" type="text" class="form-control error" 
+									value="{{ $solicitante->endereco->cep or old('endereco.cep') }}">
 								</div>
 
 								<span class="input-group-addon">
@@ -166,7 +177,7 @@
 								</span>
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">UF</label>
-									<select   name="uf" id="uf"  class="form-control form-control error">
+									<select   name="endereco[uf]" id="uf"  class="form-control form-control error">
 										<option value=""  selected style="color: #ccc;"> --- </option>
 
 										@foreach($ufs as $uf)
@@ -187,8 +198,8 @@
 								</span>
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">Municipio</label>
-									<input id="cidade" name="municipio"  type="text" class="form-control error" 
-									value="{{ $solicitante->endereco->municipio or old('municipio') }}">
+									<input id="cidade" name="endereco[municipio]"  type="text" class="form-control error" 
+									value="{{ $solicitante->endereco->municipio or old('endereco.municipio') }}">
 								</div>
 							</div>
 
@@ -198,8 +209,8 @@
 								</span>
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">Bairro</label>
-									<input id="bairro" name="bairro" type="bairro" class="form-control error"  
-									value="{{ $solicitante->endereco->bairro or  old('bairro') }}">
+									<input id="bairro" name="endereco[bairro]" type="text" class="form-control error"  
+									value="{{ $solicitante->endereco->bairro or  old('endereco.bairro') }}">
 								</div>
 							</div>
 
@@ -210,8 +221,8 @@
 								</span>
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">Logradouro</label>
-									<input id="rua" name="logradouro" type="text" class="form-control error" 
-									value="{{ $solicitante->endereco->logradouro or old('logradouro') }}">
+									<input id="rua" name="endereco[logradouro]" type="text" class="form-control error" 
+									value="{{ $solicitante->endereco->logradouro or old('endereco.logradouro') }}">
 								</div>
 							</div>
 
@@ -222,8 +233,8 @@
 								</span>
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">Numero</label>
-									<input id="numero" name="numero" type="text" class="form-control error" 
-									value="{{ $solicitante->endereco->numero or old('numero') }}">
+									<input id="numero" name="endereco[numero]" type="text" class="form-control error" 
+									value="{{ $solicitante->endereco->numero or old('endereco.numero') }}">
 								</div>
 
 								<span class="input-group-addon">
@@ -231,8 +242,8 @@
 								</span>
 								<div class="form-group label-floating has-roxo">
 									<label class="control-label">Complemento</label>
-									<input name="complemento" type="text" class="form-control error" 
-									value="{{ $solicitante->endereco->complemento  or  old('complemento') }}">
+									<input name="endereco[complemento]" type="text" class="form-control error" 
+									value="{{ $solicitante->endereco->complemento  or  old('endereco.complemento') }}">
 								</div>
 
 							</div>
@@ -292,6 +303,15 @@
 			VMasker ($("#cep")).maskPattern("99999-999");
 			VMasker ($("#telefone_fixo")).maskPattern("(99) 9999-9999");
 			VMasker ($("#telefone_celular")).maskPattern("(99) 99999-9999");
+
+
+			//para adicionar a foto 
+			$("body").on("change.bs.fileinput", function(e){ 
+				var base64 = $(".fileinput-preview img").attr('src');
+				$("input[name=foto]").val(base64);
+		 	});
+
+
 
 			var tempo = 0;
         	var incremento = 500;

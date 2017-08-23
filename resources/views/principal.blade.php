@@ -76,7 +76,7 @@
             <div class="card-image">
                 <span class="label label-danger"></span>
                     <a href="#pablo">
-                        <img class="img" src="{{ $solicitacao->foto }}">
+                        <img class="img" src="{{ $solicitacao->foto }}" >
                     </a>
             </div>
 
@@ -387,6 +387,12 @@
 
     <script type="text/javascript">
 
+        @if(Auth::check())
+
+            var id_usuario = {{ Auth::user()->id }};
+
+        @endif
+
         function enviaMensagem(solicitacao){ 
 
             //console.log(($(".comentario_"+solicitacao).val().trim()));
@@ -428,4 +434,32 @@
         };
 
     </script>
+@endpush
+
+
+@push("scripts")
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var tempo = 0;
+            var incremento = 500;
+
+        // Testar se há algum erro, e mostrar a notificação
+
+         @if ($errors->any())
+            
+             @foreach ($errors->all() as $error)
+
+                setTimeout(function(){
+                    demo.notificationRight("top", "right", "rose", "{{ $error }}");   
+                }, tempo);
+
+                tempo += incremento;
+
+             @endforeach
+                
+        @endif
+            demo.initFormExtendedDatetimepickers();
+        });
+    </script>
+
 @endpush
