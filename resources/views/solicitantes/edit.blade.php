@@ -280,7 +280,7 @@
 					</div> {{-- FIM DIV Contato --}}
 
 					<div class="footer text-center" style="">
-						<button type="submit" class="btn btn-roxo btn-wd btn-lg" style="right: 300px; border-radius: 30px;">Salvar</button>
+						<button type="submit" class="btn btn-roxo btn-wd btn-lg" style="right: 300px; bottom: 25px; border-radius: 30px;">Salvar</button>
 					</div>
 
 				</form>
