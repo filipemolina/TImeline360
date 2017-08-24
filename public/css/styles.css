@@ -356,6 +356,79 @@ z-index: -1;
   color: #3D276B;
 }
 
+.btn.btn-simples,
+.navbar .navbar-nav > li > a.btn.btn-simples {
+  box-shadow: none;
+}
+
+.btn.btn-simples, .btn.btn-simples:hover, .btn.btn-simples:focus, .btn.btn-simples:active, .btn.btn-simples.active, .btn.btn-simples:active:focus, .btn.btn-simples:active:hover, .btn.btn-simples.active:focus, .btn.btn-simples.active:hover, .open > .btn.btn-simples.dropdown-toggle, .open > .btn.btn-simples.dropdown-toggle:focus, .open > .btn.btn-simples.dropdown-toggle:hover,
+.navbar .navbar-nav > li > a.btn.btn-simples,
+.navbar .navbar-nav > li > a.btn.btn-simples:hover,
+.navbar .navbar-nav > li > a.btn.btn-simples:focus,
+.navbar .navbar-nav > li > a.btn.btn-simples:active,
+.navbar .navbar-nav > li > a.btn.btn-simples.active,
+.navbar .navbar-nav > li > a.btn.btn-simples:active:focus,
+.navbar .navbar-nav > li > a.btn.btn-simples:active:hover,
+.navbar .navbar-nav > li > a.btn.btn-simples.active:focus,
+.navbar .navbar-nav > li > a.btn.btn-simples.active:hover, .open >
+.navbar .navbar-nav > li > a.btn.btn-simples.dropdown-toggle, .open >
+.navbar .navbar-nav > li > a.btn.btn-simples.dropdown-toggle:focus, .open >
+.navbar .navbar-nav > li > a.btn.btn-simples.dropdown-toggle:hover {
+  background-color: transparent;
+  color: #999999;
+}
+.btn.btn-simples:focus, .btn.btn-simples:active, .btn.btn-simples:hover,
+.navbar .navbar-nav > li > a.btn.btn-simples:focus,
+.navbar .navbar-nav > li > a.btn.btn-simples:active,
+.navbar .navbar-nav > li > a.btn.btn-simples:hover {
+  box-shadow: none;
+}
+.btn.btn-simples.disabled, .btn.btn-simples.disabled:hover, .btn.btn-simples.disabled:focus, .btn.btn-simples.disabled.focus, .btn.btn-simples.disabled:active, .btn.btn-simples.disabled.active, .btn.btn-simples:disabled, .btn.btn-simples:disabled:hover, .btn.btn-simples:disabled:focus, .btn.btn-simples:disabled.focus, .btn.btn-simples:disabled:active, .btn.btn-simples:disabled.active, .btn.btn-simples[disabled], .btn.btn-simples[disabled]:hover, .btn.btn-simples[disabled]:focus, .btn.btn-simples[disabled].focus, .btn.btn-simples[disabled]:active, .btn.btn-simples[disabled].active, fieldset[disabled] .btn.btn-simples, fieldset[disabled] .btn.btn-simples:hover, fieldset[disabled] .btn.btn-simples:focus, fieldset[disabled] .btn.btn-simples.focus, fieldset[disabled] .btn.btn-simples:active, fieldset[disabled] .btn.btn-simples.active,
+.navbar .navbar-nav > li > a.btn.btn-simples.disabled,
+.navbar .navbar-nav > li > a.btn.btn-simples.disabled:hover,
+.navbar .navbar-nav > li > a.btn.btn-simples.disabled:focus,
+.navbar .navbar-nav > li > a.btn.btn-simples.disabled.focus,
+.navbar .navbar-nav > li > a.btn.btn-simples.disabled:active,
+.navbar .navbar-nav > li > a.btn.btn-simples.disabled.active,
+.navbar .navbar-nav > li > a.btn.btn-simples:disabled,
+.navbar .navbar-nav > li > a.btn.btn-simples:disabled:hover,
+.navbar .navbar-nav > li > a.btn.btn-simples:disabled:focus,
+.navbar .navbar-nav > li > a.btn.btn-simples:disabled.focus,
+.navbar .navbar-nav > li > a.btn.btn-simples:disabled:active,
+.navbar .navbar-nav > li > a.btn.btn-simples:disabled.active,
+.navbar .navbar-nav > li > a.btn.btn-simples[disabled],
+.navbar .navbar-nav > li > a.btn.btn-simples[disabled]:hover,
+.navbar .navbar-nav > li > a.btn.btn-simples[disabled]:focus,
+.navbar .navbar-nav > li > a.btn.btn-simples[disabled].focus,
+.navbar .navbar-nav > li > a.btn.btn-simples[disabled]:active,
+.navbar .navbar-nav > li > a.btn.btn-simples[disabled].active, fieldset[disabled]
+.navbar .navbar-nav > li > a.btn.btn-simples, fieldset[disabled]
+.navbar .navbar-nav > li > a.btn.btn-simples:hover, fieldset[disabled]
+.navbar .navbar-nav > li > a.btn.btn-simples:focus, fieldset[disabled]
+.navbar .navbar-nav > li > a.btn.btn-simples.focus, fieldset[disabled]
+.navbar .navbar-nav > li > a.btn.btn-simples:active, fieldset[disabled]
+.navbar .navbar-nav > li > a.btn.btn-simples.active {
+  box-shadow: none;
+}
+.btn.btn-simples.btn-simple,
+.navbar .navbar-nav > li > a.btn.btn-simples.btn-simple {
+  background-color: transparent;
+  color: #555555;
+  box-shadow: none;
+}
+.btn.btn-simples.btn-simple:hover, .btn.btn-simples.btn-simple:focus, .btn.btn-simples.btn-simple:active,
+.navbar .navbar-nav > li > a.btn.btn-simples.btn-simple:hover,
+.navbar .navbar-nav > li > a.btn.btn-simples.btn-simple:focus,
+.navbar .navbar-nav > li > a.btn.btn-simples.btn-simple:active {
+  background-color: transparent;
+  color: #555555;
+}
+
+.btn-group.open > .dropdown-toggle.btn.btn-simples,
+.btn-group-vertical.open > .dropdown-toggle.btn.btn-simples {
+  background-color: black;
+}
+
 .btn-group.open > .dropdown-toggle.btn.btn-roxo,
 .btn-group-vertical.open > .dropdown-toggle.btn.btn-roxo {
   background-color: #3D276B;
@@ -418,6 +491,11 @@ z-index: -1;
   opacity: 0.2;
 }
 
+.btn-simples .ripple.ripple-on {
+  transition: none;
+  opacity: 0;
+}
+
 .ripple.ripple-out {
   opacity: 0;
 }
@@ -466,6 +544,11 @@ z-index: -1;
 
 .card [data-background-color="dourado"] {
   background: linear-gradient(60deg, #BFA15F, #ad7909);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(191, 161, 95, 0.4);
+}
+
+.card [data-background-color="icone"] {
+  background: '';
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(191, 161, 95, 0.4);
 }
 
@@ -521,7 +604,46 @@ h4.card-title {
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-  margin: -20px 15px 0;
+  margin: -20px 15px 0 -50px;
+  padding: 0;
+  background-color: transparent;
+  position: relative;
+}
+
+.card .card-header.card-header-icon.avatar-fixo.pull-right {
+  width: 100px;
+  height: 100px;
+  line-height: 1.33;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  margin: -20px -50px 0 15px;
+  padding: 0;
+  background-color: transparent;
+  position: relative;
+}
+
+.card .card-header.card-header-icon.avatar-fixo-pn {
+  width: 60px;
+  height: 60px;
+  line-height: 1.33;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  margin: -20px -5px 0 -40px;
+  padding: 0;
+  background-color: transparent;
+  position: relative;
+}
+
+.card .card-header.card-header-icon.avatar-fixo-pn.pull-right {
+  width: 60px;
+  height: 60px;
+  line-height: 1.33;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  margin: -20px -40px 0 -5px;
   padding: 0;
   background-color: transparent;
   position: relative;
@@ -560,7 +682,65 @@ h4.card-title {
     z-index: 1;
 }
 
-/*.card img {
-    width: 100%;
-    height: 100%;
-}*/
+<<<<<<< HEAD
+.subir {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: all 300ms cubic-bezier(0.34, 1.61, 0.7, 1);
+  -moz-transition: all 300ms cubic-bezier(0.34, 1.61, 0.7, 1);
+  -o-transition: all 300ms cubic-bezier(0.34, 1.61, 0.7, 1);
+  -ms-transition: all 300ms cubic-bezier(0.34, 1.61, 0.7, 1);
+  transition: all 300ms cubic-bezier(0.34, 1.61, 0.7, 1);
+}
+.subir:hover {
+  -webkit-transform: translate3d(0, -50px, 0);
+  -moz-transform: translate3d(0, -50px, 0);
+  -o-transform: translate3d(0, -50px, 0);
+  -ms-transform: translate3d(0, -50px, 0);
+  transform: translate3d(0, -50px, 0);
+}
+
+.card .form-horizontal .label-on-left-left {
+  padding: 28px 5px 0 0;
+  text-align: left;
+}
+.card .form-horizontal .label-on-right-right {
+  padding: 28px 0 0 5px;
+  text-align: right;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.absoluto {
+  position: absolute !important;
+}
+
+.nota {
+  color: #c0c1c2 !important;
+}
+.card .margin10 {
+  margin: 10px 0;
+}
+
+.icone-direita {
+  margin: -20px -30px 0 15px !important;
+}
+
+.apoiar {
+   color:#3D276B !important;
+  animation: apioar 0.3s;
+}
+
+@keyframes apioar {
+  0% { color:#999999; }
+  100% { color:#3D276B; } 
+}

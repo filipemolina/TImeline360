@@ -68,10 +68,9 @@
 
 
             {{-- Status da solicitação --}}
-            <div class="card-header card-header-icon pull-right" data-background-color="" style="background-color: {{ $solicitacao->servico->setor->cor }}; font-size: 30px;">
-                {{-- <i class="material-icons">language</i> --}}
+            <div class="card-header card-header-icon pull-right icone-direita" data-background-color={{ $solicitacao->servico->setor->cor }}>
+                <i class="mdi">{{ $solicitacao->servico->setor->icone }}</i>
                 <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
-                
             </div>
             
             {{-- Foto da publicação --}}
@@ -105,164 +104,230 @@
 
                 
                     <li class="col-md-3">
-                        {{-- <button class="btn btn-simple apoiar" data-solicitacao="{{ $solicitacao->id }}"> --}}
-                        <button class="btn btn-simple apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }} )">
-                            <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
+                        <button class="btn btn-simples btn-apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
+                            
+                            <span class="btn-label">
+                                <i class="material-icons">thumb_up</i>
+                                Apoiar
+                            </span>
                         </button>
                     </li>
                 @else
-                    <li class="col-md-3">
+                    <li class="col-md-4">
                         <button class="btn btn-simple helper-apoio">
                             <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
                         </button>
                     </li>
                 @endif
 
-                <li class="col-md-3">
+                <li class="col-md-5">
                     <button class="btn btn-simple slide-coment">
                         <span class="btn-label"> <i class="material-icons">chat</i> Comentários </span>
                     </button>
                 </li>
                 <li class="col-md-3">
-                    <button class="btn btn-simple">
-                        @if($solicitacao->apoiadores_count > 1 )
-                            <span class="btn-label"> <i class="material-icons">thumb_up</i> <span class="numero_apoios_{{ $solicitacao->id }}">{{ $solicitacao->apoiadores_count }}</span> Apoios </span>
-                        @else
-                            <span class="btn-label"> <i class="material-icons">thumb_up</i> <span class="numero_apoios_{{ $solicitacao->id }}">{{ $solicitacao->apoiadores_count }}</span> Apoio </span>
+
+                    <button class="btn btn-simples">
+
+                        @if($solicitacao->apoiadores_count > 1)
+
+                        <span class="btn-label">
+                            <i class="material-icons">favorite</i>
+                        </span>
+
+                        <span class="numero_apoios_{{ $solicitacao->id }}">
+                            {{ $solicitacao->apoiadores_count }}
+                        </span> Apoios </span>
+
                         @endif
+
                     </button>
                 </li>
             </ul>
 
             {{-- Comentários --}}
             <footer class="colapso col-md-12">
-                <div class="panel-title">
-                    @isset($usuario)
-                        {{-- {{ dd($usuario) }} --}}
-                        {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
-                        @if ($usuario->solicitante->id == $solicitacao->solicitante->id )
-                            <div class="card card-product col-md-8">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <button onclick="enviaMensagem({{ $solicitacao->id }})" type="button" class="btn btn-primary btn-sm">
-                                            Enviar
-                                        </button>
-                                    </span>
-                                    <input type="text" class="form-control comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" id="mensagem" name="mensagem">
-                                </div>
-                            </div>
-                        @endif
-                    @endisset
-                </div> <br><br><br><br><br><br>
 
-                {{-- card de comentarios --}}
                 @foreach ($solicitacao->mensagens as $mensagem)
+                
+                {{-- card de comentarios --}}
+                <div class="panel-body no-padding">
 
-                <div class="panel-body">
-                    {{-- <div class="card" data-header-animation="true"> --}}
+                    {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
 
-                        {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
+                    @if ($mensagem->funcionario)                    
 
-                        {{-- mensagem do funcionário --}}
-                        @if ($mensagem->funcionario)
+                    {{-- mensagem do funcionário --}}
+                    <div class="card margin10">
 
-                        <div class="card">
-                            <div class="card-header card-header-icon avatar-fixo pull-right">
-                                <img class="img" src="{{ asset('img/brasao.png')}}">
-                            </div>
+                        {{-- Avatar pequeno --}}
+                        <div class="card-header card-header-icon avatar-fixo-pn pull-right">
+                            <img class="img" src="{{ asset('img/brasao.png')}}"/>
+                        </div>
 
-                            <div class="card-content pull-right">
-                                <h5 class="card-title">
+                        {{-- Comentário --}}
+                        <form class="form-horizontal">
+
+                            <div class="row">
+                                
+                                {{-- Nome da secretária --}}
+                                <label class="col-md-11 h6 pull-right fc-rtl">
                                     {{ $mensagem->funcionario->setor->secretaria->nome }} - 
                                     {{ $mensagem->funcionario->setor->secretaria->sigla }}
-                                </h5>
+                                </label>
 
-                                <p class="card-title fc-rtl">
-                                    {{ $mensagem->mensagem }}
-                                </p>
-
-                            </div>
-                        </div>
-                                    
-                        {{-- mensagem do solicitante --}}
-                        @else
-
-                        <div class="card">
-                            
-                            {{-- Menu para editar comentário --}}
-                            <nav class="navbar navbar-absolute navbar-transparent">
-                                
-                                <div class="collapse navbar-collapse">
-                                    
-                                    <ul class="nav navbar-nav pull-right">
-                                        
-                                        <li class="dropdown">
-                                            
-                                            <a href="#" class="dropdown-toggle rodar-icone" data-toggle="dropdown">
-                                                <i class="material-icons">settings</i>
-                                                <b class="caret"></b>
-                                            </a>
-                                            
-                                            <ul class="dropdown-menu">
-                                                        
-                                                <li>
-                                                    <a href="#eugen" class="alterar">
-                                                        <i class="material-icons">
-                                                            create
-                                                        </i>
-                                                        Editar
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="#eugen" class="desfazer hide">
-                                                        <i class="material-icons">
-                                                            create
-                                                        </i>
-                                                        Desfazer
-                                                    </a>
-                                                </li>
-                                                            
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="material-icons">
-                                                            clear
-                                                        </i>
-                                                        Excluir
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                {{-- Comentário --}}
+                                <div class="col- fc-rtl">
+                                    <div class="form-group col-md-7 pull-right no-margin">
+                                        <p class="form-control-static">
+                                            {{ $mensagem->mensagem }}
+                                        </p>
+                                    </div>
                                 </div>
-                            </nav>
-
-                            <div class="card-header card-header-icon avatar-fixo">
-                                <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
                             </div>
+                        </form> {{-- Fim Comentário --}}
+                    </div>
+                                    
+                    @else
+
+                    {{-- mensagem do solicitante --}}
+                    <div class="card margin10">
+
+                        {{-- Menu para editar comentário --}}
+                        
+                        @isset($usuario)
+
+                        @if ($usuario->solicitante->id == $solicitacao->solicitante->id )
+
+                        <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
                             
-                            <div class="card-content">
-                                <h5 class="card-title">
-                                    {{ $solicitacao->solicitante->nome}}
-                                </h5>
-                                
-                                <p class="card-title user-text">
-                                    {{ $mensagem->mensagem }}
-                                </p>
+                            <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
+                                <i class="material-icons">settings</i>
+                            </a>
+                            
+                            <ul class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="#eugen" class="btn-coment-edit">
+                                        <i class="material-icons">create</i>
+                                        Editar
+                                    </a>
+                                </li>
 
-                            </div>
+                                <li>
+                                    <a href="#eugen" class="btn-coment-del">
+                                        <i class="material-icons">clear</i>
+                                        Excluir
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#eugen" class="hide btn-coment-des">
+                                        <i class="material-icons">undo</i>
+                                        Desfazer
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
 
                         @endif
+
+                        @endisset
+
+                        {{-- Avatar pequeno --}}
+                        <div class="card-header card-header-icon avatar-fixo-pn">
+                            <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
+                        </div>
+
+                        {{-- Comentário --}}
+                        <form class="form-horizontal">
+
+                            {{-- Nome do usuário --}}
+                            <div class="row">
+                                <label class="col-md-8 h6">
+                                    {{ $solicitacao->solicitante->nome}}
+                                </label>
+
+                                {{-- Comentário Fixo --}}
+                                <div class="col- coment-fix">
+                                    <div class="form-group col-md-7 no-margin">
+                                    <span class="label nota hide">
+                                        {{ $solicitacao->solicitante->nome}} alterou a mensagem em {{-- variável --}} às {{-- variável --}}.
+                                    </span>
+                                        <p class="form-control-static">
+                                            {{ $mensagem->mensagem }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {{-- Comentário Removido --}}
+                                <div class="col- coment-fix-rem hide">
+                                    <div class="form-group col-md-7 no-margin">
+                                        <p class="form-control-static col- nota">
+                                            {{ $solicitacao->solicitante->nome}} removeu a mensagem em {{-- variável --}} às {{-- variável --}}.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {{-- Comentário Editável --}}
+                                <div class="card-footer col- coment-edit hide">
+                                    <div class="form-group label-floating is-empty col-md-7 no-margin">
+                                        <label class="control-label"></label>
+                                        <input type="text" class="form-control" value="{{ $mensagem->mensagem }}">
+                                    </div>
+                                    <div class="col-md-5 pull-right">
+                                        <button type="button" value="submit" class="btn btn-primary btn-sm btn-coment-alterar">
+                                            Alterar
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm coment-desfazer">
+                                            Desfazer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form> {{-- Fim Comentário --}}
+                    </div>
+
+                    @endif
 
 
                     {{-- </div> fim card em panel-body --}}
                 </div> {{-- fim panel-body --}}
 
-                @endforeach
                 {{-- fim do card de comentarios --}}
 
+                @endforeach
+
+                {{-- Escrever comentário --}}
                 
+                <div class="">
+                    @isset($usuario)
+                    {{-- {{ dd($usuario) }} --}}
+                    {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
+                    
+                    {{-- Escrever comentário --}}
+                    @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
+                    
+                    <div class="card col-md-10 margin10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <button type="button" class="btn btn-primary btn-sm" onclick="enviaMensagem({{ $solicitacao->id }})">
+                                    Enviar
+                                </button>
+                            </span>
+                            <input type="text" id="mensagem" name="mensagem" class="form-control comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
+                        </div>
+                    </div>
+                    
+                    @endif
+
+                    @endisset
+
+                </div>
+
+                {{-- Fim escrever comentário --}}
+
+            </footer>
+
         </div> {{-- fim card em DIV publicação --}}
     </div> {{-- Fim DIV PUBLICAÇÃO --}}
     
