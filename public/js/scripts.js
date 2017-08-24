@@ -52,7 +52,6 @@ $(function(){
 
     // Apoiar publicação apenas logado
     $(".helper-apoio").click(function(){
-
         event.preventDefault();
 
         helper.showSwal1('info','Efetue o login para apoiar a publicação')
@@ -68,6 +67,16 @@ $(function(){
 
     })
 
+    $('.minhas_solicitacoes').click(function(e) {
+        e.preventDefault();
+        $.get('/solicitacoes/minhas/'+id_usuario, function(resultado){
+            if (resultado == "0")
+                demo.notificationRight("top", "right", "rose", "Você ainda não possui Solicitações cadastradas!");   
+            else
+                window.location.href='/minhassolicitacoes';
+        })
+    })
+    
     // Botão Excluir, ocultar coment-fix, exibir mensagem com horário da "exclusão", demonstrar botão desfazer e oculstar botões editar e excluir
     $('.btn-coment-del').click(function () {
 

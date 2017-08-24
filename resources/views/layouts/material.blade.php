@@ -25,6 +25,10 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
+    <!-- meterial fonts     -->
+    <link href="{{ asset('css/materialdesignicons.min.css') }}" rel="stylesheet" />
+
+
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
 </head>
@@ -105,8 +109,8 @@
 
 <script src="{{ asset('js/vanillaMasker.min.js') }}"></script>
 
-<script src="{{ asset('js/scripts.js') }}"></script>
-
 @stack('scripts')
+
+<script src="{{ asset('js/scripts.js') }}"></script>
 
 </html>

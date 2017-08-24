@@ -9,8 +9,8 @@ Login
 @section('content')
 
 
-@if ($errors->any())
-    {{ dd("erro") }}
+{{-- @if ($errors->any())
+    
     <div class="alert alert-primary alert-with-icon" data-notify="container">
         <i class="material-icons" data-notify="icon">notifications</i>
         <button type="button" aria-hidden="true" class="close">
@@ -23,7 +23,7 @@ Login
         </ul>                    
     </div>
 @endif
-
+ --}}
 <div class="row">
     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page">
         <form method="POST" action="{{ url('login') }}">
@@ -87,8 +87,17 @@ Login
 
 @push('scripts')
 
-<script type="text/javascript">
-    
-</script>
-
+    <script type="text/javascript">
+        $(document).ready(function() {
+        
+                // Testar se há algum erro, e mostrar a notificação
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    demo.notificationRight("top", "right", "rose", "{{ $error }}");     
+                    demo.initFormExtendedDatetimepickers();
+                @endforeach
+            @endif
+            demo.initFormExtendedDatetimepickers();
+        });
+    </script>
 @endpush

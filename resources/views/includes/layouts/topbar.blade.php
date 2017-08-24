@@ -56,7 +56,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle" >
+                    <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle minhas_solicitacoes">
                         <i class="material-icons">dashboard</i>
                         minhas solicitações
                     </a>
@@ -72,6 +72,13 @@
                             <a href="{{ url("/perfil") }}" >
                                 <i class="material-icons">person</i>
                                     Editar Perfil
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ url("/senha") }}" >
+                                <i class="material-icons">lock_outline</i>
+                                    Alterar Senha
                             </a>
                         </li>
 

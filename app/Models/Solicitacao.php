@@ -36,4 +36,10 @@ class Solicitacao extends Model
     {
         return $this->hasMany('App\Models\Mensagem');
     }
+
+    public function apoiadores()
+    {
+        return $this->belongsToMany('App\Models\Solicitante', 'apoios');
+    }
+
 }

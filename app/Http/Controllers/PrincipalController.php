@@ -18,27 +18,39 @@ class PrincipalController extends Controller
 
 	public function index()
     {
-        
     	if (Auth::check()) {
-            //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas e TODAS as do usuário logado
+            //carrega as ultimas solicitações que JÁ ESTÃO moderadas e TODAS as do usuário logado
+
     		$usuario =  User::find(Auth::user()->id);
-            $solicitacoes = Solicitacao::where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
+            $solicitacoes = Solicitacao::withCount('apoiadores')->where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
+            $meus_apoios = $usuario->solicitante->apoios;
+
         }else{
             //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
-            $solicitacoes = Solicitacao::where('moderado', 1)->orderBy('created_at', 'desc')->paginate(5);
+            $solicitacoes = Solicitacao::withCount('apoiadores')->where('moderado', 1)->orderBy('created_at', 'desc')->paginate(5);
 		}
-    	
-    	
+
         return view('principal', compact('solicitacoes','usuario'));
     }
     
+
     public function minhassolicitacoes()
     {
    		$usuario =  User::find(Auth::user()->id);
 
         //carrega as solicitações do usuário logado MODERADA ou NÃO
     	$solicitacoes = Solicitacao::where('solicitante_id', $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
-        return view('principal', compact('solicitacoes','usuario'));
+
+        if($solicitacoes->total() > 0)
+        {
+            return view('principal', compact('solicitacoes','usuario'));    
+        }else{
+            $solicitacoes = Solicitacao::where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
+
+            return view('principal', compact('solicitacoes','usuario'))->withErrors(['erros' => 'Você não possui Solicitações cadastradas!']);    
+        }
     }
-    
 }
+
+
+

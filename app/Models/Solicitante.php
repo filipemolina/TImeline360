@@ -67,4 +67,10 @@ class Solicitante extends Model
     {
         return $this->hasOne('App\User');
     }
+
+    public function apoios()
+    {
+        return $this->belongsToMany('App\Models\Solicitacao', 'apoios');
+    }
+
 }
