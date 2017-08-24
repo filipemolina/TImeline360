@@ -41,13 +41,13 @@
                            <input type="file" name="abacaxi">
                     	</span>
                                   
-                    	<a href="#pablo" class="btn btn-danger btn-round fileinput-exists exclui-foto" data-dismiss="fileinput"><i></i> Excluir<div class="ripple ripple-on ripple-out" style=" background-color: rgb(255, 255, 255);"></div></a>
-            		</div>
-           			{{-- Fim do Avatar do usuário --}}
 
+                    <a href="#pablo" class="btn btn-danger btn-round fileinput-exists exclui-foto" data-dismiss="fileinput"><i></i> Excluir<div class="ripple ripple-on ripple-out" style=" background-color: rgb(255, 255, 255);"></div></a>
+                               
+            </div>
 
-           			
-
+           		{{-- Fim do Avatar do usuário --}}
+       			
 
 						<div class="card-content">
 							<h4 class="card-title">PESSOAL</h4>
@@ -280,7 +280,7 @@
 					</div> {{-- FIM DIV Contato --}}
 
 					<div class="footer text-center" style="">
-						<button type="submit" class="btn btn-roxo btn-wd btn-lg" style="right: 300px; border-radius: 30px;">Salvar</button>
+						<button type="submit" class="btn btn-roxo btn-wd btn-lg" style="right: 300px; bottom: 25px; border-radius: 30px;">Salvar</button>
 					</div>
 
 				</form>
