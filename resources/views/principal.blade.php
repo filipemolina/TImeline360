@@ -63,19 +63,21 @@
             <div class="card-header card-header-icon avatar-fixo">
                 <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
             </div>
-            {{-- <h4 class="card-title">
-                {{ $solicitacao->solicitante->nome}}
-            </h4> --}}
+
+            {{-- <h4 class="card-title">{{ $solicitacao->solicitante->nome}}</h4> --}}
+
 
             {{-- Status da solicitação --}}
-            <div class="card-header card-header-icon pull-right" data-background-color="red">
-                <i class="material-icons">language</i>
+            <div class="card-header card-header-icon pull-right" data-background-color="" style="background-color: {{ $solicitacao->servico->setor->cor }}; font-size: 30px;">
+                {{-- <i class="material-icons">language</i> --}}
+                <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
+                
             </div>
             
             {{-- Foto da publicação --}}
             <div class="card-image">
                 <span class="label label-danger"></span>
-                    <a href="#pablo">
+                    <a href="#">
                         <img class="img" src="{{ $solicitacao->foto }}" >
                     </a>
             </div>
@@ -87,7 +89,7 @@
                         <button class="btn btn-just-icon btn-simple btn-xs btn-primary">
                             <i class="material-icons">label_outline</i>
                         </button>
-                        solicitacao_id {{ $solicitacao->id }} - {{ $solicitacao->moderado }}
+                        {{ $solicitacao->servico->nome }} - {{ $solicitacao->id }} 
                     </p>
                 </div>
                 <div class="timeline-body col-md-12">
@@ -99,48 +101,35 @@
 
             {{-- Botões de interação --}}
             <ul class="nav navbar-nav">
-                
-                
                 @if(Auth::check())
 
+                
                     <li class="col-md-3">
-                        <button class="btn btn-simple apoiar">
-                            <span class="btn-label">
-                                <i class="material-icons">thumb_up</i>
-                                Apoiar
-                            </span>
+                        {{-- <button class="btn btn-simple apoiar" data-solicitacao="{{ $solicitacao->id }}"> --}}
+                        <button class="btn btn-simple apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }} )">
+                            <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
                         </button>
                     </li>
-
                 @else
-
                     <li class="col-md-3">
                         <button class="btn btn-simple helper-apoio">
-                            <span class="btn-label">
-                                <i class="material-icons">thumb_up</i>
-                                Apoiar
-                            </span>
+                            <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
                         </button>
                     </li>
-
                 @endif
 
                 <li class="col-md-3">
                     <button class="btn btn-simple slide-coment">
-                        <span class="btn-label">
-                            <i class="material-icons">chat</i>
-                            Comentários
-                        </span>
+                        <span class="btn-label"> <i class="material-icons">chat</i> Comentários </span>
                     </button>
                 </li>
-
                 <li class="col-md-3">
                     <button class="btn btn-simple">
-                        <span class="btn-label">
-                            <i class="material-icons">favorite</i>
-                            Apoios
-                        </span>
-                        <label>100</label>
+                        @if($solicitacao->apoiadores_count > 1 )
+                            <span class="btn-label"> <i class="material-icons">thumb_up</i> <span class="numero_apoios_{{ $solicitacao->id }}">{{ $solicitacao->apoiadores_count }}</span> Apoios </span>
+                        @else
+                            <span class="btn-label"> <i class="material-icons">thumb_up</i> <span class="numero_apoios_{{ $solicitacao->id }}">{{ $solicitacao->apoiadores_count }}</span> Apoio </span>
+                        @endif
                     </button>
                 </li>
             </ul>
@@ -149,11 +138,9 @@
             <footer class="colapso col-md-12">
                 <div class="panel-title">
                     @isset($usuario)
-
                         {{-- {{ dd($usuario) }} --}}
                         {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
                         @if ($usuario->solicitante->id == $solicitacao->solicitante->id )
-
                             <div class="card card-product col-md-8">
                                 <div class="input-group">
                                     <span class="input-group-addon">
@@ -164,10 +151,8 @@
                                     <input type="text" class="form-control comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" id="mensagem" name="mensagem">
                                 </div>
                             </div>
-                        
                         @endif
                     @endisset
-
                 </div> <br><br><br><br><br><br>
 
                 {{-- card de comentarios --}}
@@ -182,21 +167,21 @@
                         @if ($mensagem->funcionario)
 
                         <div class="card">
-                        <div class="card-header card-header-icon avatar-fixo pull-right">
-                            <img class="img" src="{{ asset('img/brasao.png')}}">
-                        </div>
+                            <div class="card-header card-header-icon avatar-fixo pull-right">
+                                <img class="img" src="{{ asset('img/brasao.png')}}">
+                            </div>
 
-                        <div class="card-content pull-right">
-                            <h5 class="card-title">
-                                {{ $mensagem->funcionario->setor->secretaria->nome }} - 
-                                {{ $mensagem->funcionario->setor->secretaria->sigla }}
-                            </h5>
+                            <div class="card-content pull-right">
+                                <h5 class="card-title">
+                                    {{ $mensagem->funcionario->setor->secretaria->nome }} - 
+                                    {{ $mensagem->funcionario->setor->secretaria->sigla }}
+                                </h5>
 
-                            <p class="card-title fc-rtl">
-                                {{ $mensagem->mensagem }}
-                            </p>
+                                <p class="card-title fc-rtl">
+                                    {{ $mensagem->mensagem }}
+                                </p>
 
-                        </div>
+                            </div>
                         </div>
                                     
                         {{-- mensagem do solicitante --}}
@@ -335,13 +320,10 @@
     {{-- Template do Handlebars --}}
 
     <script id="template-mensagem" type="text/x-handlebars-template">
-
         @verbatim
-
             <div class="panel-body">
-
                 <div class="card">
-                                
+
                     <!-- Menu para editar comentário -->
                     <nav class="navbar navbar-default navbar-absolute navbar-transparent" role="navigation">
                         <div class="container-fluid">
@@ -394,13 +376,8 @@
         @endif
 
         function enviaMensagem(solicitacao){ 
-
-            //console.log(($(".comentario_"+solicitacao).val().trim()));
-
             // Testar se a mensagem está em branco
             if( $(".comentario_"+solicitacao).val().trim() ) {
-
-
                 // Enviar a mensagem para o banco
                 $.post(
                     "{{ url('/mensagem') }}",
@@ -408,58 +385,56 @@
                         mensagem: $(".comentario_"+solicitacao).val(),
                         solicitacao_id: solicitacao, 
                         _token: "{{ csrf_token() }}",
-                    
                     }, function(data){        
-
                         console.log("Resposta");
                         console.log(data);
-
-                    });
+                    }       
+                );
 
                 // Apagar o campo de envio de mensagem
                 $(".comentario_"+solicitacao).val("");
 
                 // Colocar o novo card de mensagens embaixo da solicitação
-
-
-               
             }else{
-
-
                 console.log("vazio");
-
             }
+        };
 
-            
+
+        function enviaApoio(solicitacao, solicitante){ 
+            console.log("enviou " +solicitacao +" - " +solicitante);
+
+            $.post(
+                "{{ url('/apoiar') }}",
+                {
+                    solicitante_id: solicitante,
+                    solicitacao_id: solicitacao, 
+                    _token: "{{ csrf_token() }}",
+                }, function(data){        
+                    
+                    $("span.numero_apoios_"+solicitacao).html(data);
+
+                }       
+            );
         };
 
     </script>
-@endpush
 
-
-@push("scripts")
     <script type="text/javascript">
         $(document).ready(function() {
             var tempo = 0;
             var incremento = 500;
 
-        // Testar se há algum erro, e mostrar a notificação
-
-         @if ($errors->any())
-            
-             @foreach ($errors->all() as $error)
-
-                setTimeout(function(){
-                    demo.notificationRight("top", "right", "rose", "{{ $error }}");   
-                }, tempo);
-
-                tempo += incremento;
-
-             @endforeach
-                
-        @endif
+                // Testar se há algum erro, e mostrar a notificação
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    setTimeout(function(){demo.notificationRight("top", "right", "rose", "{{ $error }}"); }, tempo);
+                    tempo += incremento;
+                @endforeach
+            @endif
             demo.initFormExtendedDatetimepickers();
         });
     </script>
 
 @endpush
+

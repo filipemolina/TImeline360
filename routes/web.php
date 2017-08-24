@@ -40,6 +40,9 @@ Route::get('/registro', function () {
 ///////////////////////////// Rotas para Ajax
 Route::get("/solicitacoes/minhas/{id}", "SolicitacaoController@minhassolicitacoes");
 
+Route::post("/apoiar", 						"ApoioController@apoiar");
+
+
 
 //resources
 Route::resource('solicitante',	'SolicitanteController');

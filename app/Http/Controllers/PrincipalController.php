@@ -18,18 +18,23 @@ class PrincipalController extends Controller
 
 	public function index()
     {
-        
     	if (Auth::check()) {
-            //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas e TODAS as do usuário logado
+            //carrega as ultimas solicitações que JÁ ESTÃO moderadas e TODAS as do usuário logado
+
     		$usuario =  User::find(Auth::user()->id);
-            $solicitacoes = Solicitacao::where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
+            $solicitacoes = Solicitacao::withCount('apoiadores')->where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
+            $meus_apoios = $usuario->solicitante->apoios;
+
+            dd($meus_apoios);
         }else{
             //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
-            $solicitacoes = Solicitacao::where('moderado', 1)->orderBy('created_at', 'desc')->paginate(5);
+            $solicitacoes = Solicitacao::withCount('apoiadores')->where('moderado', 1)->orderBy('created_at', 'desc')->paginate(5);
 		}
+
         return view('principal', compact('solicitacoes','usuario'));
     }
     
+
     public function minhassolicitacoes()
     {
    		$usuario =  User::find(Auth::user()->id);
@@ -41,20 +46,11 @@ class PrincipalController extends Controller
         {
             return view('principal', compact('solicitacoes','usuario'));    
         }else{
-
-            
-
             $solicitacoes = Solicitacao::where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
 
-
             return view('principal', compact('solicitacoes','usuario'))->withErrors(['erros' => 'Você não possui Solicitações cadastradas!']);    
-
-            //return redirect()->action('PrincipalController@index')->with(['erros' => 'Usuário não possui Solicitações Cadastradas']);
-            //return view('principal')->with(['erros' => 'Usuário não possui Solicitações Cadastradas']);
         }
-        
     }
-    
 }
 
 

@@ -16,7 +16,6 @@ class UserController extends Controller
     public function __construct(User $user)
     {
         $this->user = $user; 
-        
         // todas as rotas aqui serão antes autenticadas
         //$this->middleware('auth');
     }
@@ -27,7 +26,6 @@ class UserController extends Controller
         // Mostrar a lista de usuários
         $usuarios = User::all();
         return $usuarios;
-        //return view('usuarios.lista', compact('usuarios'));
     }
 
 
@@ -35,14 +33,6 @@ class UserController extends Controller
     public function create()
     {
 
-/*        $titulo         = "Cadastro de Usuários";
-        $tipo_acesso    = pegaValorEnum('users','acesso');                                                   
-        
-        sort($tipo_acesso);
-
-        // return "entrou";
-        return view('usuarios.create',compact(['titulo','tipo_acesso']));
-*/    
     }
 
     
@@ -75,10 +65,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        
         $user = $this->user->find($id);
-
-        //return view('user.show',compact('user');
         return $user;
     }
 
@@ -86,8 +73,6 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->user->find($id); 
-       
-        //return view('user.edit',compact('user'));
         return $user;
     }
 
@@ -114,16 +99,7 @@ class UserController extends Controller
             //return redirect(back); 
             return redirect("/user/$usuario->id/edit")->with(['erros' => 'Falha ao editar']);
         }
-/*        $usuario = User::find($id);
-        //$usuario = $this->users->find($id);
-
-        $titulo         = "Edição de Usuários";
-        $tipo_acesso    = pegaValorEnum('users','acesso');                                                   
-        
-        sort($tipo_acesso);
-        //return "cheguei";
-        return view('usuarios.edit',compact('usuario','titulo','tipo_acesso'));
-*/    }
+    }
 
 
     public function destroy($id)
