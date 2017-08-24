@@ -89,7 +89,7 @@
                         <button class="btn btn-just-icon btn-simple btn-xs btn-primary">
                             <i class="material-icons">label_outline</i>
                         </button>
-                        {{ $solicitacao->servico->nome }} - {{ $solicitacao->id }} 
+                        {{ $solicitacao->servico->nome }}
                     </p>
                 </div>
                 <div class="timeline-body col-md-12">
