@@ -27,7 +27,10 @@ Route::get ('/', ['as' => 'index', 'uses' => 'PrincipalController@index']);
 Route::get  ('/perfil', 'SolicitanteController@Perfil');
 
 //caminho para a tela de alteração de senha
-Route::get 	('/senha',	'UserController@Senha');
+Route::get 	('/senha',			'UserController@AlteraSenha');
+Route::put 	('/salva',   		'UserController@SalvarSenha');
+
+//Route::get 	('/senha',	'UserController@Senha');
 
 //filtra para mostrar apenas as solicitações do usuário logado
 Route::get ('/minhassolicitacoes', 'PrincipalController@minhassolicitacoes');
