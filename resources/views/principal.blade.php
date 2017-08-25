@@ -56,7 +56,7 @@
 
     @foreach ($solicitacoes as $solicitacao)
                     
-    <div class="col-sm-2 col-sm-offset-5 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3">
+    <div class="col-sm-2 col-sm-offset-5 col-md-4 col-md-offset-4 col-lg-8 col-lg-offset-2">
         <div class="card">
 
             {{-- Avatar do usuário --}}
@@ -68,10 +68,19 @@
 
 
             {{-- Status da solicitação --}}
-            <div class="card-header card-header-icon pull-right icone-direita" data-background-color={{ $solicitacao->servico->setor->cor }}>
-                <i class="mdi">{{ $solicitacao->servico->setor->icone }}</i>
-                <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
+            {{-- <div class="card-header card-header-icon pull-right icone-direita" data-color style="background-color: {{ $solicitacao->servico->setor->cor }}">
+                <i class="mdi {{ $solicitacao->servico->setor->icone }}"></i>
+                
+            </div> --}}
+
+
+            <div class="card-header card-header-icon avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
+                {{-- <i class="material-icons">language</i> --}}
+                <span class="mdi {{ $solicitacao->servico->setor->icone }}" style="font-size: 30px"></span>
+                
             </div>
+
+
             
             {{-- Foto da publicação --}}
             <div class="card-image">
@@ -130,6 +139,16 @@
                     <button class="btn btn-simples">
 
                         @if($solicitacao->apoiadores_count > 1)
+
+                        <span class="btn-label">
+                            <i class="material-icons">favorite</i>
+                        </span>
+
+                        <span class="numero_apoios_{{ $solicitacao->id }}">
+                            {{ $solicitacao->apoiadores_count }}
+                        </span> Apoios </span>
+
+                        @else
 
                         <span class="btn-label">
                             <i class="material-icons">favorite</i>
