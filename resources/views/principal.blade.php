@@ -11,71 +11,23 @@
 
 <br><br>
 
-{{-- Navegação entre as páginas --}}
-<div class="col-md-4 col-md-offset-5">
-    <ul class="pagination pagination-primary">
-        <li class="active">
-            <a href="{{ ($solicitacoes->url(1)) }}" role="button">
-                <i class="material-icons">
-                    fast_rewind
-                </i>
-            </a>
-        </li>
-        <li>
-            <a href="{{ ($solicitacoes->previousPageUrl()) }}" role="button">
-                <i class="material-icons inverterX">
-                    forward
-                </i>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);">1</a>
-        </li>
-        <li>
-            <a href="javascript:void(0);">2</a>
-        </li>
-        <li>
-            <a href="{{ ($solicitacoes->nextPageUrl()) }}" role="button">
-                <i class="material-icons">
-                    forward
-                </i>
-            </a>
-        </li>
-        <li>
-            <a href="{{ ($solicitacoes->url($solicitacoes->lastPage())) }}" role="button">
-                <i class="material-icons">
-                    fast_forward</i>
-                </a>
-        </li>
-    </ul>
-</div> {{-- Fim navegação --}}
-
 <div class="row ">
 
     {{-- Início da Solicitação --}}
 
     @foreach ($solicitacoes as $solicitacao)
                     
-    <div class="col-sm-2 col-sm-offset-5 col-md-4 col-md-offset-4 col-lg-8 col-lg-offset-2">
+    <div class="col-lg-6 col-lg-offset-3">
         <div class="card">
 
             {{-- Avatar do usuário --}}
-            <div class="card-header card-header-icon avatar-fixo">
+            
+            <div class="card-header card-header-icon avatar-fixo ">                
                 <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
             </div>
 
-            {{-- <h4 class="card-title">{{ $solicitacao->solicitante->nome}}</h4> --}}
-
-
-            {{-- Status da solicitação --}}
-            {{-- <div class="card-header card-header-icon pull-right icone-direita" data-color style="background-color: {{ $solicitacao->servico->setor->cor }}">
-                <i class="mdi {{ $solicitacao->servico->setor->icone }}"></i>
-                
-            </div> --}}
-
-
             <div class="card-header card-header-icon avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
-                {{-- <i class="material-icons">language</i> --}}
+
                 <span class="mdi {{ $solicitacao->servico->setor->icone }}" style="font-size: 30px"></span>
                 
             </div>
@@ -84,9 +36,9 @@
             
             {{-- Foto da publicação --}}
             <div class="card-image">
-                <span class="label label-danger"></span>
                     <a href="#">
                         <img class="img" src="{{ $solicitacao->foto }}" >
+                        <span class="label label-info" style="position: absolute;bottom: 0">{{ $solicitacao->solicitante->nome}}</span>
                     </a>
             </div>
 
@@ -156,7 +108,7 @@
 
                         <span class="numero_apoios_{{ $solicitacao->id }}">
                             {{ $solicitacao->apoiadores_count }}
-                        </span> Apoios </span>
+                        </span> Apoio </span>
 
                         @endif
 
@@ -354,45 +306,6 @@
     {{-- Fim da Solicitação --}}
 
 </div> {{-- Fim da ROW --}}
-
-{{-- Navegação entre as páginas --}}
-<div class="col-md-4 col-md-offset-4 h6">
-    <ul class="pagination pagination-primary">
-        <li class="active">
-            <a href="{{ ($solicitacoes->url(1)) }}" role="button">
-                <i class="material-icons">
-                    fast_rewind
-                </i>
-            </a>
-        </li>
-        <li>
-            <a href="{{ ($solicitacoes->previousPageUrl()) }}" role="button">
-                <i class="material-icons inverterX">
-                    forward
-                </i>
-            </a>
-        </li>
-        <li>
-            <a href="javascript:void(0);">1</a>
-        </li>
-        <li>
-            <a href="javascript:void(0);">2</a>
-        </li>
-        <li>
-            <a href="{{ ($solicitacoes->nextPageUrl()) }}" role="button">
-                <i class="material-icons">
-                    forward
-                </i>
-            </a>
-        </li>
-        <li>
-            <a href="{{ ($solicitacoes->url($solicitacoes->lastPage())) }}" role="button">
-                <i class="material-icons">
-                    fast_forward</i>
-                </a>
-        </li>
-    </ul>
-</div> {{-- Fim navegação --}}
 
 @endsection
 

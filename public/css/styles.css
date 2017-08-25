@@ -625,7 +625,7 @@ h4.card-title {
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-  margin: -20px -5px 0 -40px;
+  margin: -20px -5px 0 -10px;
   padding: 0;
   background-color: transparent;
   position: relative;
@@ -638,7 +638,7 @@ h4.card-title {
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-  margin: -20px -40px 0 -5px;
+  margin: -20px -10px 0 -5px;
   padding: 0;
   background-color: transparent;
   position: relative;
