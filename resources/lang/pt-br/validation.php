@@ -118,6 +118,7 @@ return [
 
         'email'                     => 'E-mail',
         'password'                  => 'Senha',
+        'password_atual'            => 'Senha Atual',    
         'nome'                      => 'Nome',
         'password_confirmation'     => 'Confirmação da Senha',
         'aceite'                    => 'Termos e Condições',
