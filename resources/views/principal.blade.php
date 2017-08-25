@@ -273,24 +273,24 @@
                     
                     <div class="">
                         @isset($usuario)
-                        {{-- {{ dd($usuario) }} --}}
-                        {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
-                        
-                        {{-- Escrever comentário --}}
-                        @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
-                        
-                        <div class="card col-md-10 margin10">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <button type="button" class="btn btn-primary btn-sm" onclick="enviaMensagem({{ $solicitacao->id }},{{ $usuario->solicitante }})">
-                                        Enviar
-                                    </button>
-                                </span>
-                                <input type="text" id="mensagem" name="mensagem" class="form-control comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
-                            </div>
-                        </div>
-                        
-                        @endif
+                            {{-- {{ dd($usuario) }} --}}
+                            {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
+                            
+                            {{-- Escrever comentário --}}
+                            @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
+                            
+                                <div class="card col-md-10 margin10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <button type="button" class="btn btn-primary btn-sm" onclick="enviaMensagem({{ $solicitacao->id }},{{ $usuario->solicitante }})">
+                                                Enviar
+                                            </button>
+                                        </span>
+                                        <input type="text" id="mensagem" name="mensagem" class="form-control comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
+                                    </div>
+                                </div>
+                            
+                            @endif
 
                         @endisset
 
@@ -412,9 +412,8 @@
 
         @endif
 
-        function enviaMensagem(solicitacao, usuario){ 
+        function enviaMensagem(solicitacao, ){ 
             
-
             // Testar se a mensagem está em branco
             if( $(".comentario_"+solicitacao).val().trim() ) {
                 // Enviar a mensagem para o banco
@@ -437,14 +436,12 @@
                 var source      = $("#mensagem-template").html();
                 var template    = Handlebars.compile(source)
 
-                var context     = { nome:       "{{ $usuario->solicitante->nome}}",
-                                    mensagem:    $(".comentario_"+solicitacao).val(), 
-                                    foto:       "{{ $usuario->solicitante->foto}}"
+                var context     = { nome:       "nommmmmme",//" $usuario->solicitante->nome}}",
+                                    mensagem:   "mensagemmmmm",// $(".comentario_"+solicitacao).val(), 
+                                    foto:       "",//" $usuario->solicitante->foto}}"
                                   };
 
                 var html        = template(context);
-
-
             }else{
                 console.log("vazio");
             }
