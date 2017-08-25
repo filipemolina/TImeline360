@@ -25,7 +25,7 @@ class PrincipalController extends Controller
             $solicitacoes = Solicitacao::withCount('apoiadores')->where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
             $meus_apoios = $usuario->solicitante->apoios;
 
-            dd($meus_apoios);
+          
         }else{
             //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
             $solicitacoes = Solicitacao::withCount('apoiadores')->where('moderado', 1)->orderBy('created_at', 'desc')->paginate(5);
