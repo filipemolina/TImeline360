@@ -54,8 +54,15 @@
 
     {{-- Início da Solicitação --}}
     @foreach ($solicitacoes as $solicitacao)
-         <div class="col-sm-2 col-sm-offset-5 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3">
-            <div class="card">
+    <div class="col-sm-2 col-sm-offset-5 col-md-4 col-md-offset-4 col-lg-8 col-lg-offset-2">
+        <div class="card">
+
+            {{-- Avatar do usuário --}}
+            <div class="card-header card-header-icon avatar-fixo">
+                <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
+            </div>
+
+            {{-- <h4 class="card-title">{{ $solicitacao->solicitante->nome}}</h4> --}}
 
                 {{-- Avatar do usuário --}}
                 <div class="card-header card-header-icon avatar-fixo">
@@ -63,6 +70,28 @@
                 </div>
 
                 {{-- <h4 class="card-title">{{ $solicitacao->solicitante->nome}}</h4> --}}
+            {{-- Status da solicitação --}}
+            {{-- <div class="card-header card-header-icon pull-right icone-direita" data-color style="background-color: {{ $solicitacao->servico->setor->cor }}">
+                <i class="mdi {{ $solicitacao->servico->setor->icone }}"></i>
+                
+            </div> --}}
+
+
+            <div class="card-header card-header-icon avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
+                {{-- <i class="material-icons">language</i> --}}
+                <span class="mdi {{ $solicitacao->servico->setor->icone }}" style="font-size: 30px"></span>
+                
+            </div>
+
+
+            
+            {{-- Foto da publicação --}}
+            <div class="card-image">
+                <span class="label label-danger"></span>
+                    <a href="#">
+                        <img class="img" src="{{ $solicitacao->foto }}" >
+                    </a>
+            </div>
 
                 {{-- Status da solicitação --}}
                 <div class="card-header card-header-icon pull-right icone-direita" data-background-color={{ $solicitacao->servico->setor->cor }}>
@@ -133,22 +162,81 @@
                             @endif
                         </button>
                     </li>
-                </ul>
+                @endif
 
-                {{-- Comentários --}}
-                <footer class="colapso col-md-12">
-                    @foreach ($solicitacao->mensagens as $mensagem)
-                        {{-- card de comentarios --}}
-                        <div class="panel-body no-padding">
+                <li class="col-md-5">
+                    <button class="btn btn-simple slide-coment">
+                        <span class="btn-label"> <i class="material-icons">chat</i> Comentários </span>
+                    </button>
+                </li>
+                <li class="col-md-3">
 
-                            {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
-                            @if ($mensagem->funcionario)                    
-                                {{-- mensagem do funcionário --}}
-                                <div class="card margin10">
+                    <button class="btn btn-simples">
 
-                                    {{-- Avatar pequeno --}}
-                                    <div class="card-header card-header-icon avatar-fixo-pn pull-right">
-                                        <img class="img" src="{{ asset('img/brasao.png')}}"/>
+                        @if($solicitacao->apoiadores_count > 1)
+
+                        <span class="btn-label">
+                            <i class="material-icons">favorite</i>
+                        </span>
+
+                        <span class="numero_apoios_{{ $solicitacao->id }}">
+                            {{ $solicitacao->apoiadores_count }}
+                        </span> Apoios </span>
+
+                        @else
+
+                        <span class="btn-label">
+                            <i class="material-icons">favorite</i>
+                        </span>
+
+                        <span class="numero_apoios_{{ $solicitacao->id }}">
+                            {{ $solicitacao->apoiadores_count }}
+                        </span> Apoios </span>
+
+                        @endif
+
+                    </button>
+                </li>
+            </ul>
+
+            {{-- Comentários --}}
+            <footer class="colapso col-md-12">
+
+                @foreach ($solicitacao->mensagens as $mensagem)
+                
+                {{-- card de comentarios --}}
+                <div class="panel-body no-padding">
+
+                    {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
+
+                    @if ($mensagem->funcionario)                    
+
+                    {{-- mensagem do funcionário --}}
+                    <div class="card margin10">
+
+                        {{-- Avatar pequeno --}}
+                        <div class="card-header card-header-icon avatar-fixo-pn pull-right">
+                            <img class="img" src="{{ asset('img/brasao.png')}}"/>
+                        </div>
+
+                        {{-- Comentário --}}
+                        <form class="form-horizontal">
+
+                            <div class="row">
+                                
+                                {{-- Nome da secretária --}}
+                                <label class="col-md-11 h6 pull-right fc-rtl">
+                                    {{ $mensagem->funcionario->setor->secretaria->nome }} - 
+                                    {{ $mensagem->funcionario->setor->secretaria->sigla }}
+                                </label>
+
+                                {{-- Comentário --}}
+                                <div class="col- fc-rtl">
+                                    <div class="form-group col-md-7 pull-right no-margin">
+                                        <p class="form-control-static">
+                                            {{ $mensagem->mensagem }}
+                                        </p>
+>>>>>>> luciano
                                     </div>
 
                                     {{-- Comentário --}}
