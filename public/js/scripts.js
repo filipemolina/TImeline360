@@ -77,7 +77,7 @@ $(function(){
         })
     })
     
-    // Botão Excluir, ocultar coment-fix, exibir mensagem com horário da "exclusão", demonstrar botão desfazer e oculstar botões editar e excluir
+    // Botão Excluir, ocultar coment-fix, exibir comentario com horário da "exclusão", demonstrar botão desfazer e oculstar botões editar e excluir
     $('.btn-coment-del').click(function () {
 
         var isto = this;

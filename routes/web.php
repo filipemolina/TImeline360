@@ -50,7 +50,7 @@ Route::post("/apoiar", 						"ApoioController@apoiar");
 //resources
 Route::resource('solicitante',	'SolicitanteController');
 Route::resource('solicitacao',	'SolicitacaoController');
-Route::resource('mensagem',		'MensagemController');
+Route::resource('comentario',		'ComentarioController');
 Route::resource('user', 			'UserController');
 
 

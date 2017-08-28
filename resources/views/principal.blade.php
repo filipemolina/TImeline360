@@ -108,13 +108,13 @@
 
             {{-- Comentários --}}
             <footer class="colapso col-md-12">
-               @foreach ($solicitacao->mensagens as $mensagem)
+               @foreach ($solicitacao->comentarios as $comentario)
                   {{-- card de comentarios --}}
                   <div class="panel-body no-padding">
 
-                     {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
-                     @if ($mensagem->funcionario)                    
-                        {{-- mensagem do funcionário --}}
+                     {{-- Caso a comentario seja do próprio solicitante, mostrar a foto à esquerda --}}
+                     @if ($comentario->funcionario)                    
+                        {{-- comentario do funcionário --}}
                         <div class="card margin10">
 
                            {{-- Avatar pequeno --}}
@@ -128,14 +128,14 @@
 
                                  {{-- Nome da secretária --}}
                                  <label class="col-md-11 h6 pull-right fc-rtl">
-                                    {{ $mensagem->funcionario->setor->secretaria->nome }} - 
-                                    {{ $mensagem->funcionario->setor->secretaria->sigla }}
+                                    {{ $comentario->funcionario->setor->secretaria->nome }} - 
+                                    {{ $comentario->funcionario->setor->secretaria->sigla }}
                                  </label>
                                  {{-- Comentário --}}
                                  <div class="col- fc-rtl">
                                     <div class="form-group col-md-7 pull-right no-margin">
                                        <p class="form-control-static">
-                                          {{ $mensagem->mensagem }}
+                                          {{ $comentario->comentario }}
                                        </p>
                                     </div>
                                  </div>
@@ -143,7 +143,7 @@
                            </form> {{-- Fim Comentário --}}
                         </div>
                      @else
-                        {{-- mensagem do solicitante --}}
+                        {{-- comentario do solicitante --}}
                         <div class="card margin10">
 
                            {{-- Menu para editar comentário --}}
@@ -192,9 +192,9 @@
                                  <div class="col- coment-fix">
                                     <div class="form-group col-md-7 no-margin">
                                        <span class="label nota hide">
-                                          {{ $solicitacao->solicitante->nome}} alterou a mensagem em {{-- variável --}} às {{-- variável --}}.
+                                          {{ $solicitacao->solicitante->nome}} alterou a comentario em {{-- variável --}} às {{-- variável --}}.
                                        </span>
-                                       <p class="form-control-static">{{ $mensagem->mensagem }}</p>
+                                       <p class="form-control-static">{{ $comentario->comentario }}</p>
                                     </div>
                                  </div>
 
@@ -202,7 +202,7 @@
                                  <div class="col- coment-fix-rem hide">
                                     <div class="form-group col-md-7 no-margin">
                                        <p class="form-control-static col- nota">
-                                          {{ $solicitacao->solicitante->nome}} removeu a mensagem em {{-- variável --}} às {{-- variável --}}.
+                                          {{ $solicitacao->solicitante->nome}} removeu a comentario em {{-- variável --}} às {{-- variável --}}.
                                        </p>
                                     </div>
                                  </div>
@@ -211,7 +211,7 @@
                                  <div class="card-footer col- coment-edit hide">
                                     <div class="form-group label-floating is-empty col-md-7 no-margin">
                                        <label class="control-label"></label>
-                                       <input type="text" class="form-control" value="{{ $mensagem->mensagem }}">
+                                       <input type="text" class="form-control" value="{{ $comentario->comentario }}">
                                     </div>
                                     <div class="col-md-5 pull-right">
                                        <button type="button" value="submit" class="btn btn-primary btn-sm btn-coment-alterar">
@@ -243,11 +243,11 @@
                         <div class="card col-md-10 margin10">
                            <div class="input-group">
                               <span class="input-group-addon">
-                                 <button type="button" class="btn btn-primary btn-sm" onclick="enviaMensagem({{ $solicitacao->id }},{{ $usuario->solicitante }})">
+                                 <button type="button" class="btn btn-primary btn-sm" onclick="enviaComentario({{ $solicitacao->id }},{{ $usuario->solicitante }})">
                                     Enviar
                                  </button>
                               </span>
-                              <input type="text" id="mensagem" name="mensagem" class="form-control comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
+                              <input type="text" id="comentario" name="comentario" class="form-control comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
                            </div>
                         </div>
                      @endif
@@ -270,7 +270,7 @@
 
     {{-- Template do Handlebars --}}
 
-    <script id="mensagem-template" type="text/x-handlebars-template">
+    <script id="comentario-template" type="text/x-handlebars-template">
         @verbatim
             <div class="panel-body">
                 <div class="card">
@@ -304,7 +304,7 @@
                         </h5>
                         
                         <p class="card-title">
-                            {{ mensagem }}
+                            {{ comentario }}
                         </p>
 
                     </div>
@@ -326,15 +326,15 @@
 
         @endif
 
-        function enviaMensagem(solicitacao, ){ 
+        function enviaComentario(solicitacao, ){ 
             
-            // Testar se a mensagem está em branco
+            // Testar se a comentario está em branco
             if( $(".comentario_"+solicitacao).val().trim() ) {
-                // Enviar a mensagem para o banco
+                // Enviar a comentario para o banco
                 $.post(
-                    "{{ url('/mensagem') }}",
+                    "{{ url('/comentario') }}",
                     {
-                        mensagem: $(".comentario_"+solicitacao).val(),
+                        comentario: $(".comentario_"+solicitacao).val(),
                         solicitacao_id: solicitacao, 
                         _token: "{{ csrf_token() }}",
                     }, function(data){        
@@ -343,15 +343,15 @@
                     }       
                 );
 
-                // Apagar o campo de envio de mensagem
+                // Apagar o campo de envio de comentario
                 $(".comentario_"+solicitacao).val("");
 
-                // Colocar o novo card de mensagens embaixo da solicitação
-                var source      = $("#mensagem-template").html();
+                // Colocar o novo card de comentarios embaixo da solicitação
+                var source      = $("#comentario-template").html();
                 var template    = Handlebars.compile(source)
 
                 var context     = { nome:       "nommmmmme",//" $usuario->solicitante->nome}}",
-                                    mensagem:   "mensagemmmmm",// $(".comentario_"+solicitacao).val(), 
+                                    comentario:   "comentariommmm",// $(".comentario_"+solicitacao).val(), 
                                     foto:       "",//" $usuario->solicitante->foto}}"
                                   };
 

@@ -5,14 +5,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Solicitacao;
 use App\Models\Solicitante;
-use App\Models\Mensagem;
+use App\Models\Comentario;
 use App\Models\User;
 
-class MensagemController extends Controller
+class ComentarioController extends Controller
 {
-    public function __construct(Mensagem $mensagem)
+    public function __construct(Comentario $Comentario)
     {
-        $this->mensagem = $mensagem; 
+        $this->Comentario = $Comentario; 
         $this->middleware('auth');
     }
     
@@ -35,15 +35,15 @@ class MensagemController extends Controller
        // Validar
 
         $this->validate($request, [
-            'mensagem'       => 'required|min:2',
+            'Comentario'       => 'required|min:2',
             'solicitacao_id' => 'required'
         ]);
 
-        $mensagem = new Mensagem($request->all());
+        $Comentario = new Comentario($request->all());
 
-        $mensagem->solicitacao_id = $request->solicitacao_id;
+        $Comentario->solicitacao_id = $request->solicitacao_id;
 
-        $mensagem->save();
+        $Comentario->save();
 
         return json_encode("ok");
 
