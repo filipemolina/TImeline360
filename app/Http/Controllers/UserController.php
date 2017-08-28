@@ -185,6 +185,9 @@ class UserController extends Controller
 
         $senha_velha = bcrypt($request->password_atual);
 
+
+            d
+
         if($senha_velha == $usuario->password)
         {
             // Atualizar as informações

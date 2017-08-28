@@ -29,9 +29,7 @@
                   {{-- <i class="material-icons">language</i> --}}
                <span class="mdi {{ $solicitacao->servico->setor->icone }}" style="font-size: 30px"></span>
             </div>
-            
-
-                
+               
             {{-- Foto da publicação --}}
             <div class="card-image">
                <span class="label label-danger"></span>
@@ -59,9 +57,16 @@
             <ul class="nav navbar-nav">
                @if(Auth::check())
                   <li class="col-md-3">
-                     <button class="btn btn-simples btn-apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
-                        <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
-                     </button>
+                     {{-- se tiver apoio do usuario logado fica em roxo (class=apoiar) --}}
+                     @if(in_array($solicitacao->id, $meus_apoios_ids))
+                        <button class="btn btn-simples btn-apoiar apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
+                           <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
+                        </button>
+                     @else
+                        <button class="btn btn-simples btn-apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
+                           <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
+                        </button>
+                     @endif
                   </li>
                @else
                   <li class="col-md-4">
@@ -71,23 +76,34 @@
                   </li>
                @endif
 
+               {{-- se tiver comentarios fica em roxo --}}
                <li class="col-md-5">
-                  <button class="btn btn-simple slide-coment">
-                     <span class="btn-label"> <i class="material-icons">chat</i> Comentários </span>
-                  </button>
+                  @if($solicitacao->solicitacoes_count >= 1)
+                     <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
+                        <span class="btn-label apoiar"> <i class="material-icons">chat</i> Comentários </span>
+                     </button>
+                  @else
+                     <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
+                        <span class="btn-label "> <i class="material-icons">chat</i> Comentários </span>
+                     </button>
+                  @endif
                </li>
+
+
                <li class="col-md-3">
-                  <button class="btn btn-simples">
+                  <button class="btn btn-simples btn_apoios_{{ $solicitacao->id }}">
                      @if($solicitacao->apoiadores_count > 1)
-                        <span class="btn-label"> <i class="material-icons">favorite</i> </span>
+                        <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
                         <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoios </span>
+                     @elseif($solicitacao->apoiadores_count == 1)
+                        <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
+                        <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoio </span>
                      @else
                         <span class="btn-label"> <i class="material-icons">favorite</i> </span>
                         <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoio </span>
                      @endif
                   </button>
                </li>
-   {{-- <<<<<<< HEAD --}}
             </ul>
 
             {{-- Comentários --}}
@@ -357,7 +373,16 @@
                     _token: "{{ csrf_token() }}",
                 }, function(data){        
                     
-                    $("span.numero_apoios_"+solicitacao).html(data);
+                     $("span.numero_apoios_"+solicitacao).html(data);
+                     if(data > 0)
+                     {
+                        $(".btn_apoios_"+solicitacao).addClass('apoiar');
+                     }
+                     else
+                     {  
+                        $(".btn_apoios_"+solicitacao).removeClass('apoiar');
+                     }
+
 
                 }       
             );

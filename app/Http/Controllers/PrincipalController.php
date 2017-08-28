@@ -21,14 +21,30 @@ class PrincipalController extends Controller
     	if (Auth::check()) {
             //carrega as ultimas solicitações que JÁ ESTÃO moderadas e TODAS as do usuário logado
 
-    		$usuario =  User::find(Auth::user()->id);
-            $solicitacoes = Solicitacao::withCount('apoiadores')->where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(5);
-            $meus_apoios = $usuario->solicitante->apoios;
+    		$usuario      =  User::find(Auth::user()->id);
+            $solicitacoes = Solicitacao::withCount('apoiadores')
+                                        ->where('moderado', 1)
+                                        ->orWhere("solicitante_id", $usuario->solicitante->id)
+                                        ->orderBy('created_at', 'desc')
+                                        ->paginate(5);
+            
+            $meus_apoios        = $usuario->solicitante->apoios;
+            $meus_apoios_ids    = [];
+            
+            foreach ($meus_apoios as $apoio) 
+            {
+                $meus_apoios_ids[] = $apoio->id;
+            }
 
-            return view('principal', compact('solicitacoes','usuario','meus_apoios'));
+            //dd($solicitacoes);
+            return view('principal', compact('solicitacoes','usuario','meus_apoios_ids'));
+
         }else{
             //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
-            $solicitacoes = Solicitacao::withCount('apoiadores')->where('moderado', 1)->orderBy('created_at', 'desc')->paginate(5);
+            $solicitacoes = Solicitacao::withCount('apoiadores')
+                                        ->where('moderado', 1)
+                                        ->orderBy('created_at', 'desc')
+                                        ->paginate(5);
 
             return view('principal', compact('solicitacoes'));
 		}
