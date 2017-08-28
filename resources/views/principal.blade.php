@@ -22,13 +22,14 @@
 
             {{-- Avatar do usuário --}}
             
-            <div class="card-header card-header-icon avatar-fixo ">                
-                <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
-            </div>
+                  <div class="card-header card-header-icon card-avatar-fixo ">                
+                      <img src="{{ $solicitacao->solicitante->foto }}"/>
+                  </div>
+                  <span class="card-avatar-label has-roxo col-md-2">{{ $solicitacao->solicitante->nome}}</span>
 
-            <div class="card-header card-header-icon avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
+            <div class="card-avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
 
-                <span class="mdi {{ $solicitacao->servico->setor->icone }}" style="font-size: 30px"></span>
+                <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
                 
             </div>
 
@@ -38,7 +39,7 @@
             <div class="card-image">
                     <a href="#">
                         <img class="img" src="{{ $solicitacao->foto }}" >
-                        <span class="label label-info" style="position: absolute;bottom: 0">{{ $solicitacao->solicitante->nome}}</span>
+                        <span class="label bottom" style="background-color: {{ $solicitacao->servico->setor->cor }};">Dados da publicação da foto</span>
                     </a>
             </div>
 
@@ -129,7 +130,7 @@
                     @if ($mensagem->funcionario)                    
 
                     {{-- mensagem do funcionário --}}
-                    <div class="card margin10">
+                    <div class="card margin10 no-shadow">
 
                         {{-- Avatar pequeno --}}
                         <div class="card-header card-header-icon avatar-fixo-pn pull-right">
@@ -142,7 +143,7 @@
                             <div class="row">
                                 
                                 {{-- Nome da secretária --}}
-                                <label class="col-md-11 h6 pull-right fc-rtl">
+                                <label class="col-md-10 pull-right fc-rtl">
                                     {{ $mensagem->funcionario->setor->secretaria->nome }} - 
                                     {{ $mensagem->funcionario->setor->secretaria->sigla }}
                                 </label>
@@ -162,7 +163,7 @@
                     @else
 
                     {{-- mensagem do solicitante --}}
-                    <div class="card margin10">
+                    <div class="card margin10 no-shadow">
 
                         {{-- Menu para editar comentário --}}
                         
@@ -176,7 +177,7 @@
                                 <i class="material-icons">settings</i>
                             </a>
                             
-                            <ul class="dropdown-menu pull-right">
+                            <ul class="dropdown-menu has-roxo pull-right">
                                 <li>
                                     <a href="#eugen" class="btn-coment-edit">
                                         <i class="material-icons">create</i>
@@ -214,7 +215,7 @@
 
                             {{-- Nome do usuário --}}
                             <div class="row">
-                                <label class="col-md-8 h6">
+                                <label class="col-md-8">
                                     {{ $solicitacao->solicitante->nome}}
                                 </label>
 
@@ -243,13 +244,13 @@
                                 <div class="card-footer col- coment-edit hide">
                                     <div class="form-group label-floating is-empty col-md-7 no-margin">
                                         <label class="control-label"></label>
-                                        <input type="text" class="form-control" value="{{ $mensagem->mensagem }}">
+                                        <input type="text" class="form-control has-roxo" value="{{ $mensagem->mensagem }}">
                                     </div>
                                     <div class="col-md-5 pull-right">
-                                        <button type="button" value="submit" class="btn btn-primary btn-sm btn-coment-alterar">
+                                        <button type="button" value="submit" class="btn btn-primary btn-sm btn-coment-alterar btn-roxo">
                                             Alterar
                                         </button>
-                                        <button type="button" class="btn btn-primary btn-sm coment-desfazer">
+                                        <button type="button" class="btn btn-primary btn-sm coment-desfazer btn-roxo">
                                             Desfazer
                                         </button>
                                     </div>
@@ -278,14 +279,14 @@
                     {{-- Escrever comentário --}}
                     @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
                     
-                    <div class="card col-md-10 margin10">
+                    <div class="card col-md-10 margin10 no-shadow">
                         <div class="input-group">
                             <span class="input-group-addon">
-                                <button type="button" class="btn btn-primary btn-sm" onclick="enviaMensagem({{ $solicitacao->id }})">
+                                <button type="button" class="btn btn-primary btn-sm btn-roxo" onclick="enviaMensagem({{ $solicitacao->id }})">
                                     Enviar
                                 </button>
                             </span>
-                            <input type="text" id="mensagem" name="mensagem" class="form-control comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
+                            <input type="text" id="mensagem" name="mensagem" class="form-control has-roxo comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
                         </div>
                     </div>
                     

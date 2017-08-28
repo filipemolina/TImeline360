@@ -67,6 +67,15 @@ z-index: -1;
   perspective-origin: 50% 50%;
 }
 
+a span.label.bottom {
+  border-radius: 0px 12px 12px 0px;
+  padding: 5px 12px;
+  text-transform: uppercase;
+  font-size: 10px;
+  position: absolute;
+  bottom: 0
+}
+
 .logo-dourado {
   background-size: 100% auto;
   background-image: url('../img/logo-360-dourado.png');
@@ -151,6 +160,12 @@ z-index: -1;
 .navbar .navbar-nav > li > a.btn.btn-dourado.active {
   box-shadow: none;
 }
+
+.dropdown-menu.has-roxo li a:hover, .dropdown-menu.has-roxo li a:focus, .dropdown-menu.has-roxo li a:active {
+    background-color: #3D276B;
+    color: #FFFFFF;
+}
+
 .btn.btn-dourado.btn-simple,
 .navbar .navbar-nav > li > a.btn.btn-dourado.btn-simple {
   background-color: transparent;
@@ -542,6 +557,16 @@ z-index: -1;
   border-color: #3D276B;
 }
 
+.form-control.has-dourado,
+.form-group .form-control.has-dourado {
+  background-image: linear-gradient(#BFA15F, #BFA15F), linear-gradient(#D2D2D2, #D2D2D2);
+}
+
+.form-control.has-roxo,
+.form-group .form-control.has-roxo {
+  background-image: linear-gradient(#3D276B, #3D276B), linear-gradient(#D2D2D2, #D2D2D2);
+}
+
 .card [data-background-color="dourado"] {
   background: linear-gradient(60deg, #BFA15F, #ad7909);
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(191, 161, 95, 0.4);
@@ -583,26 +608,31 @@ z-index: -1;
 }
 
 h4.card-title {
-    width: 80%;
+  width: 80%;
 }
 
 
 .card-esquerdo .input-group{
-    margin-top: 9px;
+  margin-top: 9px;
 }
 
 
-.card .card-header.card-header-icon.avatar-fixo {
+.card .card-header.card-header-icon.card-avatar-fixo {
   width: 100px;
   height: 100px;
-  line-height: 1.33;
-  border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   margin: -20px 15px 0 -50px;
   padding: 0;
   background-color: transparent;
   position: relative;
+  line-height: 1.33;
+  border-radius: 50%;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.card .card-header.card-header-icon.card-avatar-fixo img {
+
 }
 
 .card .card-header.card-header-icon.avatar-fixo.pull-right {
@@ -644,17 +674,21 @@ h4.card-title {
   position: relative;
 }
 
-.card .avatar-status {
+.card .card-avatar-status {
   width: 60px;
   height: 60px;
   line-height: 1.33;
-  border-radius: 3px;
+  border-radius: 3px;avata
   overflow: hidden;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   margin: -20px -30px 0 15px;
   padding: 10px 15px;
   background-color: transparent;
   position: relative;
+}
+
+.card .card-avatar-status span, .card .card-avatar-status i {
+  font-size: 30px;
 }
 
 .card .card-header.card-header-icon.avatar img {
@@ -719,6 +753,10 @@ h4.card-title {
   text-align: right;
 }
 
+
+.no-shadow {
+  box-shadow: none !important;
+}
 .no-margin {
   margin: 0 !important;
 }
@@ -750,4 +788,21 @@ h4.card-title {
 @keyframes apioar {
   0% { color:#999999; }
   100% { color:#3D276B; } 
+}
+
+span.card-avatar-label {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  margin-left: -8.5%;
+  margin-top: 70px;
+  text-align: center;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+span.card-avatar-label.has-roxo {
+  background-color: #3D276B;
+  color: #ffffff;
 }
