@@ -17,6 +17,8 @@ class Endereco extends Model
         'numero',
         'complemento',
         'cep',
+        'latitude',
+        'longitude'
  	];
 
 

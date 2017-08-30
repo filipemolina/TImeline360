@@ -35,8 +35,8 @@ class ComentarioController extends Controller
        // Validar
 
         $this->validate($request, [
-            'Comentario'       => 'required|min:2',
-            'solicitacao_id' => 'required'
+            'comentario'       => 'required|min:2',
+            'solicitacao_id'    => 'required'
         ]);
 
         $Comentario = new Comentario($request->all());
