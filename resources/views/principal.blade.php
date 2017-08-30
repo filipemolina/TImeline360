@@ -22,25 +22,25 @@
 
             {{-- Avatar do usuário --}}
             
-                  <div class="card-header card-header-icon card-avatar-fixo ">                
-                      <img src="{{ $solicitacao->solicitante->foto }}"/>
-                  </div>
-                  <span class="card-avatar-label has-roxo col-md-2">{{ $solicitacao->solicitante->nome}}</span>
-
-            <div class="card-avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
-
-                <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
-                
+            <div class="card-header card-header-icon card-avatar-fixo ">                
+               <img src="{{ $solicitacao->solicitante->foto }}"/>
             </div>
 
+            {{-- Nome do usuário --}}
+            <span class="card-avatar-label has-roxo col-md-2">{{ $solicitacao->solicitante->nome}}</span>
 
+            {{-- Avatar ícone --}}
+            <div class="card-avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
+               <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
+                
+            </div>
             
             {{-- Foto da publicação --}}
             <div class="card-image">
-                    <a href="#">
-                        <img class="img" src="{{ $solicitacao->foto }}" >
-                        <span class="label bottom" style="background-color: {{ $solicitacao->servico->setor->cor }};">Dados da publicação da foto</span>
-                    </a>
+               <a href="#">
+                  <img class="img" src="{{ $solicitacao->foto }}" >
+                  <span class="label bottom" style="background-color: {{ $solicitacao->servico->setor->cor }};">Dados da publicação da foto</span>
+               </a>
             </div>
 
             {{-- Título da solicitação --}}
@@ -62,249 +62,253 @@
 
             {{-- Botões de interação --}}
             <ul class="nav navbar-nav">
-                @if(Auth::check())
-
                 
-                    <li class="col-md-3">
-                        <button class="btn btn-simples btn-apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
-                            
-                            <span class="btn-label">
-                                <i class="material-icons">thumb_up</i>
-                                Apoiar
-                            </span>
-                        </button>
-                    </li>
-                @else
-                    <li class="col-md-4">
-                        <button class="btn btn-simple helper-apoio">
-                            <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
-                        </button>
-                    </li>
-                @endif
+               @if(Auth::check())
+ 
+               {{-- Usuário logado, pode apoiar --}}
+               <li class="col-md-3">
+                  <button class="btn btn-simples btn-apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
+                     <span class="btn-label">
+                        <i class="material-icons">thumb_up</i>
+                        Apoiar
+                     </span>
+                  </button>
+               </li>
 
-                <li class="col-md-5">
-                    <button class="btn btn-simple slide-coment">
-                        <span class="btn-label"> <i class="material-icons">chat</i> Comentários </span>
-                    </button>
-                </li>
-                <li class="col-md-3">
+               @else
 
-                    <button class="btn btn-simples">
+               {{-- Aviso que preciso logar para apoiar --}}
+               <li class="col-md-4">
+                  <button class="btn btn-simple helper-apoio">
+                     <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
+                  </button>
+               </li>
 
-                        @if($solicitacao->apoiadores_count > 1)
+               @endif
 
-                        <span class="btn-label">
-                            <i class="material-icons">favorite</i>
-                        </span>
+               {{-- Exibir comentários --}}
+               <li class="col-md-5">
+                  <button class="btn btn-simple slide-coment">
+                     <span class="btn-label"> <i class="material-icons">chat</i> Comentários </span>
+                  </button>
+               </li>
 
-                        <span class="numero_apoios_{{ $solicitacao->id }}">
-                            {{ $solicitacao->apoiadores_count }}
-                        </span> Apoios </span>
+               {{-- Contador de apoios --}}
+               <li class="col-md-3">
+                  <button class="btn btn-simples">
 
-                        @else
+                     @if($solicitacao->apoiadores_count > 1)
 
-                        <span class="btn-label">
-                            <i class="material-icons">favorite</i>
-                        </span>
+                     <span class="btn-label">
+                        <i class="material-icons">favorite</i>
+                     </span>
 
-                        <span class="numero_apoios_{{ $solicitacao->id }}">
-                            {{ $solicitacao->apoiadores_count }}
-                        </span> Apoio </span>
+                     <span class="numero_apoios_{{ $solicitacao->id }}">
+                        {{ $solicitacao->apoiadores_count }}
+                     </span> Apoios </span>
 
-                        @endif
+                     @else
 
-                    </button>
-                </li>
+                     <span class="btn-label">
+                        <i class="material-icons">favorite</i>
+                     </span>
+
+                     <span class="numero_apoios_{{ $solicitacao->id }}">
+                        {{ $solicitacao->apoiadores_count }}
+                     </span> Apoio </span>
+
+                     @endif
+
+                  </button>
+               </li>
             </ul>
 
             {{-- Comentários --}}
             <footer class="colapso col-md-12">
 
-                @foreach ($solicitacao->mensagens as $mensagem)
+               @foreach ($solicitacao->mensagens as $mensagem)
                 
-                {{-- card de comentarios --}}
-                <div class="panel-body no-padding">
+               {{-- card de comentarios --}}
+               <div class="panel-body no-padding">
 
-                    {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
+                  {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
 
-                    @if ($mensagem->funcionario)                    
+                  @if ($mensagem->funcionario)                    
 
-                    {{-- mensagem do funcionário --}}
-                    <div class="card margin10 no-shadow">
+                  {{-- mensagem do funcionário --}}
+                  <div class="card margin10 no-shadow">
 
-                        {{-- Avatar pequeno --}}
-                        <div class="card-header card-header-icon avatar-fixo-pn pull-right">
-                            <img class="img" src="{{ asset('img/brasao.png')}}"/>
-                        </div>
+                  {{-- Avatar pequeno --}}
+                  <div class="card-header card-header-icon avatar-fixo-pn pull-right">
+                     <img class="img" src="{{ asset('img/brasao.png')}}"/>
+                  </div>
 
-                        {{-- Comentário --}}
-                        <form class="form-horizontal">
+                  {{-- Comentário --}}
+                  <form class="form-horizontal">
 
-                            <div class="row">
+                     <div class="row">
                                 
-                                {{-- Nome da secretária --}}
-                                <label class="col-md-10 pull-right fc-rtl">
-                                    {{ $mensagem->funcionario->setor->secretaria->nome }} - 
-                                    {{ $mensagem->funcionario->setor->secretaria->sigla }}
-                                </label>
-
-                                {{-- Comentário --}}
-                                <div class="col- fc-rtl">
-                                    <div class="form-group col-md-7 pull-right no-margin">
-                                        <p class="form-control-static">
-                                            {{ $mensagem->mensagem }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </form> {{-- Fim Comentário --}}
-                    </div>
-                                    
-                    @else
-
-                    {{-- mensagem do solicitante --}}
-                    <div class="card margin10 no-shadow">
-
-                        {{-- Menu para editar comentário --}}
-                        
-                        @isset($usuario)
-
-                        @if ($usuario->solicitante->id == $solicitacao->solicitante->id )
-
-                        <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
-                            
-                            <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
-                                <i class="material-icons">settings</i>
-                            </a>
-                            
-                            <ul class="dropdown-menu has-roxo pull-right">
-                                <li>
-                                    <a href="#eugen" class="btn-coment-edit">
-                                        <i class="material-icons">create</i>
-                                        Editar
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#eugen" class="btn-coment-del">
-                                        <i class="material-icons">clear</i>
-                                        Excluir
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#eugen" class="hide btn-coment-des">
-                                        <i class="material-icons">undo</i>
-                                        Desfazer
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        @endif
-
-                        @endisset
-
-                        {{-- Avatar pequeno --}}
-                        <div class="card-header card-header-icon avatar-fixo-pn">
-                            <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
-                        </div>
+                        {{-- Nome da secretária --}}
+                        <label class="col-md-10 pull-right fc-rtl">
+                           {{ $mensagem->funcionario->setor->secretaria->nome }} - 
+                           {{ $mensagem->funcionario->setor->secretaria->sigla }}
+                        </label>
 
                         {{-- Comentário --}}
-                        <form class="form-horizontal">
-
-                            {{-- Nome do usuário --}}
-                            <div class="row">
-                                <label class="col-md-8">
-                                    {{ $solicitacao->solicitante->nome}}
-                                </label>
-
-                                {{-- Comentário Fixo --}}
-                                <div class="col- coment-fix">
-                                    <div class="form-group col-md-7 no-margin">
-                                    <span class="label nota hide">
-                                        {{ $solicitacao->solicitante->nome}} alterou a mensagem em {{-- variável --}} às {{-- variável --}}.
-                                    </span>
-                                        <p class="form-control-static">
-                                            {{ $mensagem->mensagem }}
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {{-- Comentário Removido --}}
-                                <div class="col- coment-fix-rem hide">
-                                    <div class="form-group col-md-7 no-margin">
-                                        <p class="form-control-static col- nota">
-                                            {{ $solicitacao->solicitante->nome}} removeu a mensagem em {{-- variável --}} às {{-- variável --}}.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {{-- Comentário Editável --}}
-                                <div class="card-footer col- coment-edit hide">
-                                    <div class="form-group label-floating is-empty col-md-7 no-margin">
-                                        <label class="control-label"></label>
-                                        <input type="text" class="form-control has-roxo" value="{{ $mensagem->mensagem }}">
-                                    </div>
-                                    <div class="col-md-5 pull-right">
-                                        <button type="button" value="submit" class="btn btn-primary btn-sm btn-coment-alterar btn-roxo">
-                                            Alterar
-                                        </button>
-                                        <button type="button" class="btn btn-primary btn-sm coment-desfazer btn-roxo">
-                                            Desfazer
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form> {{-- Fim Comentário --}}
-                    </div>
-
-                    @endif
-
-
-                    {{-- </div> fim card em panel-body --}}
-                </div> {{-- fim panel-body --}}
-
-                {{-- fim do card de comentarios --}}
-
-                @endforeach
-
-                {{-- Escrever comentário --}}
-                
-                <div class="">
-                    @isset($usuario)
-                    {{-- {{ dd($usuario) }} --}}
-                    {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
-                    
-                    {{-- Escrever comentário --}}
-                    @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
-                    
-                    <div class="card col-md-10 margin10 no-shadow">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <button type="button" class="btn btn-primary btn-sm btn-roxo" onclick="enviaMensagem({{ $solicitacao->id }})">
-                                    Enviar
-                                </button>
-                            </span>
-                            <input type="text" id="mensagem" name="mensagem" class="form-control has-roxo comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
+                        <div class="col- fc-rtl">
+                           <div class="form-group col-md-7 pull-right no-margin">
+                              <p class="form-control-static">
+                                 {{ $mensagem->mensagem }}
+                              </p>
+                           </div>
                         </div>
-                    </div>
+                     </div>
+                  </form> {{-- Fim Comentário --}}
+               </div>
+                                    
+               @else
+
+               {{-- mensagem do solicitante --}}
+               <div class="card margin10 no-shadow">
+
+                  {{-- Menu para editar comentário --}}
+                        
+                  @isset($usuario)
+
+                  @if ($usuario->solicitante->id == $solicitacao->solicitante->id )
+
+                  <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
+                            
+                     <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
+                        <i class="material-icons">settings</i>
+                     </a>
+                            
+                     <ul class="dropdown-menu has-roxo pull-right">
+                        <li>
+                           <a href="#eugen" class="btn-coment-edit">
+                              <i class="material-icons">create</i>
+                              Editar
+                           </a>
+                        </li>
+
+                        <li>
+                           <a href="#eugen" class="btn-coment-del">
+                              <i class="material-icons">clear</i>
+                              Excluir
+                           </a>
+                        </li>
+
+                        <li>
+                           <a href="#eugen" class="hide btn-coment-des">
+                              <i class="material-icons">undo</i>
+                              Desfazer
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+
+                  @endif
+
+                  @endisset
+
+                  {{-- Avatar pequeno --}}
+                  <div class="card-header card-header-icon avatar-fixo-pn">
+                     <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
+                  </div>
+
+                  {{-- Comentário --}}
+                  <form class="form-horizontal">
+
+                  {{-- Nome do usuário --}}
+                     <div class="row">
+                        <label class="col-md-8">
+                           {{ $solicitacao->solicitante->nome}}
+                     </label>
+
+                  {{-- Comentário Fixo --}}
+                     <div class="col- coment-fix">
+                        <div class="form-group col-md-7 no-margin">
+                           <span class="label nota hide">
+                              {{ $solicitacao->solicitante->nome}} alterou a mensagem em {{-- variável --}} às {{-- variável --}}.
+                           </span>
+                           <p class="form-control-static">
+                              {{ $mensagem->mensagem }}
+                           </p>
+                        </div>
+                     </div>
+
+                     {{-- Comentário Removido --}}
+                     <div class="col- coment-fix-rem hide">
+                        <div class="form-group col-md-7 no-margin">
+                           <p class="form-control-static col- nota">
+                              {{ $solicitacao->solicitante->nome}} removeu a mensagem em {{-- variável --}} às {{-- variável --}}.
+                           </p>
+                        </div>
+                     </div>
+
+                     {{-- Comentário Editável --}}
+                     <div class="card-footer col- coment-edit hide">
+                        
+                        <div class="form-group label-floating is-empty col-md-7 no-margin">
+                           <label class="control-label"></label>
+                           <input type="text" class="form-control has-roxo" value="{{ $mensagem->mensagem }}">
+                        </div>
+
+                        <div class="col-md-5 pull-right">
+                           <button type="button" value="submit" class="btn btn-primary btn-sm btn-coment-alterar btn-roxo">
+                              Alterar
+                           </button>
+                           <button type="button" class="btn btn-primary btn-sm coment-desfazer btn-roxo">
+                              Desfazer
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </form> {{-- Fim Comentário --}}
+            </div> {{-- Fim div mensagem solicitante --}}
+
+            @endif
+
+            {{-- </div> fim card em panel-body --}}
+            </div> {{-- fim panel-body --}}
+
+            {{-- fim do card de comentarios --}}
+
+            @endforeach
+
+            {{-- Escrever comentário --}}
+            <div class="">
+               @isset($usuario)
+               {{-- {{ dd($usuario) }} --}}
+               {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
                     
-                    @endif
+               {{-- Escrever comentário --}}
+               @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
+                    
+               <div class="card col-md-10 margin10 no-shadow">
+                  <div class="input-group">
+                     <span class="input-group-addon">
+                        <button type="button" class="btn btn-primary btn-sm btn-roxo" onclick="enviaMensagem({{ $solicitacao->id }})">
+                           Enviar
+                        </button>
+                     </span>
+                     <input type="text" id="mensagem" name="mensagem" class="form-control has-roxo comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
+                  </div>
+               </div>
+                    
+               @endif
 
-                    @endisset
+               @endisset
 
-                </div>
+            </div>{{-- Fim escrever comentário --}}
 
-                {{-- Fim escrever comentário --}}
+         </footer> {{-- Fim container comentários --}}
 
-            </footer>
-
-        </div> {{-- fim card em DIV publicação --}}
-    </div> {{-- Fim DIV PUBLICAÇÃO --}}
+      </div> {{-- fim card em DIV publicação --}}
+   </div> {{-- Fim DIV PUBLICAÇÃO --}}
     
-    @endforeach
-    {{-- Fim da Solicitação --}}
+   @endforeach
+   {{-- Fim da Solicitação --}}
 
 </div> {{-- Fim da ROW --}}
 
