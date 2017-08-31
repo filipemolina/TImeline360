@@ -110,6 +110,9 @@
 
 <script src="{{ asset('js/vanillaMasker.min.js') }}"></script>
 
+{{-- jscroll --}}
+<script src="{{ asset('js/jscroll/jquery.jscroll.js') }}"></script>
+
 @stack('scripts')
 
 <script src="{{ asset('js/scripts.js') }}"></script>

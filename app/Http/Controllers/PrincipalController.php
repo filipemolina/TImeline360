@@ -22,39 +22,43 @@ class PrincipalController extends Controller
     {
         $cabon = new Carbon();
 
-    	if (Auth::check()) {
-            //carrega as ultimas solicitações que JÁ ESTÃO moderadas e TODAS as do usuário logado
+        if( Solicitacao::count() > 0)
+        {
+        	if (Auth::check()) {
+                //carrega as ultimas solicitações que JÁ ESTÃO moderadas e TODAS as do usuário logado
 
-    		$usuario      =  User::find(Auth::user()->id);
+        		$usuario      =  User::find(Auth::user()->id);
 
-            $solicitacoes = Solicitacao::withCount('apoiadores')
-                                        ->with('endereco')
-                                        ->where('moderado', 1)
-                                        ->orWhere("solicitante_id", $usuario->solicitante->id)
-                                        ->orderBy('created_at', 'desc')
-                                        ->paginate(5);
-            
-            $meus_apoios        = $usuario->solicitante->apoios;
-            $meus_apoios_ids    = [];
-            
-            foreach ($meus_apoios as $apoio) 
-            {
-                $meus_apoios_ids[] = $apoio->id;
-            }
+                $solicitacoes = Solicitacao::withCount('apoiadores')
+                                            ->with('endereco')
+                                            ->where('moderado', 1)
+                                            ->orWhere("solicitante_id", $usuario->solicitante->id)
+                                            ->orderBy('created_at', 'desc')
+                                            ->paginate();
+                
+                $meus_apoios        = $usuario->solicitante->apoios;
+                $meus_apoios_ids    = [];
+                
+                foreach ($meus_apoios as $apoio) 
+                {
+                    $meus_apoios_ids[] = $apoio->id;
+                }
 
-            //dd($meus_apoios_ids);
-            return view('principal', compact('solicitacoes','usuario','meus_apoios_ids'));
+                //dd($meus_apoios_ids);
+                return view('principal', compact('solicitacoes','usuario','meus_apoios_ids'));
 
+            }else{
+                //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
+                $solicitacoes = Solicitacao::withCount('apoiadores')
+                                            ->where('moderado', 1)
+                                            ->orderBy('created_at', 'desc')
+                                            ->paginate(5);
+
+                return view('principal', compact('solicitacoes'));
+    		}
         }else{
-            //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
-            $solicitacoes = Solicitacao::withCount('apoiadores')
-                                        ->where('moderado', 1)
-                                        ->orderBy('created_at', 'desc')
-                                        ->paginate(5);
-
-            return view('principal', compact('solicitacoes'));
-		}
-
+            dd("Nenhuma solicitação cadastrada");
+        }
     }
     
 
