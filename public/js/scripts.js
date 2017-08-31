@@ -46,6 +46,11 @@ var helper = {
     
 $(function(){
     
+    $(".prevenir").click(function() {
+        event.preventDefault()
+    });
+
+
     // Mascarás
     VMasker ($("#cpf")).maskPattern("999.999.999-99");
     VMasker ($(".datepicker")).maskPattern("99/99/9999");

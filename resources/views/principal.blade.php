@@ -13,11 +13,13 @@
 
 <div class="row ">
 
+   <div class="infinite-scroll">
+
     {{-- Início da Solicitação --}}
 
    @foreach ($solicitacoes as $solicitacao)
                     
-   <div class="col-lg-8 col-lg-offset-2 animated fadeIn">
+   <div class="col-lg-8 col-lg-offset-2">
 
       {{-- Card mestre --}}
       <div class="card">
@@ -68,7 +70,7 @@
                <img class="img" src="{{ $solicitacao->foto }}" >
 
                {{-- Tempo de postagem --}}
-               <span class="label top" style="background-color: {{ $solicitacao->servico->setor->cor }};">
+               <span class="label top previnir" style="background-color: {{ $solicitacao->servico->setor->cor }};">
                   Adicionado {{ $solicitacao->created_at->diffForHumans()}}
                </span>
             </a>
@@ -114,18 +116,18 @@
 
                @endif
 
+               @else
+               
+               {{-- Aviso que preciso logar para apoiar (class=helper-apoio) --}}
+               <li class="col-md-3">
+                  <button class="btn btn-simple helper-apoio">
+                     <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
+                  </button>
+               </li>
+               
+               @endif
+
             </li>
-
-            @else {{-- @if(Auth::check()) --}}
-
-            {{-- Aviso que preciso logar para apoiar (class=helper-apoio) --}}
-            <li class="col-md-4">
-               <button class="btn btn-simple helper-apoio">
-                  <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
-               </button>
-            </li>
-
-            @endif {{-- Fim @if(Auth::check()) --}}
 
             {{-- Exibir comentários, se existir comentarios fica em roxo --}}
             <li class="col-md-5">
@@ -175,7 +177,7 @@
             </li>
          </ul>
 
-         {{-- Parte inferior do Card --}}
+         {{-- Comentários --}}
          <footer class="colapso col-md-12">
             
             <div class="comentarios">
@@ -196,7 +198,7 @@
                      </div>
 
                      {{-- Comentário --}}
-                     <form class="form-horizontal card-secretaria">
+                     <form class="form-horizontal">
 
                         <div class="row">
                                 
@@ -345,6 +347,10 @@
       
    @endforeach
 
+   {{ $solicitacoes->links() }}
+
+   </div> {{-- Fim div Infinte Scroll --}}
+
 </div> {{-- Fim 1º DIV ROW--}}
 
 @endsection
@@ -402,128 +408,140 @@
    {{-- Fim do Template do Handlebars --}}
 
 
-    <script type="text/javascript">
+   <script type="text/javascript">
 
-         function mostraMapa(latitude,longitude,solicitacao) {
-            //console.log(latitude, longitude);
-            event.preventDefault()
-            if ($("#LocalMapa_"+solicitacao).css('height') == "0px")
-            {
-               $("#LocalMapa_"+solicitacao).css('height', "300px"); 
+      @if(Auth::check())
+         var id_usuario = {{ Auth::user()->id }};
+      @endif
 
-               // Esperar 200ms para executar o mapa (o tempo que o mapa demora para abrir)
+      function mostraMapa(latitude,longitude,solicitacao) {
+         //console.log(latitude, longitude);
+         
+         event.preventDefault();
 
-               setTimeout(function(){
+         if ($("#LocalMapa_"+solicitacao).css('height') == "0px")
+         {
+            $("#LocalMapa_"+solicitacao).css('height', "300px"); 
 
-                  var mapProp = {center:new google.maps.LatLng(latitude, longitude),zoom:18};
-                  var map     = new google.maps.Map(document.getElementById('LocalMapa_'+solicitacao),mapProp);
-   
-                  let marker = new google.maps.Marker({
-                     map: map,
-                     animation: google.maps.Animation.DROP,
-                     position: map.getCenter()
-                  });
+            // Esperar 200ms para executar o mapa (o tempo que o mapa demora para abrir)
 
-               },200);
+            setTimeout(function(){
 
-            }else{
-               $("#LocalMapa_"+solicitacao).css('height',"0");
-            }
+               var mapProp = {center:new google.maps.LatLng(latitude, longitude),zoom:18};
+               var map     = new google.maps.Map(document.getElementById('LocalMapa_'+solicitacao),mapProp);
+
+               let marker = new google.maps.Marker({
+                  map: map,
+                  animation: google.maps.Animation.DROP,
+                  position: map.getCenter()
+               });
+
+            },200);
+
+         }else{
+            $("#LocalMapa_"+solicitacao).css('height',"0");
          }
+      }
+
+      function enviaComentario(solicitacao, solicitante, nome, foto){ 
+         console.log("enviou comentario: " +solicitacao +" - " +solicitante);
+
+         var comentario = $(".comentario_"+solicitacao).val().trim();
+
+         // Testar se a comentario está em branco
+         if( $(".comentario_"+solicitacao).val().trim() ) {
+               console.log("Texto do COmentário", comentario);
+             // Enviar a comentario para o banco
+             $.post(
+                 "{{ url('/comentario') }}",
+                 {
+                     comentario: comentario,
+                     solicitacao_id: solicitacao, 
+                     _token: "{{ csrf_token() }}",
+                 }, function(data){        
+                     console.log("Resposta");
+                     console.log(data);
+                 }       
+             );
+
+             // Apagar o campo de envio de comentario
+             $(".comentario_"+solicitacao).val("");
+
+             // Colocar o novo card de comentarios embaixo da solicitação
+             var source      = $("#comentario-template").html();
+             var template    = Handlebars.compile(source)
+
+             var context     = { nome:          nome,
+                                 comentario:    comentario, 
+                                 foto:          foto  
+                               };
+
+             var html        = template(context);
+
+             $("div.comentarios").append( $(html) );
+             //console.log(html);
+         }else{
+             console.log("vazio");
+         }
+      };
 
 
-        @if(Auth::check())
+      function enviaApoio(solicitacao, solicitante){ 
+         console.log("enviou " +solicitacao +" - " +solicitante);
 
-            var id_usuario = {{ Auth::user()->id }};
+         $.post(
+            "{{ url('/apoiar') }}",
+            {
+               solicitante_id: solicitante,
+               solicitacao_id: solicitacao, 
+               _token: "{{ csrf_token() }}",
+            }, function(data){        
+               $("span.numero_apoios_"+solicitacao).html(data);
 
-        @endif
+               if(data > 0)
+               {
+                  $(".btn_apoios_"+solicitacao).addClass('apoiar');
+               }
+               else
+               {  
+                  $(".btn_apoios_"+solicitacao).removeClass('apoiar');
+               }
+            }       
+         );
+      };
 
-        function enviaComentario(solicitacao, solicitante, nome, foto){ 
-            console.log("enviou comentario: " +solicitacao +" - " +solicitante);
+   </script>
 
-            var comentario = $(".comentario_"+solicitacao).val().trim();
+   <script type="text/javascript">
+      $(document).ready(function() {
 
-            // Testar se a comentario está em branco
-            if( $(".comentario_"+solicitacao).val().trim() ) {
-                  console.log("Texto do COmentário", comentario);
-                // Enviar a comentario para o banco
-                $.post(
-                    "{{ url('/comentario') }}",
-                    {
-                        comentario: comentario,
-                        solicitacao_id: solicitacao, 
-                        _token: "{{ csrf_token() }}",
-                    }, function(data){        
-                        console.log("Resposta");
-                        console.log(data);
-                    }       
-                );
+         $('ul.pagination').hide();
+         $(function() {
+            $('.infinite-scroll').jscroll({
+               autoTrigger: false,
+               loadingHtml: '<img class="center-block" src="/img/loading.gif" alt="Loading..." />',
+               padding: 0,
+               nextSelector: '.pagination li.active + li a',
+               contentSelector: 'div.infinite-scroll',
+               callback: function() {
+                  $('ul.pagination').remove();
+               }
+            });
+         });
 
-                // Apagar o campo de envio de comentario
-                $(".comentario_"+solicitacao).val("");
+         var tempo = 0;
+         var incremento = 500;
 
-                // Colocar o novo card de comentarios embaixo da solicitação
-                var source      = $("#comentario-template").html();
-                var template    = Handlebars.compile(source)
-
-                var context     = { nome:          nome,
-                                    comentario:    comentario, 
-                                    foto:          foto  
-                                  };
-
-                var html        = template(context);
-
-                $("div.comentarios").append( $(html) );
-                //console.log(html);
-            }else{
-                console.log("vazio");
-            }
-        };
-
-
-        function enviaApoio(solicitacao, solicitante){ 
-            console.log("enviou " +solicitacao +" - " +solicitante);
-
-            $.post(
-                "{{ url('/apoiar') }}",
-                {
-                    solicitante_id: solicitante,
-                    solicitacao_id: solicitacao, 
-                    _token: "{{ csrf_token() }}",
-                }, function(data){        
-                    
-                     $("span.numero_apoios_"+solicitacao).html(data);
-                     if(data > 0)
-                     {
-                        $(".btn_apoios_"+solicitacao).addClass('apoiar');
-                     }
-                     else
-                     {  
-                        $(".btn_apoios_"+solicitacao).removeClass('apoiar');
-                     }
-
-
-                }       
-            );
-        };
-
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var tempo = 0;
-            var incremento = 500;
-
-                // Testar se há algum erro, e mostrar a notificação
-            @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                    setTimeout(function(){demo.notificationRight("top", "right", "rose", "{{ $error }}"); }, tempo);
-                    tempo += incremento;
-                @endforeach
-            @endif
-            demo.initFormExtendedDatetimepickers();
-        });
-    </script>
+             // Testar se há algum erro, e mostrar a notificação
+         @if ($errors->any())
+             @foreach ($errors->all() as $error)
+                 setTimeout(function(){demo.notificationRight("top", "right", "rose", "{{ $error }}"); }, tempo);
+                 tempo += incremento;
+             @endforeach
+         @endif
+         demo.initFormExtendedDatetimepickers();
+      });
+   </script>
 
 @endpush
 
