@@ -76,6 +76,22 @@ a span.label.bottom {
   bottom: 0
 }
 
+a span.label.top {
+  border-radius: 12px 0px 0px 12px;
+  padding: 5px 12px;
+  text-transform: uppercase;
+  font-size: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+button.btn-just-icon.grande {
+padding: 0;
+font-size: 40px;
+
+}
+
 .logo-dourado {
   background-size: 100% auto;
   background-image: url('../img/logo-360-dourado.png');
@@ -649,8 +665,8 @@ h4.card-title {
 }
 
 .card .card-header.card-header-icon.avatar-fixo-pn {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   line-height: 1.33;
   border-radius: 50%;
   overflow: hidden;
@@ -662,8 +678,8 @@ h4.card-title {
 }
 
 .card .card-header.card-header-icon.avatar-fixo-pn.pull-right {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   line-height: 1.33;
   border-radius: 50%;
   overflow: hidden;
@@ -753,10 +769,6 @@ h4.card-title {
   text-align: right;
 }
 
-
-.no-shadow {
-  box-shadow: none !important;
-}
 .no-margin {
   margin: 0 !important;
 }
@@ -792,9 +804,12 @@ h4.card-title {
 
 span.card-avatar-label {
   position: absolute;
+  width: 100px;
+  line-height: 12px;
+  padding: 3px;
   z-index: 10;
   left: 0;
-  margin-left: -8.5%;
+  margin-left: -50px;
   margin-top: 70px;
   text-align: center;
   border-radius: 3px;
@@ -805,4 +820,75 @@ span.card-avatar-label {
 span.card-avatar-label.has-roxo {
   background-color: #3D276B;
   color: #ffffff;
+}
+
+span.label i.material-icons {
+  font-size: 15px;
+}
+
+/*div.nome-solicitante-card{ 
+  font-size:  14px; 
+  margin-right: 10px; 
+  font-weight: 500;
+  color: #3c4858;
+  margin-top: 10px;  
+  margin-bottom: 0px;  
+}*/
+
+div.data-inclusao-card{ 
+  font-size:  12px; 
+  margin-right: 10px;
+  color: #999999;
+  margin-top: 0px;  
+  margin-bottom: 0px;  
+}
+
+/*.card-secretaria {    
+  background-color: #4f537b;
+  color: #fffafa;
+  box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 1);
+  border-radius: 6px;
+}*/
+
+.card .card-image {
+    height: 60%;
+    position: relative;
+    overflow: hidden;
+    margin-left: 55px;
+    margin-right: 55px;
+    margin-top: 10px;
+    border-radius: 6px;
+    z-index: 3;
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+span.endereco{ 
+  font-size:  12px; 
+  margin-left: 65px; 
+  color: #999999;
+  cursor: pointer;
+  max-width: 310px;
+  width: 67%;
+
+}
+
+div.mapa{
+  margin-top: 10px;
+  width: 100%;
+  height: 0;
+  transition: height 0.2s ease-in;
+
+}
+
+post-address {
+    color: #485564;
+    font-family: 'latoregular';
+    font-size: 15px;
+    cursor: pointer;
+    max-width: 310px;
+    z-index: 1;
+    display: flex;
+    
+    
+>>>>>>> marcelo
 }

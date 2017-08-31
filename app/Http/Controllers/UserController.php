@@ -72,12 +72,14 @@ class UserController extends Controller
 
     public function edit($id)
     {
+
         $user = $this->user->find($id); 
         return $user;
     }
 
     public function update(Request $request, $id)
     {
+        
         // Validar
         $this->validate($request, [
             'nome'                  => 'required|max:255',
@@ -120,7 +122,7 @@ class UserController extends Controller
 
     public function Senha()
     {
-
+        //dd("aqui");
         $usuario = User::find(Auth::user()->id);
         $solicitante = $usuario->solicitante; 
         
@@ -156,9 +158,54 @@ class UserController extends Controller
         $ufs                = pegaValorEnum('enderecos',    'uf'); 
         
         
-        return view('auth.senha',compact('solicitante','escolaridades','estados_civil','sexos','ufs','fixo','celular'));
+        return view('auth.senha',compact('solicitante','usuario','escolaridades','estados_civil','sexos','ufs','fixo','celular'));
         
     }
+
+
+    public function AlteraSenha()
+    {
+        //dd("aqui");
+        $usuario = User::find(Auth::user()->id);
+        return view('auth.senha',compact('usuario'));
+    }
+
+    public function SalvarSenha(Request $request)
+    {
+        
+        // Validar
+/*        $this->validate($request, [
+            'password_atual'        => 'required',
+            'password'              => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6'
+        ]);*/
+
+        // Obter o usuário
+        $usuario = User::find($request->id);
+
+        $senha_velha = bcrypt($request->password_atual);
+
+
+    
+
+        if($senha_velha == $usuario->password)
+        {
+            // Atualizar as informações
+            $status = $usuario->update($request->all());
+        }else{
+            return redirect(url("/senha"))->with(['erros' => 'Senha atual não confere']);
+        }
+
+
+        if ($status) {
+            return redirect("/user/$usuario->id/edit")->with('sucesso', 'Senha alterada com sucesso.');
+        } else {
+            //return redirect(back); 
+
+            return redirect("/user/$usuario->id/edit")->with(['erros' => 'Falha ao editar']);
+        }
+    }
+
 
 
 }

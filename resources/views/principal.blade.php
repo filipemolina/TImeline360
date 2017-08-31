@@ -15,10 +15,12 @@
 
     {{-- Início da Solicitação --}}
 
-    @foreach ($solicitacoes as $solicitacao)
+   @foreach ($solicitacoes as $solicitacao)
                     
-    <div class="col-lg-6 col-lg-offset-3">
-        <div class="card">
+      <div class="col-lg-8 col-lg-offset-2 animated fadeIn">
+        
+         {{-- Parte superior do card --}}
+         <div class="card">
 
             {{-- Avatar do usuário --}}
             
@@ -27,7 +29,8 @@
             </div>
 
             {{-- Nome do usuário --}}
-            <span class="card-avatar-label has-roxo col-md-2">{{ $solicitacao->solicitante->nome}}</span>
+            <span class="card-avatar-label has-roxo">{{ $solicitacao->solicitante->nome}}</span>
+            {{-- <div class="nome-solicitante-card ">{{ $solicitacao->solicitante->nome}}</div> --}}
 
             {{-- Avatar ícone --}}
             <div class="card-avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
@@ -36,248 +39,285 @@
             </div>
             
             {{-- Foto da publicação --}}
+            
+            @if($solicitacao->endereco)
+
             <div class="card-image">
                <a href="#">
-                  <img class="img" src="{{ $solicitacao->foto }}" >
-                  <span class="label bottom" style="background-color: {{ $solicitacao->servico->setor->cor }};">Dados da publicação da foto</span>
+                  <img src="{{ $solicitacao->foto }}" >
+
+                  {{-- Tempo de postagem --}}
+                  <span class="label top" style="background-color: {{ $solicitacao->servico->setor->cor }};">
+                     Adicionado {{ $solicitacao->created_at->diffForHumans()}}
+                  </span>
+
+                  {{-- Endereço --}}
+                  <span class="label bottom" style="background-color: {{ $solicitacao->servico->setor->cor }};" onclick="mostraMapa({{ $solicitacao->endereco->latitude }},{{ $solicitacao->endereco->longitude }},{{ $solicitacao->id }});">
+                     <i class="material-icons">place</i>  
+                     {{ $solicitacao->endereco->logradouro }} 
+                     {{ $solicitacao->endereco->numero }} -
+                     {{ $solicitacao->endereco->bairro }} -
+                     {{ $solicitacao->endereco->cep }} 
+                  </span>
                </a>
             </div>
 
+            <div id="LocalMapa_{{ $solicitacao->id }}" class="mapa"></div>
+
+            @else
+
+            <div class="card-image">
+               <a href="#">
+                  <img class="img" src="{{ $solicitacao->foto }}" >
+
+                  {{-- Tempo de postagem --}}
+                  <span class="label top" style="background-color: {{ $solicitacao->servico->setor->cor }};">
+                     Adicionado {{ $solicitacao->created_at->diffForHumans()}}
+                  </span>
+               </a>
+            </div>
+
+            @endif
+
             {{-- Título da solicitação --}}
             <div class="card-content">
-                <div class="card-title">
-                    <p class="col-md-12">
-                        <button class="btn btn-just-icon btn-simple btn-xs btn-primary">
-                            <i class="material-icons">label_outline</i>
-                        </button>
-                        {{ $solicitacao->servico->nome }} - {{ $solicitacao->id }} 
-                    </p>
-                </div>
-                <div class="timeline-body col-md-12">
-
-                    {{ $solicitacao->conteudo }}
-
-                </div>
+               <div class="card-title">
+                  <p class="col-md-12">
+                     <button class="btn btn-just-icon grande btn-simples btn-xs btn-primary" style="color: {{ $solicitacao->servico->setor->cor }};">
+                        {{-- <i class="material-icons">label_outline</i> --}}
+                        <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
+                     </button>
+                     <b> {{ $solicitacao->servico->nome }} </b>
+                  </p>
+               </div>
+               <div class="timeline-body col-md-12">
+                  {{ $solicitacao->conteudo }}
+               </div>
             </div>
 
             {{-- Botões de interação --}}
             <ul class="nav navbar-nav">
                 
                @if(Auth::check())
- 
-               {{-- Usuário logado, pode apoiar --}}
+
                <li class="col-md-3">
-                  <button class="btn btn-simples btn-apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
-                     <span class="btn-label">
-                        <i class="material-icons">thumb_up</i>
-                        Apoiar
-                     </span>
+                     
+                  {{-- se tiver apoio do usuario logado fica em roxo (class=apoiar) --}}
+                  @if(in_array($solicitacao->id, $meus_apoios_ids))
+                  
+                  <button class="btn btn-simples btn-apoiar apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})">
+                     <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
                   </button>
+
+                  @else
+                  
+                  <button class="btn btn-simples btn-apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
+                     <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
+                  </button>
+
+                  @endif
+
                </li>
 
-               @else
+               @else {{-- @if(Auth::check()) --}}
 
-               {{-- Aviso que preciso logar para apoiar --}}
+               {{-- Aviso que preciso logar para apoiar (class=helper-apoio) --}}
                <li class="col-md-4">
                   <button class="btn btn-simple helper-apoio">
                      <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
                   </button>
                </li>
 
-               @endif
+               @endif {{-- Fim @if(Auth::check()) --}}
 
-               {{-- Exibir comentários --}}
+               {{-- Exibir comentários, se existir comentarios fica em roxo --}}
                <li class="col-md-5">
-                  <button class="btn btn-simple slide-coment">
-                     <span class="btn-label"> <i class="material-icons">chat</i> Comentários </span>
+                  
+                  @if($solicitacao->solicitacoes_count >= 1)
+
+                  <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
+                     <span class="btn-label apoiar"> <i class="material-icons">chat</i> Comentários </span>
                   </button>
+
+                  @else
+
+                  <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
+                     <span class="btn-label "> <i class="material-icons">chat</i> Comentários </span>
+                  </button>
+
+                  @endif
+
                </li>
 
                {{-- Contador de apoios --}}
                <li class="col-md-3">
-                  <button class="btn btn-simples">
 
+                  <button class="btn btn-simples btn_apoios_{{ $solicitacao->id }}">
+                     
                      @if($solicitacao->apoiadores_count > 1)
 
-                     <span class="btn-label">
-                        <i class="material-icons">favorite</i>
-                     </span>
+                     <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
+                     <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span>
+                     <span> Apoios </span>
 
-                     <span class="numero_apoios_{{ $solicitacao->id }}">
-                        {{ $solicitacao->apoiadores_count }}
-                     </span> Apoios </span>
+                     @elseif($solicitacao->apoiadores_count == 1)
+
+                     <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
+                     <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span>
+                     <span> Apoio </span>
 
                      @else
 
-                     <span class="btn-label">
-                        <i class="material-icons">favorite</i>
-                     </span>
-
-                     <span class="numero_apoios_{{ $solicitacao->id }}">
-                        {{ $solicitacao->apoiadores_count }}
-                     </span> Apoio </span>
+                     <span class="btn-label"> <i class="material-icons">favorite</i> </span>
+                     <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span>
+                     <span> Apoio </span>
 
                      @endif
-
+                  
                   </button>
                </li>
             </ul>
+         </div> {{-- Fim parte superior do card --}}
 
-            {{-- Comentários --}}
-            <footer class="colapso col-md-12">
+         {{-- Parte inferior do Card --}}
+         <footer class="colapso col-md-12">
+            
+            <div class="comentarios">
 
-               @foreach ($solicitacao->mensagens as $mensagem)
+               @foreach ($solicitacao->comentarios as $comentario)
                 
                {{-- card de comentarios --}}
                <div class="panel-body no-padding">
 
-                  {{-- Caso a mensagem seja do próprio solicitante, mostrar a foto à esquerda --}}
+                  @if ($comentario->funcionario)
 
-                  @if ($mensagem->funcionario)                    
+                  {{-- Comentário do funcionário --}}
+                  <div class="card margin10">
 
-                  {{-- mensagem do funcionário --}}
-                  <div class="card margin10 no-shadow">
+                     {{-- Avatar pequeno a direita para indicar que é a prefeitura--}}
+                     <div class="card-header card-header-icon avatar-fixo-pn pull-right">
+                        <img class="img" src="{{ asset('img/brasao.png')}}"/>
+                     </div>
 
-                  {{-- Avatar pequeno --}}
-                  <div class="card-header card-header-icon avatar-fixo-pn pull-right">
-                     <img class="img" src="{{ asset('img/brasao.png')}}"/>
-                  </div>
+                     {{-- Comentário --}}
+                     <form class="form-horizontal card-secretaria">
 
-                  {{-- Comentário --}}
-                  <form class="form-horizontal">
-
-                     <div class="row">
+                        <div class="row">
                                 
-                        {{-- Nome da secretária --}}
-                        <label class="col-md-10 pull-right fc-rtl">
-                           {{ $mensagem->funcionario->setor->secretaria->nome }} - 
-                           {{ $mensagem->funcionario->setor->secretaria->sigla }}
-                        </label>
+                           {{-- Nome da secretária --}}
+                           <label class="col-md-10 pull-right fc-rtl">
+                              {{ $comentario->funcionario->setor->secretaria->nome }} - 
+                              {{ $comentario->funcionario->setor->secretaria->sigla }}
+                           </label>
 
-                        {{-- Comentário --}}
-                        <div class="col- fc-rtl">
-                           <div class="form-group col-md-7 pull-right no-margin">
-                              <p class="form-control-static">
-                                 {{ $mensagem->mensagem }}
-                              </p>
+                           {{-- Comentário --}}
+                           <div class="col- fc-rtl">
+                              <div class="form-group col-md-7 pull-right no-margin">
+                                 <p class="form-control-static">
+                                    {{ $comentario->comentario }}
+                                 </p>
+                              </div>
                            </div>
                         </div>
-                     </div>
-                  </form> {{-- Fim Comentário --}}
-               </div>
-                                    
-               @else
-
-               {{-- mensagem do solicitante --}}
-               <div class="card margin10 no-shadow">
-
-                  {{-- Menu para editar comentário --}}
-                        
-                  @isset($usuario)
-
-                  @if ($usuario->solicitante->id == $solicitacao->solicitante->id )
-
-                  <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
-                            
-                     <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
-                        <i class="material-icons">settings</i>
-                     </a>
-                            
-                     <ul class="dropdown-menu has-roxo pull-right">
-                        <li>
-                           <a href="#eugen" class="btn-coment-edit">
-                              <i class="material-icons">create</i>
-                              Editar
-                           </a>
-                        </li>
-
-                        <li>
-                           <a href="#eugen" class="btn-coment-del">
-                              <i class="material-icons">clear</i>
-                              Excluir
-                           </a>
-                        </li>
-
-                        <li>
-                           <a href="#eugen" class="hide btn-coment-des">
-                              <i class="material-icons">undo</i>
-                              Desfazer
-                           </a>
-                        </li>
-                     </ul>
+                     </form> {{-- Fim Comentário --}}
                   </div>
+                                    
+                  @else
+
+                  {{-- Comentário do solicitante --}}
+                  <div class="card margin10">
+
+                     {{-- Menu para editar comentário --}}
+                        
+                     @isset($usuario)
+
+                     @if ($usuario->solicitante->id == $solicitacao->solicitante->id )
+
+                     <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
+                            
+                        <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
+                           <i class="material-icons">settings</i>
+                        </a>
+                            
+                        <ul class="dropdown-menu has-roxo pull-right">
+                           <li>
+                              <a href="#eugen" class="btn-coment-del">
+                                 <i class="material-icons">clear</i>
+                                 Excluir
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+
+                     @endif
+
+                     @endisset
+
+                     {{-- Avatar pequeno --}}
+                     <div class="card-header card-header-icon avatar-fixo-pn">
+                        <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
+                     </div>
+
+                     {{-- Comentário --}}
+                     <form class="form-horizontal">
+
+                        <div class="row">
+
+                           {{-- Nome do usuário --}}
+                           <label class="col-md-8">
+                              {{ $solicitacao->solicitante->nome}}
+                           </label>
+
+                           {{-- Comentário Fixo --}}
+                           <div class="col- coment-fix">
+                              <div class="form-group col-md-7 no-margin">
+                                 <span class="label nota hide">
+                                    {{ $solicitacao->solicitante->nome}} alterou a comentário em VARIÁVEL às VARIÁVEL.
+                                 </span>
+                                 <p class="form-control-static"> {{ $comentario->comentario }} </p>
+                              </div>
+                           </div>
+
+                           {{-- Comentário Removido --}}
+                           {{-- <div class="col- coment-fix-rem hide">
+                              <div class="form-group col-md-7 no-margin">
+                                 <p class="form-control-static col- nota">
+                                    {{ $solicitacao->solicitante->nome}} removeu a comentário em VARIÁVEL às VARIÁVEL.
+                                 </p>
+                              </div>
+                           </div> --}}
+
+                           {{-- Comentário Editável --}}
+                           {{-- <div class="card-footer col- coment-edit hide">
+                           
+                              <div class="form-group label-floating is-empty col-md-7 no-margin">
+                                 <label class="control-label"></label>
+                                 <input type="text" class="form-control has-roxo" value="{{ $comentario->comentario }}">
+                              </div>
+
+                              <div class="col-md-5 pull-right">
+                                 <button type="button" value="submit" class="btn btn-primary btn-sm btn-coment-alterar btn-roxo">
+                                    Alterar
+                                 </button>
+                                 <button type="button" class="btn btn-primary btn-sm coment-desfazer btn-roxo">
+                                    Desfazer
+                                 </button>
+                              </div>
+                           </div> --}}
+                        </div> {{-- Fim Row Comentário --}}
+                     </form> {{-- Fim Form Comentário --}}
+                  </div> {{-- Fim div comentário solicitante --}}
 
                   @endif
 
-                  @endisset
+               </div> {{-- Fim DIV panel-body --}}
 
-                  {{-- Avatar pequeno --}}
-                  <div class="card-header card-header-icon avatar-fixo-pn">
-                     <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
-                  </div>
+               @endforeach
 
-                  {{-- Comentário --}}
-                  <form class="form-horizontal">
-
-                  {{-- Nome do usuário --}}
-                     <div class="row">
-                        <label class="col-md-8">
-                           {{ $solicitacao->solicitante->nome}}
-                     </label>
-
-                  {{-- Comentário Fixo --}}
-                     <div class="col- coment-fix">
-                        <div class="form-group col-md-7 no-margin">
-                           <span class="label nota hide">
-                              {{ $solicitacao->solicitante->nome}} alterou a mensagem em {{-- variável --}} às {{-- variável --}}.
-                           </span>
-                           <p class="form-control-static">
-                              {{ $mensagem->mensagem }}
-                           </p>
-                        </div>
-                     </div>
-
-                     {{-- Comentário Removido --}}
-                     <div class="col- coment-fix-rem hide">
-                        <div class="form-group col-md-7 no-margin">
-                           <p class="form-control-static col- nota">
-                              {{ $solicitacao->solicitante->nome}} removeu a mensagem em {{-- variável --}} às {{-- variável --}}.
-                           </p>
-                        </div>
-                     </div>
-
-                     {{-- Comentário Editável --}}
-                     <div class="card-footer col- coment-edit hide">
-                        
-                        <div class="form-group label-floating is-empty col-md-7 no-margin">
-                           <label class="control-label"></label>
-                           <input type="text" class="form-control has-roxo" value="{{ $mensagem->mensagem }}">
-                        </div>
-
-                        <div class="col-md-5 pull-right">
-                           <button type="button" value="submit" class="btn btn-primary btn-sm btn-coment-alterar btn-roxo">
-                              Alterar
-                           </button>
-                           <button type="button" class="btn btn-primary btn-sm coment-desfazer btn-roxo">
-                              Desfazer
-                           </button>
-                        </div>
-                     </div>
-                  </div>
-               </form> {{-- Fim Comentário --}}
-            </div> {{-- Fim div mensagem solicitante --}}
-
-            @endif
-
-            {{-- </div> fim card em panel-body --}}
-            </div> {{-- fim panel-body --}}
-
-            {{-- fim do card de comentarios --}}
-
-            @endforeach
+            </div> {{-- Fim DIV comentários --}}
 
             {{-- Escrever comentário --}}
-            <div class="">
+            <div>
                @isset($usuario)
                {{-- {{ dd($usuario) }} --}}
                {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
@@ -285,14 +325,16 @@
                {{-- Escrever comentário --}}
                @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
                     
-               <div class="card col-md-10 margin10 no-shadow">
+               <div class="card col-md-10 margin10">
                   <div class="input-group">
+                     
+                     <input type="text" id="comentario" name="comentario" class="form-control has-roxo comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
+                     
                      <span class="input-group-addon">
-                        <button type="button" class="btn btn-primary btn-sm btn-roxo" onclick="enviaMensagem({{ $solicitacao->id }})">
+                        <button type="button" class="btn btn-primary btn-sm btn-roxo" onclick="enviaMensagem({{$solicitacao->id }},{{$usuario->solicitante->id }},'{{$usuario->solicitante->nome}}','{{$usuario->solicitante->foto}}')">
                            Enviar
                         </button>
                      </span>
-                     <input type="text" id="mensagem" name="mensagem" class="form-control has-roxo comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
                   </div>
                </div>
                     
@@ -301,75 +343,97 @@
                @endisset
 
             </div>{{-- Fim escrever comentário --}}
-
-         </footer> {{-- Fim container comentários --}}
-
-      </div> {{-- fim card em DIV publicação --}}
-   </div> {{-- Fim DIV PUBLICAÇÃO --}}
-    
+         </footer> {{-- Fim parte inferior do Card --}}
+      </div> {{-- fim Div col-lg-6 col-lg-offset-3 --}}
+      
    @endforeach
-   {{-- Fim da Solicitação --}}
 
-</div> {{-- Fim da ROW --}}
+</div> {{-- Fim 1º DIV ROW--}}
 
 @endsection
 
 
 @push('scripts')
 
-    <script src="{{ asset("js/handlebars.js") }}" type="text/javascript" charset="utf-8" async defer></script>
+   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDcdW2PsrS1fbsXKmZ6P9Ii8zub5FDu3WQ"></script>
 
-    {{-- Template do Handlebars --}}
+   <script src="{{ asset("js/handlebars.js") }}" type="text/javascript" charset="utf-8" async defer></script>
 
-    <script id="template-mensagem" type="text/x-handlebars-template">
-        @verbatim
-            <div class="panel-body">
-                <div class="card">
+   
+   <script id="comentario-template" type="text/x-handlebars-template">
+      @verbatim
+         <div class="panel-body no-padding">
+            <div class="card margin10">
+               <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
+                  <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
+                     <i class="material-icons">settings</i>
+                  </a>
+                  <ul class="dropdown-menu pull-right">
+                     <li>
+                        <a href="#eugen" class="btn-coment-del">
+                           <i class="material-icons">clear</i> Excluir
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+         
 
-                    <!-- Menu para editar comentário -->
-                    <nav class="navbar navbar-default navbar-absolute navbar-transparent" role="navigation">
-                        <div class="container-fluid">
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav pull-right">
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle rodar-icone" data-toggle="dropdown"><i class="material-icons">settings</i> <b class="caret"></b></a>
-                                            <ul class="dropdown-menu">
-                                                <li class="divider"></li>
-                                                <li><a href="#"><i class="material-icons">create</i> Editar</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><i class="material-icons">clear</i>Excluir</a></li>
-                                            </ul>
-                                    </li>
-                                </ul>
-                            </div>
+               <div class="card-header card-header-icon avatar-fixo-pn">
+                   <img class="img" src="{{ foto }}"/>
+               </div>
+
+               <form class="form-horizontal">
+
+                  <div class="row">
+                     <label class="col-md-8 h6">
+                        {{ nome }}
+                     </label>
+
+                     <div class="col- coment-fix">
+                        <div class="form-group col-md-7 no-margin">
+                           <p class="form-control-static">{{ comentario }}</p>
                         </div>
-                    </nav>
-
-                    <div class="card-header card-header-icon avatar-fixo">
-                        <img class="img" src="{{ foto }}"/>
-                    </div>
-                    
-                    <div class="card-content">
-                        <h5 class="card-title">
-                            {{ nome}}
-                        </h5>
-                        
-                        <p class="card-title">
-                            {{ mensagem }}
-                        </p>
-
-                    </div>
-                </div>
-
+                     </div>
+                     
+                  </div>
+               </form>
             </div>
+      </div>
 
-        @endverbatim
+      @endverbatim
+   </script>
+   {{-- Fim do Template do Handlebars --}}
 
-    </script>
-
-    {{-- Fim do Template do Handlebars --}}
 
     <script type="text/javascript">
+
+         function mostraMapa(latitude,longitude,solicitacao) {
+            //console.log(latitude, longitude);
+            event.preventDefault()
+            if ($("#LocalMapa_"+solicitacao).css('height') == "0px")
+            {
+               $("#LocalMapa_"+solicitacao).css('height', "300px"); 
+
+               // Esperar 200ms para executar o mapa (o tempo que o mapa demora para abrir)
+
+               setTimeout(function(){
+
+                  var mapProp = {center:new google.maps.LatLng(latitude, longitude),zoom:18};
+                  var map     = new google.maps.Map(document.getElementById('LocalMapa_'+solicitacao),mapProp);
+   
+                  let marker = new google.maps.Marker({
+                     map: map,
+                     animation: google.maps.Animation.DROP,
+                     position: map.getCenter()
+                  });
+
+               },200);
+
+            }else{
+               $("#LocalMapa_"+solicitacao).css('height',"0");
+            }
+         }
+
 
         @if(Auth::check())
 
@@ -377,14 +441,19 @@
 
         @endif
 
-        function enviaMensagem(solicitacao){ 
-            // Testar se a mensagem está em branco
+        function enviaComentario(solicitacao, solicitante, nome, foto){ 
+            console.log("enviou comentario: " +solicitacao +" - " +solicitante);
+
+            var comentario = $(".comentario_"+solicitacao).val().trim();
+
+            // Testar se a comentario está em branco
             if( $(".comentario_"+solicitacao).val().trim() ) {
-                // Enviar a mensagem para o banco
+                  console.log("Texto do COmentário", comentario);
+                // Enviar a comentario para o banco
                 $.post(
-                    "{{ url('/mensagem') }}",
+                    "{{ url('/comentario') }}",
                     {
-                        mensagem: $(".comentario_"+solicitacao).val(),
+                        comentario: comentario,
                         solicitacao_id: solicitacao, 
                         _token: "{{ csrf_token() }}",
                     }, function(data){        
@@ -393,10 +462,22 @@
                     }       
                 );
 
-                // Apagar o campo de envio de mensagem
+                // Apagar o campo de envio de comentario
                 $(".comentario_"+solicitacao).val("");
 
-                // Colocar o novo card de mensagens embaixo da solicitação
+                // Colocar o novo card de comentarios embaixo da solicitação
+                var source      = $("#comentario-template").html();
+                var template    = Handlebars.compile(source)
+
+                var context     = { nome:          nome,
+                                    comentario:    comentario, 
+                                    foto:          foto  
+                                  };
+
+                var html        = template(context);
+
+                $("div.comentarios").append( $(html) );
+                //console.log(html);
             }else{
                 console.log("vazio");
             }
@@ -414,7 +495,16 @@
                     _token: "{{ csrf_token() }}",
                 }, function(data){        
                     
-                    $("span.numero_apoios_"+solicitacao).html(data);
+                     $("span.numero_apoios_"+solicitacao).html(data);
+                     if(data > 0)
+                     {
+                        $(".btn_apoios_"+solicitacao).addClass('apoiar');
+                     }
+                     else
+                     {  
+                        $(".btn_apoios_"+solicitacao).removeClass('apoiar');
+                     }
+
 
                 }       
             );

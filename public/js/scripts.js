@@ -77,7 +77,7 @@ $(function(){
         })
     })
     
-    // Botão Excluir, ocultar coment-fix, exibir mensagem com horário da "exclusão", demonstrar botão desfazer e oculstar botões editar e excluir
+    // Botão Excluir, ocultar coment-fix, exibir comentario com horário da "exclusão", demonstrar botão desfazer e oculstar botões editar e excluir
     $('.btn-coment-del').click(function () {
 
         var isto = this;
@@ -157,7 +157,7 @@ $(function(){
     // Deslizar comentários
     $('.slide-coment').click(function(){
         event.preventDefault();
-        $(this).parent().parent().parent().find('.colapso').slideToggle();
+        $(this).parent().parent().parent().parent().find('.colapso').slideToggle();
     });
 
     

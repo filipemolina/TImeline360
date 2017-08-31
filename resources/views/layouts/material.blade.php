@@ -28,6 +28,7 @@
     <!-- meterial fonts     -->
     <link href="{{ asset('css/materialdesignicons.min.css') }}" rel="stylesheet" />
 
+  
 
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
