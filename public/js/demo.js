@@ -964,12 +964,12 @@ demo = {
         });
 	},
 
-    notificationRight: function(from, align, cor, mensagem){
+    notificationRight: function(from, align, cor, comentario){
         // type = ['','info','success','warning','danger','rose','primary'];
 
         $.notify({
             icon: "notifications",
-            message: mensagem,
+            message: comentario,
 
         },{
             type: cor,
