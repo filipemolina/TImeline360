@@ -88,7 +88,7 @@ a span.label.top {
 
 button.btn-just-icon.grande {
 padding: 0;
-font-size: 40px;
+font-size: 35px;
 
 }
 
@@ -817,7 +817,7 @@ span.card-avatar-label {
   font-size: 10px;
 }
 
-span.card-avatar-label.has-roxo {
+span.has-roxo {
   background-color: #3D276B;
   color: #ffffff;
 }
@@ -888,7 +888,27 @@ post-address {
     max-width: 310px;
     z-index: 1;
     display: flex;
-    
-    
->>>>>>> marcelo
+}
+
+.card.teste {
+  background-image: linear-gradient(to right, rgba(61,39,107,0.9) 0%, rgba(61,39,107,0.9) 100%), linear-gradient(to right, rgba(210,210,210,0.9) 0%, rgba(210,210,210,0.9) 100%);
+  box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card.teste2 {
+  background-image: linear-gradient(to right, rgba(191, 161, 95,0.9) 0%, rgba(191, 161, 95,0.9) 100%), linear-gradient(to right, rgba(210,210,210,0.9) 0%, rgba(210,210,210,0.9) 100%);
+  box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.5);
+}
+.card.teste2 label, .card.teste2 p {
+  color: black;
+}
+
+.card.teste label, .card.teste2 label {
+  color: white;
+  padding-top: 5px;
+  text-transform: uppercase;
+}
+
+.card.teste p, .card.teste2 p {
+  color: white;
 }
