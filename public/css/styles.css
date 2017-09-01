@@ -178,8 +178,14 @@ font-size: 35px;
 }
 
 .dropdown-menu.has-roxo li a:hover, .dropdown-menu.has-roxo li a:focus, .dropdown-menu.has-roxo li a:active {
-    background-color: #3D276B;
-    color: #FFFFFF;
+  background-color: #3D276B;
+  color: #FFFFFF;
+}
+
+.navbar .dropdown-menu.has-roxo li a:hover, .navbar .dropdown-menu.has-roxo li a:focus, .navbar .dropdown-menu.has-roxo li a:active {
+  background-color: #3D276B;
+  color: #FFFFFF;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14);
 }
 
 .btn.btn-dourado.btn-simple,
@@ -637,7 +643,7 @@ h4.card-title {
   width: 100px;
   height: 100px;
   overflow: hidden;
-  margin: -20px 15px 0 -50px;
+  margin: -30px 15px 0 -50px;
   padding: 0;
   background-color: transparent;
   position: relative;
@@ -645,23 +651,10 @@ h4.card-title {
   border-radius: 50%;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-}
-
-.card .card-header.card-header-icon.card-avatar-fixo img {
-
 }
 
 .card .card-header.card-header-icon.avatar-fixo.pull-right {
-  width: 100px;
-  height: 100px;
-  line-height: 1.33;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-  margin: -20px -50px 0 15px;
-  padding: 0;
-  background-color: transparent;
-  position: relative;
+  margin: -30px -50px 0 15px;
 }
 
 .card .card-header.card-header-icon.avatar-fixo-pn {
@@ -678,16 +671,7 @@ h4.card-title {
 }
 
 .card .card-header.card-header-icon.avatar-fixo-pn.pull-right {
-  width: 50px;
-  height: 50px;
-  line-height: 1.33;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   margin: -20px -10px 0 -5px;
-  padding: 0;
-  background-color: transparent;
-  position: relative;
 }
 
 .card .card-avatar-status {
@@ -697,7 +681,7 @@ h4.card-title {
   border-radius: 3px;avata
   overflow: hidden;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-  margin: -20px -30px 0 15px;
+  margin: -30px -30px 0 15px;
   padding: 10px 15px;
   background-color: transparent;
   position: relative;
@@ -777,6 +761,10 @@ h4.card-title {
   padding: 0 !important;
 }
 
+.no-shadow {
+  box-shadow: none;
+}
+
 .absoluto {
   position: absolute !important;
 }
@@ -810,7 +798,7 @@ span.card-avatar-label {
   z-index: 10;
   left: 0;
   margin-left: -50px;
-  margin-top: 70px;
+  margin-top: 55px;
   text-align: center;
   border-radius: 3px;
   text-transform: uppercase;
@@ -850,18 +838,6 @@ div.data-inclusao-card{
   border-radius: 6px;
 }*/
 
-.card .card-image {
-    height: 60%;
-    position: relative;
-    overflow: hidden;
-    margin-left: 55px;
-    margin-right: 55px;
-    margin-top: 10px;
-    border-radius: 6px;
-    z-index: 3;
-    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-}
-
 span.endereco{ 
   font-size:  12px; 
   margin-left: 65px; 
@@ -899,16 +875,26 @@ post-address {
   background-image: linear-gradient(to right, rgba(191, 161, 95,0.9) 0%, rgba(191, 161, 95,0.9) 100%), linear-gradient(to right, rgba(210,210,210,0.9) 0%, rgba(210,210,210,0.9) 100%);
   box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.5);
 }
+
+.card.teste3 {
+  background-image: linear-gradient(to right, rgba(237,237,237,0.9) 0%, rgba(237,237,237,0.9) 100%), linear-gradient(to right, rgba(210,210,210,0.9) 0%, rgba(210,210,210,0.9) 100%);
+  box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
 .card.teste2 label, .card.teste2 p {
   color: black;
 }
 
 .card.teste label, .card.teste2 label {
-  color: white;
+  color: #ffffff;
   padding-top: 5px;
   text-transform: uppercase;
 }
 
 .card.teste p, .card.teste2 p {
-  color: white;
+  color: #ffffff;
+}
+
+.card.teste .btn-simples i {
+  color: #ffffff;
 }

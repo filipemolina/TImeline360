@@ -29,7 +29,7 @@
                         
                             Notificações
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu has-roxo">
                         <li>
                             <a href="#">Mike John responded to your email</a>
                         </li>
@@ -67,7 +67,7 @@
                         <i class="material-icons">settings</i>
                                     Menu
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu has-roxo">
                         <li>
                             <a href="{{ url("/perfil") }}" >
                                 <i class="material-icons">person</i>

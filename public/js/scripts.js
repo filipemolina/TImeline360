@@ -46,7 +46,7 @@ var helper = {
     
 $(function(){
     
-    $(".prevenir").click(function() {
+    $(".previnir").click(function() {
         event.preventDefault()
     });
 
@@ -188,14 +188,6 @@ $(function(){
 
     //     $(this).removeClass('apoiar btn-desapoiar').addClass('desapoiar btn-apoiar')
     // });
-
-    // Remover classe card-hidden
-    $().ready(function() {
-        setTimeout(function() {
-            // after 1000 ms we add the class animated to the login/register card
-            $('.card').removeClass('card-hidden');
-        }, 700)
-    });
 
     // Adicionar efeito de rotação ao ícone do objeto
 -
