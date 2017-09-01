@@ -101,7 +101,7 @@ Login
         });
     </script>
 
-    {{-- Animação do card de login --}}
+    {{-- Animação do card de login/registro --}}
     <script type="text/javascript">
     $().ready(function() {
         demo.checkFullPageBackgroundImage();
