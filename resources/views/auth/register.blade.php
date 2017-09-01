@@ -107,43 +107,43 @@ Registre-se
 
 @push('scripts')
 
-<script type="text/javascript">
-$().ready(function() {
+    <script type="text/javascript">
+    $().ready(function() {
 
-        var tempo = 0;
-        var incremento = 500;
+            var tempo = 0;
+            var incremento = 500;
 
-        // Testar se há algum erro, e mostrar a notificação
+            // Testar se há algum erro, e mostrar a notificação
 
-         @if ($errors->any())
-            
-             @foreach ($errors->all() as $error)
-
-                setTimeout(function(){
-                    demo.notificationRight("top", "right", "rose", "{{ $error }}");   
-                }, tempo);
-
-                tempo += incremento;
-
-             @endforeach
+             @if ($errors->any())
                 
-        @endif
+                 @foreach ($errors->all() as $error)
 
+                    setTimeout(function(){
+                        demo.notificationRight("top", "right", "rose", "{{ $error }}");   
+                    }, tempo);
+
+                    tempo += incremento;
+
+                 @endforeach
+                    
+            @endif
+
+            demo.checkFullPageBackgroundImage();
+            
+        });
+    </script>
+
+    {{-- Animação do card de login/registro --}}
+    <script type="text/javascript">
+    $().ready(function() {
         demo.checkFullPageBackgroundImage();
-        
+
+        setTimeout(function() {
+            // after 1000 ms we add the class animated to the login/register card
+            $('.card').removeClass('card-hidden');
+        }, 700)
     });
-</script>
-
-{{-- Animação do card de login/registro --}}
-<script type="text/javascript">
-$().ready(function() {
-    demo.checkFullPageBackgroundImage();
-
-    setTimeout(function() {
-        // after 1000 ms we add the class animated to the login/register card
-        $('.card').removeClass('card-hidden');
-    }, 700)
-});
-</script>
+    </script>
 
 @endpush

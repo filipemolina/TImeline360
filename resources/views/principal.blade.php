@@ -116,68 +116,65 @@
 
                         @endif
 
-                        @else
+                  @else
                         
-                           {{-- Aviso que preciso logar para apoiar (class=helper-apoio) --}}
-                           <li class="col-md-3">
-                              <button class="btn btn-simple helper-apoio">
-                                 <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
-                              </button>
-                           </li>
-                     
-                        @endif
-
-                     </li>
-
-                     {{-- Exibir comentários, se existir comentarios fica em roxo --}}
-                     <li class="col-md-5">
-                        
-                        @if($solicitacao->solicitacoes_count >= 1)
-
-                           <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
-                              <span class="btn-label apoiar"> <i class="material-icons">chat</i> Comentários </span>
-                           </button>
-
-                        @else
-
-                           <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
-                              <span class="btn-label "> <i class="material-icons">chat</i> Comentários </span>
-                           </button>
-
-                        @endif
-
-                     </li>
-
-                     {{-- Contador de apoios --}}
+                     {{-- Aviso que preciso logar para apoiar (class=helper-apoio) --}}
                      <li class="col-md-3">
-
-                        <button class="btn btn-simples btn_apoios_{{ $solicitacao->id }}">
-                              
-                           @if($solicitacao->apoiadores_count > 1)
-
-                              <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
-                              <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span>
-                              <span> Apoios </span>
-
-                           @elseif($solicitacao->apoiadores_count == 1)
-
-                              <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
-                              <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span>
-                              <span> Apoio </span>
-
-                           @else
-
-                              <span class="btn-label"> <i class="material-icons">favorite</i> </span>
-                              <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span>
-                              <span> Apoio </span>
-
-                           @endif
-                           
+                        <button class="btn btn-simple helper-apoio">
+                           <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
                         </button>
                      </li>
-               
-                  {{-- @endif --}}
+                     
+                  @endif
 
+                  </li>
+
+                  {{-- Exibir comentários, se existir comentarios fica em roxo --}}
+                  <li class="col-md-5">
+                        
+                     @if($solicitacao->solicitacoes_count >= 1)
+
+                        <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
+                           <span class="btn-label apoiar"> <i class="material-icons">chat</i> Comentários </span>
+                        </button>
+
+                     @else
+
+                        <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
+                           <span class="btn-label "> <i class="material-icons">chat</i> Comentários </span>
+                        </button>
+
+                     @endif
+
+                  </li>
+
+                  {{-- Contador de apoios --}}
+                  <li class="col-md-3">
+
+                     <button class="btn btn-simples btn_apoios_{{ $solicitacao->id }}">
+                              
+                        @if($solicitacao->apoiadores_count > 1)
+
+                           <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
+                           <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span>
+                           <span> Apoios </span>
+
+                        @elseif($solicitacao->apoiadores_count == 1)
+
+                           <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
+                           <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span>
+                           <span> Apoio </span>
+
+                        @else
+
+                           <span class="btn-label"> <i class="material-icons">favorite</i> </span>
+                           <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span>
+                           <span> Apoio </span>
+
+                        @endif
+                           
+                     </button>
+                  </li>
                </ul>
 
                {{-- Comentários --}}
