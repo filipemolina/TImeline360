@@ -34,7 +34,7 @@ class PrincipalController extends Controller
                                             ->where('moderado', 1)
                                             ->orWhere("solicitante_id", $usuario->solicitante->id)
                                             ->orderBy('created_at', 'desc')
-                                            ->paginate();
+                                            ->paginate(3);
                 
                 $meus_apoios        = $usuario->solicitante->apoios;
                 $meus_apoios_ids    = [];
@@ -67,7 +67,7 @@ class PrincipalController extends Controller
    		$usuario =  User::find(Auth::user()->id);
 
         //carrega as solicitações do usuário logado MODERADA ou NÃO
-    	$solicitacoes = Solicitacao::where('solicitante_id', $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(10);
+    	$solicitacoes = Solicitacao::where('solicitante_id', $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(2);
 
         if($solicitacoes->total() > 0)
         {

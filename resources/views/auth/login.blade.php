@@ -24,7 +24,7 @@ Login
     </div>
 @endif
  --}}
-<div class="row">
+<div class="row" {{-- style="margin-top: 75px;" --}}>
     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page">
         <form method="POST" action="{{ url('login') }}">
                                     {{ csrf_field() }}

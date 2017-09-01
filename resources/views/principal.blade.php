@@ -2,146 +2,144 @@
 
 @section('titulo')
 
-
-   {{-- <img class="img" style="width: 100px; margin-top: -15px;" src="{{ asset('img/logo-360-roxo.png')}}"> --}}
+   {{-- <img class="img" style="width: 100px; margin-top: -15px;" src="{{ asset('img/logo-360-roxo.png')}}">    --}}
+   <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/logo-360-dourado.png')}}">   
+      
+{{--    <img class="img" style="width: 200px; margin-top: -15px;" src="{{ asset('img/Logotipo-Horizontal-Colorido-PMM.png')}}"> --}}      
+   
 
 @endsection
 
 @section('content')
 
-<br><br>
+   <br><br>
 
-{{-- Navegação entre as páginas --}}
+   <div class="row">
+      <div class="infinite-scroll" style="margin-top: 75px;">
+         {{-- Início da Solicitação --}}
+         @foreach ($solicitacoes as $solicitacao)
+            <div class="col-sm-2 col-sm-offset-5 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3">
+               <div class="card">
+                  {{-- Avatar do usuário --}}
+                  <div class="card-header card-header-icon avatar-fixo">
+                     <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
+                  </div>
 
-<div class="row ">
-   
-   {{-- Início da Solicitação --}}
-   <div class="infinite-scroll">
-      @foreach ($solicitacoes as $solicitacao)
-         <div class="col-sm-2 col-sm-offset-5 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3">
-            <div class="card">
-               {{-- Avatar do usuário --}}
-               <div class="card-header card-header-icon avatar-fixo">
-                  <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
-               </div>
+                  <div class="card-header card-header-icon avatar-status pull-right" 
+                     data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
+                     {{-- <i class="material-icons">language</i> --}}
+                     <span class="mdi {{ $solicitacao->servico->setor->icone }}" style="font-size: 30px"></span>
+                  </div>
 
-               <div class="card-header card-header-icon avatar-status pull-right" 
-                  data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
-                  {{-- <i class="material-icons">language</i> --}}
-                  <span class="mdi {{ $solicitacao->servico->setor->icone }}" style="font-size: 30px"></span>
-               </div>
+                  <div class="nome-solicitante-card ">{{ $solicitacao->solicitante->nome}}</div>
+                  <div class="data-inclusao-card ">Adicionado {{ $solicitacao->created_at->diffForHumans()}}</div>
 
-               <div class="nome-solicitante-card ">{{ $solicitacao->solicitante->nome}}</div>
-               <div class="data-inclusao-card ">Adicionado {{ $solicitacao->created_at->diffForHumans()}}</div>
-
-                  
-               {{-- Foto da publicação --}}
-               <div class="card-image">
-                  <span class="label label-danger"></span>
-                     <a href="#">
-                        <img class="img" src="{{ $solicitacao->foto }}" >
-                     </a>
-               </div>
-
-               @if($solicitacao->endereco)
-                  <span class="endereco" 
-                        onclick="mostraMapa({{ $solicitacao->endereco->latitude }},{{ $solicitacao->endereco->longitude }},{{ $solicitacao->id }});">
                      
-                     <i class="material-icons" style="font-size: 20px; margin-top: 5px;">place</i>  
-
-                     {{ $solicitacao->endereco->logradouro }} 
-                     {{ $solicitacao->endereco->numero }} -
-                     {{ $solicitacao->endereco->bairro }} -
-                     {{ $solicitacao->endereco->cep }} 
-                  </span>
-
-                  <div id="LocalMapa_{{ $solicitacao->id }}" class="mapa">
-
+                  {{-- Foto da publicação --}}
+                  <div class="card-image">
+                     <span class="label label-danger"></span>
+                        <a href="#">
+                           <img class="img" src="{{ $solicitacao->foto }}" >
+                        </a>
                   </div>
 
-               @endif
+                  @if($solicitacao->endereco)
+                     <span class="endereco" 
+                           onclick="mostraMapa({{ $solicitacao->endereco->latitude }},{{ $solicitacao->endereco->longitude }},{{ $solicitacao->id }});">
+                        <i class="material-icons" style="font-size: 20px; margin-top: 5px;">place</i>  
 
-               {{-- Título da solicitação --}}
-               <div class="card-content">
-                  <div class="card-title">
-                     <p class="col-md-12">
-                        <button class="btn btn-just-icon btn-simple btn-xs btn-primary">
-                           {{-- <i class="material-icons">label_outline</i> --}}
-                           <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
-                        </button>
-                        <b> {{ $solicitacao->servico->nome }} </b>
-                     </p>
-                  </div>
-                  <div class="timeline-body col-md-12">
-                     {{ $solicitacao->conteudo }}
-                  </div>
-               </div>
+                        {{ $solicitacao->endereco->logradouro }} 
+                        {{ $solicitacao->endereco->numero }} -
+                        {{ $solicitacao->endereco->bairro }} -
+                        {{ $solicitacao->endereco->cep }} 
+                     </span>
 
-               {{-- Botões de interação --}}
-               <ul class="nav navbar-nav">
-                  @if(Auth::check())
-                     <li class="col-md-3">
-                        {{-- se tiver apoio do usuario logado fica em roxo (class=apoiar) --}}
+                     <div id="LocalMapa_{{ $solicitacao->id }}" class="mapa">
 
-                        @if(in_array($solicitacao->id, $meus_apoios_ids))
-                           <button class="btn btn-simples btn-apoiar apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
-                              <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
-                           </button>
-                        @else
-                           <button class="btn btn-simples btn-apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
-                              <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
-                           </button>
-                        @endif
-                     </li>
-                  @else
-                     <li class="col-md-4">
-                        <button class="btn btn-simple helper-apoio">
-                           <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
-                        </button>
-                     </li>
+                     </div>
                   @endif
 
-                  {{-- se tiver comentarios fica em roxo --}}
-                  <li class="col-md-5">
-                     @if($solicitacao->solicitacoes_count >= 1)
-                        <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
-                           <span class="btn-label apoiar"> <i class="material-icons">chat</i> Comentários </span>
-                        </button>
+                  {{-- Título da solicitação --}}
+                  <div class="card-content" style="padding-top: 0px;">
+                     <div class="card-title">
+                        <p class="col-md-12" style="margin-bottom: 0px;">
+                           <button class="btn btn-just-icon btn-simple btn-xs btn-primary" style="margin-top: 0px;margin-bottom: 0px;">
+                              {{-- <i class="material-icons">label_outline</i> --}}
+                              <span class="mdi {{ $solicitacao->servico->setor->icone }}" ></span>
+                           </button>
+                           <b> {{ $solicitacao->servico->nome }} </b>
+                        </p>
+                     </div>
+                     <div class="timeline-body col-md-12">
+                        {{ $solicitacao->conteudo }}
+                     </div>
+                  </div>
+
+                  {{-- Botões de interação --}}
+                  <ul class="nav navbar-nav">
+                     @if(Auth::check())
+                        <li class="col-md-3">
+                           {{-- se tiver apoio do usuario logado fica em roxo (class=apoiar) --}}
+
+                           @if(in_array($solicitacao->id, $meus_apoios_ids))
+                              <button class="btn btn-simples btn-apoiar apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
+                                 <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
+                              </button>
+                           @else
+                              <button class="btn btn-simples btn-apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
+                                 <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
+                              </button>
+                           @endif
+                        </li>
                      @else
-                        <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
-                           <span class="btn-label "> <i class="material-icons">chat</i> Comentários </span>
-                        </button>
+                        <li class="col-md-4">
+                           <button class="btn btn-simple helper-apoio">
+                              <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
+                           </button>
+                        </li>
                      @endif
-                  </li>
 
-
-                  <li class="col-md-3">
-                     <button class="btn btn-simples btn_apoios_{{ $solicitacao->id }}">
-                        @if($solicitacao->apoiadores_count > 1)
-                           <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
-                           <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoios </span>
-                        @elseif($solicitacao->apoiadores_count == 1)
-                           <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
-                           <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoio </span>
+                     {{-- se tiver comentarios fica em roxo --}}
+                     <li class="col-md-5">
+                        @if($solicitacao->solicitacoes_count >= 1)
+                           <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
+                              <span class="btn-label apoiar"> <i class="material-icons">chat</i> Comentários </span>
+                           </button>
                         @else
-                           <span class="btn-label"> <i class="material-icons">favorite</i> </span>
-                           <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoio </span>
+                           <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
+                              <span class="btn-label "> <i class="material-icons">chat</i> Comentários </span>
+                           </button>
                         @endif
-                     </button>
-                  </li>
-               </ul>
+                     </li>
 
-               {{-- Comentários --}}
-               <footer class="colapso col-md-12">
 
+                     <li class="col-md-3">
+                        <button class="btn btn-simples btn_apoios_{{ $solicitacao->id }}">
+                           @if($solicitacao->apoiadores_count > 1)
+                              <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
+                              <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoios </span>
+                           @elseif($solicitacao->apoiadores_count == 1)
+                              <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
+                              <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoio </span>
+                           @else
+                              <span class="btn-label"> <i class="material-icons">favorite</i> </span>
+                              <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoio </span>
+                           @endif
+                        </button>
+                     </li>
+                  </ul>
+
+                  {{-- Comentários --}}
+                  <footer class="colapso col-md-12">
                      <div class="comentarios">
-                  
                         @foreach ($solicitacao->comentarios as $comentario)
+
                            {{-- card de comentarios --}}
                            <div class="panel-body no-padding">
 
                               {{-- Caso a comentario seja do próprio solicitante, mostrar a foto à esquerda --}}
                               @if ($comentario->funcionario)                    
+
                                  {{-- comentario do funcionário --}}
                                  <div class="card margin10">
 
@@ -159,6 +157,7 @@
                                              {{ $comentario->funcionario->setor->secretaria->nome }} - 
                                              {{ $comentario->funcionario->setor->secretaria->sigla }}
                                           </label>
+
                                           {{-- Comentário --}}
                                           <div class="col- fc-rtl">
                                              <div class="form-group col-md-7 pull-right no-margin">
@@ -194,7 +193,7 @@
 
                                     {{-- Avatar pequeno --}}
                                     <div class="card-header card-header-icon avatar-fixo-pn">
-                                        <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
+                                       <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
                                     </div>
 
                                     {{-- Comentário --}}
@@ -220,52 +219,43 @@
                            </div> {{-- fim panel-body --}}
                            {{-- fim do card de comentarios --}}
                         @endforeach
-
                      </div>
 
-                  {{-- Escrever comentário --}}
-
-                  <div class="">
-                     @isset($usuario)
-                        {{-- {{ dd($usuario) }} --}}
-                        {{-- {{ $usuario->solicitante->id }} = {{ $solicitacao->solicitante->id }}  --}}
-
-                        {{-- Escrever comentário --}}
-                        @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
-                           <div class="card col-md-10 margin10">
-                              <div class="input-group">
-                                 <input type="text" id="comentario" name="comentario" class="form-control comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
-                                 <span class="input-group-addon">
-                                    <button type="button" class="btn btn-primary btn-sm" 
-                                             onclick="enviaComentario({{$solicitacao->id }},{{$usuario->solicitante->id }},'{{$usuario->solicitante->nome}}','{{$usuario->solicitante->foto}}')">
-                                       Enviar
-                                    </button>
-                                 </span>
+                     {{-- Escrever comentário --}}
+                     <div class="">
+                        @isset($usuario)
+                           {{-- Escrever comentário --}}
+                           @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
+                              <div class="card col-md-10 margin10">
+                                 <div class="input-group">
+                                    <input type="text" id="comentario" name="comentario" class="form-control comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
+                                    <span class="input-group-addon">
+                                       <button type="button" class="btn btn-primary btn-sm" 
+                                                onclick="enviaComentario({{$solicitacao->id }},{{$usuario->solicitante->id }},'{{$usuario->solicitante->nome}}','{{$usuario->solicitante->foto}}')">
+                                          Enviar
+                                       </button>
+                                    </span>
+                                 </div>
                               </div>
-                           </div>
-                        @endif
-                     @endisset
-                  </div>
-                  {{-- Fim escrever comentário --}}
-               </footer>
-            </div> {{-- fim card em DIV publicação --}}
-         </div> {{-- Fim DIV PUBLICAÇÃO --}}
-      @endforeach
-      {{ $solicitacoes->links() }}
-      {{-- Fim da Solicitação --}}
-   </div>
-</div> {{-- Fim da ROW --}}
-
+                           @endif
+                        @endisset
+                     </div>
+                     {{-- Fim escrever comentário --}}
+                  </footer>
+               </div> {{-- fim card em DIV publicação --}}
+            </div> {{-- Fim DIV PUBLICAÇÃO --}}
+         @endforeach
+         {{-- Fim da Solicitação --}}
+         {{ $solicitacoes->links() }}   
+      </div>
+   </div> {{-- Fim da ROW --}}
 @endsection
 
 
 @push('scripts')
-
    <script src="http://maps.google.com/maps/api/js?key=AIzaSyDcdW2PsrS1fbsXKmZ6P9Ii8zub5FDu3WQ"></script>
-
    <script src="{{ asset("js/handlebars.js") }}" type="text/javascript" charset="utf-8" async defer></script>
 
-   
    <script id="comentario-template" type="text/x-handlebars-template">
       @verbatim
          <div class="panel-body no-padding">
@@ -305,14 +295,31 @@
                </form>
             </div>
       </div>
-
       @endverbatim
    </script>
    {{-- Fim do Template do Handlebars --}}
 
 
-   <script type="text/javascript">
 
+   <script type="text/javascript">
+    $('ul.pagination').hide();
+    $(function() {
+        $('.infinite-scroll').jscroll({
+            autoTrigger: true,
+            /*loadingHtml: '<img class="center-block" src="/img/loading.gif" alt="Loading..." />',*/
+            padding: 0,
+            nextSelector: '.pagination li.active + li a',
+            contentSelector: 'div.infinite-scroll',
+            callback: function() {
+                $('ul.pagination').remove();
+            }
+        });
+    });
+   </script>
+
+
+
+   <script type="text/javascript">
       @if(Auth::check())
          var id_usuario = {{ Auth::user()->id }};
       @endif
@@ -409,25 +416,21 @@
             }       
          );
       };
-
    </script>
 
    <script type="text/javascript">
       $(document).ready(function() {
 
-         $('ul.pagination').hide();
-         $(function() {
-            $('.infinite-scroll').jscroll({
-               autoTrigger: false,
-               loadingHtml: '<img class="center-block" src="/img/loading.gif" alt="Loading..." />',
-               padding: 0,
-               nextSelector: '.pagination li.active + li a',
-               contentSelector: 'div.infinite-scroll',
-               callback: function() {
-                  $('ul.pagination').remove();
-               }
-            });
-         });
+         /*$(document).scroll(function() {
+            var top     = document.body.scrollTop;
+            var maxTop  = document.body.scrollHeight - document.body.clientHeight;
+    
+            console.log('top:'+top +' -- max:'+maxTop)
+            if (parseInt(top) === 3297) {
+               console.log('Chegou ao fim da página');
+            }
+         });*/
+
 
          var tempo = 0;
          var incremento = 500;
@@ -442,6 +445,5 @@
          demo.initFormExtendedDatetimepickers();
       });
    </script>
-
 @endpush
 
