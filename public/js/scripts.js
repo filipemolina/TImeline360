@@ -204,10 +204,6 @@ $(function(){
                 $(isto).find('i').addClass('animated girar')
             }
         })
-        
-        // .mouseout(function(){
-        //     $(this).find('i').removeClass('animated girar')
-        // });
 
     //////////////////////////////////// Mapa
 

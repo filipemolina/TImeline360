@@ -190,7 +190,7 @@
                            @if ($comentario->funcionario)
 
                               {{-- Comentário do funcionário --}}
-                              <div class="card margin10 teste2">
+                              <div class="card margin10 dourado">
 
                                  {{-- Avatar pequeno a direita para indicar que é a prefeitura--}}
                                  <div class="card-header card-header-icon avatar-fixo-pn pull-right">
@@ -223,7 +223,7 @@
                            @else
 
                               {{-- Comentário do solicitante --}}
-                              <div class="card margin10 teste">
+                              <div class="card margin10 roxo">
 
                                  {{-- Menu para editar comentário --}}
                                     
@@ -330,7 +330,7 @@
                                  <input type="text" id="comentario" name="comentario" class="form-control has-roxo comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
                                  
                                  <span class="input-group-addon">
-                                    <button type="button" class="btn btn-primary btn-sm btn-roxo" onclick="enviaMensagem({{$solicitacao->id }},{{$usuario->solicitante->id }},'{{$usuario->solicitante->nome}}','{{$usuario->solicitante->foto}}')">
+                                    <button type="button" class="btn btn-primary btn-sm btn-roxo" onclick="enviaComentario({{$solicitacao->id }},{{$usuario->solicitante->id }},'{{$usuario->solicitante->nome}}','{{$usuario->solicitante->foto}}')">
                                        Enviar
                                     </button>
                                  </span>
@@ -367,12 +367,12 @@
    <script id="comentario-template" type="text/x-handlebars-template">
       @verbatim
          <div class="panel-body no-padding">
-            <div class="card margin10">
+            <div class="card margin10 roxo">
                <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
                   <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
                      <i class="material-icons">settings</i>
                   </a>
-                  <ul class="dropdown-menu pull-right">
+                  <ul class="dropdown-menu has-roxo pull-right">
                      <li>
                         <a href="#eugen" class="btn-coment-del">
                            <i class="material-icons">clear</i> Excluir

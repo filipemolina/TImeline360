@@ -866,35 +866,30 @@ post-address {
     display: flex;
 }
 
-.card.teste {
+.card.roxo {
   background-image: linear-gradient(to right, rgba(61,39,107,0.9) 0%, rgba(61,39,107,0.9) 100%), linear-gradient(to right, rgba(210,210,210,0.9) 0%, rgba(210,210,210,0.9) 100%);
   box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
-.card.teste2 {
+.card.dourado {
   background-image: linear-gradient(to right, rgba(191, 161, 95,0.9) 0%, rgba(191, 161, 95,0.9) 100%), linear-gradient(to right, rgba(210,210,210,0.9) 0%, rgba(210,210,210,0.9) 100%);
   box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
-.card.teste3 {
-  background-image: linear-gradient(to right, rgba(237,237,237,0.9) 0%, rgba(237,237,237,0.9) 100%), linear-gradient(to right, rgba(210,210,210,0.9) 0%, rgba(210,210,210,0.9) 100%);
-  box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.5);
-}
-
-.card.teste2 label, .card.teste2 p {
+.card.dourado label, .card.dourado p {
   color: black;
 }
 
-.card.teste label, .card.teste2 label {
+.card.roxo label, .card.dourado label {
   color: #ffffff;
   padding-top: 5px;
   text-transform: uppercase;
 }
 
-.card.teste p, .card.teste2 p {
+.card.roxo p, .card.dourado p {
   color: #ffffff;
 }
 
-.card.teste .btn-simples i {
+.card.roxo .btn-simples i {
   color: #ffffff;
 }
