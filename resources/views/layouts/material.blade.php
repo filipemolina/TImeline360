@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Registro</title>
+    <title></title>
 
     <!-- Styles -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
