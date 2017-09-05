@@ -11,7 +11,7 @@ Registre-se
 
 <div class="row">
 
-    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page">
+    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page" style="margin-top: 100px;">
         <form class="form" method="POST" action="{{ route('user.store') }}">
         {{ csrf_field() }}
 
@@ -29,9 +29,9 @@ Registre-se
                         {{-- <a href="#pablo" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-twitter"></i>
                         </a> --}}
-                        <a href="#eugen" class="btn btn-just-icon btn-simple">
+{{--                         <a href="#eugen" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-google-plus"></i>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
 

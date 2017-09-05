@@ -2,8 +2,16 @@
 
 @section('titulo')
 
+   {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/logo-360-roxo.png')}}">    --}}
+   {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/logo-360-dourado.png')}}">    --}}
+   {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/loading.gif')}}">    --}}
 
-   {{-- <img class="img" style="width: 100px; margin-top: -15px;" src="{{ asset('img/logo-360-roxo.png')}}"> --}}
+   <img class="img" style="width: 190px; 
+                           margin-top: -13px; 
+                           margin-left: -20px;" 
+                           src="{{ asset('img/Logotipo-Horizontal-Colorido-PMM.png')}}">   
+
+<img class="img" style="width: 75px; margin-top: -68px; margin-left: 200px;" src="{{ asset('img/loading.gif')}}">         
 
 @endsection
 
@@ -11,7 +19,7 @@
 
 <br><br>
 
-<div class="row ">
+<div class="row {{-- cartao-principal --}}">
 
    <div class="infinite-scroll">
 
@@ -30,12 +38,14 @@
                </div>
 
                {{-- Nome do usuário --}}
-               <span class="card-avatar-label has-roxo">{{ $solicitacao->solicitante->nome}}</span>
+               {{-- <span class="card-avatar-label has-roxo">{{ $solicitacao->solicitante->nome}}</span> --}}
 
-               {{-- Avatar ícone --}}
+               {{-- Avatar Status da publicação --}}
                <div class="card-avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
                   <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
                </div>
+
+               <div class="nome-solicitante-card ">{{ $solicitacao->solicitante->nome}}</div>
                   
                {{-- Foto da publicação --}}
 
@@ -76,19 +86,34 @@
                      </a>
                   </div>
 
-               @endif
+                  @if($solicitacao->endereco)
+
+                     <span class="endereco roxo hover" 
+                        onclick="mostraMapa({{ $solicitacao->endereco->latitude }},{{ $solicitacao->endereco->longitude }},{{ $solicitacao->id }});">
+                        <i class="material-icons" style="font-size: 20px; margin-top: 5px;">place</i>
+                        {{ $solicitacao->endereco->logradouro }} 
+                        {{ $solicitacao->endereco->numero }} -
+                        {{ $solicitacao->endereco->bairro }} -
+                        {{ $solicitacao->endereco->cep }} 
+                     </span>
+
+                     <div id="LocalMapa_{{ $solicitacao->id }}" class="mapa"></div>
+
+                  @endif
 
                {{-- Título da solicitação --}}
-               <div class="card-content">
+               <div class="card-content" style="padding-top: 0px;">
                   <div class="card-title">
-                     <p class="col-md-12">
-                        <button class="btn btn-just-icon grande btn-simples btn-xs btn-primary" style="color: {{ $solicitacao->servico->setor->cor }};">
+                     <p class="col-md-12" style="margin-bottom: 0px;">
+                        <button class="btn btn-just-icon grande btn-simples btn-xs btn-primary" style="color: {{ $solicitacao->servico->setor->cor }};margin-top: 0px;margin-bottom: 0px;">
                            {{-- <i class="material-icons">label_outline</i> --}}
                            <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
                         </button>
+
                         <b> {{ $solicitacao->servico->nome }} </b>
                      </p>
                   </div>
+
                   <div class="timeline-body col-md-12">
                      {{ $solicitacao->conteudo }}
                   </div>
@@ -187,9 +212,9 @@
                         {{-- card de comentarios --}}
                         <div class="panel-body no-padding">
 
+                           {{-- Comentário do funcionário --}}
                            @if ($comentario->funcionario)
 
-                              {{-- Comentário do funcionário --}}
                               <div class="card margin10 dourado">
 
                                  {{-- Avatar pequeno a direita para indicar que é a prefeitura--}}
@@ -258,7 +283,6 @@
 
                                  {{-- Comentário --}}
                                  <form class="form-horizontal">
-
                                     <div class="row">
 
                                        {{-- Nome do usuário --}}
@@ -275,6 +299,7 @@
                                              <p class="form-control-static"> {{ $comentario->comentario }} </p>
                                           </div>
                                        </div>
+<<<<<<< HEAD
 
                                        {{-- Comentário Removido --}}
                                        {{-- <div class="col- coment-fix-rem hide">
@@ -348,7 +373,7 @@
          
       @endforeach
 
-      {{ $solicitacoes->links() }}
+      {{ $solicitacoes->appends(Request::only('termo'))->links() }}
 
    </div> {{-- Fim div Infinte Scroll --}}
 
@@ -358,59 +383,39 @@
 
 
 @push('scripts')
-
    <script src="http://maps.google.com/maps/api/js?key=AIzaSyDcdW2PsrS1fbsXKmZ6P9Ii8zub5FDu3WQ"></script>
-
    <script src="{{ asset("js/handlebars.js") }}" type="text/javascript" charset="utf-8" async defer></script>
 
-   
-   <script id="comentario-template" type="text/x-handlebars-template">
-      @verbatim
-         <div class="panel-body no-padding">
-            <div class="card margin10 roxo">
-               <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
-                  <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
-                     <i class="material-icons">settings</i>
-                  </a>
-                  <ul class="dropdown-menu has-roxo pull-right">
-                     <li>
-                        <a href="#eugen" class="btn-coment-del">
-                           <i class="material-icons">clear</i> Excluir
-                        </a>
-                     </li>
-                  </ul>
-               </div>
-         
+   {{-- Templates do Handlebars --}}
+   @include("principal.templates");
 
-               <div class="card-header card-header-icon avatar-fixo-pn">
-                   <img class="img" src="{{ foto }}"/>
-               </div>
+   {{-- Executar a paginação infinita apenas caso esta seja a página inicial --}}
+   @if(Request::is('/'))
 
-               <form class="form-horizontal">
+      <!-- ABACAXI -->
 
-                  <div class="row">
-                     <label class="col-md-8">
-                        {{ nome }}
-                     </label>
+      <script type="text/javascript">
+       $(function() {
+            $('ul.pagination').hide();
+            $('.infinite-scroll').jscroll({
+               autoTrigger: true,
+               prefill: false,
+               scrollThreshold: 0,
+               debug: false,
+               /*loadingHtml: '<img class="center-block" src="/img/loading.gif" alt="Loading..." />',*/
+               padding: 0,
+               nextSelector: '.pagination li.active + li a',
+               contentSelector: 'div.infinite-scroll',
+               callback: function() {
+                   $('ul.pagination').remove();
+               }
+            });
+       });
+      </script>
 
-                     <div class="col- coment-fix">
-                        <div class="form-group col-md-7 no-margin">
-                           <p class="form-control-static">{{ comentario }}</p>
-                        </div>
-                     </div>
-                     
-                  </div>
-               </form>
-            </div>
-         </div>
-
-      @endverbatim
-   </script>
-   {{-- Fim do Template do Handlebars --}}
-
+   @endif
 
    <script type="text/javascript">
-
       @if(Auth::check())
          var id_usuario = {{ Auth::user()->id }};
       @endif
@@ -510,25 +515,58 @@
             }       
          );
       };
-
    </script>
 
    <script type="text/javascript">
+
+      function montaCartoes(solicitacoes){
+
+         $("div.infinite-scroll").empty();
+
+         // TODO: Mostrar imagem de loading
+
+         let token = "{{ csrf_token() }}";
+         
+         $.post("/batchsolicitacoes", { _token: token, solicitacoes: solicitacoes }, function(data){
+
+            data = JSON.parse(data);
+
+            // Colocar o novo card de comentarios embaixo da solicitação
+            var source      = $("#cartao-template").html();
+            var template    = Handlebars.compile(source)
+
+            for(let i =0; i < data.length; i++){
+
+               var context = { 
+                  nome:  data[i].solicitante.nome,
+                  texto: data[i].conteudo, 
+                  foto:  data[i].foto
+               };
+
+               var html = template(context);
+
+               $("div.infinite-scroll").append( $(html) );
+
+            }
+
+            // TODO: Apagar imagem de Loading
+
+         });
+
+      }
+
       $(document).ready(function() {
 
-         $('ul.pagination').hide();
-         $(function() {
-            $('.infinite-scroll').jscroll({
-               autoTrigger: false,
-               loadingHtml: '<img class="center-block" src="/img/loading.gif" alt="Loading..." />',
-               padding: 0,
-               nextSelector: '.pagination li.active + li a',
-               contentSelector: 'div.infinite-scroll',
-               callback: function() {
-                  $('ul.pagination').remove();
-               }
-            });
-         });
+ /*        $(document).scroll(function() {
+            var top     = document.body.scrollTop;
+            var maxTop  = document.body.scrollHeight - document.body.clientHeight;
+    
+            console.log('top:'+top +' -- max:'+maxTop)
+            if (parseInt(top) === 3297) {
+               console.log('Chegou ao fim da página');
+            }
+         });*/
+
 
          var tempo = 0;
          var incremento = 500;
@@ -541,8 +579,8 @@
              @endforeach
          @endif
          demo.initFormExtendedDatetimepickers();
+
       });
    </script>
-
 @endpush
 

@@ -20,6 +20,12 @@ Route::get('login', ['as' => 'login', 'uses' => 'AutenticaController@telaLogin']
 Route::post ('/login', 	'AutenticaController@login');
 Route::get  ('/logout', 'AutenticaController@logout');
 
+//Autenticação pelo Facebook
+Route::get('loginFacebook', 'FacebookController@login');
+Route::get('facebook', 'FacebookController@pageFacebook');
+
+/*Route::get('loginFacebook/callback', 	'FacebookController@callback');*/
+
 //index do site
 Route::get ('/', ['as' => 'index', 'uses' => 'PrincipalController@index']);
 
@@ -44,7 +50,8 @@ Route::get('/registro', function () {
 Route::get("/solicitacoes/minhas/{id}", "SolicitacaoController@minhassolicitacoes");
 
 Route::post("/apoiar", 						"ApoioController@apoiar");
-
+Route::get ('/pesquisa',               "PrincipalController@pesquisa");
+Route::post('/batchsolicitacoes',      "SolicitacaoController@batchSolicitacoes");
 
 
 //resources

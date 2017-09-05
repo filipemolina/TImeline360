@@ -866,9 +866,14 @@ post-address {
     display: flex;
 }
 
-.card.roxo {
+.card .roxo {
   background-image: linear-gradient(to right, rgba(61,39,107,0.9) 0%, rgba(61,39,107,0.9) 100%), linear-gradient(to right, rgba(210,210,210,0.9) 0%, rgba(210,210,210,0.9) 100%);
   box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.5);
+}
+.card .roxo.hover:hover {
+  background-image: linear-gradient(to right, rgba(61,39,107,0.9) 0%, rgba(61,39,107,0.9) 100%), linear-gradient(to right, rgba(210,210,210,0.9) 0%, rgba(210,210,210,0.9) 100%);
+  box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.5);
+  color: #ffffff;
 }
 
 .card.dourado {
@@ -893,3 +898,19 @@ post-address {
 .card.roxo .btn-simples i {
   color: #ffffff;
 }
+
+/*.cartao-principal {
+  margin-top: 60px !important;
+}
+
+.card-login
+{
+  margin-top: 65px !important;
+}
+
+.card-esquerdo .input-group {
+    margin-top: 3px;
+}
+.card-direito .input-group {
+    margin-top: -7px;
+}*/

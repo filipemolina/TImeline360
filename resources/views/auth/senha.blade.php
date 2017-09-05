@@ -3,7 +3,7 @@
 @section('content')
 
 	<div class="container">
-		<div class="row">
+		<div class="row cartao-principal">
 			<div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4" style="margin-top: 50px; margin-bottom: 40px;" >
 				<form class="form" method="post" action="{{ url("salva") }}">
 					{!! method_field('PUT') !!}

@@ -28,7 +28,8 @@
     <!-- meterial fonts     -->
     <link href="{{ asset('css/materialdesignicons.min.css') }}" rel="stylesheet" />
 
-  
+    {{-- icone da pagina --}}
+    <link rel="icon" type="imagem/png" href="{{ asset('img/logo-360-roxo.png') }}" />
 
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />

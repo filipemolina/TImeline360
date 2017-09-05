@@ -24,6 +24,7 @@ Login
     </div>
 @endif
  --}}
+
 <div class="row">
     <div class="login-page col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
         <form method="POST" action="{{ url('login') }}">
@@ -40,11 +41,8 @@ Login
                 <div class="card-header text-center" data-background-color="roxo">
                     <div class="social-line">
                     <br>
-                        <a href="#btn" class="btn btn-just-icon btn-simple">
+                        <a href="loginFacebook" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-facebook-square"></i>
-                        </a>
-                        <a href="#eugen" class="btn btn-just-icon btn-simple">
-                            <i class="fa fa-google-plus"></i>
                         </a>
                     </div>
                 </div>
