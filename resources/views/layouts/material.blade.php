@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Registro</title>
+    <title>Mesquita 360º</title>
 
     <!-- Styles -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -28,7 +28,8 @@
     <!-- meterial fonts     -->
     <link href="{{ asset('css/materialdesignicons.min.css') }}" rel="stylesheet" />
 
-  
+    {{-- icone da pagina --}}
+    <link rel="icon" type="imagem/png" href="{{ asset('img/logo-360-roxo.png') }}" />
 
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />

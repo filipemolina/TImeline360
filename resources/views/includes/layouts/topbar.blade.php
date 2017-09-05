@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top {{-- navbar-fixed-top --}} animated fadeInDownBig">
+<nav class="navbar navbar-default navbar-static-top navbar-fixed-top animated fadeInDownBig" style="border-bottom: 20px solid #5c458c">
    <div class="container-fluid">
       <div class="navbar-header">
          <button type="button" class="navbar-toggle" data-toggle="collapse">
@@ -99,9 +99,9 @@
             @endif
          </ul>
 
-         <form class="navbar-form navbar-right" role="search">
+         <form method="get" action="/pesquisa" class="navbar-form navbar-right" role="search">
             <div class="form-group form-search is-empty">
-               <input type="text" class="form-control" style="background-image: linear-gradient(#3d276b, #3d276b), linear-gradient(#D2D2D2, #D2D2D2);" placeholder="Pesquisar">
+               <input name="termo" type="text" class="form-control pesquisa" style="background-image: linear-gradient(#3d276b, #3d276b), linear-gradient(#D2D2D2, #D2D2D2);" placeholder="Pesquisar">
                <span class="material-input"></span>
             </div>
 

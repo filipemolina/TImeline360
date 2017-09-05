@@ -2,11 +2,16 @@
 
 @section('titulo')
 
-   {{-- <img class="img" style="width: 100px; margin-top: -15px;" src="{{ asset('img/logo-360-roxo.png')}}">    --}}
-   <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/logo-360-dourado.png')}}">   
-      
-{{--    <img class="img" style="width: 200px; margin-top: -15px;" src="{{ asset('img/Logotipo-Horizontal-Colorido-PMM.png')}}"> --}}      
-   
+   {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/logo-360-roxo.png')}}">    --}}
+   {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/logo-360-dourado.png')}}">    --}}
+   {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/loading.gif')}}">    --}}
+
+   <img class="img" style="width: 190px; 
+                           margin-top: -13px; 
+                           margin-left: -20px;" 
+                           src="{{ asset('img/Logotipo-Horizontal-Colorido-PMM.png')}}">   
+
+<img class="img" style="width: 75px; margin-top: -68px; margin-left: 200px;" src="{{ asset('img/loading.gif')}}">         
 
 @endsection
 
@@ -14,8 +19,8 @@
 
    <br><br>
 
-   <div class="row">
-      <div class="infinite-scroll" style="margin-top: 75px;">
+   <div class="row cartao-principal" >
+      <div class="infinite-scroll">
          {{-- Início da Solicitação --}}
          @foreach ($solicitacoes as $solicitacao)
             <div class="col-sm-2 col-sm-offset-5 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3">
@@ -246,7 +251,7 @@
             </div> {{-- Fim DIV PUBLICAÇÃO --}}
          @endforeach
          {{-- Fim da Solicitação --}}
-         {{ $solicitacoes->links() }}   
+         {{ $solicitacoes->appends(Request::only('termo'))->links() }}   
       </div>
    </div> {{-- Fim da ROW --}}
 @endsection
@@ -256,68 +261,36 @@
    <script src="http://maps.google.com/maps/api/js?key=AIzaSyDcdW2PsrS1fbsXKmZ6P9Ii8zub5FDu3WQ"></script>
    <script src="{{ asset("js/handlebars.js") }}" type="text/javascript" charset="utf-8" async defer></script>
 
-   <script id="comentario-template" type="text/x-handlebars-template">
-      @verbatim
-         <div class="panel-body no-padding">
-            <div class="card margin10">
-               <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
-                  <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
-                     <i class="material-icons">settings</i>
-                  </a>
-                  <ul class="dropdown-menu pull-right">
-                     <li>
-                        <a href="#eugen" class="btn-coment-del">
-                           <i class="material-icons">clear</i> Excluir
-                        </a>
-                     </li>
-                  </ul>
-               </div>
-         
+   {{-- Templates do Handlebars --}}
 
-               <div class="card-header card-header-icon avatar-fixo-pn">
-                   <img class="img" src="{{ foto }}"/>
-               </div>
+   @include("principal.templates");
 
-               <form class="form-horizontal">
+   {{-- Executar a paginação infinita apenas caso esta seja a página inicial --}}
 
-                  <div class="row">
-                     <label class="col-md-8 h6">
-                        {{ nome }}
-                     </label>
+   @if(Request::is('/'))
 
-                     <div class="col- coment-fix">
-                        <div class="form-group col-md-7 no-margin">
-                           <p class="form-control-static">{{ comentario }}</p>
-                        </div>
-                     </div>
-                     
-                  </div>
-               </form>
-            </div>
-      </div>
-      @endverbatim
-   </script>
-   {{-- Fim do Template do Handlebars --}}
+      <!-- ABACAXI -->
 
+      <script type="text/javascript">
+       $(function() {
+            $('ul.pagination').hide();
+            $('.infinite-scroll').jscroll({
+               autoTrigger: true,
+               prefill: false,
+               scrollThreshold: 0,
+               debug: false,
+               /*loadingHtml: '<img class="center-block" src="/img/loading.gif" alt="Loading..." />',*/
+               padding: 0,
+               nextSelector: '.pagination li.active + li a',
+               contentSelector: 'div.infinite-scroll',
+               callback: function() {
+                   $('ul.pagination').remove();
+               }
+            });
+       });
+      </script>
 
-
-   <script type="text/javascript">
-    $('ul.pagination').hide();
-    $(function() {
-        $('.infinite-scroll').jscroll({
-            autoTrigger: true,
-            /*loadingHtml: '<img class="center-block" src="/img/loading.gif" alt="Loading..." />',*/
-            padding: 0,
-            nextSelector: '.pagination li.active + li a',
-            contentSelector: 'div.infinite-scroll',
-            callback: function() {
-                $('ul.pagination').remove();
-            }
-        });
-    });
-   </script>
-
-
+   @endif
 
    <script type="text/javascript">
       @if(Auth::check())
@@ -419,9 +392,46 @@
    </script>
 
    <script type="text/javascript">
+
+      function montaCartoes(solicitacoes){
+
+         $("div.infinite-scroll").empty();
+
+         // TODO: Mostrar imagem de loading
+
+         let token = "{{ csrf_token() }}";
+         
+         $.post("/batchsolicitacoes", { _token: token, solicitacoes: solicitacoes }, function(data){
+
+            data = JSON.parse(data);
+
+            // Colocar o novo card de comentarios embaixo da solicitação
+            var source      = $("#cartao-template").html();
+            var template    = Handlebars.compile(source)
+
+            for(let i =0; i < data.length; i++){
+
+               var context = { 
+                  nome:  data[i].solicitante.nome,
+                  texto: data[i].conteudo, 
+                  foto:  data[i].foto
+               };
+
+               var html = template(context);
+
+               $("div.infinite-scroll").append( $(html) );
+
+            }
+
+            // TODO: Apagar imagem de Loading
+
+         });
+
+      }
+
       $(document).ready(function() {
 
-         /*$(document).scroll(function() {
+ /*        $(document).scroll(function() {
             var top     = document.body.scrollTop;
             var maxTop  = document.body.scrollHeight - document.body.clientHeight;
     
@@ -443,6 +453,7 @@
              @endforeach
          @endif
          demo.initFormExtendedDatetimepickers();
+
       });
    </script>
 @endpush

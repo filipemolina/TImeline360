@@ -155,14 +155,14 @@ $(function(){
     })
 
     // Deslizar comentários
-    $('.slide-coment').click(function(){
+    $('div.infinite-scroll').on("click", ".slide-coment", function(){
         event.preventDefault();
         $(this).parent().parent().parent().find('.colapso').slideToggle();
     });
 
     
     // Alterar cor do botão apoiar
-    $('.btn-apoiar').click(function(){
+    $('div.infinite-scroll').on("click", ".btn-apoiar", function(){
         
         event.preventDefault();
 

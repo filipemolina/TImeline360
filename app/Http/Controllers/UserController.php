@@ -180,13 +180,22 @@ class UserController extends Controller
             'password_confirmation' => 'required|min:6'
         ]);*/
 
+
+
         // Obter o usuário
         $usuario = User::find($request->id);
 
-        $senha_velha = bcrypt($request->password_atual);
+        //$senha_velha = bcrypt($request->password_atual);
+
+        if (Hash::check($request->password_atual, $usuario->password))
+        {
+            dd("innnnguau");
+        }
 
 
+        dd($request->password_atual . ' ::::  ' .$decrypted);
     
+
 
         if($senha_velha == $usuario->password)
         {

@@ -3,7 +3,7 @@
 @section('content')
 
 	<div class="container">
-		<div class="row">
+		<div class="row cartao-principal">
 			<div class="col-md-6 col-sm-6 card-esquerdo" >
 				<form class="form" method="post" action="{{ url("solicitante/$solicitante->id") }}">
 					{!! method_field('PUT') !!}
@@ -14,11 +14,6 @@
 						<div class="card-header card-header-icon" data-background-color="rose">
 							<i class="material-icons">person</i>
 						</div>
-
-
-
-
-
 
 						{{-- Avatar do usuário --}}
             		<div class="fileinput fileinput-new text-center foto-edit col-md-4 col-sm-4" data-provides="fileinput">
@@ -150,7 +145,7 @@
 
 
 
-				<div class="col-md-6 col-sm-6">
+				<div class="col-md-6 col-sm-6 card-direito">
 					<div id="login-municipe" class="card card-login card-hidden">
 
 						<div class="card-header card-header-icon" data-background-color="rose">

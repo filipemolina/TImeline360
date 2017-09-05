@@ -818,6 +818,20 @@ post-address {
     max-width: 310px;
     z-index: 1;
     display: flex;
-    
-    
+}
+
+.cartao-principal {
+  margin-top: 60px !important;
+}
+
+.card-login
+{
+  margin-top: 65px !important;
+}
+
+.card-esquerdo .input-group {
+    margin-top: 3px;
+}
+.card-direito .input-group {
+    margin-top: -7px;
 }

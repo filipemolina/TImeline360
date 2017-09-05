@@ -24,7 +24,7 @@ Login
     </div>
 @endif
  --}}
-<div class="row" {{-- style="margin-top: 75px;" --}}>
+<div class="row" style="margin-top: 100px;">
     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page">
         <form method="POST" action="{{ url('login') }}">
                                     {{ csrf_field() }}
@@ -40,11 +40,8 @@ Login
                 <div class="card-header text-center" data-background-color="roxo">
                     <div class="social-line">
                     <br>
-                        <a href="#btn" class="btn btn-just-icon btn-simple">
+                        <a href="loginFacebook" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-facebook-square"></i>
-                        </a>
-                        <a href="#eugen" class="btn btn-just-icon btn-simple">
-                            <i class="fa fa-google-plus"></i>
                         </a>
                     </div>
                 </div>
