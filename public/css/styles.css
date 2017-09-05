@@ -923,18 +923,19 @@ post-address {
   color: #ffffff;
 }
 
-/*.cartao-principal {
-  margin-top: 60px !important;
-}
+/* Posicionamento da Paginação */
 
-.card-login
+.wrapper-pagination 
 {
-  margin-top: 65px !important;
+  width: 100%;
+  float: left;
+  text-align: center;
 }
 
-.card-esquerdo .input-group {
-    margin-top: 3px;
+.opcoes_card 
+{
+    position: absolute;
+    right: 0;
 }
-.card-direito .input-group {
-    margin-top: -7px;
-}*/
+
+.opcoes_card i { font-size: 23px !important; }

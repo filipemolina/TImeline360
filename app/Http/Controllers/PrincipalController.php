@@ -13,6 +13,10 @@ use Carbon\Carbon;
 
 class PrincipalController extends Controller
 {
+    // Número de solicitações a serem exibidas à qualquer momento em qualquer página do sistema
+    // em qualquer galáxia também.
+    private $itens_por_pagina = 10;
+
 	public function __construct()
     {
         $this->middleware('auth', ['except' => array('index')]);
@@ -31,11 +35,12 @@ class PrincipalController extends Controller
         		$usuario      =  User::find(Auth::user()->id);
 
                 $solicitacoes = Solicitacao::withCount('apoiadores')
+                                            ->withCount('comentarios')
                                             ->with('endereco')
                                             ->where('moderado', 1)
                                             ->orWhere("solicitante_id", $usuario->solicitante->id)
                                             ->orderBy('created_at', 'desc')
-                                            ->paginate(3);
+                                            ->paginate($this->itens_por_pagina);
                 
                 $meus_apoios        = $usuario->solicitante->apoios;
                 $meus_apoios_ids    = [];
@@ -53,7 +58,7 @@ class PrincipalController extends Controller
                 $solicitacoes = Solicitacao::withCount('apoiadores')
                                             ->where('moderado', 1)
                                             ->orderBy('created_at', 'desc')
-                                            ->paginate(5);
+                                            ->paginate($this->itens_por_pagina);
 
                 return view('principal', compact('solicitacoes'));
     		}
@@ -68,7 +73,7 @@ class PrincipalController extends Controller
    		$usuario =  User::find(Auth::user()->id);
 
         //carrega as solicitações do usuário logado MODERADA ou NÃO
-    	$solicitacoes = Solicitacao::where('solicitante_id', $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(2);
+    	$solicitacoes = Solicitacao::withCount('comentarios')->where('solicitante_id', $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate($this->itens_por_pagina);
 
         if($solicitacoes->total() > 0)
         {
@@ -82,7 +87,8 @@ class PrincipalController extends Controller
             }
             return view('principal', compact('solicitacoes','usuario','meus_apoios_ids'));    
         }else{
-            $solicitacoes = Solicitacao::where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate(10);
+
+            $solicitacoes = Solicitacao::withCount('comentarios')->where('moderado', 1)->orWhere("solicitante_id", $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate($this->itens_por_pagina);
 
             return view('principal', compact('solicitacoes','usuario'))->withErrors(['erros' => 'Você não possui Solicitações cadastradas!']);    
         }
@@ -99,15 +105,32 @@ class PrincipalController extends Controller
         // ->orWhere('enderecos.logradouro', 'like', "%".trim($request->termo)."%")
         // ->orWhere('enderecos.bairro', 'like', "%".trim($request->termo)."%")
         // ->orWhere('enderecos.cep', 'like', "%".trim($request->termo)."%")
-        // ->paginate(10);
+        // ->paginate($this->itens_por_pagina);
 
         $dados = "%".trim($request->termo)."%";
 
-        $solicitacoes = Solicitacao::whereHas('solicitante', function($q) use ($dados){
+        $solicitacoes = Solicitacao::withCount('comentarios')
+
+        // Filtar por propriedades de Models relacionados
+        ->whereHas('solicitante', function($q) use ($dados){
 
             $q->where('nome', 'like', $dados);
 
-        })->paginate(10);
+        })
+        ->orWhereHas('endereco', function($q) use ($dados){
+
+            $q->where('logradouro', 'like', $dados)
+              ->orWhere('bairro', 'like', $dados)
+              ->orWhere('cep', 'like', $dados);
+
+        })
+        ->orWhereHas('servico', function($q) use ($dados){
+
+            $q->where("nome", 'like', $dados);
+
+        })
+        ->orderBy('created_at', 'desc')
+        ->paginate($this->itens_por_pagina);
 
         // Obter o usuário logado atualmente
         $usuario      =  User::find(Auth::user()->id);

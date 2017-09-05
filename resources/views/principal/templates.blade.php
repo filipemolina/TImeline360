@@ -1,14 +1,17 @@
 <script id="comentario-template" type="text/x-handlebars-template">
+   
    @verbatim
-      <div class="panel-body no-padding">
+
+      <div class="panel-body no-padding comentario_{{ id }}">
          <div class="card margin10 roxo">
             <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
                <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
                   <i class="material-icons">settings</i>
                </a>
+               
                <ul class="dropdown-menu has-roxo pull-right">
                   <li>
-                     <a href="#eugen" class="btn-coment-del">
+                     <a href="#eugen" class="btn-coment-del" data-id="{{ id }}" data-token="{{ token }}">
                         <i class="material-icons">clear</i> Excluir
                      </a>
                   </li>
@@ -23,7 +26,7 @@
             <form class="form-horizontal">
 
                <div class="row">
-                  <label class="col-md-8 h6">
+                  <label class="col-md-8">
                      {{ nome }}
                   </label>
 
@@ -43,44 +46,41 @@
 <script id="cartao-template" type="text/x-handlebars-template">
    @verbatim
 
-      <div class="col-sm-2 col-sm-offset-5 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3">
+      <div class="col-md-6 col-md-offset-3">
          <div class="card">
             
             <div class="card-header card-header-icon avatar-fixo">
                <img class="img" src="{{ foto_solicitante }}"/>
             </div>
 
+            <div class="nome-solicitante-card ">{{ nome_solicitante }}</div>
+
             <div class="card-header card-header-icon avatar-status pull-right" 
                data-background-color style="background-color: {{ cor }};">
-               
-               <span class="mdi {{ icone }}" style="font-size: 30px"></span>
-            </div>
-
-            <div class="nome-solicitante-card ">{{ nome_solicitante }}</div>
-            <div class="data-inclusao-card ">Adicionado {{ data }}</div>
-
-               
-            <div class="card-image">
-               <span class="label label-danger"></span>
-                  <a href="#">
-                     <img class="img" src="{{ foto }}" >
-                  </a>
+               <span class="mdi {{ icone }}"></span>
             </div>
 
             @if($solicitacao->endereco)
+
+               <div class="card-image alterado">
+                  <a href="#">
+                     <img class="img" src="{{ foto }}">
+
+                     <span class="label top previnir" style="background-color: {{ cor }};">Adicionado {{ data }}</span>
+                  </a>
+               </div>
+
                <span class="endereco" 
                      onclick="mostraMapa({{ latitude }},{{ longitude }},{{ $solicitacao->id }});">
-                  <i class="material-icons" style="font-size: 20px; margin-top: 5px;">place</i>  
-
+                  <i class="material-icons">place</i>  
                   {{ $solicitacao->endereco->logradouro }} 
                   {{ $solicitacao->endereco->numero }} -
                   {{ $solicitacao->endereco->bairro }} -
                   {{ $solicitacao->endereco->cep }} 
                </span>
 
-               <div id="LocalMapa_{{ $solicitacao->id }}" class="mapa">
-
-               </div>
+               <div id="LocalMapa_{{ $solicitacao->id }}" class="mapa"></div>
+            
             @endif
 
             {{-- Título da solicitação --}}
@@ -91,9 +91,11 @@
                         {{-- <i class="material-icons">label_outline</i> --}}
                         <span class="mdi {{ $solicitacao->servico->setor->icone }}" ></span>
                      </button>
+                     
                      <b> {{ $solicitacao->servico->nome }} </b>
                   </p>
                </div>
+               
                <div class="timeline-body col-md-12">
                   {{ $solicitacao->conteudo }}
                </div>
@@ -101,54 +103,76 @@
 
             {{-- Botões de interação --}}
             <ul class="nav navbar-nav">
+               
                @if(Auth::check())
+
                   <li class="col-md-3">
                      {{-- se tiver apoio do usuario logado fica em roxo (class=apoiar) --}}
 
                      @if(in_array($solicitacao->id, $meus_apoios_ids))
+
                         <button class="btn btn-simples btn-apoiar apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
                            <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
                         </button>
+                     
                      @else
+
                         <button class="btn btn-simples btn-apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
                            <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
                         </button>
+                     
                      @endif
+
                   </li>
+
                @else
+
                   <li class="col-md-4">
                      <button class="btn btn-simple helper-apoio">
                         <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
                      </button>
                   </li>
+
                @endif
 
                {{-- se tiver comentarios fica em roxo --}}
                <li class="col-md-5">
+
                   @if($solicitacao->solicitacoes_count >= 1)
                      <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
                         <span class="btn-label apoiar"> <i class="material-icons">chat</i> Comentários </span>
                      </button>
+
                   @else
                      <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
                         <span class="btn-label "> <i class="material-icons">chat</i> Comentários </span>
                      </button>
+
                   @endif
+
                </li>
 
 
                <li class="col-md-3">
                   <button class="btn btn-simples btn_apoios_{{ $solicitacao->id }}">
+
                      @if($solicitacao->apoiadores_count > 1)
+
                         <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
                         <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoios </span>
+
                      @elseif($solicitacao->apoiadores_count == 1)
+
                         <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
                         <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoio </span>
+
                      @else
+
                         <span class="btn-label"> <i class="material-icons">favorite</i> </span>
                         <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoio </span>
+
                      @endif
+
                   </button>
                </li>
             </ul>
@@ -156,6 +180,7 @@
             {{-- Comentários --}}
             <footer class="colapso col-md-12">
                <div class="comentarios">
+               
                   @foreach ($solicitacao->comentarios as $comentario)
 
                      {{-- card de comentarios --}}
