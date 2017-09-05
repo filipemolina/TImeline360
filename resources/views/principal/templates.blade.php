@@ -1,6 +1,6 @@
 <script id="comentario-template" type="text/x-handlebars-template">
    @verbatim
-      <div class="panel-body no-padding">
+      <div class="panel-body no-padding comentario_{{ id }}">
          <div class="card margin10">
             <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
                <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
@@ -8,7 +8,7 @@
                </a>
                <ul class="dropdown-menu pull-right">
                   <li>
-                     <a href="#eugen" class="btn-coment-del">
+                     <a href="#eugen" class="btn-coment-del" data-id="{{ id }}" data-token="{{ token }}">
                         <i class="material-icons">clear</i> Excluir
                      </a>
                   </li>

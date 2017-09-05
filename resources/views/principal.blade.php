@@ -59,9 +59,7 @@
                         {{ $solicitacao->endereco->cep }} 
                      </span>
 
-                     <div id="LocalMapa_{{ $solicitacao->id }}" class="mapa">
-
-                     </div>
+                     <div id="LocalMapa_{{ $solicitacao->id }}" class="mapa"></div>
                   @endif
 
                   {{-- Título da solicitação --}}
@@ -73,6 +71,28 @@
                               <span class="mdi {{ $solicitacao->servico->setor->icone }}" ></span>
                            </button>
                            <b> {{ $solicitacao->servico->nome }} </b>
+
+                           {{-- Opções do Solicitação --}}
+                           <div class="opcoes_card">
+                              <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
+                                 <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
+                                    <i class="material-icons">settings</i>
+                                 </a>
+                                 <ul class="dropdown-menu pull-right">
+             {{--                        <li>
+                                       <a href="#eugen" class="btn-coment-del">
+                                          <i class="material-icons">create</i> Editar
+                                       </a>
+                                    </li> --}}
+                                    <li>
+                                       <a href="#eugen" class="btn-coment-del">
+                                          <i class="material-icons">clear</i> Excluir
+                                       </a>
+                                    </li>
+                                 </ul>
+                              </div>
+                              <div style="clear: both"></div>
+                           </div>
                         </p>
                      </div>
                      <div class="timeline-body col-md-12">
@@ -106,7 +126,7 @@
 
                      {{-- se tiver comentarios fica em roxo --}}
                      <li class="col-md-5">
-                        @if($solicitacao->solicitacoes_count >= 1)
+                        @if($solicitacao->comentarios_count >= 1)
                            <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
                               <span class="btn-label apoiar"> <i class="material-icons">chat</i> Comentários </span>
                            </button>
@@ -137,10 +157,10 @@
                   {{-- Comentários --}}
                   <footer class="colapso col-md-12">
                      <div class="comentarios">
-                        @foreach ($solicitacao->comentarios as $comentario)
+                        @foreach ($solicitacao->comentarios->sortBy('created_at') as $comentario)
 
                            {{-- card de comentarios --}}
-                           <div class="panel-body no-padding">
+                           <div class="panel-body no-padding comentario_{{ $comentario->id }}" >
 
                               {{-- Caso a comentario seja do próprio solicitante, mostrar a foto à esquerda --}}
                               @if ($comentario->funcionario)                    
@@ -187,7 +207,8 @@
                                              </a>
                                              <ul class="dropdown-menu pull-right">
                                                 <li>
-                                                   <a href="#eugen" class="btn-coment-del">
+                                                   <a href="#eugen" class="btn-coment-del" 
+                                                      data-id="{{ $comentario->id }}" data-token="{{ csrf_token() }}">
                                                       <i class="material-icons">clear</i> Excluir
                                                    </a>
                                                 </li>
@@ -233,10 +254,9 @@
                            @if ($usuario->solicitante->id == $solicitacao->solicitante->id ) 
                               <div class="card col-md-10 margin10">
                                  <div class="input-group">
-                                    <input type="text" id="comentario" name="comentario" class="form-control comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
+                                    <input type="text" data-solicitacao="{{$solicitacao->id }}" data-solicitante="{{$usuario->solicitante->id }}" id="comentario" name="comentario" class="form-control comentario comentario_{{ $solicitacao->id }}" placeholder="Escreva um comentário" >
                                     <span class="input-group-addon">
-                                       <button type="button" class="btn btn-primary btn-sm" 
-                                                onclick="enviaComentario({{$solicitacao->id }},{{$usuario->solicitante->id }},'{{$usuario->solicitante->nome}}','{{$usuario->solicitante->foto}}')">
+                                       <button type="button" data-solicitacao="{{$solicitacao->id }}" data-solicitante="{{$usuario->solicitante->id }}" class="btn btn-primary btn-sm enviar-comentario">
                                           Enviar
                                        </button>
                                     </span>
@@ -251,7 +271,14 @@
             </div> {{-- Fim DIV PUBLICAÇÃO --}}
          @endforeach
          {{-- Fim da Solicitação --}}
-         {{ $solicitacoes->appends(Request::only('termo'))->links() }}   
+
+         <div class="wrapper-pagination">
+            
+            {{ $solicitacoes->appends(Request::only('termo'))->links() }}
+
+         </div>         
+
+         <div style="clear: both"></div>
       </div>
    </div> {{-- Fim da ROW --}}
 @endsection
@@ -279,7 +306,7 @@
                prefill: false,
                scrollThreshold: 0,
                debug: false,
-               /*loadingHtml: '<img class="center-block" src="/img/loading.gif" alt="Loading..." />',*/
+               loadingHtml: '<div style="text-align:center; position: relative;"><div style="position: absolute; width: 100%; top: 88px; color: #fff; font-weight: bold; font-size: 18px;">Carregando</div><img class="center-block" src="/img/DoubleRing.gif" alt="Carregando..." /></div>',
                padding: 0,
                nextSelector: '.pagination li.active + li a',
                contentSelector: 'div.infinite-scroll',
@@ -293,8 +320,15 @@
    @endif
 
    <script type="text/javascript">
+
       @if(Auth::check())
-         var id_usuario = {{ Auth::user()->id }};
+
+         // Dados do usuário logado
+
+         let id_usuario = {{ Auth::user()->id }};
+         let foto_usuario = '{{$usuario->solicitante->foto}}';
+         let nome_usuario = "{{$usuario->solicitante->nome}}";
+
       @endif
 
       function mostraMapa(latitude,longitude,solicitacao) {
@@ -323,48 +357,59 @@
          }
       }
 
-      function enviaComentario(solicitacao, solicitante, nome, foto){ 
-         console.log("enviou comentario: " +solicitacao +" - " +solicitante);
+      ////////////////////////////////////////////////////////////////////// Botão de Enviar Comentário
 
-         var comentario = $(".comentario_"+solicitacao).val().trim();
+      function enviarComentario(elem, e){
 
-         // Testar se a comentario está em branco
-         if( $(".comentario_"+solicitacao).val().trim() ) {
-               console.log("Texto do COmentário", comentario);
-             // Enviar a comentario para o banco
-             $.post(
-                 "{{ url('/comentario') }}",
-                 {
-                     comentario: comentario,
-                     solicitacao_id: solicitacao, 
-                     _token: "{{ csrf_token() }}",
-                 }, function(data){        
-                     console.log("Resposta");
-                     console.log(data);
-                 }       
-             );
+         // Executar essa função apenas se a tecla pressionada for o Enter ou caso nenhuma tecla tenha
+         // sido pressionada (click)
 
-             // Apagar o campo de envio de comentario
-             $(".comentario_"+solicitacao).val("");
+         if(e.keyCode == "13" || typeof e.keyCode === 'undefined'){
 
-             // Colocar o novo card de comentarios embaixo da solicitação
-             var source      = $("#comentario-template").html();
-             var template    = Handlebars.compile(source)
+            let solicitacao = $(elem).data('solicitacao');
+            let solicitante = $(elem).data('solicitante');
 
-             var context     = { nome:          nome,
-                                 comentario:    comentario, 
-                                 foto:          foto  
-                               };
+            var comentario = $(".comentario_"+solicitacao).val().trim();
 
-             var html        = template(context);
+            // Testar se a comentario está em branco
+            if( $(".comentario_"+solicitacao).val().trim() ) {
 
-             $("div.comentarios").append( $(html) );
-             //console.log(html);
-         }else{
-             console.log("vazio");
+                // Enviar a comentario para o banco
+                $.post(
+                    "{{ url('/comentario') }}",
+                    {
+                        comentario: comentario,
+                        solicitacao_id: solicitacao, 
+                        _token: "{{ csrf_token() }}",
+                    }, function(data){
+
+                        // Apagar o campo de envio de comentario
+                        $(".comentario_"+solicitacao).val("");
+
+                        // Colocar o novo card de comentarios embaixo da solicitação
+                        var source      = $("#comentario-template").html();
+                        var template    = Handlebars.compile(source)
+
+                        var context = { 
+                           nome:       nome_usuario,
+                           comentario: comentario, 
+                           foto:       foto_usuario,
+                           id:         data,
+                           token:      "{{ csrf_token() }}"
+                        };
+
+                        var html        = template(context);
+
+                        $("div.comentarios").append( $(html) );
+                        //console.log(html);   
+
+                    }       
+                );
+            }
+
          }
-      };
 
+      }
 
       function enviaApoio(solicitacao, solicitante){ 
          console.log("enviou " +solicitacao +" - " +solicitante);
@@ -389,9 +434,6 @@
             }       
          );
       };
-   </script>
-
-   <script type="text/javascript">
 
       function montaCartoes(solicitacoes){
 
@@ -445,7 +487,43 @@
          var tempo = 0;
          var incremento = 500;
 
-             // Testar se há algum erro, e mostrar a notificação
+          // Caso o evento seja acionado via "click" no botão de enviar comentário, obter as informações
+         // pelas propriedades data do próprio elemento.
+
+         $(".infinite-scroll").on('click', "button.enviar-comentario", function(e){
+
+            // Chamar a função que faz a chamada Ajax
+            enviarComentario(this, e);
+
+         });
+
+         // Caso o evento seja acionado pela tecla Enter no input, obter as informações através do botãok
+         $(".infinite-scroll").on('keyup', "input.comentario", function(e){
+
+            // Chamar a função que faz a chamada Ajax apenas se a tecla pressionada for Enter
+            enviarComentario(this, e);
+
+         });
+
+/*         //evento que dispara um ajax para excluir o mentário
+         $(".infinite-scroll").on('click','btn-coment-del',function(e){
+            let id = $(this).data('id');
+
+            $.post('/comentario/' + id , {
+
+               _token: '{{ csrf_token() }}',
+               _method: 'DELETE' 
+
+            }, function(data){
+
+               $('.comentario_'+id).remove();
+
+            });
+
+         });
+*/
+
+          // Testar se há algum erro, e mostrar a notificação
          @if ($errors->any())
              @foreach ($errors->all() as $error)
                  setTimeout(function(){demo.notificationRight("top", "right", "rose", "{{ $error }}"); }, tempo);

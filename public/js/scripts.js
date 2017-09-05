@@ -78,7 +78,7 @@ $(function(){
     })
     
     // Botão Excluir, ocultar coment-fix, exibir comentario com horário da "exclusão", demonstrar botão desfazer e oculstar botões editar e excluir
-    $('.btn-coment-del').click(function () {
+    $('.infinite-scroll').on('click', ".btn-coment-del", function () {
 
         var isto = this;
         var text = $(this).parent().parent().parent().parent().find('div.coment-fix p').show('p');
@@ -87,7 +87,7 @@ $(function(){
 
         swal({
                 type: 'warning',
-                title: 'Remover o comentário abaixo?',
+                title: 'Remover o comentário?',
                 html: text,
                 buttonsStyling: false,
                 showCancelButton: true,
@@ -96,20 +96,40 @@ $(function(){
                 confirmButtonText: 'Remover',
                 confirmButtonClass: 'btn btn-danger'
             }).then(function () {
-                swal({
-                    type: 'success',
-                    title: 'Sucesso!',
-                    text: 'Seu comentário foi removido',
-                    
-                }),
-                
-                $(isto).parent().parent().find('a.btn-coment-des').removeClass('hide');
-                $(isto).parent().parent().find('a.btn-coment-edit').addClass('hide');
-                $(isto).parent().parent().find('a.btn-coment-del').addClass('hide');
-                $(isto).parent().parent().parent().parent().find('.coment-fix').addClass('hide');
-                $(isto).parent().parent().parent().parent().find('.coment-edit').addClass('hide');
-                $(isto).parent().parent().parent().parent().find('.coment-fix-rem').removeClass('hide');
+                let id = $(isto).data('id');
+                let token = $(isto).data('token');
 
+                console.log("Chamou de dentro do scripts", $(isto).data('token'));
+
+                $.post('/comentario/' + id , {
+
+                   _token: token,
+                   _method: 'DELETE' 
+
+                }, function(data){
+
+                    if(data == "0"){
+
+                        // Mostrar a mensagem de erro
+                        swal({
+                            type: 'error',
+                            title: 'Comentário nao removido!',
+                            text: 'Seu comentário não pôde ser removido pois já foi respondido pela prefeitura.',
+                        });
+
+                    } else {
+                        // Deletar a div do comentário
+                        $('.comentario_'+id).remove();
+
+                        // Mostrar a mensagem de sucesso
+                        swal({
+                            type: 'success',
+                            title: 'Sucesso!',
+                            text: 'Seu comentário foi removido',
+                        });
+                    }
+
+                });
             }, function (dismiss) {
                 if (dismiss === 'cancel') {
                 swal({

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top navbar-fixed-top animated fadeInDownBig" style="border-bottom: 20px solid #5c458c">
+<nav class="navbar navbar-default navbar-static-top navbar-fixed-top @if(Request::is('/')) animated fadeInDownBig @endif" style="border-bottom: 20px solid #5c458c">
    <div class="container-fluid">
       <div class="navbar-header">
          <button type="button" class="navbar-toggle" data-toggle="collapse">
@@ -12,7 +12,7 @@
       <div class="collapse navbar-collapse">
          <ul class="nav navbar-nav navbar-right">
             @if(Auth::check())
-               <li class="dropdown">
+               {{-- <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                      <i class="material-icons">notifications</i>
                      <span class="notification" style="right: 100px;">5</span>
@@ -36,7 +36,7 @@
                      </li>
                   </ul>
                </li>
-               
+                --}}
                <li>
                   <a href="{{ url('/')}}" class="dropdown-toggle">
                      <i class="material-icons">home</i> Início
