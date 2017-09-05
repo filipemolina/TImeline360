@@ -11,7 +11,7 @@
                            margin-left: -20px;" 
                            src="{{ asset('img/Logotipo-Horizontal-Colorido-PMM.png')}}">   
 
-<img class="img" style="width: 75px; margin-top: -68px; margin-left: 200px;" src="{{ asset('img/loading.gif')}}">         
+<img class="img" style="width: 75px; margin-top: -68px; margin-left: 200px;" src="{{ asset('img/loading.gif')}}">       
 
 @endsection
 
@@ -19,7 +19,7 @@
 
 <br><br>
 
-<div class="row {{-- cartao-principal --}}">
+<div class="row">
 
    <div class="infinite-scroll">
 
@@ -37,6 +37,8 @@
                   <img src="{{ $solicitacao->solicitante->foto }}"/>
                </div>
 
+               <div class="nome-solicitante-card"> {{ $solicitacao->solicitante->nome}}</div>
+
                {{-- Nome do usuário --}}
                {{-- <span class="card-avatar-label has-roxo">{{ $solicitacao->solicitante->nome}}</span> --}}
 
@@ -44,38 +46,36 @@
                <div class="card-avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
                   <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
                </div>
-
-               <div class="nome-solicitante-card ">{{ $solicitacao->solicitante->nome}}</div>
                   
                {{-- Foto da publicação --}}
 
                @if($solicitacao->endereco)
 
-                  <div class="card-image">
-                     <a href="#">
+                  <div class="card-image alterado">
+                     <a href="#" class="">
                         <img src="{{ $solicitacao->foto }}" >
 
                         {{-- Tempo de postagem --}}
                         <span class="label top previnir" style="background-color: {{ $solicitacao->servico->setor->cor }};">
                            Adicionado {{ $solicitacao->created_at->diffForHumans()}}
                         </span>
-
-                        {{-- Endereço --}}
-                        <span class="label bottom has-roxo" onclick="mostraMapa({{ $solicitacao->endereco->latitude }},{{ $solicitacao->endereco->longitude }},{{ $solicitacao->id }});">
-                           <i class="material-icons">place</i>  
-                           {{ $solicitacao->endereco->logradouro }} 
-                           {{ $solicitacao->endereco->numero }} -
-                           {{ $solicitacao->endereco->bairro }} -
-                           {{ $solicitacao->endereco->cep }} 
-                        </span>
                      </a>
                   </div>
+
+                  {{-- Endereço --}}
+                  <span class="endereco label has-roxo-hover" onclick="mostraMapa({{ $solicitacao->endereco->latitude }},{{ $solicitacao->endereco->longitude }},{{ $solicitacao->id }});">
+                        <i class="material-icons">place</i>
+                        {{ $solicitacao->endereco->logradouro }} 
+                        {{ $solicitacao->endereco->numero }} -
+                        {{ $solicitacao->endereco->bairro }} -
+                        {{ $solicitacao->endereco->cep }} 
+                  </span>
 
                   <div id="LocalMapa_{{ $solicitacao->id }}" class="mapa"></div>
 
                @else
 
-                  <div class="card-image">
+                  <div class="card-image alterado">
                      <a href="#">
                         <img class="img" src="{{ $solicitacao->foto }}" >
 
@@ -86,20 +86,7 @@
                      </a>
                   </div>
 
-                  @if($solicitacao->endereco)
-
-                     <span class="endereco roxo hover" 
-                        onclick="mostraMapa({{ $solicitacao->endereco->latitude }},{{ $solicitacao->endereco->longitude }},{{ $solicitacao->id }});">
-                        <i class="material-icons" style="font-size: 20px; margin-top: 5px;">place</i>
-                        {{ $solicitacao->endereco->logradouro }} 
-                        {{ $solicitacao->endereco->numero }} -
-                        {{ $solicitacao->endereco->bairro }} -
-                        {{ $solicitacao->endereco->cep }} 
-                     </span>
-
-                     <div id="LocalMapa_{{ $solicitacao->id }}" class="mapa"></div>
-
-                  @endif
+               @endif
 
                {{-- Título da solicitação --}}
                <div class="card-content" style="padding-top: 0px;">
@@ -294,12 +281,14 @@
                                        <div class="col- coment-fix">
                                           <div class="form-group col-md-7 no-margin">
                                              <span class="label nota hide">
-                                                {{ $solicitacao->solicitante->nome}} alterou a comentário em VARIÁVEL às VARIÁVEL.
+                                                {{ $solicitacao->solicitante->nome}}
+                                                alterou a comentário em VARIÁVEL às VARIÁVEL.
                                              </span>
-                                             <p class="form-control-static"> {{ $comentario->comentario }} </p>
+                                             <p class="form-control-static">
+                                                {{ $comentario->comentario }}
+                                             </p>
                                           </div>
                                        </div>
-<<<<<<< HEAD
 
                                        {{-- Comentário Removido --}}
                                        {{-- <div class="col- coment-fix-rem hide">
@@ -583,4 +572,3 @@
       });
    </script>
 @endpush
-

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top navbar-fixed-top animated fadeInDownBig" style="border-bottom: 20px solid #5c458c">
+<nav class="navbar navbar-default navbar-static-top animated fadeInDownBig">
    <div class="container-fluid">
       <div class="navbar-header">
          <button type="button" class="navbar-toggle" data-toggle="collapse">
@@ -11,31 +11,8 @@
       </div>
       <div class="collapse navbar-collapse">
          <ul class="nav navbar-nav navbar-right">
+            
             @if(Auth::check())
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                     <i class="material-icons">notifications</i>
-                     <span class="notification" style="right: 100px;">5</span>
-                     Notificações
-                  </a>
-                  <ul class="dropdown-menu">
-                     <li>
-                        <a href="#">Mike John responded to your email</a>
-                     </li>
-                     <li>
-                        <a href="#">You have 5 new tasks</a>
-                     </li>
-                     <li>
-                        <a href="#">You're now friend with Andrew</a>
-                     </li>
-                     <li>
-                        <a href="#">Another Notification</a>
-                     </li>
-                     <li>
-                        <a href="#">Another One</a>
-                     </li>
-                  </ul>
-               </li>
                
                <li>
                   <a href="{{ url('/')}}" class="dropdown-toggle">
@@ -54,9 +31,9 @@
                      <i class="material-icons">settings</i> Menu
                   </a>
                
-                  <ul class="dropdown-menu">
+                  <ul class="dropdown-menu has-roxo">
                      <li>
-                        <a href="{{ url("/perfil") }}" >
+                        <a href="{{ url("/perfil") }}">
                            <i class="material-icons">person</i> Editar Perfil
                         </a>
                      </li>
@@ -96,45 +73,14 @@
                         </li>
                       </ul>
                     </li>
-                  </ul>
-                </li>
-
-                <li>
-                  <a href="{{ url('/')}}" class="dropdown-toggle">
-                    <i class="material-icons">home</i>
-                    Início
-                  </a>
-                </li>
-
-                <li>
-                  <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle minhas_solicitacoes">
-                    <i class="material-icons">dashboard</i>
-                    minhas solicitações
-                  </a>
-                </li>
-                
-                <li>
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="material-icons">settings</i>
-                    Menu
-                  </a>
-                  
-                  <ul class="dropdown-menu has-roxo">
-                    <li>
-                      <a href="{{ url("/perfil") }}" >
-                        <i class="material-icons">person</i>
-                        Editar Perfil
-                      </a>
-                    </li>
-                    
                     <li>
                       <a href="{{ url("/logout") }}" >
                         <i class="material-icons">input</i> Sair
                       </a>
                      </li>
                   </ul>
-               </li>
-               
+                </li>
+
                <li class="separator hidden-lg hidden-md"></li>
 
             @else
@@ -163,11 +109,11 @@
 
          <form method="get" action="/pesquisa" class="navbar-form navbar-right" role="search">
             <div class="form-group form-search is-empty">
-               <input name="termo" type="text" class="form-control pesquisa" style="background-image: linear-gradient(#3d276b, #3d276b), linear-gradient(#D2D2D2, #D2D2D2);" placeholder="Pesquisar">
+               <input name="termo" type="text" class="form-control pesquisa has-roxo" placeholder="Pesquisar">
                <span class="material-input"></span>
             </div>
 
-            <button type="submit" class="btn btn-white btn-round btn-just-icon" style="background: #3d276b;color: #fff">
+            <button type="submit" class="btn btn-white btn-round btn-just-icon btn-roxo">
                <i class="material-icons">search</i>
                <div class="ripple-container"></div>
             </button>

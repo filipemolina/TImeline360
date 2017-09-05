@@ -643,7 +643,7 @@ h4.card-title {
   width: 100px;
   height: 100px;
   overflow: hidden;
-  margin: -30px 15px 0 -50px;
+  margin: -10px 15px 0 -50px;
   padding: 0;
   background-color: transparent;
   position: relative;
@@ -681,7 +681,7 @@ h4.card-title {
   border-radius: 3px;avata
   overflow: hidden;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-  margin: -30px -30px 0 15px;
+  margin: -40px -30px 0 15px;
   padding: 10px 15px;
   background-color: transparent;
   position: relative;
@@ -695,6 +695,11 @@ h4.card-title {
   width: 100%;
   height: auto;
   text-align: center;
+}
+
+.card .card-image.alterado {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 .card-esquerdo .input-group{
@@ -765,6 +770,15 @@ h4.card-title {
   box-shadow: none;
 }
 
+.nome-solicitante-card {
+  font-size:  16px; 
+  margin-right: 10px; 
+  font-weight: 500;
+  color: #999999;
+  margin-top: 5px;  
+  margin-bottom: 0px;
+}
+
 .absoluto {
   position: absolute !important;
 }
@@ -806,6 +820,16 @@ span.card-avatar-label {
 }
 
 span.has-roxo {
+  background-color: #3D276B;
+  color: #ffffff;
+}
+
+.has-roxo-hover {
+  background-color: inherit;
+  color: inherit;
+  transition: background-color 0.5s ease;
+}
+.has-roxo-hover:hover {
   background-color: #3D276B;
   color: #ffffff;
 }
@@ -870,7 +894,7 @@ post-address {
   background-image: linear-gradient(to right, rgba(61,39,107,0.9) 0%, rgba(61,39,107,0.9) 100%), linear-gradient(to right, rgba(210,210,210,0.9) 0%, rgba(210,210,210,0.9) 100%);
   box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.5);
 }
-.card .roxo.hover:hover {
+.card .roxo-hover:hover {
   background-image: linear-gradient(to right, rgba(61,39,107,0.9) 0%, rgba(61,39,107,0.9) 100%), linear-gradient(to right, rgba(210,210,210,0.9) 0%, rgba(210,210,210,0.9) 100%);
   box-shadow: 6px 6px 10px 0 rgba(0, 0, 0, 0.5);
   color: #ffffff;
