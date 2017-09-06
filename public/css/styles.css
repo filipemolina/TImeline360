@@ -67,6 +67,12 @@ z-index: -1;
   perspective-origin: 50% 50%;
 }
 
+a.fixo-direita {
+  position: fixed;
+  right: 20px;
+  top: 100px;
+}
+
 a span.label.bottom {
   border-radius: 0px 12px 12px 0px;
   padding: 5px 12px;
@@ -324,6 +330,73 @@ font-size: 25px;
 
 .form-group.has-dourado .fileinput .thumbnail {
   border-color: #BFA15F;
+}
+
+.btn.btn-branco,
+.navbar .navbar-nav > li > a.btn.btn-branco {
+  box-shadow: 0 2px 2px 0 rgba(61, 39, 107, 0.14), 0 3px 1px -2px rgba(61, 39, 107, 0.2), 0 1px 5px 0 rgba(61, 39, 107, 0.12);
+}
+.btn.btn-branco, .btn.btn-branco:hover, .btn.btn-branco:focus, .btn.btn-branco:active, .btn.btn-branco.active, .btn.btn-branco:active:focus, .btn.btn-branco:active:hover, .btn.btn-branco.active:focus, .btn.btn-branco.active:hover, .open > .btn.btn-branco.dropdown-toggle, .open > .btn.btn-branco.dropdown-toggle:focus, .open > .btn.btn-branco.dropdown-toggle:hover,
+.navbar .navbar-nav > li > a.btn.btn-branco,
+.navbar .navbar-nav > li > a.btn.btn-branco:hover,
+.navbar .navbar-nav > li > a.btn.btn-branco:focus,
+.navbar .navbar-nav > li > a.btn.btn-branco:active,
+.navbar .navbar-nav > li > a.btn.btn-branco.active,
+.navbar .navbar-nav > li > a.btn.btn-branco:active:focus,
+.navbar .navbar-nav > li > a.btn.btn-branco:active:hover,
+.navbar .navbar-nav > li > a.btn.btn-branco.active:focus,
+.navbar .navbar-nav > li > a.btn.btn-branco.active:hover, .open >
+.navbar .navbar-nav > li > a.btn.btn-branco.dropdown-toggle, .open >
+.navbar .navbar-nav > li > a.btn.btn-branco.dropdown-toggle:focus, .open >
+.navbar .navbar-nav > li > a.btn.btn-branco.dropdown-toggle:hover {
+  background-color: #FFFFFF;
+  color: #3D276B;
+}
+.btn.btn-branco:focus, .btn.btn-branco:active, .btn.btn-branco:hover,
+.navbar .navbar-nav > li > a.btn.btn-branco:focus,
+.navbar .navbar-nav > li > a.btn.btn-branco:active,
+.navbar .navbar-nav > li > a.btn.btn-branco:hover {
+  box-shadow: 0 14px 26px -12px rgba(61, 39, 107, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(61, 39, 107, 0.2);
+}
+.btn.btn-branco.disabled, .btn.btn-branco.disabled:hover, .btn.btn-branco.disabled:focus, .btn.btn-branco.disabled.focus, .btn.btn-branco.disabled:active, .btn.btn-branco.disabled.active, .btn.btn-branco:disabled, .btn.btn-branco:disabled:hover, .btn.btn-branco:disabled:focus, .btn.btn-branco:disabled.focus, .btn.btn-branco:disabled:active, .btn.btn-branco:disabled.active, .btn.btn-branco[disabled], .btn.btn-branco[disabled]:hover, .btn.btn-branco[disabled]:focus, .btn.btn-branco[disabled].focus, .btn.btn-branco[disabled]:active, .btn.btn-branco[disabled].active, fieldset[disabled] .btn.btn-branco, fieldset[disabled] .btn.btn-branco:hover, fieldset[disabled] .btn.btn-branco:focus, fieldset[disabled] .btn.btn-branco.focus, fieldset[disabled] .btn.btn-branco:active, fieldset[disabled] .btn.btn-branco.active,
+.navbar .navbar-nav > li > a.btn.btn-branco.disabled,
+.navbar .navbar-nav > li > a.btn.btn-branco.disabled:hover,
+.navbar .navbar-nav > li > a.btn.btn-branco.disabled:focus,
+.navbar .navbar-nav > li > a.btn.btn-branco.disabled.focus,
+.navbar .navbar-nav > li > a.btn.btn-branco.disabled:active,
+.navbar .navbar-nav > li > a.btn.btn-branco.disabled.active,
+.navbar .navbar-nav > li > a.btn.btn-branco:disabled,
+.navbar .navbar-nav > li > a.btn.btn-branco:disabled:hover,
+.navbar .navbar-nav > li > a.btn.btn-branco:disabled:focus,
+.navbar .navbar-nav > li > a.btn.btn-branco:disabled.focus,
+.navbar .navbar-nav > li > a.btn.btn-branco:disabled:active,
+.navbar .navbar-nav > li > a.btn.btn-branco:disabled.active,
+.navbar .navbar-nav > li > a.btn.btn-branco[disabled],
+.navbar .navbar-nav > li > a.btn.btn-branco[disabled]:hover,
+.navbar .navbar-nav > li > a.btn.btn-branco[disabled]:focus,
+.navbar .navbar-nav > li > a.btn.btn-branco[disabled].focus,
+.navbar .navbar-nav > li > a.btn.btn-branco[disabled]:active,
+.navbar .navbar-nav > li > a.btn.btn-branco[disabled].active, fieldset[disabled]
+.navbar .navbar-nav > li > a.btn.btn-branco, fieldset[disabled]
+.navbar .navbar-nav > li > a.btn.btn-branco:hover, fieldset[disabled]
+.navbar .navbar-nav > li > a.btn.btn-branco:focus, fieldset[disabled]
+.navbar .navbar-nav > li > a.btn.btn-branco.focus, fieldset[disabled]
+.navbar .navbar-nav > li > a.btn.btn-branco:active, fieldset[disabled]
+.navbar .navbar-nav > li > a.btn.btn-branco.active {
+  box-shadow: none;
+}
+.btn.btn-branco.btn-simple,
+.navbar .navbar-nav > li > a.btn.btn-branco.btn-simple {
+  background-color: transparent;
+  color: #FFFFFF;
+  box-shadow: none;
+}
+.btn.btn-branco.btn-simple:hover, .btn.btn-branco.btn-simple:focus, .btn.btn-branco.btn-simple:active,
+.navbar .navbar-nav > li > a.btn.btn-branco.btn-simple:hover,
+.navbar .navbar-nav > li > a.btn.btn-branco.btn-simple:focus,
+.navbar .navbar-nav > li > a.btn.btn-branco.btn-simple:active {
+  background-color: transparent;
+  color: #FFFFFF;
 }
 
 .btn.btn-roxo,
@@ -633,11 +706,9 @@ h4.card-title {
   width: 80%;
 }
 
-
 .card-esquerdo .input-group{
   margin-top: 9px;
 }
-
 
 .card .card-header.card-header-icon.card-avatar-fixo {
   width: 100px;
@@ -838,6 +909,10 @@ span.label i.material-icons {
   font-size: 15px;
 }
 
+span.input-group-addon i.mdi {
+  font-size: 24px;
+}
+
 /*div.nome-solicitante-card{ 
   font-size:  14px; 
   margin-right: 10px; 
@@ -942,6 +1017,14 @@ post-address {
   font-size: 23px !important;
 }
 
-.row .top-alterado {
-  top: -40px;
+.top-alterado {
+  top: 60px;
+}
+
+.navbar.navbar-fix {
+  position: fixed !important;
+}
+
+.my-group .form-control{
+    width:50%;
 }

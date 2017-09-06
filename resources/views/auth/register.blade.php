@@ -8,7 +8,6 @@ Registre-se
 
 @section('content')
 
-
 <div class="row">
 
     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page" style="margin-top: 100px;">

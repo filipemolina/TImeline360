@@ -11,7 +11,6 @@
 |
 */
 
-
 // Rotas da autenticação
 
 //Route::get ('/login', 'AutenticaController@telaLogin');

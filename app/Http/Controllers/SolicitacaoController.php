@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Solicitacao;
+use App\Models\Setor;
 use App\Models\User;
 
 class SolicitacaoController extends Controller
@@ -20,7 +21,10 @@ class SolicitacaoController extends Controller
 
     public function create()
     {
-        //
+        // Obter todos os setores
+        $setores = Setor::all();
+
+        return view ('solicitacao.create', compact('setores'));
     }
 
     public function store(Request $request)

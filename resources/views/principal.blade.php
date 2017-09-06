@@ -12,13 +12,23 @@ Principal
 
 <div class="row">
 
+   @if(Auth::check())
+
+      <a href="{{ url("/solicitacao/create")}}" class="btn btn-branco btn-just-icon btn-round fixo-direita"><i class="mdi mdi-plus" rel="tooltip" data-placement="left" title="Criar solicitação"></i></a>
+
+   @else
+      
+      <a href="#" class="btn btn-branco btn-just-icon btn-round fixo-direita helper-criaPub"><i class="mdi mdi-plus"></i></a>
+
+   @endif
+
    <div class="infinite-scroll">
 
     {{-- Início da Solicitação --}}
 
       @foreach ($solicitacoes as $solicitacao)
                        
-         <div class="col-md-6 col-md-offset-3 top-alterado">
+         <div class="col-md-6 col-md-offset-3">
 
             {{-- Card mestre --}}
             <div class="card">

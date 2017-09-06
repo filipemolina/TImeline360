@@ -61,7 +61,15 @@ $(function(){
 
         helper.showSwal1('info','Efetue o login para apoiar a publicação')
 
-    })    
+    })
+
+    // Criar publicação apenas logado
+    $(".helper-criaPub").click(function(){
+        event.preventDefault();
+
+        helper.showSwal1('info','Efetue o login para criar uma publicação')
+
+    })
     
     // Botão editar, ocultar coment-fix e exibir coment-edit
     $('.btn-coment-edit').click(function() {

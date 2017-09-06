@@ -12,6 +12,7 @@ Informe o Título
 <div class="row">
 
 </div> {{-- FIM ROW --}}
+
 @endsection
 
 @push('scripts')
