@@ -29,7 +29,7 @@
 
                 		</div>
 
-                		<input type="hidden" name="foto">
+                		<input type="hidden" name="foto" value="{{ $solicitante->foto }}">
                     	<span class="btn btn-round btn-rose btn-file edit-foto">
                            <span class="fileinput-new">				Adicionar 	</span>
                            <span class="fileinput-exists">			Alterar		</span>

@@ -8,7 +8,7 @@
                </a>
                <ul class="dropdown-menu pull-right">
                   <li>
-                     <a href="#eugen" class="btn-coment-del" data-id="{{ id }}" data-token="{{ token }}">
+                     <a href="" class="btn-coment-del" data-id="{{ id }}" data-token="{{ token }}">
                         <i class="material-icons">clear</i> Excluir
                      </a>
                   </li>
@@ -206,7 +206,7 @@
                                        </a>
                                        <ul class="dropdown-menu pull-right">
                                           <li>
-                                             <a href="#eugen" class="btn-coment-del">
+                                             <a href="" class="btn-coment-del">
                                                 <i class="material-icons">clear</i> Excluir
                                              </a>
                                           </li>

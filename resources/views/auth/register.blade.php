@@ -29,7 +29,7 @@ Registre-se
                         {{-- <a href="#pablo" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-twitter"></i>
                         </a> --}}
-{{--                         <a href="#eugen" class="btn btn-just-icon btn-simple">
+{{--                         <a href="" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-google-plus"></i>
                         </a> --}}
                     </div>

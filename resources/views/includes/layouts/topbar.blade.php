@@ -1,6 +1,16 @@
 <nav class="navbar navbar-default navbar-static-top navbar-fixed-top @if(Request::is('/')) animated fadeInDownBig @endif" style="border-bottom: 20px solid #5c458c">
    <div class="container-fluid">
       <div class="navbar-header">
+         {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/logo-360-roxo.png')}}">    --}}
+         {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/logo-360-dourado.png')}}">    --}}
+         {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/loading.gif')}}">    --}}
+
+         <img class="img" style="width: 190px; 
+                                 margin-top: -8px; 
+                                 margin-left: -35px;" 
+                                 src="{{ asset('img/logo-horizontal-360.png')}}">   
+         {{-- <img class="img" style="width: 75px; margin-top: -38px; margin-left: 200px;" src="{{ asset('img/loading.gif')}}"> --}}         
+
          <button type="button" class="navbar-toggle" data-toggle="collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
