@@ -173,21 +173,19 @@ class UserController extends Controller
     public function SalvarSenha(Request $request)
     {
         
-/*        // Validar
+        // Validar
         $this->validate($request, [
             'password_atual'        => 'required',
             'password'              => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6'
         ]);
 
-*/
-
         // Obter o usuário
         $usuario = User::find($request->id);
 
         if (Hash::check($request->password_atual, $usuario->password))
         {
-            //$usuario->update(bcrypt($request->password));            
+            $usuario->update(['password' => bcrypt($request->password)]);            
             return redirect('/')->with('sucesso_alteracao_senha','Senha alterada com sucesso.');
         }else{
 

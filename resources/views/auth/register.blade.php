@@ -23,7 +23,7 @@ Registre-se
                 <div class="card-header text-center" data-background-color="roxo">
                     <div class="social-line">
                         <br>
-                        <a href="#btn" class="btn btn-just-icon btn-simple">
+                        <a href="loginFacebook" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-facebook-square"></i>
                         </a>
                         {{-- <a href="#pablo" class="btn btn-just-icon btn-simple">

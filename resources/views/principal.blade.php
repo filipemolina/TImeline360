@@ -292,16 +292,33 @@
 
    {{-- Testar se há algum erro, e mostrar a notificação --}}
 
-   @if ($errors->any())
-      @foreach ($errors->all() as $error)
-         setTimeout(function(){demo.notificationRight("top", "right", "rose", "{{ $error }}"); }, tempo);
-         tempo += incremento;
-      @endforeach
-   @endif
+   <script>
+      
+      $(function() {
+         @if (session('sucesso_alteracao_senha'))
+            //setTimeout(function(){demo.notificationRight("top", "right", "green", "Senha alterada com sucesso"); }, tempo);
+            swal({   title:"Senha alterada com sucesso!",
+                     //text: "Senha alterada com sucesso!", 
+                     type: "success", 
+                     buttonsStyling: false, 
+                     confirmButtonClass: "btn btn-success"
+            });
+         @endif
+      });
 
-   @if (session('sucesso_alteracao_senha'))
-      setTimeout(function(){demo.notificationRight("top", "right", "green", "Senha alterada com sucesso"); }, tempo);
-   @endif
+      @if ($errors->any())
+         @foreach ($errors->all() as $error)
+            setTimeout(function(){demo.notificationRight("top", "right", "rose", "{{ $error }}"); }, tempo);
+            tempo += incremento;
+         @endforeach
+      @endif
+   </script>
+
+
+
+
+
+
   
 @endpush
 

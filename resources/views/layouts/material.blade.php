@@ -69,16 +69,15 @@
 </body>
 
 <script>
+    
+    //variáveis globais ao sistema
+    let url_base       = "{{ url("/") }}";
+    let token          = "{{ csrf_token() }}";
     @if(Auth::check())
-
          // Dados globais do usuário
-
-         let id_usuario = {{ Auth::user()->id }};
-         let foto_usuario = '{{$usuario->solicitante->foto}}';
-         let nome_usuario = "{{$usuario->solicitante->nome}}";
-         let url_base = "{{ url("/") }}";
-         let token = "{{ csrf_token() }}";
-
+         let id_usuario     = {{ Auth::user()->id }};
+         let foto_usuario   = "{{$usuario->solicitante->foto}}";
+         let nome_usuario   = "{{$usuario->solicitante->nome}}";
     @endif
 </script>
 
