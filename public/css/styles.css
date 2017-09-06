@@ -88,7 +88,7 @@ a span.label.top {
 
 button.btn-just-icon.grande {
 padding: 0;
-font-size: 35px;
+font-size: 25px;
 
 }
 
@@ -938,4 +938,10 @@ post-address {
     right: 0;
 }
 
-.opcoes_card i { font-size: 23px !important; }
+.opcoes_card i {
+  font-size: 23px !important;
+}
+
+.row .top-alterado {
+  top: -40px;
+}

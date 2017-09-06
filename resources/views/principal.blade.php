@@ -2,16 +2,7 @@
 
 @section('titulo')
 
-   {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/logo-360-roxo.png')}}">    --}}
-   {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/logo-360-dourado.png')}}">    --}}
-   {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/loading.gif')}}">    --}}
-
-   <img class="img" style="width: 190px; 
-                           margin-top: -13px; 
-                           margin-left: -20px;" 
-                           src="{{ asset('img/Logotipo-Horizontal-Colorido-PMM.png')}}">   
-
-<img class="img" style="width: 75px; margin-top: -68px; margin-left: 200px;" src="{{ asset('img/loading.gif')}}">       
+Principal
 
 @endsection
 
@@ -27,7 +18,7 @@
 
       @foreach ($solicitacoes as $solicitacao)
                        
-         <div class="col-md-6 col-md-offset-3">
+         <div class="col-md-6 col-md-offset-3 top-alterado">
 
             {{-- Card mestre --}}
             <div class="card">
@@ -79,7 +70,7 @@
                <div class="card-content" style="padding-top: 0px;">
                   <div class="card-title">
                      <p class="col-md-12" style="margin-bottom: 0px;">
-                        <button class="btn btn-just-icon btn-simple btn-xs btn-primary" style="margin-top: 0px;margin-bottom: 0px;">
+                        <button class="btn btn-just-icon grande btn-simples btn-xs btn-primary" style="color: {{ $solicitacao->servico->setor->cor }};">
                            {{-- <i class="material-icons">label_outline</i> --}}
                            <span class="mdi {{ $solicitacao->servico->setor->icone }}" ></span>
                         </button>
@@ -87,28 +78,37 @@
                         <b> {{ $solicitacao->servico->nome }} </b>
 
                         {{-- Opções do Solicitação --}}
-                        <div class="opcoes_card">
-                           <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
-                              <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
-                                 <i class="material-icons">settings</i>
-                              </a>
-                              
-                              <ul class="dropdown-menu pull-right">
-                                 {{-- <li>
-                                    <a href="#eugen" class="btn-coment-del">
-                                       <i class="material-icons">create</i> Editar
+                        @isset($usuario)
+
+                           @if ($usuario->solicitante->id == $solicitacao->solicitante->id )
+
+                              <div class="opcoes_card">
+                                 <div class="dropdown col-md-12 nav navbar-nav absoluto no-padding">
+                                    <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
+                                       <i class="material-icons">settings</i>
                                     </a>
-                                 </li> --}}
-                                 <li>
-                                    <a href="#eugen" class="btn-coment-del">
-                                       <i class="material-icons">clear</i> Excluir
-                                    </a>
-                                 </li>
-                              </ul>
-                           </div>
-                           
-                           <div style="clear: both"></div>
-                        </div>
+                                    
+                                    <ul class="dropdown-menu has-roxo pull-right">
+                                       {{-- <li>
+                                          <a href="#eugen" class="btn-coment-del">
+                                             <i class="material-icons">create</i> Editar
+                                          </a>
+                                       </li> --}}
+                                       <li>
+                                          <a href="#eugen" class="btn-coment-del">
+                                             <i class="material-icons">clear</i> Excluir
+                                          </a>
+                                       </li>
+                                    </ul>
+                                 </div>
+
+                                 <div style="clear: both"></div>
+                              </div>
+
+                           @endif
+
+                        @endisset
+                                 
                      </p>
                   </div>
                   

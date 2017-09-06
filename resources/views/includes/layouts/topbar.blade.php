@@ -9,7 +9,15 @@
         <span class="icon-bar"></span>
       </button>
          
-      <a class="navbar-brand" href="#" style="color: #000"> @section('titulo')  @show </a>
+      <ul class="navbar-brand" href="#">
+        <a class="btn btn-simples">
+          <img class="img" style="width: 190px; margin-top: -25px;" src="{{ asset('img/Logotipo-Horizontal-Colorido-PMM.png')}}"> 
+        </a>
+        
+        <a class="btn btn-simples">
+          <img class="img" style="width: 75px; margin-top: -25px;" src="{{ asset('img/loading.gif')}}">
+        </a>
+      </ul>
     </div>
       
     <div class="collapse navbar-collapse">

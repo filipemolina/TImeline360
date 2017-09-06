@@ -87,7 +87,7 @@
             <div class="card-content" style="padding-top: 0px;">
                <div class="card-title">
                   <p class="col-md-12" style="margin-bottom: 0px;">
-                     <button class="btn btn-just-icon btn-simple btn-xs btn-primary" style="margin-top: 0px;margin-bottom: 0px;">
+                     <button class="btn btn-just-icon grande btn-simples btn-xs btn-primary" style="margin-top: 0px;margin-bottom: 0px;">
                         {{-- <i class="material-icons">label_outline</i> --}}
                         <span class="mdi {{ $solicitacao->servico->setor->icone }}" ></span>
                      </button>
@@ -180,7 +180,7 @@
             {{-- Comentários --}}
             <footer class="colapso col-md-12">
                <div class="comentarios">
-               
+
                   @foreach ($solicitacao->comentarios as $comentario)
 
                      {{-- card de comentarios --}}
@@ -229,7 +229,7 @@
                                        <a href="#" class="btn btn-xs btn-simples dropdown-toggle rodar-icone pull-right" data-toggle="dropdown">
                                           <i class="material-icons">settings</i>
                                        </a>
-                                       <ul class="dropdown-menu pull-right">
+                                       <ul class="dropdown-menu has-roxo pull-right">
                                           <li>
                                              <a href="#eugen" class="btn-coment-del">
                                                 <i class="material-icons">clear</i> Excluir
