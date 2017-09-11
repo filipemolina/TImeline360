@@ -42,6 +42,10 @@ Route::put 	('/salva',   		'UserController@SalvarSenha');
 Route::get ('/minhassolicitacoes', 'PrincipalController@minhassolicitacoes');
 
 
+//mostra um mapa com as solicitações marcadas
+Route::get ('/mapa', 'PrincipalController@mapa');
+
+
 Route::get('/registro', function () {
     return view('auth.register');
 });

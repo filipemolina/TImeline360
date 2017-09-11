@@ -35,16 +35,16 @@ class FacebookController extends Controller
        	// Cria um solicitante
         	$solicitante = new Solicitante([
      		 	'nome'      => $user_facebook->getName(),
-            'email'     => $user_facebook->getEmail(),
-            'fb_uid'		=> $user_facebook->getId(),
-            'password'  => bcrypt(time()),
-            'foto'		=> 'data:image/jpg;base64,' . base64_encode(file_get_contents($user_facebook->getAvatar())),
+                'email'     => $user_facebook->getEmail(),
+                'fb_uid'	=> $user_facebook->getId(),
+                'password'  => bcrypt(time()),
+                'foto'		=> 'data:image/jpg;base64,' . base64_encode(file_get_contents($user_facebook->getAvatar())),
         	]);
 
         	$solicitante->save();
 
         	$user = User::create([
-        		'email'				=> $user->getEmail(),
+        		'email'				=> $user_facebook->getEmail(),
         		'password'  		=> bcrypt(time()),
      		]);
         

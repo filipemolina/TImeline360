@@ -47,18 +47,24 @@
 	                	</div>
 	                
 		                <div class="input-group">
-			                    <span class="input-group-addon">
-			                        <i class="material-icons">lock_outline</i>
-			                    </span>
-		                    <div class="form-group label-floating has-roxo">
-		                        <label class="control-label">Confirmar Nova Senha</label>
-		                        <input  name="password_confirmation" type="password" class="form-control error">
-		                    </div>
+		                	
+	                    	<span class="input-group-addon">
+	                        <i class="material-icons">lock_outline</i>
+	                    	</span>
+		                  <div class="form-group label-floating has-roxo">
+		                     <label class="control-label">Confirmar Nova Senha</label>
+		                     <input  name="password_confirmation" type="password" class="form-control error">
+		                  </div>
 		                </div>
 						</div>
 					</div>
 					<div class="footer text-center" style="">
-						<button type="submit" class="btn btn-roxo btn-wd btn-lg" style=" border-radius: 30px;">Salvar</button>
+						<a href="javascript:history.back()" class="btn btn-roxo btn-wd btn-lg"
+									style="border-radius: 30px;">Cancelar
+						</a>
+						<button type="submit" class="btn btn-roxo btn-wd btn-lg" 
+								style=" border-radius: 30px;"> &nbsp; Salvar &nbsp;  &nbsp;
+						</button>
 					</div>
 				</form>
 			</div> {{-- FIM DIV Pessoal --}}

@@ -851,3 +851,10 @@ post-address {
 }
 
 .opcoes_card i { font-size: 23px !important; }
+
+#map-canvas {
+  width: 97vw;
+  height: 80vh;
+  top: 100px;
+  margin-bottom: 85px;
+}

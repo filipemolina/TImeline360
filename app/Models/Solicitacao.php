@@ -27,10 +27,16 @@ class Solicitacao extends Model
     	return $this->belongsTo('App\Models\Solicitante');
     }
 
-    public function endereco()
+    public function enderecos()
 	{
-		return $this->hasOne('App\Models\Endereco');
+		return $this->hasMany('App\Models\Endereco');
 	}
+
+    public function endereco()
+    {
+        return $this->hasOne('App\Models\Endereco');
+    }
+
 
 	public function comentarios()
     {
