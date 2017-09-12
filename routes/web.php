@@ -43,7 +43,8 @@ Route::get ('/minhassolicitacoes', 'PrincipalController@minhassolicitacoes');
 
 
 //mostra um mapa com as solicitações marcadas
-Route::get ('/mapa', 'PrincipalController@mapa');
+Route::get ('/mapa', 			'PrincipalController@mapa');
+/*Route::get ('/mapamesquita', 	'PrincipalController@mapamesquita');*/
 
 
 Route::get('/registro', function () {

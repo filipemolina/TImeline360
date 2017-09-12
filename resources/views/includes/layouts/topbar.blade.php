@@ -52,6 +52,11 @@
                      <i class="material-icons">home</i> Início
                   </a>
                </li>
+               <li>
+                  <a href="{{ url('/mapa')}}" class="dropdown-toggle">
+                     <i class="material-icons">map</i> Mapa
+                  </a>
+               </li>
                
                <li>
                   <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle minhas_solicitacoes">
@@ -93,7 +98,11 @@
                      <i class="material-icons">home</i> Início
                   </a>
                </li>
-
+               <li>
+                  <a href="{{ url('/mapa')}}" class="dropdown-toggle">
+                     <i class="material-icons">map</i> Mapa
+                  </a>
+               </li>
                <li class=" active ">
                   <a href="{{url ("/registro")}}">
                      <i class="material-icons">person_add</i> Registre-se

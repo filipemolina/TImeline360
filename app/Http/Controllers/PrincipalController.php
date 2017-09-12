@@ -170,6 +170,18 @@ class PrincipalController extends Controller
     public function mapa()
     {
 
+        $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])->get();
+
+        
+        if (Auth::check()) {
+            // Obter o usuário logado atualmente
+            $usuario      =  User::find(Auth::user()->id);
+            return view('mapa.mapa', ['solicitacoes' => $solicitacoes, 'usuario' => $usuario ]);
+        }else{
+            return view('mapa.mapa', ['solicitacoes' => $solicitacoes]);
+        }
+
+
         /*$solicitacoes = Solicitacao::with('endereco')->where('moderado', 1)->get();*/
 
 /*        $solicitacoes = Solicitacao::where('moderado', 1)->get();
@@ -186,11 +198,17 @@ class PrincipalController extends Controller
             ];
         }
 */    
-        $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])->get();
 
-        return view('mapa.mapa', ['solicitacoes' => $solicitacoes]);
 
     }
+
+   /* public function mapamesquita()
+    {
+        return response()->file('mesquita2.kml');
+
+        
+
+    }*/
 
 }
 
