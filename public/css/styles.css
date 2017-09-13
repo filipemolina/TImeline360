@@ -1026,5 +1026,52 @@ post-address {
 }
 
 .my-group .form-control{
-    width:50%;
+  width:50%;
+}
+
+figure.highlight {
+  background-color: rgba(200, 200, 200, 0.2);
+}
+
+figure.highlight.pq {
+  height: 100px
+}
+
+figure.highlight label, figure.highlight input, figure.highlight i {
+  text-align: center;
+}
+
+figure.highlight label {
+  color: #555;
+}
+
+figure.highlight.pq i {
+  font-size: 20px;
+}
+
+figure.highlight span.input-group-addon {
+  padding: 0;
+}
+
+figure.highlight .form-group {
+  margin: 0;
+}
+
+.container-btn {
+  width: 100px;
+}
+
+.container-btn button {
+  margin: 10px 0 0 25px;
+
+}
+
+.container-btn p {
+  width: 100px;
+  font-size: 12px;
+  word-wrap: break-word;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+
 }
