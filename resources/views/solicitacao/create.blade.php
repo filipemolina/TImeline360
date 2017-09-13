@@ -15,7 +15,7 @@ Nova solicitação
     <!--      Wizard container        -->
         
         <div class="wizard-container">
-            <div class="card wizard-card" data-color="rose" id="wizardProfile">
+            <div class="card wizard-card" data-color="roxo" id="wizardProfile">
                 <form action="" method="">
                     <div class="wizard-header no-padding no-margin">
                         <h3 class="wizard-title">
@@ -148,12 +148,12 @@ Nova solicitação
                                         
                     <div class="wizard-footer">
                         <div class="pull-right">
-                            <input type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Next' />
-                            <input type='button' class='btn btn-finish btn-fill btn-rose btn-wd' name='finish' value='Finish' />
+                            <input type='button' class='btn btn-next btn-fill btn-roxo btn-wd' name='next' value='Próximo' />
+                            <input type='button' class='btn btn-finish btn-fill btn-roxo btn-wd' name='finish' value='Fim' />
                         </div>
                         
                         <div class="pull-left">
-                            <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+                            <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Voltar' />
                         </div>
                         
                         <div class="clearfix"></div>
