@@ -225,6 +225,13 @@ var helper = {
 
     
 $(function(){
+
+   // Criar publicação apenas logado
+   $(".helper-criaPub").click(function(){
+       event.preventDefault();
+       helper.showSwal1('info','Efetue o login para criar uma publicação')
+   })
+    
     
     // Mascaras
     VMasker ($("#cpf")).maskPattern("999.999.999-99");
@@ -474,3 +481,4 @@ $(function(){
    demo.initFormExtendedDatetimepickers();
 
 });
+

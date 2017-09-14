@@ -69,10 +69,74 @@
 						animation: google.maps.Animation.DROP,
 					});
 
-					let infoWindow_{{ $solicitacao->id }} = new google.maps.InfoWindow({
-						content: "<p>{{ $solicitacao->servico->nome }}</p><br/><img src='{{ $solicitacao->foto }}' width='50%;'/>"
-  					});                        
-					
+				  	// InfoWindow content
+				  	var content = 	'<div id="iw-container">' +
+			                    		'<div class="iw-title" style="background-color:{{ $solicitacao->servico->setor->cor }}">'+
+			                    			'<span class="mdi {{ $solicitacao->servico->setor->icone }}" style="margin-right: 20px"></span>'+
+			                    			'{{ $solicitacao->servico->nome }}'+
+			                    		'</div>' +
+				                    		'<div class="iw-content">' +
+			                      			'<img src="{{ $solicitacao->foto }}"  width="40%">' +
+		                      				'<p>{{ $solicitacao->conteudo }}</p>' +
+		                      				// '<div class="iw-subTitle">Contacts</div>' +
+	                      					// '<p>VISTA ALEGRE ATLANTIS, SA<br>3830-292 Ílhavo - Portugal<br>'+
+		                      				// '<br>Phone. +351 234 320 600<br>e-mail: geral@vaa.pt<br>www: www.myvistaalegre.com</p>'+
+		                    				'</div>' +
+		                    			'<div class="iw-bottom-gradient"></div>' +
+		                  		'</div>';
+
+				  	// A new Info Window is created and set content
+
+				  	let infoWindow_{{ $solicitacao->id }} = new google.maps.InfoWindow({content: content, maxWidth: 350});
+
+
+				  	google.maps.event.addListener(infoWindow_{{ $solicitacao->id }}, 'domready', function() {
+						// Reference to the DIV that wraps the bottom of infowindow
+						var iwOuter = $('.gm-style-iw');
+
+						/* Since this div is in a position prior to .gm-div style-iw.
+						* We use jQuery and create a iwBackground variable,
+						* and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
+						*/
+						var iwBackground = iwOuter.prev();
+
+						// Removes background shadow DIV
+						iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+						// Removes white background DIV
+						iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+						// Moves the infowindow 115px to the right.
+						iwOuter.parent().parent().css({left: '115px'});
+
+						// Moves the shadow of the arrow 76px to the left margin.
+						iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+
+						// Moves the arrow 76px to the left margin.
+						iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+
+						// Changes the desired tail shadow color.
+						iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+
+						// Reference to the div that groups the close button elements.
+						var iwCloseBtn = iwOuter.next();
+
+						// Apply the desired effect to the close button
+						iwCloseBtn.css({opacity: '1', right: '38px', top: '3px', border: '7px solid #bfa15f', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9', width: '27px', height: '27px', backgroundColor: '#bfa15f'});
+
+						// If the content of infowindow not exceed the set maximum height, then the gradient is removed.
+						if($('.iw-content').height() < 140){
+							$('.iw-bottom-gradient').css({display: 'none'});
+						}
+
+						// The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
+						iwCloseBtn.mouseout(function(){
+							$(this).css({opacity: '1'});
+						});
+					});
+
+   
+				
 					google.maps.event.addListener(marker_{{ $solicitacao->id }}, 'click', () => {
 
 						if(infowindow)
@@ -90,18 +154,23 @@
 
          var options = {
              imagePath: '{{ asset("js/marker-clusterer/images/m") }}',
-             MaxZoom: 14,	
+             MaxZoom: 13,	
              averageCenter: true,
-             gestureHandling: 'auto',
-             zoomOnClick: false,
-             //minimumClusterSize: 10,
+             zoomOnClick: true,
+             /*minimumClusterSize: 5,*/
              gridSize: 20,
          };
 
          var markerCluster = new MarkerClusterer(map, markers, options);
+
+         
 		}
 
-    	
+
+
+	
+
+
 		google.maps.event.addDomListener(window, 'load', initialize);
 
 
