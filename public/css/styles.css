@@ -587,9 +587,6 @@ h4.card-title {
 }
 
 
-.card-esquerdo .input-group{
-    margin-top: 9px;
-}
 
 
 .card .card-header.card-header-icon.avatar-fixo {
@@ -869,6 +866,19 @@ post-address {
 #map-canvas img {
   max-width: none !important;
 }
+
+#map-cad-sol{
+  width: 800px;
+  height: 350px;
+  /*top: 10px;*/
+  /*margin: 0 0 85px 0;
+  padding: 0;
+  max-width: none !important;*/
+}
+
+
+
+
 .gm-style-iw {
   width: 350px !important;
   top: 15px !important;
@@ -1086,3 +1096,73 @@ figure.highlight .form-group {
   padding-top: 0px !important;
 }
 
+
+.wizard-card .wizard-header {
+    text-align: center;
+    padding: 15px 0 5px;
+}
+
+.rodape{
+  text-align:center;
+  font-size: 13px;
+}
+
+/********************************************************** Mapa de Criação de Solicitação
+
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+  height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.controls {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+#type-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+#target {
+  width: 345px;
+}
+
+/********************************************************** Fim do Mapa de Criação de Solicitação

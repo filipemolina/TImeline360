@@ -150,20 +150,6 @@
 					markers.push(marker_{{ $solicitacao->id }});
 				@endif
 			@endforeach
-			
-
-         var options = {
-             imagePath: '{{ asset("js/marker-clusterer/images/m") }}',
-             MaxZoom: 13,	
-             averageCenter: true,
-             zoomOnClick: true,
-             /*minimumClusterSize: 5,*/
-             gridSize: 20,
-         };
-
-         var markerCluster = new MarkerClusterer(map, markers, options);
-
-         
 		}
 
 
