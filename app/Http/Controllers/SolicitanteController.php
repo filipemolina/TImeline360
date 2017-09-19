@@ -166,7 +166,7 @@ class SolicitanteController extends Controller
         $ufs                = pegaValorEnum('enderecos',    'uf'); 
         
         
-        return view('solicitantes.edit',compact('solicitante','escolaridades','estados_civil','sexos','ufs','fixo','celular'));
+        return view('solicitantes.edit',compact('solicitante','escolaridades','estados_civil','sexos','ufs','fixo','celular', 'usuario'));
         
     }
 

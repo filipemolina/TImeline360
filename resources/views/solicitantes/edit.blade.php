@@ -3,22 +3,16 @@
 @section('content')
 
 	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-sm-6 card-esquerdo" >
-				<form class="form" method="post" action="{{ url("solicitante/$solicitante->id") }}">
-					{!! method_field('PUT') !!}
+		<div class="row cartao-principal">
+			<form class="form" method="post" action="{{ url("solicitante/$solicitante->id") }}">
+				{!! method_field('PUT') !!}
+				{{ csrf_field() }}
 
-					{{ csrf_field() }}
-
+				<div class="col-md-6 col-sm-6 card-esquerdo" >
 					<div id="login-municipe" class="card card-login card-hidden">
 						<div class="card-header card-header-icon" data-background-color="rose">
 							<i class="material-icons">person</i>
 						</div>
-
-
-
-
-
 
 						{{-- Avatar do usuário --}}
             		<div class="fileinput fileinput-new text-center foto-edit col-md-4 col-sm-4" data-provides="fileinput">
@@ -31,11 +25,11 @@
                     		@else
                     			<img src="{{ asset('img/placeholder.jpg') }}"/>
                     		@endif
-
                 		</div>
-                    
-                    
-                		<input type="hidden" name="foto">
+ 
+
+                		<input type="hidden" name="foto" value="{{ $solicitante->foto }}">
+
                     	<span class="btn btn-round btn-rose btn-file edit-foto">
                            <span class="fileinput-new">				Adicionar 	</span>
                            <span class="fileinput-exists">			Alterar		</span>
@@ -43,26 +37,20 @@
                     	</span>
                                
 
-                    <a href="#pablo" class="btn btn-danger btn-round fileinput-exists exclui-foto" data-dismiss="fileinput"><i></i> Excluir<div class="ripple ripple-on ripple-out" style=" background-color: rgb(255, 255, 255);"></div></a>
-                               
-            </div>
-
-           		{{-- Fim do Avatar do usuário --}}
-       			
-
+                    	<a href="#pablo" class="btn btn-danger btn-round fileinput-exists exclui-foto" data-dismiss="fileinput"><i></i> Excluir<div class="ripple ripple-on ripple-out" style=" background-color: rgb(255, 255, 255);"></div></a>
+            		</div>
+           			{{-- Fim do Avatar do usuário --}}
+						
 						<div class="card-content">
 							<h4 class="card-title">PESSOAL</h4>
 						</div>
 
-
 						<div class="card-content">
-
-
 							<div class="input-group">
 								<span class="input-group-addon">
 									<i class="material-icons">face</i>
 								</span>
-								
+							
 								<div class="form-group label-floating has-roxo col-md-10">
 									<label class="control-label">Nome</label>
 									<input name="nome" type="text" class="form-control error" 
@@ -151,7 +139,7 @@
 
 
 
-				<div class="col-md-6 col-sm-6">
+				<div class="col-md-6 col-sm-6 card-direito">
 					<div id="login-municipe" class="card card-login card-hidden">
 
 						<div class="card-header card-header-icon" data-background-color="rose">
@@ -246,14 +234,8 @@
 									<input name="endereco[complemento]" type="text" class="form-control error" 
 									value="{{ $solicitante->endereco->complemento  or  old('endereco.complemento') }}">
 								</div>
-
 							</div>
 
-							{{-- fixo: {{ $fixo }}
-							<br>
-							<br>
-							celular: {{ $celular }}
- --}}
 							<div class="input-group">
 								<span class="input-group-addon">
 									<i class="material-icons">phone</i>
@@ -279,18 +261,27 @@
 							</div>
 						</div>
 					</div> {{-- FIM DIV Contato --}}
-
-					<div class="footer text-center" style="">
-						<button type="submit" class="btn btn-roxo btn-wd btn-lg" style="right: 300px; bottom: 25px; border-radius: 30px;">Salvar</button>
-					</div>
-
-				</form>
-			</div>
+				</div>
+				<div class="footer text-center" >
+					<a href="javascript:history.back()" class="btn btn-roxo btn-wd btn-lg"
+						style="border-radius: 30px;">Cancelar
+					</a>
+					<button 	type="submit" class="btn btn-roxo btn-wd btn-lg" 
+								style="/*right: 300px; bottom: 25px; */border-radius: 30px;">  &nbsp; Salvar &nbsp;  &nbsp; 
+					</button>
+				</div>
+			</form>
 		</div>
 	</div>
 
-
 @endsection
+
+						{{-- <a href="{{ URL::route('index') }}"
+					  				class="btn btn-roxo btn-wd btn-lg" 
+					  				style="right: 300px; bottom: 25px; border-radius: 30px;">Cancelar</a>
+		  				</a>
+ --}}
+
 
 @push("scripts")
 	{{-- Atualiza os campos do endereço de acordo com o cep digitado --}}

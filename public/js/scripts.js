@@ -1,52 +1,13 @@
-//////////////////// Funções Principais
-
-// Sweet Alert
-var helper = {
-
-    // Como usuar no html:
-    // helper.showSwal1('tipo', 'titulo')
-    // helper.showSwal2('tipo', 'texto1', 'texto2','texto1Sucesso', 'texto2Sucesso', 'funcaoSucesso')
-    
-    showSwal1: function(tipo, texto1) {
-        
-        if(tipo == 'basico'){
-            swal({
-                title: texto1,
-                buttonsStyling: false,
-                confirmButtonClass: 'btn btn-roxo'
-            });
-        } else if (tipo == 'info') {
-            swal({
-                type: 'info',
-                title: texto1,
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-info"
-            });
-        } else if (tipo == 'aviso') {
-            swal({
-                type: 'warning',
-                title: texto1,
-                input: 'text',
-                buttonsStyling: false,
-                showCancelButton: true,
-                cancelButtonClass: 'btn btn-roxo',
-                cancelButtonText: 'Cancelar',
-                confirmButtonText: 'Alterar',
-                confirmButtonClass: 'btn btn-danger'
-            });
-        }
-
-
-    }, //Fim showSwal1
-
-    
-
-}; //Fim Helper
-
-    
 $(function(){
+
+   // Criar publicação apenas logado
+   $(".helper-criaPub").click(function(){
+       event.preventDefault();
+       helper.showSwal1('info','Efetue o login para criar uma publicação')
+   })
     
-    // Mascarás
+    
+    // Mascaras
     VMasker ($("#cpf")).maskPattern("999.999.999-99");
     VMasker ($(".datepicker")).maskPattern("99/99/9999");
 
@@ -69,7 +30,7 @@ $(function(){
 
     $('.minhas_solicitacoes').click(function(e) {
         e.preventDefault();
-        $.get('/solicitacoes/minhas/'+id_usuario, function(resultado){
+        $.get(url_base+'/solicitacoes/minhas/'+id_usuario, function(resultado){
             if (resultado == "0")
                 demo.notificationRight("top", "right", "rose", "Você ainda não possui Solicitações cadastradas!");   
             else
@@ -78,7 +39,7 @@ $(function(){
     })
     
     // Botão Excluir, ocultar coment-fix, exibir comentario com horário da "exclusão", demonstrar botão desfazer e oculstar botões editar e excluir
-    $('.btn-coment-del').click(function () {
+    $('.infinite-scroll').on('click', ".btn-coment-del", function () {
 
         var isto = this;
         var text = $(this).parent().parent().parent().parent().find('div.coment-fix p').show('p');
@@ -87,7 +48,7 @@ $(function(){
 
         swal({
                 type: 'warning',
-                title: 'Remover o comentário abaixo?',
+                title: 'Remover o comentário?',
                 html: text,
                 buttonsStyling: false,
                 showCancelButton: true,
@@ -96,20 +57,38 @@ $(function(){
                 confirmButtonText: 'Remover',
                 confirmButtonClass: 'btn btn-danger'
             }).then(function () {
-                swal({
-                    type: 'success',
-                    title: 'Sucesso!',
-                    text: 'Seu comentário foi removido',
-                    
-                }),
-                
-                $(isto).parent().parent().find('a.btn-coment-des').removeClass('hide');
-                $(isto).parent().parent().find('a.btn-coment-edit').addClass('hide');
-                $(isto).parent().parent().find('a.btn-coment-del').addClass('hide');
-                $(isto).parent().parent().parent().parent().find('.coment-fix').addClass('hide');
-                $(isto).parent().parent().parent().parent().find('.coment-edit').addClass('hide');
-                $(isto).parent().parent().parent().parent().find('.coment-fix-rem').removeClass('hide');
+                let id = $(isto).data('id');
+                let token = $(isto).data('token');
 
+                $.post(url_base+'/comentario/' + id , {
+
+                   _token: token,
+                   _method: 'DELETE' 
+
+                }, function(data){
+
+                    if(data == "0"){
+
+                        // Mostrar a mensagem de erro
+                        swal({
+                            type: 'error',
+                            title: 'Comentário nao removido!',
+                            text: 'Seu comentário não pôde ser removido pois já foi respondido pela prefeitura.',
+                        });
+
+                    } else {
+                        // Deletar a div do comentário
+                        $('.comentario_'+id).remove();
+
+                        // Mostrar a mensagem de sucesso
+                        swal({
+                            type: 'success',
+                            title: 'Sucesso!',
+                            text: 'Seu comentário foi removido',
+                        });
+                    }
+
+                });
             }, function (dismiss) {
                 if (dismiss === 'cancel') {
                 swal({
@@ -155,14 +134,14 @@ $(function(){
     })
 
     // Deslizar comentários
-    $('.slide-coment').click(function(){
+    $('div.infinite-scroll').on("click", ".slide-coment", function(){
         event.preventDefault();
         $(this).parent().parent().parent().find('.colapso').slideToggle();
     });
 
     
     // Alterar cor do botão apoiar
-    $('.btn-apoiar').click(function(){
+    $('div.infinite-scroll').on("click", ".btn-apoiar", function(){
         
         event.preventDefault();
 
@@ -177,24 +156,15 @@ $(function(){
         
     });
 
-    // $('.btn-desapoiar').click(function(){
-        
-    //     event.preventDefault();
-
-    //     $(this).removeClass('apoiar btn-desapoiar').addClass('desapoiar btn-apoiar')
-    // });
-
     // Remover classe card-hidden
-    $().ready(function() {
-        setTimeout(function() {
-            // after 1000 ms we add the class animated to the login/register card
-            $('.card').removeClass('card-hidden');
-        }, 700)
-    });
+    setTimeout(function() {
+        // after 1000 ms we add the class animated to the login/register card
+        $('.card').removeClass('card-hidden');
+    }, 700)
 
     // Adicionar efeito de rotação ao ícone do objeto
--
--   $('.rodar-icone')
+
+    $('.rodar-icone')
         
         .click(function(){
             var isto = this;
@@ -206,132 +176,83 @@ $(function(){
             }else {
                 $(isto).find('i').addClass('animated girar')
             }
-        })
-        
-        // .mouseout(function(){
-        //     $(this).find('i').removeClass('animated girar')
-        // });
+    });
 
-    //////////////////////////////////// Mapa
+    // Ativar o Infinite Escrôu
+    // Deve ser executado apenas se eu estiver na página inicial
 
-    // var mapData = {
-    //     "AU": 760,
-    //     "BR": 550,
-    //     "CA": 120,
-    //     "DE": 1300,
-    //     "FR": 540,
-    //     "GB": 690,
-    //     "GE": 200,
-    //     "IN": 200,
-    //     "RO": 600,
-    //     "RU": 300,
-    //     "US": 2920,
-    // };
+    if(window.location.href == url_base+"/")
+    {
 
-    // $('#worldMap').vectorMap({
-    //     map: 'world_mill_en',
-    //     backgroundColor: "transparent",
-    //     zoomOnScroll: false,
-    //     regionStyle: {
-    //         initial: {
-    //             fill: '#e4e4e4',
-    //             "fill-opacity": 0.9,
-    //             stroke: 'none',
-    //             "stroke-width": 0,
-    //             "stroke-opacity": 0
-    //         }
-    //     },
+        $('ul.pagination').hide();
+        $('.infinite-scroll').jscroll({
+           autoTrigger: true,
+           prefill: false,
+           scrollThreshold: 0,
+           debug: false,
+           loadingHtml: '<div style="text-align:center; position: relative;"><div style="position: absolute; width: 100%; top: 88px; color: #fff; font-weight: bold; font-size: 18px;">Carregando</div><img class="center-block" src="/img/DoubleRing.gif" alt="Carregando..." /></div>',
+           padding: 0,
+           nextSelector: '.pagination li.active + li a',
+           contentSelector: 'div.infinite-scroll',
+           callback: function() {
+               $('ul.pagination').remove();
+           }
+        });
 
-    //     series: {
-    //         regions: [{
-    //             values: mapData,
-    //             scale: ["#AAAAAA","#444444"],
-    //             normalizeFunction: 'polynomial'
-    //         }]
-    //     },
-    // });
+    }
 
-    //////////////////////////////////////////////////////////////////////////////// Gráficos
+    // Enviar Comentários
 
-    //////////////////////////////////////////////////// Daily Sales
+   // Caso o evento seja acionado via "click" no botão de enviar comentário, obter as informações
+   // pelas propriedades data do próprio elemento.
 
-    // dataDailySalesChart = {
-    //     labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-    //     series: [
-    //         [12, 17, 7, 17, 23, 18, 38]
-    //     ]
-    // };
+    $(".infinite-scroll").on('click', "button.enviar-comentario", function(e){
 
-    // optionsDailySalesChart = {
-    //     lineSmooth: Chartist.Interpolation.cardinal({
-    //         tension: 0
-    //     }),
-    //     low: 0,
-    //     high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-    //     chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
-    // }
+      // Chamar a função que faz a chamada Ajax
+      enviarComentario(this, e);
 
-    // var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+    });
 
-    // var animationHeaderChart = new Chartist.Line('#websiteViewsChart', dataDailySalesChart, optionsDailySalesChart);
+    // Caso o evento seja acionado pela tecla Enter no input, obter as informações através do botãok
+    $(".infinite-scroll").on('keyup', "input.comentario", function(e){
 
-    // md.startAnimationForLineChart(dailySalesChart);
+      // Chamar a função que faz a chamada Ajax apenas se a tecla pressionada for Enter
+      enviarComentario(this, e);
 
-    //////////////////////////////////////////////////// Website Views
+    });
 
-    // var dataWebsiteViewsChart = {
-    //   labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-    //   series: [
-    //     [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
+    // Deletar solicitações
 
-    //   ]
-    // };
-    // var optionsWebsiteViewsChart = {
-    //     axisX: {
-    //         showGrid: false
-    //     },
-    //     low: 0,
-    //     high: 1000,
-    //     chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
-    // };
-    // var responsiveOptions = [
-    //   ['screen and (max-width: 640px)', {
-    //     seriesBarDistance: 5,
-    //     axisX: {
-    //       labelInterpolationFnc: function (value) {
-    //         return value[0];
-    //       }
-    //     }
-    //   }]
-    // ];
-    // var websiteViewsChart = Chartist.Bar('#websiteViewsChart', dataWebsiteViewsChart, optionsWebsiteViewsChart, responsiveOptions);
+    $(".infinite-scroll").on("click", "a.btn-card-del", function(e){
 
-    //start animation for the Emails Subscription Chart
-    // md.startAnimationForBarChart(websiteViewsChart);
+        // Obter o id da solicitação à ser excluída
+        let id = $(this).data('solicitacao');
 
-    //////////////////////////////////////////////////// Completed Tasks
+        $.post(url_base + "/solicitacao/"+id, { 
+            _token: token, 
+            _method: "DELETE" 
+        }, function(data){
 
-    // dataCompletedTasksChart = {
-    //     labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
-    //     series: [
-    //         [230, 750, 450, 300, 280, 240, 200, 190]
-    //     ]
-    // };
+            // Caso a solicitação tenha sido deletada no banco
+            if(data == "1"){
 
-    // optionsCompletedTasksChart = {
-    //     lineSmooth: Chartist.Interpolation.cardinal({
-    //         tension: 0
-    //     }),
-    //     low: 0,
-    //     high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-    //     chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
-    // }
+                $("#solicitacao_card_"+id).remove();
 
-    // var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
+                helper.showSwal1("info", "Solicitação excluída!");
 
-    // start animation for the Completed Tasks Chart - Line Chart
-    // md.startAnimationForLineChart(completedTasksChart);
+            } else {
 
-   
+                helper.showSwal1("erro", data);
+
+            }
+
+        });
+
+    });
+
+   // Não me pergunte
+
+   demo.initFormExtendedDatetimepickers();
 
 });
+
