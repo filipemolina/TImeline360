@@ -41,6 +41,7 @@ class PrincipalController extends Controller
                                             ->orWhere("solicitante_id", $usuario->solicitante->id)
                                             ->orderBy('created_at', 'desc')
                                             ->paginate($this->itens_por_pagina);
+                                            
                 
                 $meus_apoios        = $usuario->solicitante->apoios;
                 $meus_apoios_ids    = [];

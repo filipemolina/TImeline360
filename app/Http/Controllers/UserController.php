@@ -167,7 +167,18 @@ class UserController extends Controller
     {
         //dd("aqui");
         $usuario = User::find(Auth::user()->id);
-        return view('auth.senha',compact('usuario'));
+
+        if($usuario->password = bcrypt($usuario->created_at))
+        {
+            $senha_padrao = $usuario->created_at;
+        }else{
+            $senha_padrao = null; 
+        }
+
+
+        return view('auth.senha',compact('usuario','senha_padrao'));    
+
+        
     }
 
     public function SalvarSenha(Request $request)
@@ -182,6 +193,7 @@ class UserController extends Controller
 
         // Obter o usuário
         $usuario = User::find($request->id);
+
 
         if (Hash::check($request->password_atual, $usuario->password))
         {
