@@ -19,6 +19,7 @@ class FacebookController extends Controller
  	{
      	$user_facebook = Socialite::driver('facebook')->user();
 
+
      	$existe_usuario = User::where('email', $user_facebook->getEmail())->get();
 
      	//dd($sistema);

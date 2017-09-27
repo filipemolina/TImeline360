@@ -36,8 +36,8 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => env('FACEBOOK_CLIENT_ID'),
-        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => env('FACEBOOK_REDIRECT'),
+        'client_id'     => 281455835652510,
+        'client_secret' => '68b86b1f5f6f41740af5b254ac2d32ea',
+        'redirect'      => 'http://timeline360.dev/facebook',
     ],
 ];
