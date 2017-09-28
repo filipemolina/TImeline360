@@ -77,7 +77,7 @@
 			                    		'</div>' +
 				                    		'<div class="iw-content">' +
 			                      			'<img src="{{ $solicitacao->foto }}"  width="40%">' +
-		                      				'<p>{{ $solicitacao->conteudo }}</p>' +
+		                      				'<p>{!! $solicitacao->conteudo !!}</p>' +
 		                      				// '<div class="iw-subTitle">Contacts</div>' +
 	                      					// '<p>VISTA ALEGRE ATLANTIS, SA<br>3830-292 Ílhavo - Portugal<br>'+
 		                      				// '<br>Phone. +351 234 320 600<br>e-mail: geral@vaa.pt<br>www: www.myvistaalegre.com</p>'+

@@ -95,7 +95,7 @@
                   </p>
                </div>
                <div class="timeline-body col-md-12">
-                  {{ $solicitacao->conteudo }}
+                  {!! $solicitacao->conteudo !!}
                </div>
             </div>
 
