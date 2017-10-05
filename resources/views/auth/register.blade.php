@@ -22,14 +22,13 @@ Registre-se
                 <div class="card-header text-center" data-background-color="roxo">
                     <div class="social-line">
                         <br>
-                        <a href="#btn" class="btn btn-just-icon btn-simple">
-                            <i class="fa fa-facebook-square"></i>
+
+                        <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face">
+                           <i class="fa fa-facebook"></i>
                         </a>
-                        {{-- <a href="#pablo" class="btn btn-just-icon btn-simple">
-                            <i class="fa fa-twitter"></i>
-                        </a> --}}
-{{--                         <a href="#eugen" class="btn btn-just-icon btn-simple">
-                            <i class="fa fa-google-plus"></i>
+
+                        {{-- <a href="loginFacebook" class="btn btn-just-icon btn-round vermelho-google">
+                           <i class="fa fa-google"></i>
                         </a> --}}
                     </div>
                 </div>
