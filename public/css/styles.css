@@ -115,7 +115,7 @@ font-size: 25px;
 .logo-pn {
   width: 200px;
   height: 200px;
-  top: -50%;
+  top: -40%;
   left: 50%;
   margin-left: -100px;
   z-index: 10;
@@ -1093,4 +1093,17 @@ figure.highlight .form-group {
   margin: 0;
   padding: 0;
 
+}
+
+.texto-roxo {
+  color: #3D276B;
+  font-weight: 400;
+}
+
+.azul-face {
+  background-color: #3b5998;
+}
+
+.vermelho-google {
+  background-color: #dd4b39;
 }

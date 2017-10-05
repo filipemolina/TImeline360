@@ -39,12 +39,7 @@ Login
 
                 {{-- Acesso via Facebook ou Google --}}
                 <div class="card-header text-center" data-background-color="roxo">
-                    <div class="social-line">
-                    <br>
-                        <a href="loginFacebook" class="btn btn-just-icon btn-simple">
-                            <i class="fa fa-facebook-square"></i>
-                        </a>
-                    </div>
+                    <div class="social-line"><br><br><br></div>
                 </div>
                 
                 {{-- Acesso por email --}}
@@ -69,14 +64,25 @@ Login
                     </div>
                 </div>
                 
-                <div class="footer text-center">
-                    <button type="submit" class="btn btn-roxo btn-lg">
-                        Acessar
-                    </button>
-                </div>
+               <div class="footer text-center">
+                  <button type="submit" class="btn btn-roxo btn-lg">
+                     Acessar
+                  </button>
+                  <div class="col-md text-center texto-roxo"> Ou, acesse por:</div>
+               </div>
+               
+               <div class="col-md-1 col-md-offset-5">
+                  <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face">
+                     <i class="fa fa-facebook"></i>
+                  </a>
+               </div>
+                  
+               {{-- <div class="col-md-1 col-md-offset-1">
+                  <a href="loginFacebook" class="btn btn-just-icon btn-round vermelho-google">
+                     <i class="fa fa-google"></i>
+                  </a>
+               </div> --}}
             </div> {{-- FIM DIV login --}}
-
-                                    
 
         </form>
     </div>
