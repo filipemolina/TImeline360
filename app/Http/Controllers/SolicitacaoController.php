@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Solicitacao;
+<<<<<<< HEAD
+=======
+use App\Models\Servico;
+>>>>>>> origin/marcelo
 use App\Models\Setor;
 use App\Models\User;
 
@@ -21,10 +26,21 @@ class SolicitacaoController extends Controller
 
     public function create()
     {
+<<<<<<< HEAD
         // Obter todos os setores
         $setores = Setor::all();
 
         return view ('solicitacao.create', compact('setores'));
+=======
+
+        // Obter todos os setores
+        $setores = Setor::with('servicos')->get();
+        $usuario = User::find(Auth::user()->id);
+
+        //dd($setores->toJson());
+        //dd($setores);
+        return view ('solicitacao.create', compact('setores','usuario'));
+>>>>>>> origin/marcelo
     }
 
     public function store(Request $request)
@@ -49,7 +65,37 @@ class SolicitacaoController extends Controller
 
     public function destroy($id)
     {
-        //
+        $solicitacao = Solicitacao::find($id);
+
+        $usuario = User::find(Auth::user()->id);
+
+        // Apenas permitir a exclusão de solicitações criadas pelo próprio usuário
+
+        if($solicitacao->solicitante->id == $usuario->solicitante->id)
+        {
+            // Permitir a exclusão apenas se o Status for "Aberta" e a solicitação não tenha
+            // nenhum comentário de funcionários da prefeitura
+
+            if($solicitacao->status == "Aberta")
+            {
+                // $solicitacao->delete();
+                
+                return "1";
+            }
+            elseif($solicitacao->status == "Fechada")
+            {
+                return "Sua solicitação não pôde ser excluída pois já foi Fechada pela Prefeitura";
+            }
+            else
+            {
+                return "Sua solicitação não pôde ser excluída pois já está sendo atendida pela Prefeitura";   
+            }
+        }
+        else
+        {
+            // Vai se fuder
+            return "0";
+        }
     }
 
 
@@ -96,3 +142,4 @@ class SolicitacaoController extends Controller
         return json_encode($retorno);
     }
 }
+

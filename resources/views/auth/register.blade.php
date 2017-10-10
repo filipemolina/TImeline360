@@ -23,12 +23,15 @@ Registre-se
                     <div class="social-line">
                         <br>
 
-                        <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face">
-                           <i class="fa fa-facebook"></i>
+                        <a href="loginFacebook" class="btn btn-just-icon btn-simple">
+                            <i class="fa fa-facebook-square"></i>
                         </a>
-
-                        {{-- <a href="loginFacebook" class="btn btn-just-icon btn-round vermelho-google">
-                           <i class="fa fa-google"></i>
+                        {{-- <a href="#pablo" class="btn btn-just-icon btn-simple">
+                            <i class="fa fa-twitter"></i>
+                        </a> --}}
+                        
+                        {{--  <a href="" class="btn btn-just-icon btn-simple">
+                            <i class="fa fa-google-plus"></i>
                         </a> --}}
                     </div>
                 </div>

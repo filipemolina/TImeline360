@@ -15,18 +15,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+
     <!-- Bootstrap core CSS     -->
-    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+
     <!--  Material Dashboard CSS    -->
-    <link href="{{ asset('css/material-dashboard.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/material-dashboard.css') }}" rel="stylesheet" />
+
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="{{ asset('css/demo.css')}} rel="stylesheet" />
+    <link href="{{ asset('css/demo.css') }}" rel="stylesheet" />
+    
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
     <!-- meterial fonts     -->
     <link href="{{ asset('css/materialdesignicons.min.css') }}" rel="stylesheet" />
+
+    {{-- SELECT2 --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
     {{-- icone da pagina --}}
     <link rel="icon" type="imagem/png" href="{{ asset('img/logo-360-roxo.png') }}" />
@@ -47,7 +54,7 @@
             
             @include('includes.layouts.topbar')
 
-            <div class="wrapper wrapper-full-page full-page" filter-color>
+            <div class="wrapper wrapper-full-page full-page">
                 <div class="content">
                     <div class="container-fluid">
 
@@ -67,6 +74,20 @@
             
         {{-- </div> --}}
 </body>
+
+<script>
+    
+    //variáveis globais ao sistema
+    let url_base       = "{{ url("/") }}";
+    let token          = "{{ csrf_token() }}";
+    @if(Auth::check())
+         // Dados globais do usuário
+         let id_usuario     = {{ Auth::user()->id }};
+         let foto_usuario   = "{{ $usuario->avatar}}";
+         let nome_usuario   = "{{ $usuario->solicitante->nome}}";
+    @endif
+</script>
+
 <!--   Core JS Files   -->
 <script src="{{ asset('js/jquery-3.1.1.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/jquery-ui.min.js') }}" type="text/javascript"></script>
@@ -106,6 +127,9 @@
 
 <script src="{{ asset('js/vanillaMasker.min.js') }}"></script>
 
+{{-- SELECT2 --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{ asset('js/demo.js') }}"></script>
 
@@ -113,6 +137,8 @@
 
 {{-- jscroll --}}
 <script src="{{ asset('js/jscroll/jquery.jscroll.js') }}"></script>
+
+<script src="{{ asset('js/functions.js') }}"></script>
 
 @stack('scripts')
 

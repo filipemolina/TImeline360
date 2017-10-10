@@ -19,7 +19,7 @@ class PrincipalController extends Controller
 
 	public function __construct()
     {
-        $this->middleware('auth', ['except' => array('index')]);
+        $this->middleware('auth', ['except' => array('index','pesquisa','mapa')]);
     }
 
 
@@ -41,6 +41,7 @@ class PrincipalController extends Controller
                                             ->orWhere("solicitante_id", $usuario->solicitante->id)
                                             ->orderBy('created_at', 'desc')
                                             ->paginate($this->itens_por_pagina);
+                                            
                 
                 $meus_apoios        = $usuario->solicitante->apoios;
                 $meus_apoios_ids    = [];
@@ -132,19 +133,23 @@ class PrincipalController extends Controller
         ->orderBy('created_at', 'desc')
         ->paginate($this->itens_por_pagina);
 
-        // Obter o usuário logado atualmente
-        $usuario      =  User::find(Auth::user()->id);
+        //se estiver logado
+        if (Auth::check()) {
+            // Obter o usuário logado atualmente
+            $usuario      =  User::find(Auth::user()->id);
 
-        // Criar um vetor que guarda todos os ids das solicitações apoiadas por esse usuário
-        $meus_apoios        = $usuario->solicitante->apoios;
-        $meus_apoios_ids    = [];
-        
-        foreach ($meus_apoios as $apoio) 
-        {
-            $meus_apoios_ids[] = $apoio->id;
+            // Criar um vetor que guarda todos os ids das solicitações apoiadas por esse usuário
+            $meus_apoios        = $usuario->solicitante->apoios;
+            $meus_apoios_ids    = [];
+            
+            foreach ($meus_apoios as $apoio) 
+            {
+                $meus_apoios_ids[] = $apoio->id;
+            }
+            return view('principal', compact('solicitacoes', 'meus_apoios_ids', 'usuario'));
+        }else{
+            return view('principal', compact('solicitacoes'));
         }
-
-        return view('principal', compact('solicitacoes', 'meus_apoios_ids', 'usuario'));
     }
 
     public function pesquisaAjax(Request $request)
@@ -160,8 +165,52 @@ class PrincipalController extends Controller
             ->orWhere('enderecos.logradouro', 'like', "%".trim($request->termo)."%")
             ->orWhere('enderecos.bairro', 'like', "%".trim($request->termo)."%")
             ->orWhere('enderecos.cep', 'like', "%".trim($request->termo)."%")
-            ->get();
+        ->get();
     }
+
+    public function mapa()
+    {
+
+        $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])->get();
+
+        
+        if (Auth::check()) {
+            // Obter o usuário logado atualmente
+            $usuario      =  User::find(Auth::user()->id);
+            return view('mapa.mapa', ['solicitacoes' => $solicitacoes, 'usuario' => $usuario ]);
+        }else{
+            return view('mapa.mapa', ['solicitacoes' => $solicitacoes]);
+        }
+
+
+        /*$solicitacoes = Solicitacao::with('endereco')->where('moderado', 1)->get();*/
+
+/*        $solicitacoes = Solicitacao::where('moderado', 1)->get();
+
+        $enderecos = [];
+
+        $temp = Endereco::all();
+
+        foreach($temp as $end)
+        {
+            $enderecos[$end->solicitacao_id] = [
+                'latitude' => $end->latitude,
+                'longitude' => $end->longitude,
+            ];
+        }
+*/    
+
+
+    }
+
+   /* public function mapamesquita()
+    {
+        return response()->file('mesquita2.kml');
+
+        
+
+    }*/
+
 }
 
 

@@ -167,54 +167,42 @@ class UserController extends Controller
     {
         //dd("aqui");
         $usuario = User::find(Auth::user()->id);
-        return view('auth.senha',compact('usuario'));
+
+        if($usuario->password = bcrypt($usuario->created_at))
+        {
+            $senha_padrao = $usuario->created_at;
+        }else{
+            $senha_padrao = null; 
+        }
+
+
+        return view('auth.senha',compact('usuario','senha_padrao'));    
+
+        
     }
 
     public function SalvarSenha(Request $request)
     {
         
         // Validar
-/*        $this->validate($request, [
+        $this->validate($request, [
             'password_atual'        => 'required',
             'password'              => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6'
-        ]);*/
-
-
+        ]);
 
         // Obter o usuário
         $usuario = User::find($request->id);
 
-        //$senha_velha = bcrypt($request->password_atual);
 
         if (Hash::check($request->password_atual, $usuario->password))
         {
-            dd("innnnguau");
-        }
-
-
-        dd($request->password_atual . ' ::::  ' .$decrypted);
-    
-
-
-        if($senha_velha == $usuario->password)
-        {
-            // Atualizar as informações
-            $status = $usuario->update($request->all());
+            $usuario->update(['password' => bcrypt($request->password)]);            
+            return redirect('/')->with('sucesso_alteracao_senha','Senha alterada com sucesso.');
         }else{
-            return redirect(url("/senha"))->with(['erros' => 'Senha atual não confere']);
+
+            return back()->withErrors('Senha atual não confere');
         }
 
-
-        if ($status) {
-            return redirect("/user/$usuario->id/edit")->with('sucesso', 'Senha alterada com sucesso.');
-        } else {
-            //return redirect(back); 
-
-            return redirect("/user/$usuario->id/edit")->with(['erros' => 'Falha ao editar']);
-        }
     }
-
-
-
 }

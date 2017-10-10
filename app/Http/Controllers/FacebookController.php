@@ -19,6 +19,7 @@ class FacebookController extends Controller
  	{
      	$user_facebook = Socialite::driver('facebook')->user();
 
+
      	$existe_usuario = User::where('email', $user_facebook->getEmail())->get();
 
      	//dd($sistema);
@@ -35,22 +36,24 @@ class FacebookController extends Controller
        	// Cria um solicitante
         	$solicitante = new Solicitante([
      		 	'nome'      => $user_facebook->getName(),
-            'email'     => $user_facebook->getEmail(),
-            'fb_uid'		=> $user_facebook->getId(),
-            'password'  => bcrypt(time()),
-            'foto'		=> 'data:image/jpg;base64,' . base64_encode(file_get_contents($user_facebook->getAvatar())),
+                'email'     => $user_facebook->getEmail(),
+                'fb_uid'	=> $user_facebook->getId(),
+                'foto'		=> 'data:image/jpg;base64,' . base64_encode(file_get_contents($user_facebook->getAvatar())),
         	]);
 
         	$solicitante->save();
 
         	$user = User::create([
-        		'email'				=> $user->getEmail(),
-        		'password'  		=> bcrypt(time()),
+        		'email'				=> $user_facebook->getEmail(),
+        		'password'  		=> bcrypt('timeline360'),
      		]);
         
         	// Associar user ao solicitante
         	$user->solicitante()->associate($solicitante);
         	$user->save();
+
+            $user->password = bcrypt($user->created_at);
+            $user->save();
 
         	Auth::loginUsingId($user->id);
 

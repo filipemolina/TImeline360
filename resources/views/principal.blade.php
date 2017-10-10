@@ -2,8 +2,6 @@
 
 @section('titulo')
 
-Principal
-
 @endsection
 
 @section('content')
@@ -87,7 +85,7 @@ Principal
                         
                         <b> {{ $solicitacao->servico->nome }} </b>
 
-                        {{-- Opções do Solicitação --}}
+                        {{-- Opções do Solicitante --}}
                         @isset($usuario)
 
                            @if ($usuario->solicitante->id == $solicitacao->solicitante->id )
@@ -123,7 +121,7 @@ Principal
                   </div>
                   
                   <div class="timeline-body col-md-12">
-                     {{ $solicitacao->conteudo }}
+                     {!! $solicitacao->conteudo !!}
                   </div>
                </div> {{-- Fim título da solicitação --}}
 
@@ -137,14 +135,20 @@ Principal
                         {{-- se tiver apoio do usuario logado fica em roxo (class=apoiar) --}}
                         @if(in_array($solicitacao->id, $meus_apoios_ids))
                            
-                           <button class="btn btn-simples btn-apoiar apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})">
-                              <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
+                           <button class="btn btn-simples btn-apoiar apoiar solicitacao_{{ $solicitacao->id }}" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})">
+                              <span class="btn-label">
+                                 <i class="material-icons">thumb_up</i>
+                                 <span class="texto_apoio apoiado">Apoiado</span>
+                              </span>
                            </button>
 
                         @else
                            
-                           <button class="btn btn-simples btn-apoiar" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
-                              <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
+                           <button class="btn btn-simples btn-apoiar solicitacao_{{ $solicitacao->id }}" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
+                              <span class="btn-label">
+                                 <i class="material-icons">thumb_up</i>
+                                 <span class="texto_apoio">Apoiar</span>
+                              </span>
                            </button>
 
                         @endif
@@ -155,9 +159,39 @@ Principal
 
                      {{-- Aviso que preciso logar para apoiar (class=helper-apoio) --}}
                      <li class="col-md-3">
-                        <button class="btn btn-simple helper-apoio">
-                           <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
-                        </button>
+
+                        @if($solicitacao->apoiadores_count > 1)
+
+                           <button class="btn btn-simples apoiar btn_apoios_{{ $solicitacao->id }}">
+                              <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
+                              <span class="numero_apoios_{{ $solicitacao->id }}">
+                                 {{ $solicitacao->apoiadores_count }}
+                              </span>
+                              <span> Apoios </span>
+                           </button>
+
+                        @elseif($solicitacao->apoiadores_count == 1)
+
+                           <button class="btn btn-simples apoiar btn_apoios_{{ $solicitacao->id }}">
+                              <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
+                              <span class="numero_apoios_{{ $solicitacao->id }}">
+                                 {{ $solicitacao->apoiadores_count }}
+                              </span>
+                              <span> Apoio </span>
+                           </button>
+
+                        @else
+
+                           <button class="btn btn-simples btn_apoios_{{ $solicitacao->id }}">
+                              <span class="btn-label"> <i class="material-icons">favorite</i> </span>
+                              <span class="numero_apoios_{{ $solicitacao->id }}">
+                                 {{ $solicitacao->apoiadores_count }}
+                              </span>
+                              <span> Apoio </span>
+                           </button>
+
+                        @endif
+
                      </li>
                      
                   @endif
@@ -269,9 +303,8 @@ Principal
                                               
                                           <ul class="dropdown-menu has-roxo pull-right">
                                              <li>
-                                                <a href="#eugen" class="{{-- btn-coment-del --}}">
-                                                   <i class="material-icons">clear</i>
-                                                   Excluir
+                                                <a href="" class="btn-coment-del" data-id="{{ $comentario->id }}" data-token="{{ csrf_token() }}">
+                                                   <i class="material-icons">clear</i> Excluir
                                                 </a>
                                              </li>
                                           </ul>
@@ -392,254 +425,35 @@ Principal
 
 
 @push('scripts')
+   
    <script src="http://maps.google.com/maps/api/js?key=AIzaSyDcdW2PsrS1fbsXKmZ6P9Ii8zub5FDu3WQ"></script>
    <script src="{{ asset("js/handlebars.js") }}" type="text/javascript" charset="utf-8" async defer></script>
 
    {{-- Templates do Handlebars --}}
-   @include("principal.templates");
+   @include("principal.templates")
 
-   {{-- Executar a paginação infinita apenas caso esta seja a página inicial --}}
-   @if(Request::is('/'))
+   {{-- Testar se há algum erro, e mostrar a notificação --}}
 
-      <!-- ABACAXI -->
-
-      <script type="text/javascript">
-       $(function() {
-            $('ul.pagination').hide();
-            $('.infinite-scroll').jscroll({
-               autoTrigger: true,
-               prefill: false,
-               scrollThreshold: 0,
-               debug: false,
-               loadingHtml: '<div style="text-align:center; position: relative;"><div style="position: absolute; width: 100%; top: 88px; color: #fff; font-weight: bold; font-size: 18px;">Carregando</div><img class="center-block" src="/img/DoubleRing.gif" alt="Carregando..." /></div>',
-               padding: 0,
-               nextSelector: '.pagination li.active + li a',
-               contentSelector: 'div.infinite-scroll',
-               callback: function() {
-                   $('ul.pagination').remove();
-               }
+   <script>
+      
+      $(function() {
+         @if (session('sucesso_alteracao_senha'))
+            //setTimeout(function(){demo.notificationRight("top", "right", "green", "Senha alterada com sucesso"); }, tempo);
+            swal({   title:"Senha alterada com sucesso!",
+                     //text: "Senha alterada com sucesso!", 
+                     type: "success", 
+                     buttonsStyling: false, 
+                     confirmButtonClass: "btn btn-success"
             });
-       });
-      </script>
-
-   @endif
-
-   <script type="text/javascript">
-
-      @if(Auth::check())
-
-         // Dados do usuário logado
-
-         let id_usuario = {{ Auth::user()->id }};
-         let foto_usuario = '{{$usuario->solicitante->foto}}';
-         let nome_usuario = "{{$usuario->solicitante->nome}}";
-
-      @endif
-
-      function mostraMapa(latitude,longitude,solicitacao) {
-         //console.log(latitude, longitude);
-         
-         event.preventDefault();
-
-         if ($("#LocalMapa_"+solicitacao).css('height') == "0px")
-         {
-            $("#LocalMapa_"+solicitacao).css('height', "300px"); 
-
-            // Esperar 200ms para executar o mapa (o tempo que o mapa demora para abrir)
-
-            setTimeout(function(){
-
-               var mapProp = {center:new google.maps.LatLng(latitude, longitude),zoom:18};
-               var map     = new google.maps.Map(document.getElementById('LocalMapa_'+solicitacao),mapProp);
-
-               let marker = new google.maps.Marker({
-                  map: map,
-                  animation: google.maps.Animation.DROP,
-                  position: map.getCenter()
-               });
-
-            },200);
-
-         }else{
-            $("#LocalMapa_"+solicitacao).css('height',"0");
-         }
-      }
-
-      ////////////////////////////////////////////////////////////////////// Botão de Enviar Comentário
-
-      function enviarComentario(elem, e){
-
-         // Executar essa função apenas se a tecla pressionada for o Enter ou caso nenhuma tecla tenha
-         // sido pressionada (click)
-
-         if(e.keyCode == "13" || typeof e.keyCode === 'undefined'){
-
-            let solicitacao = $(elem).data('solicitacao');
-            let solicitante = $(elem).data('solicitante');
-
-            var comentario = $(".comentario_"+solicitacao).val().trim();
-
-            // Testar se a comentario está em branco
-            if( $(".comentario_"+solicitacao).val().trim() ) {
-
-                // Enviar a comentario para o banco
-                $.post(
-                    "{{ url('/comentario') }}",
-                    {
-                        comentario: comentario,
-                        solicitacao_id: solicitacao, 
-                        _token: "{{ csrf_token() }}",
-                    }, function(data){
-
-                        // Apagar o campo de envio de comentario
-                        $(".comentario_"+solicitacao).val("");
-
-                        // Colocar o novo card de comentarios embaixo da solicitação
-                        var source      = $("#comentario-template").html();
-                        var template    = Handlebars.compile(source)
-
-                        var context = { 
-                           nome:       nome_usuario,
-                           comentario: comentario, 
-                           foto:       foto_usuario,
-                           id:         data,
-                           token:      "{{ csrf_token() }}"
-                        };
-
-                        var html        = template(context);
-
-                        $("div.comentarios").append( $(html) );
-                        //console.log(html);   
-
-                    }       
-                );
-            }
-
-         }
-
-      }
-
-      function enviaApoio(solicitacao, solicitante){ 
-         console.log("enviou " +solicitacao +" - " +solicitante);
-
-         $.post(
-            "{{ url('/apoiar') }}",
-            {
-               solicitante_id: solicitante,
-               solicitacao_id: solicitacao, 
-               _token: "{{ csrf_token() }}",
-            }, function(data){        
-               $("span.numero_apoios_"+solicitacao).html(data);
-
-               if(data > 0)
-               {
-                  $(".btn_apoios_"+solicitacao).addClass('apoiar');
-               }
-               else
-               {  
-                  $(".btn_apoios_"+solicitacao).removeClass('apoiar');
-               }
-            }       
-         );
-      };
-
-      function montaCartoes(solicitacoes){
-
-         $("div.infinite-scroll").empty();
-
-         // TODO: Mostrar imagem de loading
-
-         let token = "{{ csrf_token() }}";
-         
-         $.post("/batchsolicitacoes", { _token: token, solicitacoes: solicitacoes }, function(data){
-
-            data = JSON.parse(data);
-
-            // Colocar o novo card de comentarios embaixo da solicitação
-            var source      = $("#cartao-template").html();
-            var template    = Handlebars.compile(source)
-
-            for(let i =0; i < data.length; i++){
-
-               var context = { 
-                  nome:  data[i].solicitante.nome,
-                  texto: data[i].conteudo, 
-                  foto:  data[i].foto
-               };
-
-               var html = template(context);
-
-               $("div.infinite-scroll").append( $(html) );
-
-            }
-
-            // TODO: Apagar imagem de Loading
-
-         });
-
-      }
-
-      $(document).ready(function() {
-
- /*        $(document).scroll(function() {
-            var top     = document.body.scrollTop;
-            var maxTop  = document.body.scrollHeight - document.body.clientHeight;
-    
-            console.log('top:'+top +' -- max:'+maxTop)
-            if (parseInt(top) === 3297) {
-               console.log('Chegou ao fim da página');
-            }
-         });*/
-
-
-         var tempo = 0;
-         var incremento = 500;
-
-          // Caso o evento seja acionado via "click" no botão de enviar comentário, obter as informações
-         // pelas propriedades data do próprio elemento.
-
-         $(".infinite-scroll").on('click', "button.enviar-comentario", function(e){
-
-            // Chamar a função que faz a chamada Ajax
-            enviarComentario(this, e);
-
-         });
-
-         // Caso o evento seja acionado pela tecla Enter no input, obter as informações através do botãok
-         $(".infinite-scroll").on('keyup', "input.comentario", function(e){
-
-            // Chamar a função que faz a chamada Ajax apenas se a tecla pressionada for Enter
-            enviarComentario(this, e);
-
-         });
-
-/*         //evento que dispara um ajax para excluir o mentário
-         $(".infinite-scroll").on('click','btn-coment-del',function(e){
-            let id = $(this).data('id');
-
-            $.post('/comentario/' + id , {
-
-               _token: '{{ csrf_token() }}',
-               _method: 'DELETE' 
-
-            }, function(data){
-
-               $('.comentario_'+id).remove();
-
-            });
-
-         });
-*/
-
-          // Testar se há algum erro, e mostrar a notificação
-         @if ($errors->any())
-             @foreach ($errors->all() as $error)
-                 setTimeout(function(){demo.notificationRight("top", "right", "rose", "{{ $error }}"); }, tempo);
-                 tempo += incremento;
-             @endforeach
          @endif
-         demo.initFormExtendedDatetimepickers();
-
       });
+
+      @if ($errors->any())
+         @foreach ($errors->all() as $error)
+            setTimeout(function(){demo.notificationRight("top", "right", "rose", "{{ $error }}"); }, tempo);
+            tempo += incremento;
+         @endforeach
+      @endif
    </script>
+  
 @endpush

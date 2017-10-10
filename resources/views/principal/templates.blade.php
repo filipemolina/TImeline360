@@ -11,7 +11,7 @@
                
                <ul class="dropdown-menu has-roxo pull-right">
                   <li>
-                     <a href="#eugen" class="btn-coment-del" data-id="{{ id }}" data-token="{{ token }}">
+                     <a href="" class="btn-coment-del" data-id="{{ id }}" data-token="{{ token }}">
                         <i class="material-icons">clear</i> Excluir
                      </a>
                   </li>
@@ -97,7 +97,7 @@
                </div>
                
                <div class="timeline-body col-md-12">
-                  {{ $solicitacao->conteudo }}
+                  {!! $solicitacao->conteudo !!}
                </div>
             </div>
 
@@ -231,7 +231,7 @@
                                        </a>
                                        <ul class="dropdown-menu has-roxo pull-right">
                                           <li>
-                                             <a href="#eugen" class="btn-coment-del">
+                                             <a href="" class="btn-coment-del">
                                                 <i class="material-icons">clear</i> Excluir
                                              </a>
                                           </li>
