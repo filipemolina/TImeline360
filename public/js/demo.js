@@ -108,19 +108,12 @@ demo = {
                 }
             },
 
-<<<<<<< HEAD
             onInit : function(tab, navigation, index){
 
               //check number of tabs and fill the entire row
               var $total = navigation.find('li.wizard').length;
               $width = 100/$total;
               var $wizard = navigation.closest('.wizard-card');
-=======
-            onInit: function(tab, navigation, index) {
-                //check number of tabs and fill the entire row
-                var $total = navigation.find('li').length;
-                var $wizard = navigation.closest('.wizard-card');
->>>>>>> origin/marcelo
 
                 $first_li = navigation.find('li:first-child a').html();
                 $moving_div = $('<div class="moving-tab">' + $first_li + '</div>');
@@ -128,7 +121,6 @@ demo = {
 
                 refreshAnimation($wizard, index);
 
-<<<<<<< HEAD
                navigation.find('li.wizard').css('width',$width + '%');
                $first_li = navigation.find('li.wizard:first-child a').html();
                $moving_div = $('<div class="moving-tab">' + $first_li + '</div>');
@@ -137,10 +129,6 @@ demo = {
                $('.moving-tab').css('transition','transform 0s');
                $('.moving-tab').css('width', $width+'%');
            },
-=======
-                $('.moving-tab').css('transition', 'transform 0s');
-            },
->>>>>>> origin/marcelo
 
             onTabClick: function(tab, navigation, index) {
                 var $valid = $('.wizard-card form').valid();
@@ -153,14 +141,9 @@ demo = {
             },
 
             onTabShow: function(tab, navigation, index) {
-<<<<<<< HEAD
+
                 var $total = navigation.find('li.wizard').length;
                 var $current = index+1;
-=======
-                var $total = navigation.find('li').length;
-                var $current = index + 1;
->>>>>>> origin/marcelo
-
                 var $wizard = navigation.closest('.wizard-card');
 
                 // If it's the last tab then hide the last button and show the finish instead
@@ -249,16 +232,8 @@ demo = {
             });
         });
 
-<<<<<<< HEAD
         function refreshAnimation($wizard, index){
             total_steps = $wizard.find('li.wizard').length;
-=======
-        function refreshAnimation($wizard, index) {
-            $total = $wizard.find('.nav li').length;
-            $li_width = 100 / $total;
-
-            total_steps = $wizard.find('.nav li').length;
->>>>>>> origin/marcelo
             move_distance = $wizard.width() / total_steps;
             index_temp = index;
             vertical_level = 0;

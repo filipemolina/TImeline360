@@ -5,18 +5,8 @@ $(function(){
        event.preventDefault();
        helper.showSwal1('info','Efetue o login para criar uma publicação')
    })
-    
-    
-<<<<<<< HEAD
-    $(".previnir").click(function() {
-        event.preventDefault()
-    });
 
-
-    // Mascarás
-=======
     // Mascaras
->>>>>>> origin/marcelo
     VMasker ($("#cpf")).maskPattern("999.999.999-99");
     VMasker ($(".datepicker")).maskPattern("99/99/9999");
 
@@ -173,24 +163,6 @@ $(function(){
         
     });
 
-<<<<<<< HEAD
-    // Adicionar efeito de rotação ao ícone do objeto
-
-    $('.rodar-icone').click(function(){
-            
-        var isto = this;
-            
-        if($(isto).find('i').hasClass('animated girar-rev')) {
-            $(isto).find('i').removeClass('girar-rev').addClass('girar')
-        } else if ($(isto).find('i').hasClass('animated girar')) {
-            $(isto).find('i').removeClass('girar').addClass('girar-rev')
-        }else {
-            $(isto).find('i').addClass('animated girar')
-        }
-    })
-
-});
-=======
     // Remover classe card-hidden
     setTimeout(function() {
         // after 1000 ms we add the class animated to the login/register card
@@ -287,8 +259,6 @@ $(function(){
 
    // Não me pergunte
 
-   demo.initFormExtendedDatetimepickers();
+   // demo.initFormExtendedDatetimepickers();
 
 });
-
->>>>>>> origin/marcelo
