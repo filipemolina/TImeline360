@@ -1,4 +1,4 @@
-<!doctype html>
+<div></div><!doctype html>
 <html lang="en">
 
 <head>
