@@ -38,6 +38,6 @@ return [
     'facebook' => [
         'client_id'     => 281455835652510,
         'client_secret' => '68b86b1f5f6f41740af5b254ac2d32ea',
-        'redirect'      => 'http://timeline360.dev/facebook',
+        'redirect'      => 'https://360.mesquita.rj.gov.br/facebook',
     ],
 ];
