@@ -777,6 +777,14 @@ div.data-inclusao-card{
   border-radius: 6px;
 }
 
+.card-solicitante {    
+  background-color: #b5a067;
+  color: #fffafa;
+  box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 1);
+  border-radius: 6px;
+}
+
+
 .card .card-image {
     height: 60%;
     position: relative;

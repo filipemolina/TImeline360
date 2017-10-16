@@ -227,7 +227,7 @@
                                     </div>
 
                                     {{-- Comentário --}}
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal card-solicitante">
 
                                        {{-- Nome do usuário --}}
                                        <div class="row">

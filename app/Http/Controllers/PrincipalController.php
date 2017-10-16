@@ -112,6 +112,9 @@ class PrincipalController extends Controller
 
         $solicitacoes = Solicitacao::withCount('comentarios')
 
+        //somente as liberadas pela moderação
+        ->where('moderado', 1)
+
         // Filtar por propriedades de Models relacionados
         ->whereHas('solicitante', function($q) use ($dados){
 
