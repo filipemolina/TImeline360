@@ -16,7 +16,6 @@ class UserController extends Controller
     public function __construct(User $user)
     {
         $this->user = $user; 
-        
         // todas as rotas aqui serão antes autenticadas
         //$this->middleware('auth');
     }
@@ -27,7 +26,6 @@ class UserController extends Controller
         // Mostrar a lista de usuários
         $usuarios = User::all();
         return $usuarios;
-        //return view('usuarios.lista', compact('usuarios'));
     }
 
 
@@ -35,14 +33,6 @@ class UserController extends Controller
     public function create()
     {
 
-/*        $titulo         = "Cadastro de Usuários";
-        $tipo_acesso    = pegaValorEnum('users','acesso');                                                   
-        
-        sort($tipo_acesso);
-
-        // return "entrou";
-        return view('usuarios.create',compact(['titulo','tipo_acesso']));
-*/    
     }
 
     
@@ -75,24 +65,21 @@ class UserController extends Controller
 
     public function show($id)
     {
-        
         $user = $this->user->find($id);
-
-        //return view('user.show',compact('user');
         return $user;
     }
 
 
     public function edit($id)
     {
+
         $user = $this->user->find($id); 
-       
-        //return view('user.edit',compact('user'));
         return $user;
     }
 
     public function update(Request $request, $id)
     {
+        
         // Validar
         $this->validate($request, [
             'nome'                  => 'required|max:255',
@@ -114,16 +101,7 @@ class UserController extends Controller
             //return redirect(back); 
             return redirect("/user/$usuario->id/edit")->with(['erros' => 'Falha ao editar']);
         }
-/*        $usuario = User::find($id);
-        //$usuario = $this->users->find($id);
-
-        $titulo         = "Edição de Usuários";
-        $tipo_acesso    = pegaValorEnum('users','acesso');                                                   
-        
-        sort($tipo_acesso);
-        //return "cheguei";
-        return view('usuarios.edit',compact('usuario','titulo','tipo_acesso'));
-*/    }
+    }
 
 
     public function destroy($id)
@@ -141,4 +119,90 @@ class UserController extends Controller
         }
     }
 
+
+    public function Senha()
+    {
+        //dd("aqui");
+        $usuario = User::find(Auth::user()->id);
+        $solicitante = $usuario->solicitante; 
+        
+        //verifica se o solicitante já possui endereço cadastrado, se não possuir cria 
+        if( ! $usuario->solicitante->endereco)
+        {
+            $solicitante->endereco = new Endereco();
+        };
+
+        $fixo       ="";
+        $celular    ="";
+
+        foreach($solicitante->telefones as $telefone)
+        {
+            
+            if( $telefone['tipo_telefone'] == 'Fixo' )
+            {
+                $fixo = $telefone['numero'];
+                
+            };
+
+            if( $telefone['tipo_telefone'] == 'Celular' )
+            {
+              $celular = $telefone['numero'];
+              
+            };
+        }
+
+    
+        $escolaridades      = pegaValorEnum('solicitantes', 'escolaridade');                                                   
+        $estados_civil      = pegaValorEnum('solicitantes', 'estado_civil'); 
+        $sexos              = pegaValorEnum('solicitantes', 'sexo'); 
+        $ufs                = pegaValorEnum('enderecos',    'uf'); 
+        
+        
+        return view('auth.senha',compact('solicitante','usuario','escolaridades','estados_civil','sexos','ufs','fixo','celular'));
+        
+    }
+
+
+    public function AlteraSenha()
+    {
+        //dd("aqui");
+        $usuario = User::find(Auth::user()->id);
+
+        if($usuario->password = bcrypt($usuario->created_at))
+        {
+            $senha_padrao = $usuario->created_at;
+        }else{
+            $senha_padrao = null; 
+        }
+
+
+        return view('auth.senha',compact('usuario','senha_padrao'));    
+
+        
+    }
+
+    public function SalvarSenha(Request $request)
+    {
+        
+        // Validar
+        $this->validate($request, [
+            'password_atual'        => 'required',
+            'password'              => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6'
+        ]);
+
+        // Obter o usuário
+        $usuario = User::find($request->id);
+
+
+        if (Hash::check($request->password_atual, $usuario->password))
+        {
+            $usuario->update(['password' => bcrypt($request->password)]);            
+            return redirect('/')->with('sucesso_alteracao_senha','Senha alterada com sucesso.');
+        }else{
+
+            return back()->withErrors('Senha atual não confere');
+        }
+
+    }
 }

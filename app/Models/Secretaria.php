@@ -32,10 +32,7 @@ class Secretaria extends Model
         return $this->hasMany('App\Models\Setor');
     }
 
-	public function funcionarios()
-    {
-        return $this->hasMany('App\Models\Funcionario');
-    }
+
 
      public function telefones()
     {

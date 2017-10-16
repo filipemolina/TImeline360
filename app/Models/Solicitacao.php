@@ -11,6 +11,7 @@ class Solicitacao extends Model
     protected $fillable =[
 		'foto',
         'conteudo',
+        'moderado',
         'status',
         'prioridade',
     ];
@@ -26,13 +27,25 @@ class Solicitacao extends Model
     	return $this->belongsTo('App\Models\Solicitante');
     }
 
-    public function endereco()
+    public function enderecos()
 	{
-		return $this->hasOne('App\Models\Endereco');
+		return $this->hasMany('App\Models\Endereco');
 	}
 
-	public function mensagens()
+    public function endereco()
     {
-        return $this->hasMany('App\Models\Mensagem');
+        return $this->hasOne('App\Models\Endereco');
     }
+
+
+	public function comentarios()
+    {
+        return $this->hasMany('App\Models\Comentario');
+    }
+
+    public function apoiadores()
+    {
+        return $this->belongsToMany('App\Models\Solicitante', 'apoios');
+    }
+
 }

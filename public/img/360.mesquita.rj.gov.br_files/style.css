@@ -1,0 +1,96 @@
+@-webkit-keyframes rotate-right {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+
+#nuvem{
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform-origin: 50% 50%;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-animation: rotate-right 65s linear 0s infinite;
+}
+
+ @-webkit-keyframes rotate-left {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(-360deg);
+  }
+}
+
+
+#glob{
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform-origin: 50% 50%;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-animation: rotate-left 70s linear 0s infinite;
+}
+
+@-webkit-keyframes rotate-car {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+#carros{
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform-origin: 50% 50%;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-animation: rotate-car 30s linear 0s infinite;
+  width: 100%;
+  height: auto;
+}
+
+ @-webkit-keyframes rotate-left {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(-360deg);
+  }
+}
+
+
+#cidade, #globo{
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transform-origin: 303.8px 49%;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-animation: rotate-left 800s linear 0s infinite;
+}
+
+@keyframes rotateOut {
+  from {
+    transform-origin: center;
+  }
+
+  to {
+    transform-origin: center;
+    transform: rotate3d(0, 1, 0, 360deg);
+  }
+}
+
+#numero {
+  animation-name: rotateOut;
+  animation: rotateOut 7s infinite; 
+}
+
+#tamanho {
+    width: 65%;
+    height: 50%;
+    margin-left: -35%; /* metade da largura */
+    margin-top: -35%; /* metade da altura */
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    
+
+}

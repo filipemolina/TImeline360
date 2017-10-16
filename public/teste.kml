@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+
+  <Style id="polygon_style">
+    <LineStyle>
+      <color>ff000000</color>
+      <width>1</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>7FAAAAAA</color>
+      <fill>1</fill>
+      <outline>1</outline>
+    </PolyStyle>
+  </Style>
+
+  <Placemark>
+    <name>Fremont Troll</name>
+    <description>
+        <![CDATA[
+      <p>The <a href="http://en.wikipedia.org/wiki/Fremont_Troll">Fremont Troll</a> is a large concrete sculpture <br>
+      of the mythical troll who lives under the bridge.</p>
+      <p>The troll is holding a Volkswagen bug in his hand.</p>
+      <img src="/assets/FremontTroll.jpg" height="100px" />
+            ]]>
+    </description>
+    <Point>
+      <coordinates>-122.3473413,47.651119,0</coordinates>
+    </Point>
+  </Placemark>
+
+  <Placemark>
+    <name>Fremont</name>
+    <styleUrl>#polygon_style</styleUrl>
+    <Polygon>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            -122.3550974911330,47.6621379460780,0.000000
+            -122.3545755477560,47.6621309868331,0.000000
+            [...]
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>
