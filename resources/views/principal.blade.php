@@ -32,7 +32,7 @@
             <div class="card">
 
                {{-- Avatar do usuário --}}
-               <div class="card-header card-header-icon card-avatar-fixo ">                
+               <div class="card-header card-header-icon card-avatar-fixo">                
                   <img src="{{ $solicitacao->solicitante->foto }}"/>
                </div>
 
