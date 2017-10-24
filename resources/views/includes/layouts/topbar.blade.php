@@ -118,7 +118,7 @@
             @endif
          </ul>
 
-         <form method="get" action="/pesquisa" class="navbar-form navbar-right" role="search">
+         <form method="get" action="{{ url('/pesquisa') }}" class="navbar-form navbar-right" role="search">
             <div class="form-group form-search is-empty">
                <input name="termo" type="text" class="form-control pesquisa" style="background-image: linear-gradient(#3d276b, #3d276b), linear-gradient(#D2D2D2, #D2D2D2);" placeholder="Pesquisar">
                <span class="material-input"></span>

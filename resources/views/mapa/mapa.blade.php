@@ -11,7 +11,7 @@
 			
 
 			<div id="loading" style="position: absolute; width: 100%; top: 88px; color: #fff; font-weight: bold; font-size: 18px;">
-				<img class="center-block" src="/img/DoubleRing.gif" />	
+				<img class="center-block" src="{{ asset('img/DoubleRing.gif') }}" />	
 				Carregando
 			</div>
 		
@@ -71,19 +71,16 @@
 
 				  	// InfoWindow content
 				  	var content = 	'<div id="iw-container">' +
-			                    		'<div class="iw-title" style="background-color:{{ $solicitacao->servico->setor->cor }}">'+
+			                    		    '<div class="iw-title" style="background-color:{{ $solicitacao->servico->setor->cor }}">'+
 			                    			'<span class="mdi {{ $solicitacao->servico->setor->icone }}" style="margin-right: 20px"></span>'+
-			                    			'{{ $solicitacao->servico->nome }}'+
-			                    		'</div>' +
-				                    		'<div class="iw-content">' +
+			                    			    '{{ $solicitacao->servico->nome }}'+
+			                    		    '</div>' +
+				                            '<div class="iw-content">' +
 			                      			'<img src="{{ $solicitacao->foto }}"  width="40%">' +
 		                      				'<p>{{ $solicitacao->conteudo }}</p>' +
-		                      				// '<div class="iw-subTitle">Contacts</div>' +
-	                      					// '<p>VISTA ALEGRE ATLANTIS, SA<br>3830-292 Ílhavo - Portugal<br>'+
-		                      				// '<br>Phone. +351 234 320 600<br>e-mail: geral@vaa.pt<br>www: www.myvistaalegre.com</p>'+
-		                    				'</div>' +
-		                    			'<div class="iw-bottom-gradient"></div>' +
-		                  		'</div>';
+		                    			    '</div>' +
+		                    			    '<div class="iw-bottom-gradient"></div>' +
+		                  		        '</div>';
 
 				  	// A new Info Window is created and set content
 

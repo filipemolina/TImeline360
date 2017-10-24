@@ -54,7 +54,7 @@
             
             @include('includes.layouts.topbar')
 
-            <div class="wrapper wrapper-full-page full-page" filter-color>
+            <div class="wrapper wrapper-full-page full-page">
                 <div class="content">
                     <div class="container-fluid">
 
@@ -83,7 +83,7 @@
     @if(Auth::check())
          // Dados globais do usuário
          let id_usuario     = {{ Auth::user()->id }};
-         let foto_usuario   = "{{ $usuario->solicitante->foto}}";
+         let foto_usuario   = "{{ $usuario->avatar}}";
          let nome_usuario   = "{{ $usuario->solicitante->nome}}";
     @endif
 </script>

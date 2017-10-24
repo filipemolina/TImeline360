@@ -1170,6 +1170,22 @@ demo = {
                 align: align
             }
         });
-    }
+    },
 
+    notificationRight: function(from, align, cor, comentario){
+        // type = ['','info','success','warning','danger','rose','primary'];
+
+        $.notify({
+            icon: "notifications",
+            message: comentario,
+
+        },{
+            type: cor,
+            timer: 3000,
+            placement: {
+                from: from,
+                align: align
+            }
+        });
+    }
 }
