@@ -47,35 +47,35 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="material-icons">settings</i> Menu
             </a>
+
+            <ul class="dropdown-menu has-roxo">
+              <li>
+                <a href="{{ url("/perfil") }}">
+                  <i class="material-icons">person</i> Editar Perfil
+                </a>
+              </li>
+
+              <li>
+                <a href="{{ url("/senha") }}" >
+                  <i class="material-icons">lock_outline</i> Alterar Senha
+                </a>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="material-icons">notifications</i>
+                    <span class="notification" style="right: 100px;">5</span>
+                    Notificações
+                </a>
+              </li>
+              
+              <li>
+                <a href="{{ url("/logout") }}" >
+                  <i class="material-icons">input</i> Sair
+                </a>
+              </li>
+            </ul>
           </li>
-
-          <ul class="dropdown-menu has-roxo">
-            <li>
-              <a href="{{ url("/perfil") }}">
-                <i class="material-icons">person</i> Editar Perfil
-              </a>
-            </li>
-
-            <li>
-              <a href="{{ url("/senha") }}" >
-                <i class="material-icons">lock_outline</i> Alterar Senha
-              </a>
-            </li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="material-icons">notifications</i>
-                  <span class="notification" style="right: 100px;">5</span>
-                  Notificações
-              </a>
-            </li>
-            
-            <li>
-              <a href="{{ url("/logout") }}" >
-                <i class="material-icons">input</i> Sair
-              </a>
-            </li>
-          </ul>
 
           <li class="separator hidden-lg hidden-md"></li>
 
@@ -109,7 +109,7 @@
             
       </ul>
 
-      <form method="get" action="/pesquisa" class="navbar-form navbar-right" role="search">
+      <form method="get" action="{{ url('/pesquisa') }}" class="navbar-form navbar-right" role="search">
         <div class="form-group form-search is-empty">
           <input name="termo" type="text" class="form-control pesquisa has-roxo" placeholder="Pesquisar">
           <span class="material-input"></span>

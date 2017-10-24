@@ -46,9 +46,9 @@
 
         {{-- Menu Lateral --}}
         
-       {{--  @include('includes.layouts.sidebar') --}}
+        @include('includes.layouts.sidebar')
 
-        {{-- <div class="main-panel"> --}}
+        <div class="main-panel">
 
             {{-- Menu Superior --}}
             
@@ -72,7 +72,7 @@
             
             </div>
             
-        {{-- </div> --}}
+        </div>
 </body>
 
 <script>

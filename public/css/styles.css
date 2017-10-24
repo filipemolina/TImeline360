@@ -1364,4 +1364,22 @@ html, body {
   width: 345px;
 }
 
-/********************************************************** Fim do Mapa de Criação de Solicitação
+
+
+/*********************************************************** Fim do Mapa de Criação de Solicitação*/
+
+@media (max-width: 768px) {
+  .sidebar, .main-panel {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main-panel {
+    width: 100%;
+  }
+}

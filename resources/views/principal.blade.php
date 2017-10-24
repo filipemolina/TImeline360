@@ -8,6 +8,18 @@
 
 <br><br>
 
+   {{-- <div class="row cartao-principal" >
+
+      <div class="infinite-scroll"> --}}
+         {{-- Início da Solicitação --}}
+         {{-- @foreach ($solicitacoes as $solicitacao)
+            <div class="col-sm-2 col-sm-offset-5 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3" id="solicitacao_card_{{ $solicitacao->id }}">
+               <div class="card"> --}}
+                  {{-- Avatar do usuário --}}
+                  {{-- <div class="card-header card-header-icon avatar-fixo">
+                     <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
+                  </div> --}}
+
 <div class="row">
 
    @if(Auth::check())
@@ -426,7 +438,7 @@
 
 @push('scripts')
    
-   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDcdW2PsrS1fbsXKmZ6P9Ii8zub5FDu3WQ"></script>
+   <script src="https://maps.google.com/maps/api/js?key=AIzaSyDcdW2PsrS1fbsXKmZ6P9Ii8zub5FDu3WQ"></script>
    <script src="{{ asset("js/handlebars.js") }}" type="text/javascript" charset="utf-8" async defer></script>
 
    {{-- Templates do Handlebars --}}
