@@ -9,13 +9,13 @@
       </button>
          
       <ul class="navbar-brand" href="#">
-        <a class="btn btn-simples" href="#"> @section('titulo')  @show </a>
-        <a class="btn btn-simples">
-          <img class="img" style="width: 190px; margin-top: -25px;" src="{{ asset('img/logo-horizontal-360.png')}}"> 
+        
+        <a>
+          <img class="img logo-horizontal" src="{{ asset('img/logo-horizontal-360.png')}}"> 
         </a>
         
-        <a class="btn btn-simples">
-          <img class="img" style="width: 75px; margin-top: -25px;" src="{{ asset('img/loading.gif')}}">
+        <a>
+          <img class="img logo-loading" src="{{ asset('img/loading.gif')}}">
         </a>
       </ul>
     </div>

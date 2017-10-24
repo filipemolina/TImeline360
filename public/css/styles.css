@@ -129,6 +129,9 @@ font-size: 25px;
   background-color: #3D276B;
 }
 
+.social.centro {
+  left: calc(50% - 44px);
+}
 .btn.btn-dourado,
 .navbar .navbar-nav > li > a.btn.btn-dourado {
   box-shadow: 0 2px 2px 0 rgba(191, 161, 95, 0.14), 0 3px 1px -2px rgba(191, 161, 95, 0.2), 0 1px 5px 0 rgba(191, 161, 95, 0.12);
@@ -1372,6 +1375,17 @@ html, body {
   .sidebar, .main-panel {
     display: block;
   }
+
+  .logo-horizontal {
+    width: 110px;
+    margin-top: -10px;
+  }
+
+  .logo-loading {
+    width: 67px;
+    margin-top: -10px;
+  }
+
 }
 
 @media (min-width: 769px) {
@@ -1381,5 +1395,15 @@ html, body {
 
   .main-panel {
     width: 100%;
+  }
+
+  .logo-horizontal {
+    width: 190px;
+    margin-top: -20px;
+  }
+
+  .logo-loading {
+    width: 75px;
+    margin-top: -20px;
   }
 }

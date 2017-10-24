@@ -68,14 +68,22 @@ Login
                   <button type="submit" class="btn btn-roxo btn-lg">
                      Acessar
                   </button>
-                  <div class="col-md text-center texto-roxo"> Ou, acesse por:</div>
                </div>
-               
-               <div class="col-md-1 col-md-offset-5">
-                  <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face">
-                     <i class="fa fa-facebook"></i>
-                  </a>
-               </div>
+
+               <div class="input-group">
+                    <span class="input-group-addon texto-roxo">
+                        <i>Ou, acesse pelo:</i>
+                    </span>
+                </div>
+
+                <div class="input-group social centro">
+                    <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="loginFacebook" class="btn btn-just-icon btn-round vermelho-google">
+                        <i class="fa fa-google"></i>
+                    </a>
+                </div>
                   
                {{-- <div class="col-md-1 col-md-offset-1">
                   <a href="loginFacebook" class="btn btn-just-icon btn-round vermelho-google">

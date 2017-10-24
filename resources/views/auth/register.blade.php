@@ -18,25 +18,34 @@ Registre-se
         <br><br><br><br><br><br><br>
         <div id="register-municipe" class="card card-login card-hidden">
             
-            <div class="logo-roxo logo-pn" style="top: -30%"></div>
-                <div class="card-header text-center" data-background-color="roxo">
-                    <div class="social-line">
-                        <br>
-
-                        <a href="loginFacebook" class="btn btn-just-icon btn-simple">
-                            <i class="fa fa-facebook-square"></i>
-                        </a>
-                        {{-- <a href="#pablo" class="btn btn-just-icon btn-simple">
-                            <i class="fa fa-twitter"></i>
-                        </a> --}}
-                        
-                        {{--  <a href="" class="btn btn-just-icon btn-simple">
-                            <i class="fa fa-google-plus"></i>
-                        </a> --}}
+                <div class="logo-roxo logo-pn" style="top: -25%"></div>
+                    <div class="card-header text-center" data-background-color="roxo">
+                        <div class="social-line"><br><br><br></div>
                     </div>
-                </div>
 
             <div class="card-content">
+                
+                <div class="input-group">
+                    <span class="input-group-addon texto-roxo">
+                        <i>Use uma das redes sociais</i>
+                    </span>
+                </div>
+
+                <div class="input-group social centro">
+                    <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="loginFacebook" class="btn btn-just-icon btn-round vermelho-google">
+                        <i class="fa fa-google"></i>
+                    </a>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon texto-roxo">
+                        <i>Ou preencha os dados abaixo:</i>
+                    </span>
+                </div>
+
                 <div class="input-group">
                     <span class="input-group-addon">
                         <i class="material-icons">face</i>
