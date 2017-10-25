@@ -1167,3 +1167,47 @@ html, body {
 }
 
 /********************************************************** Fim do Mapa de Criação de Solicitação
+
+/********************************************************** Media Queries */
+
+@media screen and (max-width: 576px){
+
+  .card .card-header.card-header-icon.avatar-fixo{
+  
+    width: 80px;
+    height: 80px;
+    margin: -14px 15px 0 -10px;
+
+  }
+
+  .mobile{
+    left: 50px;
+    
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media screen and (max-width: 768px){ 
+
+  .col-xs-12{
+  
+    width: 90%;
+    margin-left: 5%;
+
+  }
+
+   .tablet{
+
+   margin-left: 140px;
+
+  }
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media screen and (max-width: 992px) { ... }
+
+  
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media screen and (max-width: 1200px) { ... }

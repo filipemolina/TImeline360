@@ -15,7 +15,7 @@
 						</div>
 
 						{{-- Avatar do usuário --}}
-            		<div class="fileinput fileinput-new text-center foto-edit col-md-4 col-sm-4" data-provides="fileinput">
+            		<div class="fileinput fileinput-new text-center foto-edit col-md-4 col-sm-4 tablet mobile" data-provides="fileinput">
                 		<div class="fileinput-preview thumbnail img-circle card-header card-header-icon avatar-fixo pull-right" style="margin: 0px 10px 0px; bottom: 22px;">
 
                 			@if($solicitante->foto)
