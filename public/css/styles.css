@@ -838,6 +838,7 @@ h4.card-title {
     z-index: 1;
 }
 
+
 .subir {
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
@@ -905,10 +906,10 @@ h4.card-title {
 
 .apoiar {
    color:#3D276B !important;
-  animation: apioar 0.3s;
+  animation: apoiar 0.3s;
 }
 
-@keyframes apioar {
+@keyframes apoiar {
   0% { color:#999999; }
   100% { color:#3D276B; } 
 }
@@ -1367,9 +1368,43 @@ html, body {
   width: 345px;
 }
 
+/********************************************************** Fim do Mapa de Criação de Solicitação
 
+/********************************************************** Media Queries */
 
-/*********************************************************** Fim do Mapa de Criação de Solicitação*/
+@media screen and (max-width: 576px){
+
+  .card .card-header.card-header-icon.avatar-fixo{
+  
+    width: 80px;
+    height: 80px;
+    margin: -14px 15px 0 -10px;
+
+  }
+
+  .mobile{
+    left: 50px;
+    
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media screen and (max-width: 768px){ 
+
+  .col-xs-12{
+  
+    width: 90%;
+    margin-left: 5%;
+
+  }
+
+   .tablet{
+
+   margin-left: 140px;
+
+  }
+
+}
 
 @media (max-width: 768px) {
   .sidebar, .main-panel {
@@ -1407,3 +1442,11 @@ html, body {
     margin-top: -20px;
   }
 }
+
+/* Large devices (desktops, 992px and up) */
+@media screen and (max-width: 992px) { ... }
+
+  
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media screen and (max-width: 1200px) { ... }

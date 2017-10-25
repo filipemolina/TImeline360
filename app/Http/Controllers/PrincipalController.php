@@ -27,6 +27,32 @@ class PrincipalController extends Controller
     {
         $cabon = new Carbon();
 
+
+    	// if (Auth::check()) {
+     //        //carrega as ultimas solicitações que JÁ ESTÃO moderadas e TODAS as do usuário logado
+
+    	// 	$usuario      =  User::find(Auth::user()->id);
+
+     //        $solicitacoes = Solicitacao::withCount('apoiadores')
+     //                                    ->with('endereco')
+     //                                    ->where('moderado', 1)
+     //                                    ->orWhere("solicitante_id", $usuario->solicitante->id)
+     //                                    ->orderBy('created_at', 'desc')
+     //                                    ->paginate(5);
+            
+     //        $meus_apoios        = $usuario->solicitante->apoios;
+     //        $meus_apoios_ids    = [];
+            
+     //        foreach ($meus_apoios as $apoio) 
+     //        {
+     //            $meus_apoios_ids[] = $apoio->id;
+     //        }
+
+     //        //dd($meus_apoios_ids);
+     //        return view('principal', compact('solicitacoes','usuario','meus_apoios_ids'));
+
+
+
         if( Solicitacao::count() > 0)
         {
         	if (Auth::check()) {
@@ -63,6 +89,7 @@ class PrincipalController extends Controller
 
                 return view('principal', compact('solicitacoes'));
     		}
+
         }else{
             dd("Nenhuma solicitação cadastrada");
         }
