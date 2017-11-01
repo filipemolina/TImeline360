@@ -1,5 +1,5 @@
 <nav class="navbar navbar-fixed-top navbar-transparent">
-  <ul class="navbar-brand" href="#">
+  <ul class="navbar-brand no-margin no-padding" href="#">
     <a>
       <img class="img logo-horizontal" src="{{ asset('img/logo-horizontal-360.png')}}"> 
     </a>
