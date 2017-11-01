@@ -67,12 +67,6 @@ z-index: -1;
   perspective-origin: 50% 50%;
 }
 
-a.fixo-direita {
-  position: fixed;
-  right: 20px;
-  top: 100px;
-}
-
 a span.label.bottom {
   border-radius: 0px 12px 12px 0px;
   padding: 5px 12px;
@@ -125,8 +119,9 @@ font-size: 25px;
   background-color: #BFA15F;
 }
 
-.fundo_roxo {
+body.fundo_roxo {
   background-color: #3D276B;
+  margin-top: 40px;
 }
 
 .social.centro {
@@ -609,6 +604,18 @@ font-size: 25px;
   opacity: 0;
 }
 
+ul.navbar-nav.btn-int {
+  width: 100%;
+}
+
+ul.navbar-nav.btn-int li {
+  width: 33%;
+}
+
+.navbar-nav.btn-int li .btn.btn-simples {
+  left: calc(50% - 62px);
+}
+
 .ripple.ripple-out {
   opacity: 0;
 }
@@ -752,7 +759,7 @@ h4.card-title {
   width: 100px;
   height: 100px;
   overflow: hidden;
-  margin: -10px 15px 0 -50px;
+  margin: -10px 7px 0 -50px;
   padding: 0;
   background-color: transparent;
   position: relative;
@@ -807,8 +814,8 @@ h4.card-title {
 }
 
 .card .card-image.alterado {
-  margin-top: 10px !important;
-  margin-bottom: 10px !important;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
 }
 
 .card-esquerdo .input-group{
@@ -878,6 +885,11 @@ h4.card-title {
 
 .no-shadow {
   box-shadow: none;
+}
+
+.navbar.no-padding {
+  margin-bottom: 10px;
+  z-index: 10;
 }
 
 .nome-solicitante-card {
@@ -970,8 +982,12 @@ span.endereco{
 
 }
 
+span.endereco.label {
+  padding: 5px 10px;
+}
+
 div.mapa{
-  margin-top: 10px;
+  margin-top: 5px;
   width: 100%;
   height: 0;
   transition: height 0.2s ease-in;
@@ -1134,12 +1150,6 @@ post-address {
 
 .wizard-container{
   margin-top: 95px;
-}
-
-a.fixo-direita {
-  position: fixed;
-  right: 20px;
-  top: 100px;
 }
 
 .btn.btn-branco,
@@ -1368,6 +1378,32 @@ html, body {
   width: 345px;
 }
 
+.topbar360 .btn.btn-just-icon {
+  font-size: 20px;
+  padding: 2px 2px;
+}
+
+.topbar360.navbar .navbar-nav > li > a {
+  padding: 5px;
+  font-size: 10px;
+}
+
+.topbar360.navbar {
+  min-height: 30px;
+}
+
+.topbar360 .btn .material-icons {
+  font-size: 13px;
+}
+
+.topbar360.navbar .navbar-form .form-group .form-control, .navbar .navbar-form .form-control {
+  height: 23px;
+}
+
+.princiapl360.card {
+  margin: 15px 0;
+}
+
 /********************************************************** Fim do Mapa de Criação de Solicitação
 
 /********************************************************** Media Queries */
@@ -1392,21 +1428,20 @@ html, body {
 @media screen and (max-width: 768px){ 
 
   .col-xs-12{
-  
     width: 90%;
     margin-left: 5%;
-
   }
 
-   .tablet{
-
+  .tablet{
    margin-left: 140px;
-
   }
 
-}
+  a.fixo-direita {
+    position: fixed;
+    left: 90%;
+    top: 1%;
+  }
 
-@media (max-width: 768px) {
   .sidebar, .main-panel {
     display: block;
   }
@@ -1417,13 +1452,20 @@ html, body {
   }
 
   .logo-loading {
-    width: 67px;
+    width: 63px;
     margin-top: -10px;
   }
 
 }
 
 @media (min-width: 769px) {
+  
+  a.fixo-direita {
+    position: fixed;
+    left: 90%;
+    top: 15%;
+  }
+
   .sidebar {
     display: none;
   }
@@ -1433,13 +1475,13 @@ html, body {
   }
 
   .logo-horizontal {
-    width: 190px;
+    width: 140px;
     margin-top: -20px;
   }
 
   .logo-loading {
-    width: 75px;
-    margin-top: -20px;
+    width: 63px;
+    margin-top: -10px;
   }
 }
 

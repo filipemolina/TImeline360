@@ -1,26 +1,18 @@
-<nav class="navbar navbar-default navbar-fixed-top @if(Request::is('/')) animated fadeInDownBig @endif">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-         
-      <ul class="navbar-brand" href="#">
-        
-        <a>
-          <img class="img logo-horizontal" src="{{ asset('img/logo-horizontal-360.png')}}"> 
-        </a>
-        
-        <a>
-          <img class="img logo-loading" src="{{ asset('img/loading.gif')}}">
-        </a>
-      </ul>
-    </div>
-      
-    <div class="collapse navbar-collapse">
+<nav class="navbar navbar-fixed-top navbar-transparent">
+  <ul class="navbar-brand" href="#">
+    <a>
+      <img class="img logo-horizontal" src="{{ asset('img/logo-horizontal-360.png')}}"> 
+    </a>
+    
+    <a>
+      <img class="img logo-loading" src="{{ asset('img/loading.gif')}}">
+    </a>
+  </ul>
+</nav>
+
+<nav class="topbar360 navbar-fixed-top navbar no-padding">
+  <div class="container-fluid animated fadeInDown">
+    <div class="collapse navbar-collapse no-margin no-padding">
       <ul class="nav navbar-nav navbar-right">
             
         @if(Auth::check())
@@ -61,13 +53,13 @@
                 </a>
               </li>
 
-              <li class="dropdown">
+              {{-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="material-icons">notifications</i>
                     <span class="notification" style="right: 100px;">5</span>
                     Notificações
                 </a>
-              </li>
+              </li> --}}
               
               <li>
                 <a href="{{ url("/logout") }}" >
@@ -122,4 +114,15 @@
       </form>
     </div>
   </div>
+
+  @if(Auth::check())
+
+    <a href="{{ url("/solicitacao/create")}}" class="btn btn-branco btn-just-icon btn-round fixo-direita animated fadeInRight"><i class="mdi mdi-plus" rel="tooltip" data-placement="left" title="Criar solicitação"></i></a>
+
+  @else
+        
+    <a href="#" class="btn btn-branco btn-just-icon btn-round fixo-direita helper-criaPub animated fadeInRight"><i class="mdi mdi-plus" rel="tooltip" data-placement="left" title="Criar solicitação"></i></a>
+
+  @endif
+
 </nav>

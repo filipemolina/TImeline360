@@ -286,13 +286,21 @@ md = {
     checkScrollForTransparentNavbar: debounce(function() {
         if ($(document).scrollTop() > 260) {
             if (transparent) {
+                console.log("Scroll > 260 e está transparente");
                 transparent = false;
                 $('.navbar-color-on-scroll').removeClass('navbar-transparent');
             }
+            else {
+                console.log("Scroll > 260 e não está transparente");
+            }
         } else {
             if (!transparent) {
+                console.log("Scroll < 260 e não está transparente");
                 transparent = true;
                 $('.navbar-color-on-scroll').addClass('navbar-transparent');
+            }
+            else {
+                console.log("Scroll < 260 e está transparente");
             }
         }
     }, 17),

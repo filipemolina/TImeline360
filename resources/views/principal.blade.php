@@ -6,19 +6,7 @@
 
 @section('content')
 
-<br><br>
-
 <div class="row">
-
-   @if(Auth::check())
-
-      <a href="{{ url("/solicitacao/create")}}" class="btn btn-branco btn-just-icon btn-round fixo-direita"><i class="mdi mdi-plus" rel="tooltip" data-placement="left" title="Criar solicitação"></i></a>
-
-   @else
-      
-      <a href="#" class="btn btn-branco btn-just-icon btn-round fixo-direita helper-criaPub"><i class="mdi mdi-plus"></i></a>
-
-   @endif
 
    <div class="infinite-scroll">
 
@@ -29,7 +17,7 @@
          <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3" id="solicitacao_card_{{ $solicitacao->id }}">
 
             {{-- Card mestre --}}
-            <div class="card">
+            <div class="princiapl360 card">
 
                {{-- Avatar do usuário --}}
                <div class="card-header card-header-icon card-avatar-fixo">                
@@ -78,7 +66,7 @@
                <div class="card-content" style="padding-top: 0px;">
                   <div class="card-title">
                      <p class="col-md-12" style="margin-bottom: 0px;">
-                        <button class="btn btn-just-icon grande btn-simples btn-xs btn-primary" style="color: {{ $solicitacao->servico->setor->cor }};">
+                        <button class="btn btn-just-icon grande btn-simples btn-xs btn-primary no-margin" style="color: {{ $solicitacao->servico->setor->cor }};">
                            {{-- <i class="material-icons">label_outline</i> --}}
                            <span class="mdi {{ $solicitacao->servico->setor->icone }}" ></span>
                         </button>
@@ -126,11 +114,11 @@
                </div> {{-- Fim título da solicitação --}}
 
                {{-- Botões de interação --}}
-               <ul class="nav navbar-nav">
+               <ul class="nav navbar-nav btn-int">
                    
-                  @if(Auth::check())
+                  <li>
 
-                     <li class="col-md-3">
+                  @if(Auth::check())
                               
                         {{-- se tiver apoio do usuario logado fica em roxo (class=apoiar) --}}
                         @if(in_array($solicitacao->id, $meus_apoios_ids))
@@ -153,62 +141,32 @@
 
                         @endif
 
-                     </li>
-
                   @else
 
                      {{-- Aviso que preciso logar para apoiar (class=helper-apoio) --}}
-                     <li class="col-md-3">
 
-                        @if($solicitacao->apoiadores_count > 1)
-
-                           <button class="btn btn-simples apoiar btn_apoios_{{ $solicitacao->id }}">
-                              <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
-                              <span class="numero_apoios_{{ $solicitacao->id }}">
-                                 {{ $solicitacao->apoiadores_count }}
-                              </span>
-                              <span> Apoios </span>
-                           </button>
-
-                        @elseif($solicitacao->apoiadores_count == 1)
-
-                           <button class="btn btn-simples apoiar btn_apoios_{{ $solicitacao->id }}">
-                              <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
-                              <span class="numero_apoios_{{ $solicitacao->id }}">
-                                 {{ $solicitacao->apoiadores_count }}
-                              </span>
-                              <span> Apoio </span>
-                           </button>
-
-                        @else
-
-                           <button class="btn btn-simples btn_apoios_{{ $solicitacao->id }}">
-                              <span class="btn-label"> <i class="material-icons">favorite</i> </span>
-                              <span class="numero_apoios_{{ $solicitacao->id }}">
-                                 {{ $solicitacao->apoiadores_count }}
-                              </span>
-                              <span> Apoio </span>
-                           </button>
-
-                        @endif
-
-                     </li>
+                     <button class="btn btn-simple helper-apoio">
+                        <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
+                     </button>
                      
                   @endif
 
+                  </li>
+
                   {{-- se tiver comentarios fica em roxo --}}
-                  <li class="col-md-5">
+                  <li>
                         
                      @if($solicitacao->comentarios_count >= 1)
 
                         <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
-                           <span class="btn-label apoiar"><i class="material-icons">chat</i>Comentários</span>
+                           <span class="btn-label apoiar"> <i class="material-icons">chat</i> Comentários </span>
+
                         </button>
 
                      @else
 
                         <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
-                           <span class="btn-label"><i class="material-icons">chat</i>Comentários</span>
+                           <span class="btn-label "> <i class="material-icons">chat</i> Comentários </span>
                         </button>
 
                      @endif
@@ -216,31 +174,29 @@
                   </li>
 
                   {{-- Contador de apoios --}}
-                  <li class="col-md-3">
-
-                     <button class="btn btn-simples btn_apoios_{{ $solicitacao->id }}">
+                  <li>
                               
                         @if($solicitacao->apoiadores_count > 1)
 
-                           <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
-                           <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span>
-                           <span> Apoios </span>
+                           <button class="btn btn-simples apoiar btn_apoios_{{ $solicitacao->id }}">
+                              <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
+                              <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoios </span>
 
                         @elseif($solicitacao->apoiadores_count == 1)
 
-                           <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
-                           <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span>
-                           <span> Apoio </span>
+                           <button class="btn btn-simples apoiar btn_apoios_{{ $solicitacao->id }}">
+                              <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
+                              <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoio </span>
 
                         @else
 
-                           <span class="btn-label"> <i class="material-icons">favorite</i> </span>
-                           <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span>
-                           <span> Apoio </span>
+                           <button class="btn btn-simples btn_apoios_{{ $solicitacao->id }}">
+                              <span class="btn-label"> <i class="material-icons">favorite</i> </span>
+                              <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoio </span>
 
                         @endif
-                           
-                     </button>
+
+                           </button>
                   </li>
                </ul>
 

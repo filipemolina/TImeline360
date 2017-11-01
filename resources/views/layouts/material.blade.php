@@ -42,37 +42,33 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
 </head>
 
-<body class="fundo_roxo">
+<body class="fundo_roxo components-page">
 
-        {{-- Menu Lateral --}}
-        
-        @include('includes.layouts.sidebar')
+    {{-- Menu Lateral --}}
+    
+    @include('includes.layouts.sidebar')
 
-        <div class="main-panel">
+    {{-- Menu Superior --}}
 
-            {{-- Menu Superior --}}
-            
-            @include('includes.layouts.topbar')
+    @include('includes.layouts.topbar')
 
-            <div class="wrapper wrapper-full-page full-page">
-                <div class="content">
-                    <div class="container-fluid">
+    <div class="wrapper wrapper-full-page full-page">
+        <div class="content">
+            <div class="container-fluid">
 
-                        {{-- Conteúdo Principal --}}
-        
-                        @yield('content')
+                {{-- Conteúdo Principal --}}
+
+                @yield('content')
 
 
 
-                    </div>
-                </div>
-                
-                {{-- Rodapé --}}
-                @include('includes.layouts.footer')
-            
             </div>
-            
         </div>
+        
+        {{-- Rodapé --}}
+        @include('includes.layouts.footer')
+    
+    </div>
 </body>
 
 <script>
