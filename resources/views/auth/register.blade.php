@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-Registre-se
+
 
 @endsection
 
@@ -11,17 +11,26 @@ Registre-se
 
 <div class="row">
 
-    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page" style="margin-top: 100px;">
+    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page" style="margin-top: 192px;">
         <form class="form" method="POST" action="{{ route('user.store') }}">
         {{ csrf_field() }}
 
         {{-- DIV register-municipe --}}
-        <br><br><br><br><br><br><br>
+
         <div id="register-municipe" class="card card-login card-hidden">
             
             <div class="logo-roxo logo-pn" style="top: -30%"></div>
+            
                 <div class="card-header text-center" data-background-color="roxo">
-                    <div class="social-line">
+                     <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face" style="top: 40px;>
+                          <i class="fa fa-facebook"></i>
+                       </a>
+                       {{-- <a href="loginFacebook" class="btn btn-just-icon btn-round vermelho-google">
+                                <i class="fa fa-google"></i>
+                             </a> --}}
+
+
+                    <!-- div class="social-line">
                         <br>
                         <a href="loginFacebook" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-facebook-square"></i>
@@ -29,10 +38,10 @@ Registre-se
                         {{-- <a href="#pablo" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-twitter"></i>
                         </a> --}}
-{{--                         <a href="" class="btn btn-just-icon btn-simple">
+                    {{--                         <a href="" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-google-plus"></i>
                         </a> --}}
-                    </div>
+                    </div> -->
                 </div>
 
             <div class="card-content">
