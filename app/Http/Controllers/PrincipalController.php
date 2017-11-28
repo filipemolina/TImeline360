@@ -101,16 +101,13 @@ class PrincipalController extends Controller
 
     public function pesquisa(Request $request)
     {
-        // $solicitacoes = Solicitacao::where('solicitante.nome', 'like', "%".trim($request->termo)."%")
-        // ->orWhere('setores.nome', 'like', "%".trim($request->termo)."%")
-        // ->orWhere('enderecos.logradouro', 'like', "%".trim($request->termo)."%")
-        // ->orWhere('enderecos.bairro', 'like', "%".trim($request->termo)."%")
-        // ->orWhere('enderecos.cep', 'like', "%".trim($request->termo)."%")
-        // ->paginate($this->itens_por_pagina);
+	// Armazenar e formatar o termo pesquisado
 
-        $dados = "%".trim($request->termo)."%";
+	$dados = "%".trim($request->termo)."%";
 
-        $solicitacoes = Solicitacao::withCount('comentarios')
+        // Filtrar pelo termo de pesquisa as solicitações que já foram moderadas
+       	
+       	$solicitacoes = Solicitacao::with(['endereco', 'servico', 'solicitante'])
 
         //somente as liberadas pela moderação
         ->where('moderado', 1)
@@ -118,25 +115,42 @@ class PrincipalController extends Controller
         // Filtar por propriedades de Models relacionados
         ->whereHas('solicitante', function($q) use ($dados){
 
-            $q->where('nome', 'like', $dados);
 
-        })
-        ->orWhereHas('endereco', function($q) use ($dados){
+		// Agrupar as próximas condições em parênteses
+			
+		->where(function($query) use ($dados){
 
-            $q->where('logradouro', 'like', $dados)
-              ->orWhere('bairro', 'like', $dados)
-              ->orWhere('cep', 'like', $dados);
+			$query->whereHas('solicitante', function($q) use ($dados){
 
-        })
-        ->orWhereHas('servico', function($q) use ($dados){
+				$q->where('nome', 'like', $dados);
 
-            $q->where("nome", 'like', $dados);
+			})->orWhereHas('endereco', function($q2) use ($dados){
 
-        })
-        ->orderBy('created_at', 'desc')
-        ->paginate($this->itens_por_pagina);
+				$q2->where('logradouro', 'like', $dados);
 
-        //se estiver logado
+			})->orWhereHas('endereco', function($q2) use ($dados){
+
+				$q2->where('bairro', 'like', $dados);
+
+			})->orWhereHas('endereco', function($q2) use ($dados){
+
+				$q2->where('cep', 'like', $dados);
+
+			})->orWhereHas('servico', function($q2) use ($dados){
+
+				$q2->where('nome', 'like', $dados);
+
+			});
+
+		})
+
+		// Paginar e Ordenar
+
+		->orderBy('created_at', 'desc')
+		->paginate($this->itens_por_pagina);
+
+        // Se estiver logado
+
         if (Auth::check()) {
             // Obter o usuário logado atualmente
             $usuario      =  User::find(Auth::user()->id);
