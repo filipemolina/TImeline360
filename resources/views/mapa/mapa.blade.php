@@ -12,7 +12,7 @@
 
 			<div id="loading" style="position: absolute; width: 100%; top: 88px; color: #fff; font-weight: bold; font-size: 18px;">
 				<img class="center-block" src="{{ asset('img/DoubleRing.gif') }}" />	
-				Carregando
+				<p class="jvectormap-legend-title" ">Carregando</p>
 			</div>
 		
 		</div>

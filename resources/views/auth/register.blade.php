@@ -10,7 +10,7 @@ Registre-se
 
 <div class="row">
 
-    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page" style="margin-top: 100px;">
+    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page">
         <form class="form" method="POST" action="{{ route('user.store') }}">
         {{ csrf_field() }}
 
@@ -25,7 +25,7 @@ Registre-se
 
             <div class="card-content">
                 
-                <div class="input-group">
+                {{-- <div class="input-group">
                     <span class="input-group-addon texto-roxo">
                         <i>Use uma das redes sociais</i>
                     </span>
@@ -44,7 +44,7 @@ Registre-se
                     <span class="input-group-addon texto-roxo">
                         <i>Ou preencha os dados abaixo:</i>
                     </span>
-                </div>
+                </div> --}}
 
                 <div class="input-group">
                     <span class="input-group-addon">

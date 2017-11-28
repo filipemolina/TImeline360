@@ -1,16 +1,19 @@
-<nav class="navbar navbar-fixed-top navbar-transparent">
+<nav class="navbar navbar-fixed-top navbar-transparent" style="width: 216px;">
   <ul class="navbar-brand no-margin no-padding" href="#">
-    <a>
+    <b>
       <img class="img logo-horizontal" src="{{ asset('img/logo-horizontal-360.png')}}"> 
-    </a>
+    </b>
     
-    <a>
+    <b>
       <img class="img logo-loading" src="{{ asset('img/loading.gif')}}">
-    </a>
+    </b>
   </ul>
 </nav>
 
+<div class="cornerTop roxo"></div>
+
 <nav class="topbar360 navbar-fixed-top navbar no-padding">
+  <div class="cornerTop branco"></div>
   <div class="container-fluid animated fadeInDown">
     <div class="collapse navbar-collapse no-margin no-padding">
       <ul class="nav navbar-nav navbar-right">
@@ -35,7 +38,7 @@
             </a>
           </li>
 
-          <li>
+          <li style="margin-right: 10px">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="material-icons">settings</i> Menu
             </a>
@@ -91,7 +94,7 @@
             </a>
           </li>
 
-          <li>
+          <li style="margin-right: 10px">
             <a href="{{url ("/login")}}">
               <i class="material-icons">fingerprint</i> Login
             </a>
@@ -115,7 +118,7 @@
     </div>
   </div>
 
-  @if(Auth::check())
+  {{-- @if(Auth::check())
 
     <a href="{{ url("/solicitacao/create")}}" class="btn btn-branco btn-just-icon btn-round fixo-direita animated fadeInRight"><i class="mdi mdi-plus" rel="tooltip" data-placement="left" title="Criar solicitação"></i></a>
 
@@ -123,6 +126,6 @@
         
     <a href="#" class="btn btn-branco btn-just-icon btn-round fixo-direita helper-criaPub animated fadeInRight"><i class="mdi mdi-plus" rel="tooltip" data-placement="left" title="Criar solicitação"></i></a>
 
-  @endif
+  @endif --}}
 
 </nav>
