@@ -101,37 +101,48 @@ class PrincipalController extends Controller
 
     public function pesquisa(Request $request)
     {
-        // $solicitacoes = Solicitacao::where('solicitante.nome', 'like', "%".trim($request->termo)."%")
-        // ->orWhere('setores.nome', 'like', "%".trim($request->termo)."%")
-        // ->orWhere('enderecos.logradouro', 'like', "%".trim($request->termo)."%")
-        // ->orWhere('enderecos.bairro', 'like', "%".trim($request->termo)."%")
-        // ->orWhere('enderecos.cep', 'like', "%".trim($request->termo)."%")
-        // ->paginate($this->itens_por_pagina);
 
         $dados = "%".trim($request->termo)."%";
 
-        $solicitacoes = Solicitacao::withCount('comentarios')
+       	// Buscar por nome do solicitante
+       	
+       	$solicitacoes = Solicitacao::with(['endereco', 'servico', 'solicitante'])
 
-        // Filtar por propriedades de Models relacionados
-        ->whereHas('solicitante', function($q) use ($dados){
+			->where('moderado', 1)
 
-            $q->where('nome', 'like', $dados);
+			// Agrupar as próximas condições em parênteses
+			
+			->where(function($query) use ($dados){
 
-        })
-        ->orWhereHas('endereco', function($q) use ($dados){
+				$query->whereHas('solicitante', function($q) use ($dados){
 
-            $q->where('logradouro', 'like', $dados)
-              ->orWhere('bairro', 'like', $dados)
-              ->orWhere('cep', 'like', $dados);
+					$q->where('nome', 'like', $dados);
 
-        })
-        ->orWhereHas('servico', function($q) use ($dados){
+				})->orWhereHas('endereco', function($q2) use ($dados){
 
-            $q->where("nome", 'like', $dados);
+					$q2->where('logradouro', 'like', $dados);
 
-        })
-        ->orderBy('created_at', 'desc')
-        ->paginate($this->itens_por_pagina);
+				})->orWhereHas('endereco', function($q2) use ($dados){
+
+					$q2->where('bairro', 'like', $dados);
+
+				})->orWhereHas('endereco', function($q2) use ($dados){
+
+					$q2->where('cep', 'like', $dados);
+
+				})->orWhereHas('servico', function($q2) use ($dados){
+
+					$q2->where('nome', 'like', $dados);
+
+				});
+
+			})
+
+			// Paginar e Ordenar
+
+			->orderBy('created_at', 'desc')
+			->paginate($this->itens_por_pagina);
+
 
         //se estiver logado
         if (Auth::check()) {
@@ -180,36 +191,27 @@ class PrincipalController extends Controller
             return view('mapa.mapa', ['solicitacoes' => $solicitacoes, 'usuario' => $usuario ]);
         }else{
             return view('mapa.mapa', ['solicitacoes' => $solicitacoes]);
-        }
-
-
-        /*$solicitacoes = Solicitacao::with('endereco')->where('moderado', 1)->get();*/
-
-/*        $solicitacoes = Solicitacao::where('moderado', 1)->get();
-
-        $enderecos = [];
-
-        $temp = Endereco::all();
-
-        foreach($temp as $end)
-        {
-            $enderecos[$end->solicitacao_id] = [
-                'latitude' => $end->latitude,
-                'longitude' => $end->longitude,
-            ];
-        }
-*/    
-
+        }    
 
     }
 
-   /* public function mapamesquita()
-    {
-        return response()->file('mesquita2.kml');
 
-        
+  	// Tornar um array multidimensional único
 
-    }*/
+  	function unique_multidim_array($array, $key) { 
+	    $temp_array = array(); 
+	    $i = 0; 
+	    $key_array = array(); 
+	    
+	    foreach($array as $val) { 
+	        if (!in_array($val[$key], $key_array)) { 
+	            $key_array[$i] = $val[$key]; 
+	            $temp_array[$i] = $val; 
+	        } 
+	        $i++; 
+	    } 
+	    return $temp_array; 
+	} 
 
 }
 
