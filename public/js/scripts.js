@@ -241,9 +241,8 @@ $(function(){
                 helper.showSwal1("info", "Solicitação excluída!");
 
             } else {
-
-                helper.showSwal1("erro", data);
-
+                 demo.notificationRight("top", "right", "rose", data);  
+                // helper.showSwal1("erro", data);
             }
 
         });

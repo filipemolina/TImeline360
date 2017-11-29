@@ -81,7 +81,7 @@ class ComentarioController extends Controller
             return "0";
         }
         else{
-            // $comentario->delete();
+            $comentario->delete();
             return "1";
         }
     }
