@@ -22,9 +22,11 @@
             <div class="logo-roxo logo-pn" style="top: -30%"></div>
             
                 <div class="card-header text-center" data-background-color="roxo">
-                     <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face" style="top: 40px;>
-                          <i class="fa fa-facebook"></i>
-                       </a>
+                    
+                    <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face" style="top:43px;">
+                       <i class="fa fa-facebook"></i>
+                    </a>
+                
                        {{-- <a href="loginFacebook" class="btn btn-just-icon btn-round vermelho-google">
                                 <i class="fa fa-google"></i>
                              </a> --}}

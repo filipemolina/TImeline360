@@ -71,7 +71,7 @@
                 </div>
                            
                 <div class="col-md-1 col-md-offset-5">
-                    <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face" style="top:40px;">
+                    <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face" {{-- style="top:40px; --}}">
                        <i class="fa fa-facebook"></i>
                     </a>
                 </div>
