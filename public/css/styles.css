@@ -743,8 +743,8 @@ ul.navbar-nav.btn-int li {
 }
 
 .card .foto-funcionario {
-    position: absolute;
-    right: 0;
+  position: absolute;
+   right: 0;
 }
 
 h4.card-title {
@@ -893,7 +893,7 @@ h4.card-title {
 }
 
 .nome-solicitante-card {
-  font-size:  16px; 
+  font-size:  14px; 
   margin-right: 10px; 
   font-weight: 500;
   color: #999999;
@@ -974,16 +974,18 @@ div.data-inclusao-card{
 
 span.endereco{ 
   font-size:  12px; 
-  margin-left: 65px; 
-  color: #999999;
+  color: #fff;
   cursor: pointer;
-  max-width: 310px;
-  width: 67%;
 
 }
 
 span.endereco.label {
-  padding: 5px 10px;
+  padding: 3px 5px;
+  margin: 5px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-align: left;
 }
 
 div.mapa{
@@ -1366,6 +1368,14 @@ figure.highlight .form-group {
   transform: skew(-60deg, 0deg);
 }
 
+button.btn.btn-roxo i {
+  color: #fff;
+}
+
+.cornerRight {
+  margin-left: 93%;
+}
+
 /*===============================================================================================================*/
 /*===============================================================================================================*/
 /*===============================================================================================================*/
@@ -1403,6 +1413,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-size: 12px;
 }
 .controls {
   margin-top: 10px;
@@ -1473,6 +1484,10 @@ html, body {
 
 .princiapl360.card {
   margin: 15px 0;
+}
+
+.timeline-body p {
+  font-size: 12px;
 }
 
 /********************************************************** Fim do Mapa de Criação de Solicitação

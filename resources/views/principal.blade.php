@@ -47,16 +47,16 @@
                            Adicionado {{ $solicitacao->created_at->diffForHumans()}}
                         </span>
                      </a>
-                  </div>
 
-                  {{-- Endereço --}}
-                  <span class="endereco label has-roxo-hover" onclick="mostraMapa({{ $solicitacao->endereco->latitude }},{{ $solicitacao->endereco->longitude }},{{ $solicitacao->id }});">
-                        <i class="material-icons">place</i>
-                        {{ $solicitacao->endereco->logradouro }} 
-                        {{ $solicitacao->endereco->numero }} -
-                        {{ $solicitacao->endereco->bairro }} -
-                        {{ $solicitacao->endereco->cep }} 
-                  </span>
+                     {{-- Endereço --}}
+                     <span class="endereco label has-roxo-hover" onclick="mostraMapa({{ $solicitacao->endereco->latitude }},{{ $solicitacao->endereco->longitude }},{{ $solicitacao->id }});">
+                           <i class="material-icons">place</i>
+                           {{ $solicitacao->endereco->logradouro }} 
+                           {{ $solicitacao->endereco->numero }} -
+                           {{ $solicitacao->endereco->bairro }} -
+                           {{ $solicitacao->endereco->cep }} 
+                     </span>
+                  </div>
 
                   <div id="LocalMapa_{{ $solicitacao->id }}" class="mapa"></div>
 
@@ -109,7 +109,7 @@
                   </div>
                   
                   <div class="timeline-body col-md-12">
-                     {!! $solicitacao->conteudo !!}
+                     <p>{!! $solicitacao->conteudo !!}</p>
                   </div>
                </div> {{-- Fim título da solicitação --}}
 
@@ -332,6 +332,11 @@
                         </div> {{-- Fim DIV panel-body --}}
 
                      @endforeach
+
+                     <button class="btn btn btn-simple btn-xs slide-coment cornerRight">
+                        <span class="btn-label apoiar"> <i class="material-icons">expand_less</i></span>
+
+                     </button>
 
                   </div> {{-- Fim DIV comentários --}}
 
