@@ -1,18 +1,7 @@
-<nav class="navbar navbar-fixed-top navbar-transparent" style="width: 216px;">
-  <ul class="navbar-brand no-margin no-padding" href="#">
-    <b>
-      <img class="img logo-horizontal" src="{{ asset('img/logo-horizontal-360.png')}}"> 
-    </b>
-    
-    <b>
-      <img class="img logo-loading" src="{{ asset('img/loading.gif')}}">
-    </b>
-  </ul>
-</nav>
-
 <div class="cornerTop roxo"></div>
-
 <nav class="topbar360 navbar-fixed-top navbar no-padding">
+  <img class="img logo horizontal" src="{{ asset('img/logo-horizontal-360.png')}}"> 
+  <img class="img logo loading" src="{{ asset('img/loading.gif')}}">
   <div class="cornerTop branco"></div>
   <div class="container-fluid animated fadeInDown">
     <div class="collapse navbar-collapse no-margin no-padding">

@@ -333,9 +333,8 @@
 
                      @endforeach
 
-                     <button class="btn btn btn-simple btn-xs slide-coment cornerRight">
-                        <span class="btn-label apoiar"> <i class="material-icons">expand_less</i></span>
-
+                     <button class="btn btn btn-simple btn-lg slide-coment cornerRight no-padding">
+                        <span class="btn-label apoiar"> <i class="mdi mdi-chevron-double-up"></i></span>
                      </button>
 
                   </div> {{-- Fim DIV comentários --}}

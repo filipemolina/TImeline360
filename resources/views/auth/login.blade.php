@@ -33,7 +33,7 @@ Login
         <div id="login" class="card card-login card-hidden">
             
             {{-- Logo --}}
-            <div class="logo-roxo logo-pn"></div>
+            <div class="logo logo-roxo pn"></div>
 
             {{-- Acesso via Facebook ou Google --}}
             <div class="card-header text-center" data-background-color="roxo">

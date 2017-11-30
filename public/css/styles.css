@@ -1,3 +1,5 @@
+
+
 .ball {
   display: inline-block !important;
   width: 150px !important;
@@ -96,23 +98,25 @@ font-size: 25px;
   background-size: 100% auto;
   background-image: url('../img/logo-360-dourado.png');
   background-repeat: no-repeat;
-  position: absolute;
 }
 
 .logo-roxo {
   background-size: 100% auto;
   background-image: url('../img/logo-360-roxo.png');
   background-repeat: no-repeat;
-  position: absolute;
 }
 
-.logo-pn {
+.logo-roxo.pn, .logo-dourado.pn {
   width: 200px;
   height: 200px;
   top: -40%;
   left: 50%;
   margin-left: -100px;
   z-index: 10;
+}
+
+.logo.logo-roxo.top {
+  top: -22%;
 }
 
 .fundo_dourado {
@@ -609,11 +613,7 @@ ul.navbar-nav.btn-int {
 }
 
 ul.navbar-nav.btn-int li {
-  width: 33%;
-}
-
-.navbar-nav.btn-int li .btn.btn-simples {
-  left: calc(50% - 62px);
+  width: 33.33%;
 }
 
 .ripple.ripple-out {
@@ -1277,7 +1277,6 @@ figure.highlight .form-group {
 
 .container-btn p {
   width: 100px;
-  font-size: 12px;
   word-wrap: break-word;
   text-align: center;
   margin: 0;
@@ -1373,7 +1372,9 @@ button.btn.btn-roxo i {
 }
 
 .cornerRight {
-  margin-left: 93%;
+  position: absolute;
+  bottom: 3px;
+  right: 10px;
 }
 
 /*===============================================================================================================*/
@@ -1486,8 +1487,20 @@ html, body {
   margin: 15px 0;
 }
 
-.timeline-body p {
-  font-size: 12px;
+.logo {
+  position: absolute;
+  z-index: 1;
+  top: 2px;
+}
+
+.logo.horizontal {
+  width: 135px;
+  left: 10px;
+}
+
+.logo.loading {
+  width: 48px;
+  left: 153px;
 }
 
 /********************************************************** Fim do Mapa de Criação de Solicitação
@@ -1532,16 +1545,6 @@ html, body {
     display: block;
   }
 
-  .logo-horizontal {
-    width: 110px;
-    margin-top: -5px;
-  }
-
-  .logo-loading {
-    width: 63px;
-    margin-top: -5px;
-  }
-
 }
 
 @media (min-width: 769px) {
@@ -1560,20 +1563,16 @@ html, body {
     width: 100%;
   }
 
-  .logo-horizontal {
-    width: 140px;
-    margin-top: -10px;
-    padding-left: 15px;
-  }
-
-  .logo-loading {
-    width: 63px;
-    margin-top: -10px;
-    padding-left: 15px;
-  }
-
   .card.card-login {
     margin: 125px 0;
+  }
+
+  .navbar-nav.btn-int li .btn {
+  left: calc(50% - 62px);
+}
+
+  .navbar-nav.btn-int li .btn.slide-coment {
+    left: calc(50% - 81px);
   }
 }
 

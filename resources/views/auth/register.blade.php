@@ -15,10 +15,9 @@ Registre-se
         {{ csrf_field() }}
 
         {{-- DIV register-municipe --}}
-        <br><br><br><br><br><br><br>
         <div id="register-municipe" class="card card-login card-hidden">
             
-                <div class="logo-roxo logo-pn" style="top: -25%"></div>
+                <div class="logo top logo-roxo pn"></div>
                     <div class="card-header text-center" data-background-color="roxo">
                         <div class="social-line"><br><br><br></div>
                     </div>
