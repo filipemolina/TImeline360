@@ -22,7 +22,7 @@
 
 
 @push('scripts')
-   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDcdW2PsrS1fbsXKmZ6P9Ii8zub5FDu3WQ"></script>
+   <script src="https://maps.google.com/maps/api/js?key=AIzaSyDcdW2PsrS1fbsXKmZ6P9Ii8zub5FDu3WQ"></script>
    
    <script src="{{ asset("js/geoxml3/polys/geoxml3.js") }}" type="text/javascript"></script>
    
@@ -147,6 +147,8 @@
 					markers.push(marker_{{ $solicitacao->id }});
 				@endif
 			@endforeach
+		 	var markerCluster = new MarkerClusterer(map, markers,{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      
 		}
 
 

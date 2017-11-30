@@ -27,7 +27,13 @@
                   </div>
 
                   <div class="nome-solicitante-card ">{{ $solicitacao->solicitante->nome}}</div>
-                  <div class="data-inclusao-card ">Adicionado {{ $solicitacao->created_at->diffForHumans()}}</div>
+                  <!-- <div class="data-inclusao-card ">Adicionado {{ $solicitacao->created_at->diffForHumans()}}</div> -->
+                  <div class="data-inclusao-card ">
+                     Adicionado às  
+                     {{  $solicitacao->created_at->format('H:i') }} 
+                      de 
+                     {{  $solicitacao->created_at->format('d/m/Y') }}
+                  </div>
 
                      
                   {{-- Foto da publicação --}}
@@ -221,7 +227,7 @@
                                     </div>
 
                                     {{-- Comentário --}}
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal card-solicitante">
 
                                        {{-- Nome do usuário --}}
                                        <div class="row">

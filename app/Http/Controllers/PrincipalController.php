@@ -126,70 +126,72 @@ class PrincipalController extends Controller
      * Função ajax que retorna solicitações que combinem com o termo de pesquisa
      */
 
-    public function pesquisa(Request $request)
-    {
-	// Armazenar e formatar o termo pesquisado
+   public function pesquisa(Request $request)
+   {
+      // Armazenar e formatar o termo pesquisado
 
-	$dados = "%".trim($request->termo)."%";
+	   $dados = "%".trim($request->termo)."%";
 
-        // Filtrar pelo termo de pesquisa as solicitações que já foram moderadas
-       	
-       	$solicitacoes = Solicitacao::with(['endereco', 'servico', 'solicitante'])
+      if ($dados != "%%")
+      {
+         // Filtrar pelo termo de pesquisa as solicitações que já foram moderadas
+         $solicitacoes = Solicitacao::with(['endereco', 'servico', 'solicitante'])
 
-		->where('moderado', 1)
+         //somente as liberadas pela moderação
+         ->where('moderado', 1)
 
-		// Agrupar as próximas condições em parênteses
-			
-		->where(function($query) use ($dados){
+         // Filtar por propriedades de Models relacionados
+         ->whereHas('solicitante', function($q) use ($dados){
+			     $q->where('nome', 'like', $dados);
 
-			$query->whereHas('solicitante', function($q) use ($dados){
+		      })->orWhereHas('endereco', function($q2) use ($dados){
+			     $q2->where('logradouro', 'like', $dados);
 
-				$q->where('nome', 'like', $dados);
+		      })->orWhereHas('endereco', function($q2) use ($dados){
+			     $q2->where('bairro', 'like', $dados);
 
-			})->orWhereHas('endereco', function($q2) use ($dados){
+            })->orWhereHas('endereco', function($q2) use ($dados){
+			     $q2->where('cep', 'like', $dados);
 
-				$q2->where('logradouro', 'like', $dados);
+		      })->orWhereHas('servico', function($q2) use ($dados){
+   				$q2->where('nome', 'like', $dados);
+         })
 
-			})->orWhereHas('endereco', function($q2) use ($dados){
+         // Paginar e Ordenar
+         ->orderBy('created_at', 'desc')
+         ->paginate($this->itens_por_pagina);
+      }else{
+         // Filtrar pelo termo de pesquisa as solicitações que já foram moderadas
+         $solicitacoes = Solicitacao::with(['endereco', 'servico', 'solicitante'])
 
-				$q2->where('bairro', 'like', $dados);
+         //somente as liberadas pela moderação
+         ->where('moderado', 1)
+         
+         // Paginar e Ordenar
+         ->orderBy('created_at', 'desc')
+         ->paginate($this->itens_por_pagina);
+      };
 
-			})->orWhereHas('endereco', function($q2) use ($dados){
 
-				$q2->where('cep', 'like', $dados);
+      // Se estiver logado
+      if (Auth::check()) {
+         // Obter o usuário logado atualmente
+         $usuario      =  User::find(Auth::user()->id);
 
-			})->orWhereHas('servico', function($q2) use ($dados){
+         // Criar um vetor que guarda todos os ids das solicitações apoiadas por esse usuário
+         $meus_apoios        = $usuario->solicitante->apoios;
+         $meus_apoios_ids    = [];
+         
+         foreach ($meus_apoios as $apoio) 
+         {
+             $meus_apoios_ids[] = $apoio->id;
+         }
+         return view('principal', compact('solicitacoes', 'meus_apoios_ids', 'usuario'));
+      }else{
+         return view('principal', compact('solicitacoes'));
+      }
+   }
 
-				$q2->where('nome', 'like', $dados);
-
-			});
-
-		})
-
-		// Paginar e Ordenar
-
-		->orderBy('created_at', 'desc')
-		->paginate($this->itens_por_pagina);
-
-        // Se estiver logado
-
-        if (Auth::check()) {
-            // Obter o usuário logado atualmente
-            $usuario      =  User::find(Auth::user()->id);
-
-            // Criar um vetor que guarda todos os ids das solicitações apoiadas por esse usuário
-            $meus_apoios        = $usuario->solicitante->apoios;
-            $meus_apoios_ids    = [];
-            
-            foreach ($meus_apoios as $apoio) 
-            {
-                $meus_apoios_ids[] = $apoio->id;
-            }
-            return view('principal', compact('solicitacoes', 'meus_apoios_ids', 'usuario'));
-        }else{
-            return view('principal', compact('solicitacoes'));
-        }
-    }
 
     public function pesquisaAjax(Request $request)
     {
