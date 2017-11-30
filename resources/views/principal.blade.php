@@ -17,7 +17,7 @@
          <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3" id="solicitacao_card_{{ $solicitacao->id }}">
 
             {{-- Card mestre --}}
-            <div class="princiapl360 card">
+            <div class="principal360 card">
 
                {{-- Avatar do usuário --}}
                <div class="card-header card-header-icon card-avatar-fixo">                
@@ -44,7 +44,10 @@
 
                         {{-- Tempo de postagem --}}
                         <span class="label top previnir" style="background-color: {{ $solicitacao->servico->setor->cor }};">
-                           Adicionado {{ $solicitacao->created_at->diffForHumans()}}
+                           Adicionado às  
+                           {{  $solicitacao->created_at->format('H:i') }} 
+                           de 
+                           {{  $solicitacao->created_at->format('d/m/Y') }}
                         </span>
                      </a>
 
@@ -276,9 +279,8 @@
                                  </div>
 
                                  {{-- Comentário --}}
-                                 <form class="form-horizontal">
+                                 <form class="form-horizontal card-solicitante">
                                     <div class="row">
-
                                        {{-- Nome do usuário --}}
                                        <label class="col-md-8">
                                           {{ $solicitacao->solicitante->nome}}

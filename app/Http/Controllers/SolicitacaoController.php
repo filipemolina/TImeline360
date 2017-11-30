@@ -78,7 +78,7 @@ class SolicitacaoController extends Controller
 
             if($solicitacao->status == "Aberta")
             {
-                // $solicitacao->delete();
+                $solicitacao->delete();
                 
                 return "1";
             }

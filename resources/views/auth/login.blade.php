@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-Login
+
 
 @endsection
 
@@ -24,7 +24,7 @@ Login
     </div>
 @endif
  --}}
- 
+
 <div class="login-page col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
     <form method="POST" action="{{ url('login') }}">
                                 {{ csrf_field() }}
@@ -51,6 +51,7 @@ Login
                         <input name="email" type="email" class="form-control">
                     </div>
                 </div>
+
                 <div class="input-group">
                     <span class="input-group-addon">
                         <i class="material-icons">lock_outline</i>

@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-Registre-se
+
 
 @endsection
 
@@ -17,10 +17,10 @@ Registre-se
         {{-- DIV register-municipe --}}
         <div id="register-municipe" class="card card-login card-hidden">
             
-                <div class="logo top logo-roxo pn"></div>
-                    <div class="card-header text-center" data-background-color="roxo">
-                        <div class="social-line"><br><br><br></div>
-                    </div>
+            <div class="logo top logo-roxo pn"></div>
+            <div class="card-header text-center" data-background-color="roxo">
+                <div class="social-line"><br><br><br></div>
+            </div>
 
             <div class="card-content">
                 
