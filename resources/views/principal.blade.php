@@ -39,20 +39,20 @@
                @if($solicitacao->endereco)
 
                   <div class="card-image alterado">
-                     <a href="#">
+                     <b href="#">
                         <img src="{{ $solicitacao->foto }}" >
 
                         {{-- Tempo de postagem --}}
-                        <span class="label top previnir" style="background-color: {{ $solicitacao->servico->setor->cor }};">
+                        <span class="label has-roxo-hover botRight">
                            Adicionado às  
                            {{  $solicitacao->created_at->format('H:i') }} 
                            de 
                            {{  $solicitacao->created_at->format('d/m/Y') }}
                         </span>
-                     </a>
+                     </b>
 
                      {{-- Endereço --}}
-                     <span class="endereco label has-roxo-hover" onclick="mostraMapa({{ $solicitacao->endereco->latitude }},{{ $solicitacao->endereco->longitude }},{{ $solicitacao->id }});">
+                     <span class="label has-roxo-hover botLeft" onclick="mostraMapa({{ $solicitacao->endereco->latitude }},{{ $solicitacao->endereco->longitude }},{{ $solicitacao->id }});">
                            <i class="material-icons">place</i>
                            {{ $solicitacao->endereco->logradouro }} 
                            {{ $solicitacao->endereco->numero }} -
