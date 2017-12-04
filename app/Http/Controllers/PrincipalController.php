@@ -185,7 +185,8 @@ class PrincipalController extends Controller
     public function mapa()
     {
 
-        $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])->get();
+        $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])
+            ->where('moderado','1')->get();
 
         
         if (Auth::check()) {
