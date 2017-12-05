@@ -45,7 +45,7 @@
 
 			//camada limite do municipio
 		 	var geoXml = new geoXML3.parser({map: map, zoom: false});
-		   geoXml.parse('js/marker-clusterer/images/mesquita3.kml');
+		   geoXml.parse('mesquita3.kml');
 
 
 			//camada de tráfego
