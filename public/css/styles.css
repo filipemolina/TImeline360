@@ -1429,10 +1429,11 @@ div.termos p.noIndent {
   font-size: 13px;
 }
 
-/********************************************************** Mapa de Criação de Solicitação
+/********************************************************** Mapa de Criação de Solicitação */
 
-/* Always set the map height explicitly to define the size of the div
- * element that contains the map. */
+/* Always set the map height explicitly to define the size of the div */
+/* element that contains the map. */
+
 #map {
   height: 100%;
 }
@@ -1546,7 +1547,7 @@ html, body {
 
   .mobile{
     left: 50px;
-    
+
   }
 }
 
@@ -1605,8 +1606,6 @@ html, body {
 
 /* Large devices (desktops, 992px and up) */
 @media screen and (max-width: 992px) { ... }
-
-  
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media screen and (max-width: 1200px) { ... }

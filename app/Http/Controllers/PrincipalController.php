@@ -212,8 +212,14 @@ class PrincipalController extends Controller
     public function mapa()
     {
 
-        $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])->get();
+        // Estamos limitando o número de solicitações mostradas
+        // no mapa devido à limitação de memória física do ser-
+        // vidor que no momento possui APENAS 2Gb de Memória.
 
+        // Brace yourself
+        // The Winter is coming
+
+        $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])->limit(200)->get();
         
         if (Auth::check()) {
             // Obter o usuário logado atualmente
@@ -223,34 +229,7 @@ class PrincipalController extends Controller
             return view('mapa.mapa', ['solicitacoes' => $solicitacoes]);
         }
 
-
-        /*$solicitacoes = Solicitacao::with('endereco')->where('moderado', 1)->get();*/
-
-/*        $solicitacoes = Solicitacao::where('moderado', 1)->get();
-
-        $enderecos = [];
-
-        $temp = Endereco::all();
-
-        foreach($temp as $end)
-        {
-            $enderecos[$end->solicitacao_id] = [
-                'latitude' => $end->latitude,
-                'longitude' => $end->longitude,
-            ];
-        }
-*/    
-
-
     }
-
-   /* public function mapamesquita()
-    {
-        return response()->file('mesquita2.kml');
-
-        
-
-    }*/
 
 }
 
