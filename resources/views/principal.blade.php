@@ -13,7 +13,7 @@
       <div class="infinite-scroll">
          {{-- Início da Solicitação --}}
          @foreach ($solicitacoes as $solicitacao)
-            <div class="col-sm-2 col-sm-offset-5 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3" id="solicitacao_card_{{ $solicitacao->id }}">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3" id="solicitacao_card_{{ $solicitacao->id }}">
                <div class="card">
                   {{-- Avatar do usuário --}}
                   <div class="card-header card-header-icon avatar-fixo">
@@ -291,7 +291,7 @@
 
 @push('scripts')
    
-   <script src="http://maps.google.com/maps/api/js?key=AIzaSyDcdW2PsrS1fbsXKmZ6P9Ii8zub5FDu3WQ"></script>
+   <script src="https://maps.google.com/maps/api/js?key=AIzaSyDcdW2PsrS1fbsXKmZ6P9Ii8zub5FDu3WQ"></script>
    <script src="{{ asset("js/handlebars.js") }}" type="text/javascript" charset="utf-8" async defer></script>
 
    {{-- Templates do Handlebars --}}
