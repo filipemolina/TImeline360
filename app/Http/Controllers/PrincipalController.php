@@ -104,43 +104,55 @@ class PrincipalController extends Controller
    {
       // Armazenar e formatar o termo pesquisado
 
-	   $dados = "%".trim($request->termo)."%";
+      $dados = "%".trim($request->termo)."%";
 
       if ($dados != "%%")
       {
          // Filtrar pelo termo de pesquisa as solicitações que já foram moderadas
          $solicitacoes = Solicitacao::with(['endereco', 'servico', 'solicitante'])
 
-         //somente as liberadas pela moderação
-         ->where('moderado', 1)
+	->where(function($query) use ($dados){
+		// Filtar por propriedades de Models relacionados
+         	$query->whereHas('solicitante', function($q) use ($dados){
 
-         // Filtar por propriedades de Models relacionados
-         ->whereHas('solicitante', function($q) use ($dados){
-			     $q->where('nome', 'like', $dados);
+                    $q->where('nome', 'like', $dados);
 
-		      })->orWhereHas('endereco', function($q2) use ($dados){
-			     $q2->where('logradouro', 'like', $dados);
+        	})->orWhereHas('endereco', function($q2) use ($dados){
 
-		      })->orWhereHas('endereco', function($q2) use ($dados){
-			     $q2->where('bairro', 'like', $dados);
+                    $q2->where('logradouro', 'like', $dados);
 
-            })->orWhereHas('endereco', function($q2) use ($dados){
-			     $q2->where('cep', 'like', $dados);
+         	})->orWhereHas('endereco', function($q3) use ($dados){
 
-		      })->orWhereHas('servico', function($q2) use ($dados){
-   				$q2->where('nome', 'like', $dados);
-         })
+                    $q3->where('bairro', 'like', $dados);
+
+         	})->orWhereHas('endereco', function($q4) use ($dados){
+
+                    $q4->where('cep', 'like', $dados);
+
+            	})->orWhereHas('servico', function($q5) use ($dados){
+
+		    $q5->where('nome', 'like', $dados);
+
+	        });
+
+	})->where(function($query){
+
+		$query->where('moderado', 1);
+
+	})
 
          // Paginar e Ordenar
-         ->orderBy('created_at', 'desc')
-         ->paginate($this->itens_por_pagina);
-      }else{
+        ->orderBy('created_at', 'desc')
+	->paginate($this->itens_por_pagina);
+
+
+       }else{
          // Filtrar pelo termo de pesquisa as solicitações que já foram moderadas
          $solicitacoes = Solicitacao::with(['endereco', 'servico', 'solicitante'])
 
          //somente as liberadas pela moderação
-         ->where('moderado', 1)
-         
+         ->where('moderado', '=', 1)
+
          // Paginar e Ordenar
          ->orderBy('created_at', 'desc')
          ->paginate($this->itens_por_pagina);
@@ -155,8 +167,8 @@ class PrincipalController extends Controller
          // Criar um vetor que guarda todos os ids das solicitações apoiadas por esse usuário
          $meus_apoios        = $usuario->solicitante->apoios;
          $meus_apoios_ids    = [];
-         
-         foreach ($meus_apoios as $apoio) 
+
+         foreach ($meus_apoios as $apoio)
          {
              $meus_apoios_ids[] = $apoio->id;
          }
@@ -193,7 +205,8 @@ class PrincipalController extends Controller
         // Brace yourself
         // The Winter is coming
 
-        $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])->limit(200)->get();
+       $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])
+            ->where('moderado','1')->get();
         
         if (Auth::check()) {
             // Obter o usuário logado atualmente
