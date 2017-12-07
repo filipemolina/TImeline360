@@ -103,7 +103,7 @@ class PrincipalController extends Controller
    {
       // Armazenar e formatar o termo pesquisado
 
-	   $dados = "%".trim($request->termo)."%";
+      $dados = "%".trim($request->termo)."%";
 
       if ($dados != "%%")
       {
