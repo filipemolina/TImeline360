@@ -1344,7 +1344,6 @@ figure.highlight .form-group {
 
 .cornerTop.roxo {
   z-index: 10;
-  top: 38px;
   left: 0;
   position: absolute;
   width: 205px;
@@ -1355,7 +1354,6 @@ figure.highlight .form-group {
 }
 .cornerTop.roxo:after {
   z-index: 11;
-  top: 32px;
   left: 0;
   content: " ";
   position: absolute;
@@ -1573,6 +1571,26 @@ html, body {
     display: block;
   }
 
+  .cornerTop.roxo {
+    top: -7px;
+  }
+
+  .cornerTop.roxo:after {
+    top: -1px;
+  }
+  .postTime{
+    top: 0;
+    right: 0;
+  }
+
+  .navbar-nav.btn-int li .btn {
+  left: calc(50% - 61px);
+  }
+
+  .navbar-nav.btn-int li .btn.slide-coment {
+    
+  }
+
 }
 
 @media (min-width: 769px) {
@@ -1597,10 +1615,23 @@ html, body {
 
   .navbar-nav.btn-int li .btn {
   left: calc(50% - 62px);
-}
+  }
 
   .navbar-nav.btn-int li .btn.slide-coment {
     left: calc(50% - 81px);
+  }
+
+  .cornerTop.roxo {
+    top: 38px;
+  }
+
+  .cornerTop.roxo:after {
+    top: -1px;
+  }
+
+  .postTime {
+    bottom: 0;
+    right: 0;
   }
 }
 

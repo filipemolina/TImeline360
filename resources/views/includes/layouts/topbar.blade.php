@@ -1,5 +1,13 @@
 <div class="cornerTop roxo"></div>
-<nav class="topbar360 navbar-fixed-top navbar no-padding">
+<nav class="navbar topbar360 navbar-fixed-top no-padding">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
   <img class="img logo horizontal" src="{{ asset('img/logo-horizontal-360.png')}}"> 
   <img class="img logo loading" src="{{ asset('img/loading.gif')}}">
   <div class="cornerTop branco"></div>

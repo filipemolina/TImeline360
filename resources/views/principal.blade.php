@@ -43,7 +43,7 @@
                         <img src="{{ $solicitacao->foto }}" >
 
                         {{-- Tempo de postagem --}}
-                        <span class="label has-roxo-hover botRight">
+                        <span class="label has-roxo-hover postTime">
                            Adicionado às  
                            {{  $solicitacao->created_at->format('H:i') }} 
                            de 
