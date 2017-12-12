@@ -19,7 +19,7 @@
                   <div class="card-header card-header-icon avatar-fixo">
                      <img class="img" src="{{ $solicitacao->solicitante->foto }}"/>
                   </div>
-                  {{ $solicitacao->moderado}}
+                  
 
                   <div class="card-header card-header-icon avatar-status pull-right" 
                      data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">

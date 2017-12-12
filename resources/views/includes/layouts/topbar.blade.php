@@ -8,9 +8,12 @@
          <img class="img" style="width: 190px; 
                                  margin-top: -4px; 
                                  margin-left: -35px;" 
-                                 src="{{ asset('img/logo-horizontal-360.png')}}">   
+                                 src="{{ asset('img/logo-horizontal-360.png')}}">  
          {{-- <img class="img" style="width: 75px; margin-top: -38px; margin-left: 200px;" src="{{ asset('img/loading.gif')}}"> --}}         
 
+         <span style="font-size: 10px; margin-top: 60px; margin-left: 5px;" >
+            (v0.1.0) 
+         </span>
          <button type="button" class="navbar-toggle" data-toggle="collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
