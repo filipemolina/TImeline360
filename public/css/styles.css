@@ -1591,6 +1591,10 @@ html, body {
     
   }
 
+  nav img.logo {
+    display: none;
+  }
+
 }
 
 @media (min-width: 769px) {
