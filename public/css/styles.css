@@ -1509,6 +1509,11 @@ html, body {
   height: 23px;
 }
 
+.topbar360 button.navbar-toggle {
+  z-index: 1;
+  float: left !important;
+}
+
 .principal360.card {
   margin: 15px 0;
 }
@@ -1550,7 +1555,7 @@ html, body {
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media screen and (max-width: 768px){ 
+@media screen and (max-width: 991px){ 
 
   .col-xs-12{
     width: 90%;
@@ -1594,10 +1599,15 @@ html, body {
   nav img.logo {
     display: none;
   }
+  
+  .topbar360 span.title {
+    font-size: 17px;
+    color: #3D276B;
+  }
 
 }
 
-@media (min-width: 769px) {
+@media (min-width: 992px) {
   
   a.fixo-direita {
     position: fixed;
