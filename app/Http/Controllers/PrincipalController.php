@@ -27,32 +27,6 @@ class PrincipalController extends Controller
     {
         $cabon = new Carbon();
 
-
-    	// if (Auth::check()) {
-     //        //carrega as ultimas solicitações que JÁ ESTÃO moderadas e TODAS as do usuário logado
-
-    	// 	$usuario      =  User::find(Auth::user()->id);
-
-     //        $solicitacoes = Solicitacao::withCount('apoiadores')
-     //                                    ->with('endereco')
-     //                                    ->where('moderado', 1)
-     //                                    ->orWhere("solicitante_id", $usuario->solicitante->id)
-     //                                    ->orderBy('created_at', 'desc')
-     //                                    ->paginate(5);
-            
-     //        $meus_apoios        = $usuario->solicitante->apoios;
-     //        $meus_apoios_ids    = [];
-            
-     //        foreach ($meus_apoios as $apoio) 
-     //        {
-     //            $meus_apoios_ids[] = $apoio->id;
-     //        }
-
-     //        //dd($meus_apoios_ids);
-     //        return view('principal', compact('solicitacoes','usuario','meus_apoios_ids'));
-
-
-
         if( Solicitacao::count() > 0)
         {
         	if (Auth::check()) {
@@ -130,43 +104,55 @@ class PrincipalController extends Controller
    {
       // Armazenar e formatar o termo pesquisado
 
-	   $dados = "%".trim($request->termo)."%";
+      $dados = "%".trim($request->termo)."%";
 
       if ($dados != "%%")
       {
          // Filtrar pelo termo de pesquisa as solicitações que já foram moderadas
          $solicitacoes = Solicitacao::with(['endereco', 'servico', 'solicitante'])
 
-         //somente as liberadas pela moderação
-         ->where('moderado', 1)
+	->where(function($query) use ($dados){
+		// Filtar por propriedades de Models relacionados
+         	$query->whereHas('solicitante', function($q) use ($dados){
 
-         // Filtar por propriedades de Models relacionados
-         ->whereHas('solicitante', function($q) use ($dados){
-			     $q->where('nome', 'like', $dados);
+                    $q->where('nome', 'like', $dados);
 
-		      })->orWhereHas('endereco', function($q2) use ($dados){
-			     $q2->where('logradouro', 'like', $dados);
+        	})->orWhereHas('endereco', function($q2) use ($dados){
 
-		      })->orWhereHas('endereco', function($q2) use ($dados){
-			     $q2->where('bairro', 'like', $dados);
+                    $q2->where('logradouro', 'like', $dados);
 
-            })->orWhereHas('endereco', function($q2) use ($dados){
-			     $q2->where('cep', 'like', $dados);
+         	})->orWhereHas('endereco', function($q3) use ($dados){
 
-		      })->orWhereHas('servico', function($q2) use ($dados){
-   				$q2->where('nome', 'like', $dados);
-         })
+                    $q3->where('bairro', 'like', $dados);
+
+         	})->orWhereHas('endereco', function($q4) use ($dados){
+
+                    $q4->where('cep', 'like', $dados);
+
+            	})->orWhereHas('servico', function($q5) use ($dados){
+
+		    $q5->where('nome', 'like', $dados);
+
+	        });
+
+	})->where(function($query){
+
+		$query->where('moderado', 1);
+
+	})
 
          // Paginar e Ordenar
-         ->orderBy('created_at', 'desc')
-         ->paginate($this->itens_por_pagina);
-      }else{
+        ->orderBy('created_at', 'desc')
+	->paginate($this->itens_por_pagina);
+
+
+       }else{
          // Filtrar pelo termo de pesquisa as solicitações que já foram moderadas
          $solicitacoes = Solicitacao::with(['endereco', 'servico', 'solicitante'])
 
          //somente as liberadas pela moderação
-         ->where('moderado', 1)
-         
+         ->where('moderado', '=', 1)
+
          // Paginar e Ordenar
          ->orderBy('created_at', 'desc')
          ->paginate($this->itens_por_pagina);
@@ -181,8 +167,8 @@ class PrincipalController extends Controller
          // Criar um vetor que guarda todos os ids das solicitações apoiadas por esse usuário
          $meus_apoios        = $usuario->solicitante->apoios;
          $meus_apoios_ids    = [];
-         
-         foreach ($meus_apoios as $apoio) 
+
+         foreach ($meus_apoios as $apoio)
          {
              $meus_apoios_ids[] = $apoio->id;
          }
@@ -212,13 +198,14 @@ class PrincipalController extends Controller
     public function mapa()
     {
 
-        $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])
-            ->where('moderado','1')->get();
-
+        // Estamos limitando o número de solicitações mostradas
+        // no mapa devido à limitação de memória física do ser-
+        // vidor que no momento possui APENAS 2Gb de Memória.
         // Brace yourself
         // The Winter is coming
 
-        $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])->limit(200)->get();
+       $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])
+            ->where('moderado','1')->get();
         
         if (Auth::check()) {
             // Obter o usuário logado atualmente
