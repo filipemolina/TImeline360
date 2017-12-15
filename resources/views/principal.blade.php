@@ -224,7 +224,7 @@
                                  </div>
 
                                  {{-- Nome da secretária --}}
-                                 <label class="col-md-10 pull-right fc-rtl">
+                                 <label class="pull-right fc-rtl">
                                     {{ $comentario->funcionario->setor->secretaria->nome }} - 
                                     {{ $comentario->funcionario->setor->secretaria->sigla }}
                                  </label>
@@ -234,7 +234,7 @@
                                     <div class="row">
                                        <div class="col- fc-rtl">
                                           <div class="form-group col-md-7 pull-right no-margin">
-                                             <p class="form-control-static">
+                                             <p class="form-control-static no-padding">
                                                 {{ $comentario->comentario }}
                                              </p>
                                           </div>
@@ -282,7 +282,7 @@
                                  <form class="form-horizontal card-solicitante">
                                     <div class="row">
                                        {{-- Nome do usuário --}}
-                                       <label class="col-md-8">
+                                       <label class="col-md-8 nome-solicitante">
                                           {{ $solicitacao->solicitante->nome}}
                                        </label>
 
@@ -293,7 +293,7 @@
                                                 {{ $solicitacao->solicitante->nome}}
                                                 alterou a comentário em VARIÁVEL às VARIÁVEL.
                                              </span>
-                                             <p class="form-control-static">
+                                             <p class="form-control-static no-padding">
                                                 {{ $comentario->comentario }}
                                              </p>
                                           </div>
