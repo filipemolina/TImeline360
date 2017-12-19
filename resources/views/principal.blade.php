@@ -126,7 +126,7 @@
                         {{-- se tiver apoio do usuario logado fica em roxo (class=apoiar) --}}
                         @if(in_array($solicitacao->id, $meus_apoios_ids))
                            
-                           <button class="btn btn-simples btn-apoiar apoiar solicitacao_{{ $solicitacao->id }}" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})">
+                           <button class="btn btn-simples btn-apoiar btn-xs apoiar solicitacao_{{ $solicitacao->id }}" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})">
                               <span class="btn-label">
                                  <i class="material-icons">thumb_up</i>
                                  <span class="texto_apoio apoiado">Apoiado</span>
@@ -135,7 +135,7 @@
 
                         @else
                            
-                           <button class="btn btn-simples btn-apoiar solicitacao_{{ $solicitacao->id }}" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
+                           <button class="btn btn-simples btn-apoiar btn-xs solicitacao_{{ $solicitacao->id }}" onclick="enviaApoio({{ $solicitacao->id }},{{ $usuario->solicitante->id }})" >
                               <span class="btn-label">
                                  <i class="material-icons">thumb_up</i>
                                  <span class="texto_apoio">Apoiar</span>
@@ -148,7 +148,7 @@
 
                      {{-- Aviso que preciso logar para apoiar (class=helper-apoio) --}}
 
-                     <button class="btn btn-simple helper-apoio">
+                     <button class="btn btn-simple btn-xs helper-apoio">
                         <span class="btn-label"> <i class="material-icons">thumb_up</i> Apoiar </span>
                      </button>
                      
@@ -161,14 +161,14 @@
                         
                      @if($solicitacao->comentarios_count >= 1)
 
-                        <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
+                        <button class="btn btn-simple btn-xs slide-coment btn_comentario_{{ $solicitacao->id }}">
                            <span class="btn-label apoiar"> <i class="material-icons">chat</i> Comentários </span>
 
                         </button>
 
                      @else
 
-                        <button class="btn btn-simple slide-coment btn_comentario_{{ $solicitacao->id }}">
+                        <button class="btn btn-simple btn-xs slide-coment btn_comentario_{{ $solicitacao->id }}">
                            <span class="btn-label "> <i class="material-icons">chat</i> Comentários </span>
                         </button>
 
@@ -181,19 +181,19 @@
                               
                         @if($solicitacao->apoiadores_count > 1)
 
-                           <button class="btn btn-simples apoiar btn_apoios_{{ $solicitacao->id }}">
+                           <button class="btn btn-simples btn-xs apoiar btn_apoios_{{ $solicitacao->id }}">
                               <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
                               <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoios </span>
 
                         @elseif($solicitacao->apoiadores_count == 1)
 
-                           <button class="btn btn-simples apoiar btn_apoios_{{ $solicitacao->id }}">
+                           <button class="btn btn-simples btn-xs apoiar btn_apoios_{{ $solicitacao->id }}">
                               <span class="btn-label apoiar"> <i class="material-icons">favorite</i> </span>
                               <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoio </span>
 
                         @else
 
-                           <button class="btn btn-simples btn_apoios_{{ $solicitacao->id }}">
+                           <button class="btn btn-simples btn-xs btn_apoios_{{ $solicitacao->id }}">
                               <span class="btn-label"> <i class="material-icons">favorite</i> </span>
                               <span class="numero_apoios_{{ $solicitacao->id }}"> {{ $solicitacao->apoiadores_count }} </span> Apoio </span>
 

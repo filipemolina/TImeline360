@@ -761,7 +761,7 @@ h4.card-title {
   width: 85px;
   height: 85px;
   overflow: hidden;
-  margin: -10px 7px 0 -50px;
+  margin: 5px 5px 0 5px;
   padding: 0;
   background-color: transparent;
   position: relative;
@@ -818,10 +818,12 @@ h4.card-title {
 .card .card-image.alterado {
   margin-top: 5px !important;
   margin-bottom: 5px !important;
+  width: 70%;
+  margin-left: calc(50% - 225px);
 }
 
 .card-esquerdo .input-group{
-    margin-top: 13px;
+  margin-top: 13px;
 }
 
 .edit-foto{
@@ -841,10 +843,10 @@ h4.card-title {
 }
 
 .foto-edit{
-    display: block;
-    left: 385px;
-    position: absolute;
-    z-index: 1;
+  display: block;
+  left: 385px;
+  position: absolute;
+  z-index: 1;
 }
 
 
@@ -1559,6 +1561,18 @@ div.fc-rtl div.pull-right.no-margin {
   padding-bottom: 3px;
 }
 
+.navbar-nav.btn-int li .btn {
+  margin: 5px 1px;
+}
+
+.navbar-nav.btn-int li .btn-xs {
+  left: calc(50% - 42px);
+}
+
+.navbar-nav.btn-int li .btn-xs.slide-coment {
+  left: calc(50% - 59px);
+}
+
 /********************************************************** Fim do Mapa de Criação de Solicitação
 
 /********************************************************** Media Queries */
@@ -1566,16 +1580,13 @@ div.fc-rtl div.pull-right.no-margin {
 @media screen and (max-width: 576px){
 
   .card .card-header.card-header-icon.avatar-fixo{
-  
     width: 80px;
     height: 80px;
     margin: -14px 15px 0 -10px;
-
   }
 
   .mobile{
     left: 50px;
-
   }
 }
 
@@ -1610,14 +1621,6 @@ div.fc-rtl div.pull-right.no-margin {
     right: 0;
   }
 
-  .navbar-nav.btn-int li .btn {
-  left: calc(50% - 61px);
-  }
-
-  .navbar-nav.btn-int li .btn.slide-coment {
-    
-  }
-
   nav img.logo {
     display: none;
   }
@@ -1649,14 +1652,6 @@ div.fc-rtl div.pull-right.no-margin {
     margin: 125px 0;
   }
 
-  .navbar-nav.btn-int li .btn {
-  left: calc(50% - 62px);
-  }
-
-  .navbar-nav.btn-int li .btn.slide-coment {
-    left: calc(50% - 81px);
-  }
-
   .postTime {
     bottom: 0;
     right: 0;
@@ -1664,7 +1659,11 @@ div.fc-rtl div.pull-right.no-margin {
 }
 
 /* Large devices (desktops, 992px and up) */
-@media screen and (max-width: 992px) {  }
+@media screen and (max-width: 991px) {
+  .navbar-nav.btn-int > li {
+    float: left;
+  }
+}
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media screen and (max-width: 1200px) {  }
