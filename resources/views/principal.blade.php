@@ -19,20 +19,8 @@
             {{-- Card mestre --}}
             <div class="principal360 card">
 
-               {{-- Avatar do usuário --}}
-               <div class="card-header card-header-icon card-avatar-fixo">                
-                  <img src="{{ $solicitacao->solicitante->foto }}"/>
-               </div>
-
-               <div class="nome-solicitante-card"> {{ $solicitacao->solicitante->nome}}</div>
-
                {{-- Nome do usuário --}}
                {{-- <span class="card-avatar-label has-roxo">{{ $solicitacao->solicitante->nome}}</span> --}}
-
-               {{-- Avatar Status da publicação --}}
-               <div class="card-avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
-                  <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
-               </div>
                   
                {{-- Foto da publicação --}}
 
@@ -69,10 +57,12 @@
                <div class="card-content" style="padding-top: 0px;">
                   <div class="card-title">
                      <p class="col-md-12" style="margin-bottom: 0px;">
-                        <button class="btn btn-just-icon grande btn-simples btn-xs btn-primary no-margin" style="color: {{ $solicitacao->servico->setor->cor }};">
-                           {{-- <i class="material-icons">label_outline</i> --}}
-                           <span class="mdi {{ $solicitacao->servico->setor->icone }}" ></span>
-                        </button>
+
+                        {{-- Avatar Status da publicação --}}
+
+                        <div class="card-avatar-status" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
+                           <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
+                        </div>
                         
                         <b> {{ $solicitacao->servico->nome }} </b>
 
@@ -111,6 +101,13 @@
                      </p>
                   </div>
                   
+                  {{-- Avatar do usuário --}}
+                  <div class="card-header card-header-icon card-avatar-fixo">                
+                     <img src="{{ $solicitacao->solicitante->foto }}"/>
+                  </div>
+
+                  <div class="nome-solicitante-card"> {{ $solicitacao->solicitante->nome}}</div>
+
                   <div class="timeline-body col-md-12">
                      <p>{!! $solicitacao->conteudo !!}</p>
                   </div>

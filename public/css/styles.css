@@ -758,8 +758,7 @@ h4.card-title {
 }
 
 .card .card-header.card-header-icon.card-avatar-fixo {
-  width: 85px;
-  height: 85px;
+  width: 55px;
   overflow: hidden;
   margin: 5px 5px 0 5px;
   padding: 0;
@@ -816,10 +815,10 @@ h4.card-title {
 }
 
 .card .card-image.alterado {
-  margin-top: 5px !important;
+  margin-top: -10px !important;
   margin-bottom: 5px !important;
   width: 70%;
-  margin-left: calc(50% - 225px);
+  margin-left: calc(50% - 224px);
 }
 
 .card-esquerdo .input-group{
