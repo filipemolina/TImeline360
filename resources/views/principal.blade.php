@@ -14,13 +14,31 @@
 
       @foreach ($solicitacoes as $solicitacao)
                        
-         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3" id="solicitacao_card_{{ $solicitacao->id }}">
+         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" id="solicitacao_card_{{ $solicitacao->id }}">
 
             {{-- Card mestre --}}
             <div class="principal360 card">
 
+               {{-- Avatar do usuário --}}
+               <div class="card-header card-header-icon card-avatar-fixo">                
+                  <img src="{{ $solicitacao->solicitante->foto }}"/>
+               </div>
+
+               <div class="nome-solicitante-card"> {{ $solicitacao->solicitante->nome}}</div>
+
                {{-- Nome do usuário --}}
                {{-- <span class="card-avatar-label has-roxo">{{ $solicitacao->solicitante->nome}}</span> --}}
+
+               {{-- Avatar Status da publicação --}}
+
+               <div class="status-pub">
+                  <button class="btn btn-just-icon btn-xs" style="background-color: {{ $solicitacao->servico->setor->cor }};">
+                     {{-- <i class="material-icons">label_outline</i> --}}
+                     <span class="mdi {{ $solicitacao->servico->setor->icone }}" ></span>
+                  </button>
+                     
+                  <b> {{ $solicitacao->servico->nome }} </b>
+               </div>
                   
                {{-- Foto da publicação --}}
 
@@ -58,14 +76,6 @@
                   <div class="card-title">
                      <p class="col-md-12" style="margin-bottom: 0px;">
 
-                        {{-- Avatar Status da publicação --}}
-
-                        <div class="card-avatar-status" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
-                           <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
-                        </div>
-                        
-                        <b> {{ $solicitacao->servico->nome }} </b>
-
                         {{-- Opções do Solicitante --}}
                         @isset($usuario)
 
@@ -100,13 +110,6 @@
                                  
                      </p>
                   </div>
-                  
-                  {{-- Avatar do usuário --}}
-                  <div class="card-header card-header-icon card-avatar-fixo">                
-                     <img src="{{ $solicitacao->solicitante->foto }}"/>
-                  </div>
-
-                  <div class="nome-solicitante-card"> {{ $solicitacao->solicitante->nome}}</div>
 
                   <div class="timeline-body col-md-12">
                      <p>{!! $solicitacao->conteudo !!}</p>

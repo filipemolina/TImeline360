@@ -79,9 +79,13 @@ b span.label.top {
   right: 0;
 }
 
-button.btn-just-icon.grande {
+.status-pub button.btn-just-icon {
 padding: 0;
-font-size: 25px;
+font-size: 20px;
+float: right;
+margin: -35px -12px 0px 5px;
+width: 40px;
+height: 40px;
 }
 
 .logo-dourado {
@@ -760,7 +764,7 @@ h4.card-title {
 .card .card-header.card-header-icon.card-avatar-fixo {
   width: 55px;
   overflow: hidden;
-  margin: 5px 5px 0 5px;
+  margin: -15px 5px 0px -12px;
   padding: 0;
   background-color: transparent;
   position: relative;
@@ -792,33 +796,27 @@ h4.card-title {
 }
 
 .card .card-avatar-status {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   line-height: 1.33;
-  border-radius: 3px;avata
+  border-radius: 3px;
   overflow: hidden;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-  margin: -40px -30px 0 15px;
-  padding: 10px 15px;
+  padding: 3px 0px;
   background-color: transparent;
   position: relative;
 }
 
 .card .card-avatar-status span, .card .card-avatar-status i {
-  font-size: 24px;
+  font-size: 20px;
+  margin-left: calc(50% - 10px);
+  margin-top: calc(50% - 10px);
 }
 
 .card .card-header.card-header-icon.avatar img {
   width: 100%;
   height: auto;
   text-align: center;
-}
-
-.card .card-image.alterado {
-  margin-top: -10px !important;
-  margin-bottom: 5px !important;
-  width: 70%;
-  margin-left: calc(50% - 224px);
 }
 
 .card-esquerdo .input-group{
@@ -896,7 +894,7 @@ h4.card-title {
 }
 
 .nome-solicitante-card {
-  font-size:  14px; 
+  font-size:  12px; 
   margin-right: 10px; 
   font-weight: 500;
   color: #999999;
@@ -945,16 +943,6 @@ span.card-avatar-label {
 }
 
 span.has-roxo {
-  background-color: #3D276B;
-  color: #ffffff;
-}
-
-.has-roxo-hover {
-  background-color: inherit;
-  color: inherit;
-  transition: background-color 0.5s ease;
-}
-.has-roxo-hover:hover {
   background-color: #3D276B;
   color: #ffffff;
 }
@@ -1572,6 +1560,12 @@ div.fc-rtl div.pull-right.no-margin {
   left: calc(50% - 59px);
 }
 
+.status-pub b {
+  float: right;
+  font-size: 12px;
+  margin: -20px 5px 0px 0px;
+}
+
 /********************************************************** Fim do Mapa de Criação de Solicitação
 
 /********************************************************** Media Queries */
@@ -1607,26 +1601,14 @@ div.fc-rtl div.pull-right.no-margin {
     top: 1%;
   }
 
-  .sidebar, .main-panel {
-    display: block;
-  }
-
-  .cornerTop {
-    display: none;
-  }
-
   .postTime{
     top: 0;
     right: 0;
   }
 
-  nav img.logo {
-    display: none;
-  }
-  
-  .topbar360 span.title {
-    font-size: 17px;
-    color: #3D276B;
+  .has-roxo-hover {
+    background-color: #3D276B;
+    color: inherit;
   }
 
 }
@@ -1647,13 +1629,34 @@ div.fc-rtl div.pull-right.no-margin {
     width: 100%;
   }
 
-  .card.card-login {
-    margin: 125px 0;
+  #register-municipe {
+    margin-top: 35%;
+  }
+
+  #login {
+    margin-top: 39%;
   }
 
   .postTime {
     bottom: 0;
     right: 0;
+  }
+
+  .card .card-image.alterado {
+    width: 70%;
+    margin: 0;
+    margin-left: calc(50% - 225px);
+  }
+
+  .has-roxo-hover {
+    background-color: inherit;
+    color: inherit;
+    transition: background-color 0.5s ease;
+  }
+ 
+  .has-roxo-hover:hover {
+    background-color: #3D276B;
+    color: #ffffff;
   }
 }
 
@@ -1661,6 +1664,23 @@ div.fc-rtl div.pull-right.no-margin {
 @media screen and (max-width: 991px) {
   .navbar-nav.btn-int > li {
     float: left;
+  }
+
+  .sidebar, .main-panel {
+    display: block;
+  }
+
+  .cornerTop {
+    display: none;
+  }
+
+  nav img.logo {
+    display: none;
+  }
+
+  .topbar360 span.title {
+    font-size: 17px;
+    color: #3D276B;
   }
 }
 
