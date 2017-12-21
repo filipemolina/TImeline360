@@ -32,8 +32,8 @@ class Funcionario extends Model
     	return $this->hasOne('App\User');
     }
 
-    public function mensagens()
+    public function comentarios()
     {
-        return $this->hasMany('App\Models\Mensagem');
+        return $this->hasMany('App\Models\Comentario');
     }
 }

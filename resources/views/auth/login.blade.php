@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-Login
+
 
 @endsection
 
@@ -24,13 +24,13 @@ Login
     </div>
 @endif
  --}}
-<div class="row">
+<div class="row" style="margin-top:192px;">
     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page">
         <form method="POST" action="{{ url('login') }}">
                                     {{ csrf_field() }}
 
             {{-- DIV login-municipe --}}
-            <br><br><br><br><br><br><br>
+           
             <div id="login" class="card card-login card-hidden">
                 
                 {{-- Logo --}}
@@ -38,15 +38,7 @@ Login
 
                 {{-- Acesso via Facebook ou Google --}}
                 <div class="card-header text-center" data-background-color="roxo">
-                    <div class="social-line">
-                    <br>
-                        <a href="#btn" class="btn btn-just-icon btn-simple">
-                            <i class="fa fa-facebook-square"></i>
-                        </a>
-                        <a href="#eugen" class="btn btn-just-icon btn-simple">
-                            <i class="fa fa-google-plus"></i>
-                        </a>
-                    </div>
+                    <div class="social-line"><br><br><br></div>
                 </div>
                 
                 {{-- Acesso por email --}}
@@ -73,9 +65,22 @@ Login
                 
                 <div class="footer text-center">
                     <button type="submit" class="btn btn-roxo btn-lg">
-                        Acessar
+                       Acessar
                     </button>
+                    <div class="col-md text-center texto-roxo"> Ou, acesse por:</div>
                 </div>
+                           
+                <div class="col-md-1 col-md-offset-5">
+                    <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face" {{-- style="top:40px; --}}">
+                       <i class="fa fa-facebook"></i>
+                    </a>
+                </div>
+                              
+                <!-- <div class="col-md-1 col-md-offset-1">
+                    <a href="loginFacebook" class="btn btn-just-icon btn-round vermelho-google">
+                        <i class="fa fa-google"></i>
+                    </a>
+                </div> -->
             </div> {{-- FIM DIV login --}}
 
                                     

@@ -72,12 +72,14 @@ class UserController extends Controller
 
     public function edit($id)
     {
+
         $user = $this->user->find($id); 
         return $user;
     }
 
     public function update(Request $request, $id)
     {
+        
         // Validar
         $this->validate($request, [
             'nome'                  => 'required|max:255',
@@ -120,7 +122,7 @@ class UserController extends Controller
 
     public function Senha()
     {
-
+        //dd("aqui");
         $usuario = User::find(Auth::user()->id);
         $solicitante = $usuario->solicitante; 
         
@@ -156,9 +158,51 @@ class UserController extends Controller
         $ufs                = pegaValorEnum('enderecos',    'uf'); 
         
         
-        return view('auth.senha',compact('solicitante','escolaridades','estados_civil','sexos','ufs','fixo','celular'));
+        return view('auth.senha',compact('solicitante','usuario','escolaridades','estados_civil','sexos','ufs','fixo','celular'));
         
     }
 
 
+    public function AlteraSenha()
+    {
+        //dd("aqui");
+        $usuario = User::find(Auth::user()->id);
+
+        if($usuario->password = bcrypt($usuario->created_at))
+        {
+            $senha_padrao = $usuario->created_at;
+        }else{
+            $senha_padrao = null; 
+        }
+
+
+        return view('auth.senha',compact('usuario','senha_padrao'));    
+
+        
+    }
+
+    public function SalvarSenha(Request $request)
+    {
+        
+        // Validar
+        $this->validate($request, [
+            'password_atual'        => 'required',
+            'password'              => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6'
+        ]);
+
+        // Obter o usuário
+        $usuario = User::find($request->id);
+
+
+        if (Hash::check($request->password_atual, $usuario->password))
+        {
+            $usuario->update(['password' => bcrypt($request->password)]);            
+            return redirect('/')->with('sucesso_alteracao_senha','Senha alterada com sucesso.');
+        }else{
+
+            return back()->withErrors('Senha atual não confere');
+        }
+
+    }
 }
