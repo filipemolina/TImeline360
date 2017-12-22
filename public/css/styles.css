@@ -762,7 +762,7 @@ h4.card-title {
 }
 
 .card .card-header.card-header-icon.card-avatar-fixo {
-  width: 55px;
+  width: 100px;
   overflow: hidden;
   margin: -15px 5px 0px -12px;
   padding: 0;
@@ -795,16 +795,17 @@ h4.card-title {
   margin: -20px -10px 0 -5px;
 }
 
-.card .card-avatar-status {
-  width: 30px;
-  height: 30px;
+.card .avatar-status {
+  width: 70px;
+  height: 70px;
   line-height: 1.33;
   border-radius: 3px;
   overflow: hidden;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-  padding: 3px 0px;
+  padding: 15px 22px;
   background-color: transparent;
   position: relative;
+  margin: -36px -25px 0 5px;
 }
 
 .card .card-avatar-status span, .card .card-avatar-status i {
@@ -894,10 +895,10 @@ h4.card-title {
 }
 
 .nome-solicitante-card {
-  font-size:  12px; 
+  font-size:  14px; 
   margin-right: 10px; 
   font-weight: 500;
-  color: #999999;
+  color: #000;
   margin-top: 5px;  
   margin-bottom: 0px;
 }
@@ -1397,6 +1398,19 @@ div.termos p.noIndent {
 
 }
 
+.postTime{
+  position: absolute;
+  top: 5px;
+  right: 50px;
+  font-size: 10px;
+  color: #999;
+}
+
+.title-solicitacao {
+  margin-left: 75px;
+}
+
+
 /*===============================================================================================================*/
 /*===============================================================================================================*/
 /*===============================================================================================================*/
@@ -1566,6 +1580,10 @@ div.fc-rtl div.pull-right.no-margin {
   margin: -20px 5px 0px 0px;
 }
 
+.card-content .timeline-body.col-md-12 p {
+  margin-left: 65px;
+}
+
 /********************************************************** Fim do Mapa de Criação de Solicitação
 
 /********************************************************** Media Queries */
@@ -1601,11 +1619,6 @@ div.fc-rtl div.pull-right.no-margin {
     top: 1%;
   }
 
-  .postTime{
-    top: 0;
-    right: 0;
-  }
-
   .has-roxo-hover {
     background-color: #3D276B;
     color: inherit;
@@ -1637,15 +1650,9 @@ div.fc-rtl div.pull-right.no-margin {
     margin-top: 39%;
   }
 
-  .postTime {
-    bottom: 0;
-    right: 0;
-  }
-
   .card .card-image.alterado {
-    width: 70%;
+    width: 75%;
     margin: 0;
-    margin-left: calc(50% - 225px);
   }
 
   .has-roxo-hover {

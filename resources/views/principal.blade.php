@@ -26,19 +26,19 @@
 
                <div class="nome-solicitante-card"> {{ $solicitacao->solicitante->nome}}</div>
 
+               <div class="card-header card-header-icon avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
+                     {{-- <i class="material-icons">language</i> --}}
+                  <span class="mdi {{ $solicitacao->servico->setor->icone }}" style="font-size: 30px"></span>
+               </div>
+
+               {{-- Tempo de postagem --}}
+               <div class="postTime">
+                  Adicionado às  {{  $solicitacao->created_at->format('H:i') }} de
+                  {{  $solicitacao->created_at->format('d/m/Y') }}
+               </div>
+
                {{-- Nome do usuário --}}
                {{-- <span class="card-avatar-label has-roxo">{{ $solicitacao->solicitante->nome}}</span> --}}
-
-               {{-- Avatar Status da publicação --}}
-
-               <div class="status-pub">
-                  <button class="btn btn-just-icon btn-xs" style="background-color: {{ $solicitacao->servico->setor->cor }};">
-                     {{-- <i class="material-icons">label_outline</i> --}}
-                     <span class="mdi {{ $solicitacao->servico->setor->icone }}" ></span>
-                  </button>
-                     
-                  <b> {{ $solicitacao->servico->nome }} </b>
-               </div>
                   
                {{-- Foto da publicação --}}
 
@@ -47,14 +47,6 @@
                   <div class="card-image alterado">
                      <b href="#">
                         <img src="{{ $solicitacao->foto }}" >
-
-                        {{-- Tempo de postagem --}}
-                        <span class="label has-roxo-hover postTime">
-                           Adicionado às  
-                           {{  $solicitacao->created_at->format('H:i') }} 
-                           de 
-                           {{  $solicitacao->created_at->format('d/m/Y') }}
-                        </span>
                      </b>
 
                      {{-- Endereço --}}
@@ -74,7 +66,14 @@
                {{-- Título da solicitação --}}
                <div class="card-content" style="padding-top: 0px;">
                   <div class="card-title">
-                     <p class="col-md-12" style="margin-bottom: 0px;">
+                     
+                     <div class="title-solicitacao">
+                        <button class="btn btn-just-icon btn-simple btn-xs btn-roxo no-padding no-margin">
+                           {{-- <i class="material-icons">label_outline</i> --}}
+                           <span class="mdi {{ $solicitacao->servico->setor->icone }}" ></span>
+                        </button>
+                        <b> {{ $solicitacao->servico->nome }} </b>
+                     </div>
 
                         {{-- Opções do Solicitante --}}
                         @isset($usuario)
@@ -107,8 +106,7 @@
                            @endif
 
                         @endisset
-                                 
-                     </p>
+
                   </div>
 
                   <div class="timeline-body col-md-12">
