@@ -14,7 +14,7 @@
 
       @foreach ($solicitacoes as $solicitacao)
                        
-         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" id="solicitacao_card_{{ $solicitacao->id }}">
+         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-7 col-md-offset-3 col-lg-6 col-lg-offset-3" id="solicitacao_card_{{ $solicitacao->id }}">
 
             {{-- Card mestre --}}
             <div class="principal360 card">
@@ -28,7 +28,7 @@
 
                <div class="card-header card-header-icon avatar-status pull-right" data-background-color style="background-color: {{ $solicitacao->servico->setor->cor }};">
                      {{-- <i class="material-icons">language</i> --}}
-                  <span class="mdi {{ $solicitacao->servico->setor->icone }}" style="font-size: 30px"></span>
+                  <span class="mdi {{ $solicitacao->servico->setor->icone }}"></span>
                </div>
 
                {{-- Tempo de postagem --}}
@@ -231,7 +231,7 @@
                                  <form class="form-horizontal">
                                     <div class="row">
                                        <div class="col- fc-rtl">
-                                          <div class="form-group col-md-7 pull-right no-margin">
+                                          <div class="form-group col-xs-7 pull-right no-margin">
                                              <p class="form-control-static no-padding">
                                                 {{ $comentario->comentario }}
                                              </p>

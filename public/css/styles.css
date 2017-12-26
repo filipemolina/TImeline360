@@ -762,9 +762,8 @@ h4.card-title {
 }
 
 .card .card-header.card-header-icon.card-avatar-fixo {
-  width: 100px;
   overflow: hidden;
-  margin: -15px 5px 0px -12px;
+  margin: -15px 5px 0px -24px;
   padding: 0;
   background-color: transparent;
   position: relative;
@@ -796,22 +795,17 @@ h4.card-title {
 }
 
 .card .avatar-status {
-  width: 70px;
-  height: 70px;
   line-height: 1.33;
   border-radius: 3px;
   overflow: hidden;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-  padding: 15px 22px;
   background-color: transparent;
   position: relative;
   margin: -36px -25px 0 5px;
 }
 
-.card .card-avatar-status span, .card .card-avatar-status i {
-  font-size: 20px;
-  margin-left: calc(50% - 10px);
-  margin-top: calc(50% - 10px);
+.avatar-status span.mdi {
+  font-size: 30px;
 }
 
 .card .card-header.card-header-icon.avatar img {
@@ -1400,15 +1394,12 @@ div.termos p.noIndent {
 
 .postTime{
   position: absolute;
-  top: 5px;
-  right: 50px;
   font-size: 10px;
   color: #999;
+  top: 5px;
 }
 
-.title-solicitacao {
-  margin-left: 75px;
-}
+
 
 
 /*===============================================================================================================*/
@@ -1544,12 +1535,7 @@ html, body {
 }
 
 div.dourado label.pull-right {
-  font-size: 12px;
   margin-right: 12px;
-}
-
-form.card-solicitante label.nome-solicitante {
-  font-size: 12px;
 }
 
 form.card-solicitante div.coment-fix div.no-margin {
@@ -1580,9 +1566,24 @@ div.fc-rtl div.pull-right.no-margin {
   margin: -20px 5px 0px 0px;
 }
 
-.card-content .timeline-body.col-md-12 p {
-  margin-left: 65px;
+.card .card-image.alterado {
+  margin: 0;
 }
+
+.has-roxo-hover {
+    background-color: inherit;
+    color: inherit;
+    transition: background-color 0.5s ease;
+  }
+ 
+  .has-roxo-hover:hover {
+    background-color: #3D276B;
+    color: #ffffff;
+  }
+
+  .sidebar {
+    display: none;
+  }
 
 /********************************************************** Fim do Mapa de Criação de Solicitação
 
@@ -1599,13 +1600,30 @@ div.fc-rtl div.pull-right.no-margin {
   .mobile{
     left: 50px;
   }
+
+  .card .card-header.card-header-icon.card-avatar-fixo {
+    width: 40px;
+  }
+
+  .card .avatar-status {
+    width: 30px;
+    height: 30px;
+  }
+
+  .card-content .timeline-body.col-md-12 p {
+    margin-left: 65px;
+  }
+
+  div.dourado label.pull-right, .card.dourado p, form.card-solicitante label.nome-solicitante, .card.roxo p {
+    font-size: 8px;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media screen and (max-width: 768px){ 
 
   .col-xs-12{
-    width: 90%;
+    width: 80%;
     margin-left: 5%;
   }
 
@@ -1624,51 +1642,20 @@ div.fc-rtl div.pull-right.no-margin {
     color: inherit;
   }
 
-}
-
-@media (min-width: 769px) {
-  
-  a.fixo-direita {
-    position: fixed;
-    left: 90%;
-    top: 15%;
+  .card .card-header.card-header-icon.card-avatar-fixo {
+    width: 70px;
   }
 
-  .sidebar {
-    display: none;
+  .card .avatar-status {
+    width: 50px;
+    height: 50px;
+    padding: 5px 12px;
   }
 
-  .main-panel {
-    width: 100%;
+  .postTime{
+    right: 8%;
   }
 
-  #register-municipe {
-    margin-top: 35%;
-  }
-
-  #login {
-    margin-top: 39%;
-  }
-
-  .card .card-image.alterado {
-    width: 75%;
-    margin: 0;
-  }
-
-  .has-roxo-hover {
-    background-color: inherit;
-    color: inherit;
-    transition: background-color 0.5s ease;
-  }
- 
-  .has-roxo-hover:hover {
-    background-color: #3D276B;
-    color: #ffffff;
-  }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media screen and (max-width: 991px) {
   .navbar-nav.btn-int > li {
     float: left;
   }
@@ -1689,9 +1676,152 @@ div.fc-rtl div.pull-right.no-margin {
     font-size: 17px;
     color: #3D276B;
   }
+
+  .title-solicitacao {
+    margin-left: 30px;
+  }
+
+  .card-content .timeline-body.col-md-12 p {
+    margin-left: 17px;
+  }
+
+  div.dourado label.pull-right, .card.dourado p, form.card-solicitante label.nome-solicitante, .card.roxo p {
+    font-size: 9px;
+  }
+
+}
+
+@media screen and (min-width: 769px) and (max-width: 991px) {
+  
+  a.fixo-direita {
+    position: fixed;
+    left: 90%;
+    top: 15%;
+  }
+
+  .main-panel {
+    width: 100%;
+  }
+
+  #register-municipe {
+    margin-top: 35%;
+  }
+
+  #login {
+    margin-top: 39%;
+  }
+
+  .navbar-nav.btn-int > li {
+    float: left;
+  }
+
+  .sidebar, .main-panel {
+    display: block;
+  }
+
+  .cornerTop {
+    display: none;
+  }
+
+  nav img.logo {
+    display: none;
+  }
+
+  .topbar360 span.title {
+    font-size: 17px;
+    color: #3D276B;
+  }
+
+  .postTime{
+    right: 10%;
+  }
+
+  .title-solicitacao {
+    margin-left: 15px;
+  }
+
+  .card-content .timeline-body.col-md-12 p {
+    margin-left: 1px;
+  }
+
+  div.dourado label.pull-right, .card.dourado p, .card.roxo p {
+    font-size: 10px;
+  }
+
+}
+
+@media screen and (min-width: 991px) and (max-width: 1220px) {
+  .card .card-header.card-header-icon.card-avatar-fixo {
+    width: 80px;
+  }
+
+  .card .avatar-status {
+    width: 60px;
+    height: 60px;
+    padding: 8px 16px;
+  }
+
+  .postTime {
+    right: 9%;
+  }
+
+  .title-solicitacao {
+    margin-left: 45px;
+  }
+
+  .card-content .timeline-body.col-md-12 p {
+    margin-left: 32px;
+  }
+
+  div.dourado label.pull-right, .card.dourado p, form.card-solicitante label.nome-solicitante, .card.roxo p {
+    font-size: 11px;
+  }
+
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media screen and (max-width: 1200px) {  }
+@media screen and (min-width: 1221px) { 
+  .card .card-header.card-header-icon.card-avatar-fixo {
+    width: 100px;
+  }
+
+  .card .avatar-status {
+    width: 70px;
+    height: 70px;
+    padding: 15px 22px;
+  }
+
+  .postTime{
+    right: 13%;
+  }
+
+  .has-roxo-hover {
+    background-color: inherit;
+    color: inherit;
+    transition: background-color 0.5s ease;
+  }
+ 
+  .has-roxo-hover:hover {
+    background-color: #3D276B;
+    color: #ffffff;
+  }
+
+  .title-solicitacao {
+    margin-left: 75px;
+  }
+
+  .card .card-image.alterado {
+    width: 75%;
+  }
+
+  .card-content .timeline-body.col-md-12 p {
+    margin-left: 65px;
+  }
+
+  div.dourado label.pull-right, .card.dourado p, form.card-solicitante label.nome-solicitante, .card.roxo p {
+    font-size: 12px;
+  }
+
+}
 
 /********************************************************** Fim do Mapa de Criação de Solicitação
