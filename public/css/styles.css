@@ -1585,6 +1585,14 @@ div.fc-rtl div.pull-right.no-margin {
     display: none;
   }
 
+  span.versao {
+    position: absolute;
+    left: 205px;
+    top: 10px;
+    color: #000;
+    font-size: 9px;
+  }
+
 /********************************************************** Fim do Mapa de Criação de Solicitação
 
 /********************************************************** Media Queries */
@@ -1617,6 +1625,12 @@ div.fc-rtl div.pull-right.no-margin {
   div.dourado label.pull-right, .card.dourado p, form.card-solicitante label.nome-solicitante, .card.roxo p {
     font-size: 8px;
   }
+
+  span.versao {
+    left: 180px;
+    top: 7px;
+  }
+  
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -1689,6 +1703,11 @@ div.fc-rtl div.pull-right.no-margin {
     font-size: 9px;
   }
 
+  span.versao {
+    left: 180px;
+    top: 7px;
+  }
+
 }
 
 @media screen and (min-width: 769px) and (max-width: 991px) {
@@ -1746,6 +1765,11 @@ div.fc-rtl div.pull-right.no-margin {
 
   div.dourado label.pull-right, .card.dourado p, .card.roxo p {
     font-size: 10px;
+  }
+
+  span.versao {
+    left: 180px;
+    top: 7px;
   }
 
 }

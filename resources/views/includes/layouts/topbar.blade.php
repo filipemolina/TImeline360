@@ -9,6 +9,7 @@
   <span class="label title">MESQUITA 360</span>
   <img class="img logo horizontal" src="{{ asset('img/logo-horizontal-360.png')}}"> 
   <img class="img logo loading" src="{{ asset('img/loading.gif')}}">
+  <span class="versao">(v0.1.2)</span>
   <div class="cornerTop branco"></div>
   <div class="container-fluid animated fadeInDown">
     <div class="collapse navbar-collapse no-margin no-padding">
