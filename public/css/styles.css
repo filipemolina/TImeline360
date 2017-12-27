@@ -1634,7 +1634,7 @@ div.fc-rtl div.pull-right.no-margin {
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media screen and (max-width: 768px){ 
+@media screen and (max-width: 775px){ 
 
   .col-xs-12{
     width: 80%;
@@ -1700,7 +1700,7 @@ div.fc-rtl div.pull-right.no-margin {
   }
 
   div.dourado label.pull-right, .card.dourado p, form.card-solicitante label.nome-solicitante, .card.roxo p {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   span.versao {
@@ -1710,7 +1710,7 @@ div.fc-rtl div.pull-right.no-margin {
 
 }
 
-@media screen and (min-width: 769px) and (max-width: 991px) {
+@media screen and (min-width: 776px) and (max-width: 991px) {
   
   a.fixo-direita {
     position: fixed;
@@ -1764,7 +1764,7 @@ div.fc-rtl div.pull-right.no-margin {
   }
 
   div.dourado label.pull-right, .card.dourado p, .card.roxo p {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   span.versao {
