@@ -34,6 +34,8 @@ class PrincipalController extends Controller
 
         		$usuario      =  User::find(Auth::user()->id);
 
+                //dd($usuario);
+
                 $solicitacoes = Solicitacao::withCount('apoiadores')
                                             ->withCount('comentarios')
                                             ->with('endereco')
@@ -42,7 +44,7 @@ class PrincipalController extends Controller
                                             ->orderBy('created_at', 'desc')
                                             ->paginate($this->itens_por_pagina);
                                             
-                
+                //dd($solicitacoes);
                 $meus_apoios        = $usuario->solicitante->apoios;
                 $meus_apoios_ids    = [];
                 

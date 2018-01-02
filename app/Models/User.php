@@ -32,5 +32,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Solicitante');
     }
 
+    public function funcionario()
+    {
+        return $this->belongsTo('App\Models\Funcionario');
+    }
+
 }
 
