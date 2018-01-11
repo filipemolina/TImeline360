@@ -60,6 +60,7 @@ class PrincipalController extends Controller
                 //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
                 $solicitacoes = Solicitacao::withCount('apoiadores')
                                             ->where('moderado', 1)
+                                            ->where('status','<>', 'Recusada')
                                             ->orderBy('created_at', 'desc')
                                             ->paginate($this->itens_por_pagina);
 
