@@ -238,7 +238,7 @@
 
                                           {{-- Comentário Fixo --}}
                                           <div class="col- coment-fix">
-                                             <div class="form-group col-md-7 no-margin">
+                                             <div class="form-group col-md-7 no-margin" style="padding-left: 25px;">
                                                 <p class="form-control-static">{{ $comentario->comentario }}</p>
                                              </div>
                                           </div>

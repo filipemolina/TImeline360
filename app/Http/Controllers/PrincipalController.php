@@ -57,13 +57,15 @@ class PrincipalController extends Controller
                 return view('principal', compact('solicitacoes','usuario','meus_apoios_ids'));
 
             }else{
+
                 //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
                 $solicitacoes = Solicitacao::withCount('apoiadores')
+                                            ->withCount('comentarios')
                                             ->where('moderado', 1)
                                             ->where('status','<>', 'Recusada')
                                             ->orderBy('created_at', 'desc')
                                             ->paginate($this->itens_por_pagina);
-
+                //dd($solicitacoes);
                 return view('principal', compact('solicitacoes'));
     		}
 
@@ -78,7 +80,11 @@ class PrincipalController extends Controller
    		$usuario =  User::find(Auth::user()->id);
 
         //carrega as solicitações do usuário logado MODERADA ou NÃO
-    	$solicitacoes = Solicitacao::withCount('comentarios')->where('solicitante_id', $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate($this->itens_por_pagina);
+    	$solicitacoes = Solicitacao::withCount('apoiadores')
+                                    ->withCount('comentarios')
+                                    ->where('solicitante_id', $usuario->solicitante->id)
+                                    ->orderBy('created_at', 'desc')
+                                    ->paginate($this->itens_por_pagina);
 
         if($solicitacoes->total() > 0)
         {

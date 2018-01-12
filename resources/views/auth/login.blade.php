@@ -69,22 +69,26 @@
                     </button>
                     <div class="col-md text-center texto-roxo"> Ou, acesse por:</div>
                 </div>
-                           
-                <div class="col-md-1 col-md-offset-5">
-                    <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face" {{-- style="top:40px; --}}">
+                     
+               <div class="row">      
+                  <div class="col-md-1 col-md-offset-5">
+                     <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face" {{-- style="top:40px; --}}">
                        <i class="fa fa-facebook"></i>
-                    </a>
-                </div>
-                              
+                     </a>
+                  </div>
+               </div>
                 <!-- <div class="col-md-1 col-md-offset-1">
                     <a href="loginFacebook" class="btn btn-just-icon btn-round vermelho-google">
                         <i class="fa fa-google"></i>
                     </a>
                 </div> -->
-               <div>
-                 <a href="{{ url("/password/reset")}}" class="col-md text-center texto-roxo">Esqueceu sua Senha?</a>   
+
+               <div class="row" style="text-align: center;">
+                  <a href="{{ url("/password/reset")}}" class="col-md text-center texto-roxo">Esqueceu sua Senha?</a>   
                </div>
+
             </div> {{-- FIM DIV login --}}
+
 
                                     
 

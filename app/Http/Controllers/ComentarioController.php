@@ -70,19 +70,25 @@ class ComentarioController extends Controller
     
     public function destroy($id)
     {
+        // $comentario = Comentario::find($id);
+
+        // $contador = Comentario::where([
+        //     ['solicitacao_id', $comentario->solicitacao_id],
+        //     ['created_at', '>', $comentario->created_at],
+        // ])->whereNotNull('funcionario_id')->count();
+
+        // if($contador > 0){
+        //     return "0";
+        // }
+        // else{
+        //     $comentario->delete();
+        //     return "1";
+        // }
+
         $comentario = Comentario::find($id);
 
-        $contador = Comentario::where([
-            ['solicitacao_id', $comentario->solicitacao_id],
-            ['created_at', '>', $comentario->created_at],
-        ])->whereNotNull('funcionario_id')->count();
-
-        if($contador > 0){
-            return "0";
-        }
-        else{
-            $comentario->delete();
-            return "1";
-        }
+        $comentario->comentario = "Comentário apagado pelo usuário";
+        $comentario->apagado = true;
+        $comentario->save();
     }
 }
