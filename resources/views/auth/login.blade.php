@@ -81,6 +81,9 @@
                         <i class="fa fa-google"></i>
                     </a>
                 </div> -->
+               <div>
+                 <a href="{{ url("/password/reset")}}" class="col-md text-center texto-roxo">Esqueceu sua Senha?</a>   
+               </div>
             </div> {{-- FIM DIV login --}}
 
                                     
