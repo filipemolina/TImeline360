@@ -34,6 +34,8 @@ class PrincipalController extends Controller
 
         		$usuario      =  User::find(Auth::user()->id);
 
+                //dd($usuario);
+
                 $solicitacoes = Solicitacao::withCount('apoiadores')
                                             ->withCount('comentarios')
                                             ->with('endereco')
@@ -42,7 +44,7 @@ class PrincipalController extends Controller
                                             ->orderBy('created_at', 'desc')
                                             ->paginate($this->itens_por_pagina);
                                             
-                
+                //dd($solicitacoes);
                 $meus_apoios        = $usuario->solicitante->apoios;
                 $meus_apoios_ids    = [];
                 
@@ -58,6 +60,7 @@ class PrincipalController extends Controller
                 //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
                 $solicitacoes = Solicitacao::withCount('apoiadores')
                                             ->where('moderado', 1)
+                                            ->where('status','<>', 'Recusada')
                                             ->orderBy('created_at', 'desc')
                                             ->paginate($this->itens_por_pagina);
 
