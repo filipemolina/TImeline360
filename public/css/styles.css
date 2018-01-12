@@ -821,8 +821,8 @@ span.endereco{
 }
 
 span.endereco:hover {
-   
-    text-shadow: 0px 0px 0px black, 0 0 20px #AD9A75;
+  text-shadow: 0px 0px 0px red, 0 0 20px #AD9A75;
+  cursor:pointer;
 }
 
 
