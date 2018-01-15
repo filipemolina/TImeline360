@@ -12,7 +12,7 @@
          {{-- <img class="img" style="width: 75px; margin-top: -38px; margin-left: 200px;" src="{{ asset('img/loading.gif')}}"> --}}         
 
          <span style="font-size: 10px; margin-top: 60px; margin-left: 5px;" >
-            (v1.0.0) 
+            (v1.0.1) 
          </span>
          <button type="button" class="navbar-toggle" data-toggle="collapse">
             <span class="sr-only">Toggle navigation</span>
