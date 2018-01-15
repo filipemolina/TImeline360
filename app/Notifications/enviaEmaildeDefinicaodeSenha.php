@@ -40,12 +40,20 @@ class enviaEmaildeDefinicaodeSenha extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url('/password/reset/').$this->token;
+        /*$url = url('/password/reset/').$this->token;
         return (new MailMessage)
                 ->greeting('Olá')
-                ->line('Texto antes da ação, quantas linhas quiser')
+                ->line('Você está recebendo este e-mail porque recebemos um pedido de redefinição de senha para sua conta')
                 ->action('Redefinir senha', $url)
                 ->line('Texto depois da ação quantas linhas quiser');
+
+*/
+        $url = env('APP_URL').'/password/reset/'.$this->token;
+        return (new MailMessage)
+                ->greeting('Olá')
+                ->line('Você está recebendo este e-mail porque recebemos um pedido de redefinição de senha para sua conta.')
+                ->action('Redefinir senha', url(config('app.url').route('password.reset', $this->token, false)))
+                ->line('Se você não solicitou uma redefinição de senha, ignore este email.');
 
         /*return (new MailMessage)
                     ->line('The introduction to the notification.')
