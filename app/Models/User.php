@@ -38,5 +38,9 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Funcionario');
     }
 
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new enviaEmaildeDefinicaodeSenha($token));
+    }
 }
 

@@ -18,7 +18,7 @@ class enviaEmaildeDefinicaodeSenha extends Notification
      */
     public function __construct()
     {
-        //
+        $this->token = $token;
     }
 
     /**
