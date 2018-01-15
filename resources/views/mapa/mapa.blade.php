@@ -147,11 +147,32 @@
 					markers.push(marker_{{ $solicitacao->id }});
 				@endif
 			@endforeach
-		 	var markerCluster = new MarkerClusterer(map, markers,{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+
+
+
+
+
+
+//{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
+
+			var mcOptions = {	gridSize: 40, 	
+									maxZoom: 21,
+								
+
+
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'};
+
+
+
+
+
+
+
+
+		 	var markerCluster = new MarkerClusterer(map, markers,mcOptions);
       
 		}
-
-
 
 	
 

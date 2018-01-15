@@ -207,6 +207,8 @@ class PrincipalController extends Controller
     public function mapa()
     {
 
+        $data_limite = Carbon::now()->subMonth(1);
+
         // Estamos limitando o número de solicitações mostradas
         // no mapa devido à limitação de memória física do ser-
         // vidor que no momento possui APENAS 2Gb de Memória.
@@ -214,8 +216,28 @@ class PrincipalController extends Controller
         // Brace yourself
         // The Winter is coming
 
-       $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])
-            ->where('moderado','1')->get();
+       // $solicitacoes1 = Solicitacao::with(['servico.setor.secretaria.endereco'])
+       //      ->where('moderado','1')
+       //      ->where('status','<>', 'Recusada')
+
+       //      ->get();
+
+
+
+        $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])
+            ->where('moderado','1')
+            ->where('status','<>', 'Recusada')
+
+            ->where(function($query) use ($data_limite){
+                $query->where('status', 'Solucionada')
+                    ->where('updated_at', ">=", $data_limite);
+            })
+
+            ->get();
+
+
+        //dd($solicitacoes);
+        
         
         if (Auth::check()) {
             // Obter o usuário logado atualmente
