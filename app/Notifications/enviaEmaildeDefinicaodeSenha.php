@@ -16,7 +16,7 @@ class enviaEmaildeDefinicaodeSenha extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
         $this->token = $token;
     }
@@ -50,6 +50,7 @@ class enviaEmaildeDefinicaodeSenha extends Notification
 */
         $url = env('APP_URL').'/password/reset/'.$this->token;
         return (new MailMessage)
+                ->subject('Redefinição de Senha no Mesquita 360')
                 ->greeting('Olá')
                 ->line('Você está recebendo este e-mail porque recebemos um pedido de redefinição de senha para sua conta.')
                 ->action('Redefinir senha', url(config('app.url').route('password.reset', $this->token, false)))
