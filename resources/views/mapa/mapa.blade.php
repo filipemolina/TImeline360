@@ -9,11 +9,11 @@
  	<div class="row col-md-12" >
 		<div id="map-canvas" class="mapa" >
 			
+        <div style="text-align:center; position: relative; top: 200px;">
 
-			<div id="loading" style="position: absolute; width: 100%; top: 88px; color: #fff; font-weight: bold; font-size: 18px;">
-				<img class="center-block" src="{{ asset('img/DoubleRing.gif') }}" />	
-				Carregando
-			</div>
+        		<div style="position: absolute; width: 100%; top: 88px; color: #fff; font-weight: bold; font-size: 18px;">Carregando</div>
+        		<img class="center-block" src="/img/DoubleRing.gif" alt="Carregando..." />
+        	</div>
 		
 		</div>
 	</div>
