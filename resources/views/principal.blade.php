@@ -222,16 +222,18 @@
                                  </div>
 
                                  {{-- Nome da secretária --}}
+                                 <div class="row">
                                  <label class="pull-right fc-rtl">
                                     {{ $comentario->funcionario->setor->secretaria->nome }} - 
                                     {{ $comentario->funcionario->setor->secretaria->sigla }}
                                  </label>
+                                 </div>
 
                                  {{-- Comentário --}}
                                  <form class="form-horizontal">
                                     <div class="row">
                                        <div class="col- fc-rtl">
-                                          <div class="form-group col-xs-7 pull-right no-margin">
+                                          <div class="form-group col-xs pull-right no-margin">
                                              <p class="form-control-static no-padding">
                                                 {{ $comentario->comentario }}
                                              </p>
@@ -287,10 +289,6 @@
                                        {{-- Comentário Fixo --}}
                                        <div class="col- coment-fix">
                                           <div class="form-group col-md-7 no-margin">
-                                             <span class="label nota hide">
-                                                {{ $solicitacao->solicitante->nome}}
-                                                alterou a comentário em VARIÁVEL às VARIÁVEL.
-                                             </span>
                                              <p class="form-control-static no-padding">
                                                 {{ $comentario->comentario }}
                                              </p>

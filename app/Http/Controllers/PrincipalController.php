@@ -34,6 +34,8 @@ class PrincipalController extends Controller
 
         		$usuario      =  User::find(Auth::user()->id);
 
+                //dd($usuario);
+
                 $solicitacoes = Solicitacao::withCount('apoiadores')
                                             ->withCount('comentarios')
                                             ->with('endereco')
@@ -42,7 +44,7 @@ class PrincipalController extends Controller
                                             ->orderBy('created_at', 'desc')
                                             ->paginate($this->itens_por_pagina);
                                             
-                
+                //dd($solicitacoes);
                 $meus_apoios        = $usuario->solicitante->apoios;
                 $meus_apoios_ids    = [];
                 
@@ -55,12 +57,15 @@ class PrincipalController extends Controller
                 return view('principal', compact('solicitacoes','usuario','meus_apoios_ids'));
 
             }else{
+
                 //carrega as ultimas 10 solicitações que JÁ ESTÃO moderadas
                 $solicitacoes = Solicitacao::withCount('apoiadores')
+                                            ->withCount('comentarios')
                                             ->where('moderado', 1)
+                                            ->where('status','<>', 'Recusada')
                                             ->orderBy('created_at', 'desc')
                                             ->paginate($this->itens_por_pagina);
-
+                //dd($solicitacoes);
                 return view('principal', compact('solicitacoes'));
     		}
 
@@ -75,7 +80,11 @@ class PrincipalController extends Controller
    		$usuario =  User::find(Auth::user()->id);
 
         //carrega as solicitações do usuário logado MODERADA ou NÃO
-    	$solicitacoes = Solicitacao::withCount('comentarios')->where('solicitante_id', $usuario->solicitante->id)->orderBy('created_at', 'desc')->paginate($this->itens_por_pagina);
+    	$solicitacoes = Solicitacao::withCount('apoiadores')
+                                    ->withCount('comentarios')
+                                    ->where('solicitante_id', $usuario->solicitante->id)
+                                    ->orderBy('created_at', 'desc')
+                                    ->paginate($this->itens_por_pagina);
 
         if($solicitacoes->total() > 0)
         {
@@ -198,14 +207,36 @@ class PrincipalController extends Controller
     public function mapa()
     {
 
+        $data_limite = Carbon::now()->subMonth(1);
+
         // Estamos limitando o número de solicitações mostradas
         // no mapa devido à limitação de memória física do ser-
         // vidor que no momento possui APENAS 2Gb de Memória.
         // Brace yourself
         // The Winter is coming
 
-       $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])
-            ->where('moderado','1')->get();
+       // $solicitacoes1 = Solicitacao::with(['servico.setor.secretaria.endereco'])
+       //      ->where('moderado','1')
+       //      ->where('status','<>', 'Recusada')
+
+       //      ->get();
+
+
+
+        $solicitacoes = Solicitacao::with(['servico.setor.secretaria.endereco'])
+            ->where('moderado','1')
+            ->where('status','<>', 'Recusada')
+
+            ->where(function($query) use ($data_limite){
+                $query->where('status', 'Solucionada')
+                    ->where('updated_at', ">=", $data_limite);
+            })
+
+            ->get();
+
+
+        //dd($solicitacoes);
+        
         
         if (Auth::check()) {
             // Obter o usuário logado atualmente

@@ -9,12 +9,10 @@
  	<div class="row col-md-12" >
 		<div id="map-canvas" class="mapa" >
 			
-
-			<div id="loading" style="position: absolute; width: 100%; top: 88px; color: #fff; font-weight: bold; font-size: 18px;">
-				<img class="center-block" src="{{ asset('img/DoubleRing.gif') }}" />	
-				<p class="jvectormap-legend-title" ">Carregando</p>
-			</div>
-		
+        <div class="load posicao">
+    		<div class="load texto">Carregando</div>
+    		<img class="center-block" src="/img/DoubleRing.gif" alt="Carregando..." />
+    		</div>		
 		</div>
 	</div>
 
@@ -147,11 +145,32 @@
 					markers.push(marker_{{ $solicitacao->id }});
 				@endif
 			@endforeach
-		 	var markerCluster = new MarkerClusterer(map, markers,{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+
+
+
+
+
+
+//{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
+
+			var mcOptions = {	gridSize: 40, 	
+									maxZoom: 21,
+								
+
+
+									imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'};
+
+
+
+
+
+
+
+
+		 	var markerCluster = new MarkerClusterer(map, markers,mcOptions);
       
 		}
-
-
 
 	
 

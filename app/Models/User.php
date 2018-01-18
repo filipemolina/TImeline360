@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\enviaEmaildeDefinicaodeSenha;
 
 class User extends Authenticatable
 {
@@ -32,5 +33,14 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Solicitante');
     }
 
+    public function funcionario()
+    {
+        return $this->belongsTo('App\Models\Funcionario');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new enviaEmaildeDefinicaodeSenha($token));
+    }
 }
 

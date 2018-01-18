@@ -58,7 +58,7 @@
                     </span>
                     <div class="form-group label-floating has-roxo">
                         <label class="control-label">Senha</label>
-                            <input name="password" type="password" class="form-control">
+                        <input name="password" type="password" class="form-control">
                     </div>
                 </div>
             </div>
@@ -83,10 +83,15 @@
                     <i class="fa fa-google"></i>
                 </a> --}}
             </div>
+
+            <div class="col-md-12 text center">
+                <a href="{{ url("/password/reset")}}" class="btn btn-roxo btn-simple btn-sm">Esqueceu sua Senha?</a>   
+            </div>
         </div> {{-- FIM DIV login --}}
 
     </form>
 </div>
+
 
 @endsection
 

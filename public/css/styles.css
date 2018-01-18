@@ -913,7 +913,7 @@ h4.card-title {
 }
 
 .apoiar {
-   color:#3D276B !important;
+  color:#3D276B !important;
   animation: apoiar 0.3s;
 }
 
@@ -982,8 +982,8 @@ span.label.botRight {
 }
 
 span.endereco:hover {
-   
-    text-shadow: 0px 0px 0px black, 0 0 20px #AD9A75;
+  text-shadow: 0px 0px 0px red, 0 0 20px #AD9A75;
+  cursor:pointer;
 }
 
 
@@ -1057,6 +1057,9 @@ post-address {
   font-size: 23px !important;
 }
 
+.text.center {
+  text-align: center;
+}
 
 /*infowindow  ==============================================================*/
 
@@ -1082,6 +1085,21 @@ post-address {
   /*margin: 0 0 85px 0;
   padding: 0;
   max-width: none !important;*/
+}
+
+.load.posicao {
+  text-align:center;
+  position: relative;
+  top: 200px;
+}
+
+.load.texto {
+  position: absolute;
+  width: 100%;
+  top: 88px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .gm-style-iw {
@@ -1142,6 +1160,10 @@ post-address {
   background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
   background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
   background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+}
+
+.col-xs.pull-right p.form-control-static.no-padding {
+  margin-right: 32px;
 }
 
 /*===============================================================================================================*/
