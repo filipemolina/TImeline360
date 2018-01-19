@@ -15,19 +15,13 @@
     <div class="collapse navbar-collapse no-margin no-padding">
       <ul class="nav navbar-nav navbar-right">
             
-        @if(Auth::check())
+        <li>
+          <a href="{{ url('/mapa')}}" class="dropdown-toggle">
+            <i class="material-icons">map</i> Mapa
+          </a>
+        </li>
 
-          <li>
-            <a href="{{ url('/')}}" class="dropdown-toggle">
-              <i class="material-icons">home</i> Início
-            </a>
-          </li>
-          
-          <li>
-            <a href="{{ url('/mapa')}}" class="dropdown-toggle">
-              <i class="material-icons">map</i> Mapa
-            </a>
-          </li>
+        @if(Auth::check())
 
           <li>
             <a href="{{ url("/minhassolicitacoes") }}" class="dropdown-toggle minhas_solicitacoes">
@@ -35,7 +29,7 @@
             </a>
           </li>
 
-          <li style="margin-right: 10px">
+          <li>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="material-icons">settings</i> Menu
             </a>
@@ -69,15 +63,7 @@
             </ul>
           </li>
 
-          <li class="separator hidden-lg hidden-md"></li>
-
         @else
-
-          <li>
-            <a href="{{ url('/')}}" class="dropdown-toggle">
-              <i class="material-icons">home</i> Início
-            </a>
-          </li>
 
           <li class=" active ">
             <a href="{{url ("/registro")}}">
@@ -86,18 +72,26 @@
           </li>
 
           <li>
-            <a href="{{ url('/mapa')}}" class="dropdown-toggle">
-              <i class="material-icons">map</i> Mapa
-            </a>
-          </li>
-
-          <li style="margin-right: 10px">
             <a href="{{url ("/login")}}">
               <i class="material-icons">fingerprint</i> Login
             </a>
           </li>
 
         @endif
+
+        <li>
+          <a href="{{ url('/')}}" class="dropdown-toggle">
+            <i class="material-icons">home</i> Início
+          </a>
+        </li>
+
+        <li class="separator hidden-lg hidden-md"></li>
+
+        <li>
+          <a class= "previsao tempo" target="_blank">
+            <img src="https://w.bookcdn.com/weather/picture/4_w304065_1_8_07315e_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=585&anc_id=53590"  alt="booked.net"/>
+          </a>
+        </li>
             
       </ul>
 
