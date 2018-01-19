@@ -11,6 +11,16 @@
    <div class="row cartao-principal" >
 
       <div class="infinite-scroll">
+         {{-- <img src="https://www.tempo.com/wimages/foto340dc19382a5c7261f625fada811a0f8.png"> --}}
+
+         <!-- weather widget start -->
+         <a style="padding-left: 75px;"
+            target="_blank" 
+            >
+            <img src="https://w.bookcdn.com/weather/picture/4_w304065_1_8_07315e_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=585&anc_id=53590"  alt="booked.net"/>
+         </a>
+         <!-- weather widget end -->
+
          {{-- Início da Solicitação --}}
          @foreach ($solicitacoes as $solicitacao)
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3" id="solicitacao_card_{{ $solicitacao->id }}">

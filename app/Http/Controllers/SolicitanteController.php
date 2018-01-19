@@ -11,8 +11,7 @@ use App\Models\User;
 use App\Models\Solicitante;
 use App\Models\Endereco;
 use App\Models\Telefone;
-
-
+use Validator;
 
 
 class SolicitanteController extends Controller
@@ -57,15 +56,28 @@ class SolicitanteController extends Controller
     public function update(Request $request, $id)
     {
         //dd($request->all());
+        // dd($id);
+
+        // solcaliza o solicitante
+        $solicitante = Solicitante::find($id);
 
         $this->validate($request, [
             'nome'                  => 'required|max:255',
             'email'                 => 'required|email|max:255|unique:solicitantes,email,'.$id,
-            'cpf'                   => 'cpf|unique:solicitantes,cpf,'.$id,
             'nascimento'            => 'date',
             'sexo'                  => 'required',
-
         ]);
+
+        // Validar o CPF do usuário apenas se houver alteração
+        if($solicitante->cpf != $request->cpf){
+
+            $this->validate($request, [
+
+                'cpf' => 'cpf|unique:solicitantes,cpf,'.$id,
+
+            ]);
+
+        }
 
 
         // solcaliza o solicitante

@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Contracts\UserResolver;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use App\Notifications\enviaEmaildeDefinicaodeSenha;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Auditable, UserResolver
 {
-	use Notifiable;
+    use Notifiable, \OwenIt\Auditing\Auditable;
 	
     /**
      * The attributes that are mass assignable.
@@ -41,6 +45,11 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new enviaEmaildeDefinicaodeSenha($token));
+    }
+
+    public static function resolveId()
+    {
+        return Auth::check() ? Auth::user()->getAuthIdentifier() : null;
     }
 }
 
