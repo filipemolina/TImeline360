@@ -138,6 +138,11 @@
     {{-- jscroll --}}
     <script src="{{ asset('js/jscroll/jquery.jscroll.js') }}"></script>
 
+    
+    {{-- jscroll --}}
+    <script src="{{ asset('js/skycons/skycons.js') }}"></script>
+
+
     <script src="{{ asset('js/functions.js') }}"></script>
 
     @stack('scripts')

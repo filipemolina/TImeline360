@@ -14,12 +14,20 @@
          {{-- <img src="https://www.tempo.com/wimages/foto340dc19382a5c7261f625fada811a0f8.png"> --}}
 
          <!-- weather widget start -->
-         <a style="padding-left: 75px;"
+         {{-- <a style="padding-left: 75px;"
             target="_blank" 
             >
             <img src="https://w.bookcdn.com/weather/picture/4_w304065_1_8_07315e_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=585&anc_id=53590"  alt="booked.net"/>
-         </a>
+         </a> --}}
          <!-- weather widget end -->
+
+{{--          <div class="col-md-6 col-sm-6 card-esquerdo" >
+            <canvas id="{{ $clima->icon }}" width="44" height="44"></canvas>
+
+            <label for="temperature"> {{ $clima->temperature }} ºC</label>
+         </div>
+ --}}
+
 
          {{-- Início da Solicitação --}}
          @foreach ($solicitacoes as $solicitacao)
@@ -331,12 +339,5 @@
          @endforeach
       @endif
    </script>
-
-
-
-
-
-
-  
 @endpush
 
