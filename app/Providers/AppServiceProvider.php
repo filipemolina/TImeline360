@@ -5,6 +5,12 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\Clima;
+use App\Models\Temperatura;
+use App\Models\User;
+use AdinanCenci\Climatempo\Climatempo;
+
+use View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
     {
         // Consertar o erro do MariaDB
         Schema::defaultStringLength(191);
+
+        $temperatura = Temperatura::orderBy('created_at', 'desc')->first();
+
+        View::share(compact('temperatura'));
 
     }
 

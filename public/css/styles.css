@@ -1641,9 +1641,9 @@ li a.g-store i, li a.g-store p {
 @media screen and (min-width: 992px) {
   .previsao.tempo {
     position: fixed;
-    top: 60px;
-    left: 0;
-    margin-left: 10px;
+    top: -10px;
+    left: -60px;
+    margin-left: 300px;
   }
 
   li a.g-store {

@@ -96,7 +96,12 @@
 
         <li>
           <a class= "previsao tempo" target="_blank">
-            <img src="https://w.bookcdn.com/weather/picture/4_w304065_1_8_07315e_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=585&anc_id=53590"  alt="booked.net"/>
+            <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
+            <label> 
+               {{ $temperatura->temperature }} ºC <!-- / {{ ($temperatura->humidity) }} % -->
+            </label>
+
+            <!-- <p style="font-size:12px; color:black; "> Umidade:  {{ ($temperatura->humidity) }} %</p> -->
           </a>
         </li>
             

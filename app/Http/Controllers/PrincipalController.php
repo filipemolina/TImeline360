@@ -8,8 +8,11 @@ use Illuminate\Http\Request;
 use App\Models\Solicitacao;
 use App\Models\Solicitante;
 use App\Models\Endereco;
+use App\Models\Clima;
 use App\Models\User;
 use Carbon\Carbon;
+use AdinanCenci\Climatempo\Climatempo;
+
 
 class PrincipalController extends Controller
 {
@@ -25,6 +28,9 @@ class PrincipalController extends Controller
 
 	public function index()
     {
+
+        //$clima = DB::table('clima')->latest()->first();
+
         $cabon = new Carbon();
 
         if( Solicitacao::count() > 0)
@@ -54,7 +60,7 @@ class PrincipalController extends Controller
                 }
 
                 //dd($meus_apoios_ids);
-                return view('principal', compact('solicitacoes','usuario','meus_apoios_ids'));
+                return view('principal', compact(/*'clima',*/'solicitacoes','usuario','meus_apoios_ids'));
 
             }else{
 
@@ -66,7 +72,7 @@ class PrincipalController extends Controller
                                             ->orderBy('created_at', 'desc')
                                             ->paginate($this->itens_por_pagina);
                 //dd($solicitacoes);
-                return view('principal', compact('solicitacoes'));
+                return view('principal', compact('clima','solicitacoes'));
     		}
 
         }else{

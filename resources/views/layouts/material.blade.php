@@ -64,7 +64,7 @@
 
             </div>
         </div>
-        
+
         {{-- Rodapé --}}
         @include('includes.layouts.footer')
     
