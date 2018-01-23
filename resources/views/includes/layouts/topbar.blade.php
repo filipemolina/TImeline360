@@ -6,20 +6,27 @@
          {{-- <img class="img" style="width: 150px; margin-top: -15px;" src="{{ asset('img/loading.gif')}}">    --}}
 
          <img class="img" style="width: 190px; 
-                                 margin-top: -40px; 
+                                 margin-top: -4px; 
                                  margin-left: -35px;" 
                                  src="{{ asset('img/logo-horizontal-360.png')}}">  
          {{-- <img class="img" style="width: 75px; margin-top: -38px; margin-left: 200px;" src="{{ asset('img/loading.gif')}}"> --}}         
 
-         <span style="font-size: 10px; margin-left: 5px;" >
+         <span style="font-size: 10px; margin-top: 60px; margin-left: 5px;" >
             (v1.0.2) 
          </span>
 
-         <span style="margin-left: 67px">
-            <canvas id="{{ $clima->icon }}" width="50" height="50"></canvas>
-            <label style="font-size:14px; color:#555555; "> {{ round($clima->temperature) }} ºC / {{ round(($clima->humidity)*100) }} %</label>
-         </span>
-            
+         <div style="margin-left: 30px; float: right">
+            {{-- <canvas id="{{ $temperatura->icon }}" width="50" height="50"></canvas> --}}
+            <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
+            <label style="font-size:18px; color:black; margin-top: 15px; "> 
+               {{ $temperatura->temperature }} ºC <!-- / {{ ($temperatura->humidity) }} % -->
+            </label>
+
+            <!-- <p style="font-size:12px; color:black; "> Umidade:  {{ ($temperatura->humidity) }} %</p> -->
+         </div>
+
+
+
          <button type="button" class="navbar-toggle" data-toggle="collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -141,31 +148,3 @@
       </div>
    </div>
 </nav>
-
-@push('scripts')
-   <script>
-      // icones de tempo
-      var icons = new Skycons({"color": "#3D276B"}),
-      list  = [
-         "clear-day", "clear-night", "partly-cloudy-day",
-         "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-         "fog"
-      ],
-      
-      i;
-
-      for(i = list.length; i--; )
-        icons.set(list[i], list[i]);
-
-      icons.play();
-    
-   </script>
-
-
-
-
-
-
-  
-@endpush
-

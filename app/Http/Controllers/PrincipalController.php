@@ -29,17 +29,7 @@ class PrincipalController extends Controller
 	public function index()
     {
 
-        // $token      = 'c5b86904f9325224f12976eaa32cb642';
-        // $id         = 6135; /*Mesquita*/
-
-        // $climatempo = new Climatempo($token);
-        // $previsao   = $climatempo->current($id);    
-
-        // dd($previsao->temperature);
-
-        $clima = DB::table('clima')->latest()->first();
-
-        //dd($clima);
+        //$clima = DB::table('clima')->latest()->first();
 
         $cabon = new Carbon();
 
@@ -70,7 +60,7 @@ class PrincipalController extends Controller
                 }
 
                 //dd($meus_apoios_ids);
-                return view('principal', compact('clima','solicitacoes','usuario','meus_apoios_ids'));
+                return view('principal', compact(/*'clima',*/'solicitacoes','usuario','meus_apoios_ids'));
 
             }else{
 

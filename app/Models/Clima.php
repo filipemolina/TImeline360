@@ -9,13 +9,22 @@ class Clima extends Model
    protected $table = "apoios";
 
   	protected $fillable = [
-  		'temperature',
-		'wind_direction',
-		'wind_velocity',
-		'humidity',
-		'condition',
-		'pressure',
-		'icon',
-		'sensation',
+  		"summary",
+      "icon",
+      "precipIntensity",
+      "precipProbability",
+      "precipType",
+      "temperature",
+      "apparentTemperature",
+      "dewPoint",
+      "humidity",
+      "pressure",
+      "windSpeed",
+      "windGust",
+      "windBearing",
+      "cloudCover",
+      "uvIndex",
+      "visibility",
+      "ozone",
  	];
 }

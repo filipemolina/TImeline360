@@ -21,12 +21,13 @@
          </a> --}}
          <!-- weather widget end -->
 
-{{--          <div class="col-md-6 col-sm-6 card-esquerdo" >
-            <canvas id="{{ $clima->icon }}" width="44" height="44"></canvas>
-
-            <label for="temperature"> {{ $clima->temperature }} ºC</label>
-         </div>
- --}}
+         <!-- <div style="margin-left: 10px">
+            {{-- <canvas id="{{ $temperatura->icon }}" width="50" height="50"></canvas> --}}
+            <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
+            <label style="font-size:20px; color:white; "> {{ $temperatura->temperature }} ºC </label>
+         
+            <p style="font-size:12px; color:white; "> Umidade:  {{ ($temperatura->humidity) }} %</p>
+         </div> -->
 
 
          {{-- Início da Solicitação --}}
@@ -338,6 +339,30 @@
             tempo += incremento;
          @endforeach
       @endif
+
+
+/*      // icones de tempo
+      var icons = new Skycons({"color": "white"}),
+      list  = [
+         "clear-day", "clear-night", "partly-cloudy-day",
+         "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+         "fog"
+      ],
+      
+      i;
+
+      for(i = list.length; i--; )
+        icons.set(list[i], list[i]);
+
+      icons.play();
+*/    
    </script>
+
+
+
+
+
+
+  
 @endpush
 
