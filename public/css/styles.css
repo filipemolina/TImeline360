@@ -1621,6 +1621,10 @@ span.versao {
   margin-top: 150px;
 }
 
+li a.g-store i, li a.g-store p {
+  color: #fff;
+}
+
 /********************************************************** Fim do Mapa de Criação de Solicitação
 
 /********************************************************** Media Queries */
@@ -1641,6 +1645,18 @@ span.versao {
     left: 0;
     margin-left: 10px;
   }
+
+  li a.g-store {
+    position: fixed;
+    bottom: 35px;
+    left: 0;
+    margin-left: 3px;
+    font-size: 30px !important;
+    font-family: sans-serif;
+    color: #fff !important;
+    text-transform: none !important;
+  }
+
 }
 
 

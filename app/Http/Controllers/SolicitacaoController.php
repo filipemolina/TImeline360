@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Solicitacao;
-<<<<<<< HEAD
-=======
 use App\Models\Servico;
->>>>>>> origin/marcelo
 use App\Models\Setor;
 use App\Models\User;
 
@@ -26,12 +23,6 @@ class SolicitacaoController extends Controller
 
     public function create()
     {
-<<<<<<< HEAD
-        // Obter todos os setores
-        $setores = Setor::all();
-
-        return view ('solicitacao.create', compact('setores'));
-=======
 
         // Obter todos os setores
         $setores = Setor::with('servicos')->get();
@@ -40,7 +31,6 @@ class SolicitacaoController extends Controller
         //dd($setores->toJson());
         //dd($setores);
         return view ('solicitacao.create', compact('setores','usuario'));
->>>>>>> origin/marcelo
     }
 
     public function store(Request $request)

@@ -14,7 +14,7 @@
   <div class="container-fluid animated fadeInDown">
     <div class="collapse navbar-collapse no-margin no-padding">
       <ul class="nav navbar-nav navbar-right">
-            
+
         <li>
           <a href="{{ url('/mapa')}}" class="dropdown-toggle">
             <i class="material-icons">map</i> Mapa
@@ -82,6 +82,13 @@
         <li>
           <a href="{{ url('/')}}" class="dropdown-toggle">
             <i class="material-icons">home</i> Início
+          </a>
+        </li>
+
+        <li>
+          <a target="_blank" class="dropdown-toggle g-store" href="https://goo.gl/5yu1aC">
+            <i class="mdi mdi-google-play"></i>
+            Play Store
           </a>
         </li>
 
