@@ -108,6 +108,26 @@
             
       </ul>
 
+      <div style="margin-left: 30px; float: right">
+            <canvas id="{{ $clima->icon }}" width="47" height="47"></canvas>
+            <label style="font-size:16px; color:black; margin-top: 15px; "> 
+               {{ round($clima->temperature) }}ºC - 
+               {{ round($clima->apparentTemperature) }}ºC - 
+               {{ ($clima->humidity)*100 }}%
+            </label>
+         </div>
+
+
+         <div style="margin-left: 20px; float: right">
+            {{-- <canvas id="{{ $temperatura->icon }}" width="50" height="50"></canvas> --}}
+            <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
+            <label style="font-size:16px; color:black; margin-top: 15px; "> 
+              {{ $temperatura->temperature }}ºC - 
+              {{ $temperatura->sensation }}ºC - 
+              {{ ($temperatura->humidity) }}% 
+            </label>
+         </div>
+
       <form method="get" action="{{ url('/pesquisa') }}" class="navbar-form navbar-right" role="search">
         <div class="form-group form-search is-empty">
           <input name="termo" type="text" class="form-control pesquisa has-roxo" placeholder="Pesquisar">
@@ -133,3 +153,23 @@
   @endif --}}
 
 </nav>
+
+
+@push('scripts')
+   <script>
+      // icones de tempo
+      var icons = new Skycons({"color": "black"}),
+      list  = [
+         "clear-day", "clear-night", "partly-cloudy-day",
+         "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+         "fog"
+      ],
+      
+      i;
+
+      for(i = list.length; i--; )
+        icons.set(list[i], list[i]);
+
+      icons.play();
+   </script>
+@endpush

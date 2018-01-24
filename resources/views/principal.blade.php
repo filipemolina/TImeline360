@@ -18,7 +18,6 @@
 
             {{-- Card mestre --}}
             <div class="principal360 card">
-
                {{-- Avatar do usuário --}}
                <div class="card-header card-header-icon card-avatar-fixo">                
                   <img src="{{ $solicitacao->solicitante->foto }}"/>
@@ -414,7 +413,7 @@
       @endif
 
 
-/*      // icones de tempo
+      // icones de tempo
       var icons = new Skycons({"color": "white"}),
       list  = [
          "clear-day", "clear-night", "partly-cloudy-day",
@@ -428,7 +427,7 @@
         icons.set(list[i], list[i]);
 
       icons.play();
-*/    
+    
    </script>
-  
+
 @endpush

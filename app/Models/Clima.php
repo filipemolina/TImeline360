@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Clima extends Model
 {
-   protected $table = "apoios";
+   protected $table = "clima";
 
   	protected $fillable = [
   		"summary",

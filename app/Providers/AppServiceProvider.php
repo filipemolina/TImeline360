@@ -24,9 +24,10 @@ class AppServiceProvider extends ServiceProvider
         // Consertar o erro do MariaDB
         Schema::defaultStringLength(191);
 
-        $temperatura = Temperatura::orderBy('created_at', 'desc')->first();
+        $temperatura    = Temperatura::orderBy('created_at', 'desc')->first();
+        $clima          = Clima::orderBy('created_at', 'desc')->first();
 
-        View::share(compact('temperatura'));
+        View::share(compact('temperatura','clima'));
 
     }
 
