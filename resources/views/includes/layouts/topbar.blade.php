@@ -11,6 +11,14 @@
   <img class="img logo loading" src="{{ asset('img/loading.gif')}}">
   <span class="versao">(v0.1.2)</span>
   <div class="cornerTop branco"></div>
+
+  <a class="btn btn-sm btn-simple gplay" target="_blank" href="https://goo.gl/5yu1aC">
+    <img class="pull-left" src="{{ asset('img/google_play_04.png')}}">
+    <div>
+      <small>Disponível no</small><br><strong>Google Play</strong>
+    </div>
+  </a>
+
   <div class="container-fluid animated fadeInDown">
     <div class="collapse navbar-collapse no-margin no-padding">
       <ul class="nav navbar-nav navbar-right">
@@ -82,13 +90,6 @@
         <li>
           <a href="{{ url('/')}}" class="dropdown-toggle">
             <i class="material-icons">home</i> Início
-          </a>
-        </li>
-
-        <li>
-          <a target="_blank" class="dropdown-toggle g-store" href="https://goo.gl/5yu1aC">
-            <i class="mdi mdi-google-play"></i>
-            Play Store
           </a>
         </li>
 

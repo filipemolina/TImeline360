@@ -1625,16 +1625,42 @@ li a.g-store i, li a.g-store p {
   color: #fff;
 }
 
+a.gplay {
+  position: absolute;
+}
+
+a.gplay img {
+  width: 50px;
+  height: auto;
+  margin-left: -30px;
+}
+
 /********************************************************** Fim do Mapa de Criação de Solicitação
 
 /********************************************************** Media Queries */
-
 @media screen and (max-width: 991px) {
   .previsao.tempo {
     position: relative;
     top: -15px;
     left: 0;
     margin-left: 10px;
+  }
+
+  a.gplay {
+    top: -2px;
+    right: 0;
+    z-index: 10;
+  }
+
+  a.gplay img {
+    width: 30px;
+    height: auto;
+    margin-top: 4px;
+    margin-left: -20px;
+  }
+
+  a.gplay div {
+    color: #3D276B;
   }
 }
 
@@ -1655,6 +1681,22 @@ li a.g-store i, li a.g-store p {
     font-family: sans-serif;
     color: #fff !important;
     text-transform: none !important;
+  }
+
+  a.gplay {
+    top: 65px;
+    left: 15px;
+  }
+
+  a.gplay img {
+    width: 50px;
+    height: auto;
+    margin-left: -30px;
+    margin-top: -3px;
+  }
+
+  a.gplay div {
+    color: #fff;
   }
 
 }
