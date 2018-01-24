@@ -20,13 +20,12 @@
             <img src="https://w.bookcdn.com/weather/picture/4_w304065_1_8_07315e_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=585&anc_id=53590"  alt="booked.net"/>
          </a> --}}
          <!-- weather widget end -->
-
-         <!-- <div style="margin-left: 10px">
-            {{-- <canvas id="{{ $temperatura->icon }}" width="50" height="50"></canvas> --}}
-            <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
-            <label style="font-size:20px; color:white; "> {{ $temperatura->temperature }} ºC </label>
+<!-- 
+         <div style="margin-left: 10px">
+            <canvas id="{{ $clima->icon }}" width="50" height="50"></canvas>
+            <label style="font-size:20px; color:white; "> {{ $clima->temperature }} ºC </label>
          
-            <p style="font-size:12px; color:white; "> Umidade:  {{ ($temperatura->humidity) }} %</p>
+            <p style="font-size:12px; color:white; "> Umidade:  {{ ($clima->humidity)*100 }} %</p>
          </div> -->
 
 
@@ -341,7 +340,7 @@
       @endif
 
 
-/*      // icones de tempo
+      // icones de tempo
       var icons = new Skycons({"color": "white"}),
       list  = [
          "clear-day", "clear-night", "partly-cloudy-day",
@@ -355,14 +354,7 @@
         icons.set(list[i], list[i]);
 
       icons.play();
-*/    
+    
    </script>
-
-
-
-
-
-
-  
 @endpush
 
