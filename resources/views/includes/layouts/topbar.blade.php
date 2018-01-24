@@ -15,7 +15,7 @@
             (v1.0.2) 
          </span>
 
-         <div style="margin-left: 60px; float: right">
+         <div style="margin-left: 30px; float: right">
             <canvas id="{{ $clima->icon }}" width="47" height="47"></canvas>
             <label style="font-size:16px; color:black; margin-top: 15px; "> 
                {{ round($clima->temperature) }}ºC - 
@@ -25,7 +25,7 @@
          </div>
 
 
-         <div style="margin-left: 30px; float: right">
+         <div style="margin-left: 20px; float: right">
             {{-- <canvas id="{{ $temperatura->icon }}" width="50" height="50"></canvas> --}}
             <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
             <label style="font-size:16px; color:black; margin-top: 15px; "> 
