@@ -87,7 +87,7 @@ class ComentarioController extends Controller
 
         $comentario = Comentario::find($id);
 
-        $comentario->comentario = "Comentário apagado pelo usuário";
+        $comentario->comentario = "'COMENTÁRIO EXCLUÍDO PELO USUÁRIO!'";
         $comentario->apagado = true;
         $comentario->save();
     }
