@@ -15,26 +15,40 @@
             (v1.0.2) 
          </span>
 
-         <div style="margin-left: 30px; float: right">
-            <canvas id="{{ $clima->icon }}" width="47" height="47"></canvas>
-            <label style="font-size:16px; color:black; margin-top: 15px; "> 
-               {{ round($clima->temperature) }}ºC - 
-               {{ round($clima->apparentTemperature) }}ºC - 
-               {{ ($clima->humidity)*100 }}%
-            </label>
+
+         <div class="temperatura" style="float: right; ">
+            
+            <div style="margin-left: 30px; float: right; ">
+               <canvas id="{{ $clima->icon }}" width="47" height="47"></canvas>
+               
+               <div style="font-size:12px; color:black; margin-top: 0px; float: inherit; ">
+   
+                  <label style="font-size:12px; color:black; margin-left:5px; margin-top: 15px;"> 
+                     {{ round($clima->temperature) }}ºC - 
+                     {{ round($clima->apparentTemperature) }}ºC - 
+                     {{ ($clima->humidity)*100 }}%
+                  </label>
+               
+                  <p style="font-size:10px; color:black; margin-left:5px; margin-top: -15px; margin-bottom: 0px; "> 
+                     {{ $clima->summary }}
+                  </p>
+   
+               </div>
+            </div>
+   
+            <div style="margin-left: 20px; float: right;">
+               <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
+               <label style="font-size:12px; color:black; margin-top: 15px; "> 
+                 {{ $temperatura->temperature }}ºC - 
+                 {{ $temperatura->sensation }}ºC - 
+                 {{ ($temperatura->humidity) }}% 
+               </label>
+   
+               <p style="font-size:10px; color:black; margin-left:50px; margin-top: -25px; "> 
+                 {{ $temperatura->condition }}
+               </p>
+            </div>
          </div>
-
-
-         <div style="margin-left: 20px; float: right">
-            {{-- <canvas id="{{ $temperatura->icon }}" width="50" height="50"></canvas> --}}
-            <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
-            <label style="font-size:16px; color:black; margin-top: 15px; "> 
-              {{ $temperatura->temperature }}ºC - 
-              {{ $temperatura->sensation }}ºC - 
-              {{ ($temperatura->humidity) }}% 
-            </label>
-         </div>
-
 
 
 

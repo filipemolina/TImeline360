@@ -27,11 +27,10 @@
          
             <p style="font-size:12px; color:white; "> Umidade:  {{ ($clima->humidity)*100 }} %</p>
          </div> -->
-
-
+         
          {{-- Início da Solicitação --}}
          @foreach ($solicitacoes as $solicitacao)
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3" id="solicitacao_card_{{ $solicitacao->id }}">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3" id="solicitacao_card_{{ $solicitacao->id }}" >
                <div class="card">
                   {{-- Avatar do usuário --}}
                   <div class="card-header card-header-icon avatar-fixo">
@@ -340,7 +339,7 @@
       @endif
 
 
-      // icones de tempo
+/*      // icones de tempo
       var icons = new Skycons({"color": "white"}),
       list  = [
          "clear-day", "clear-night", "partly-cloudy-day",
@@ -354,7 +353,7 @@
         icons.set(list[i], list[i]);
 
       icons.play();
-    
+*/    
    </script>
 @endpush
 
