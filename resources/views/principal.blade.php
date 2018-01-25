@@ -200,12 +200,11 @@
                   </li>
                </ul>
 
-               {{-- Comentários --}}
-               <footer class="colapso col-md-12">
-                  
-                  <div class="comentarios">
-
-                     @foreach ($solicitacao->comentarios->sortBy('created_at') as $comentario)
+                  {{-- Comentários --}}
+                  <footer class="colapso col-md-12">
+                     <div class="comentarios">
+                        
+                     @foreach ($solicitacao->comentarios->sortBy('id') as $comentario)
                       
                         {{-- card de comentarios --}}
                         <div class="panel-body no-padding comentario_{{ $comentario->id }}">

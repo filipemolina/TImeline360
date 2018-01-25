@@ -68,17 +68,17 @@
 					});
 
 				  	// InfoWindow content
-				  	var content = 	'<div id="iw-container">' +
-			                    		    '<div class="iw-title" style="background-color:{{ $solicitacao->servico->setor->cor }}">'+
-			                    			'<span class="mdi {{ $solicitacao->servico->setor->icone }}" style="margin-right: 20px"></span>'+
-			                    			    '{{ $solicitacao->servico->nome }}'+
-			                    		    '</div>' +
-				                            '<div class="iw-content">' +
-			                      			'<img src="{{ $solicitacao->foto }}"  width="40%">' +
-		                      				'<p>{{ $solicitacao->conteudo }}</p>' +
-		                    			    '</div>' +
-		                    			    '<div class="iw-bottom-gradient"></div>' +
-		                  		        '</div>';
+				  	var content = 	`<div id="iw-container">
+			                    		    <div class="iw-title" style="background-color:{{ $solicitacao->servico->setor->cor }}">
+			                    			<span class="mdi {{ $solicitacao->servico->setor->icone }}" style="margin-right: 20px"></span>
+			                    			    {{ $solicitacao->servico->nome }}
+			                    		    </div>
+				                            <div class="iw-content">
+			                      			<img src="{{ $solicitacao->foto }}"  width="40%">
+		                      				<p>{{ $solicitacao->conteudo }}</p>
+		                    			    </div>
+		                    			    <div class="iw-bottom-gradient"></div>
+		                  		        </div>`;
 
 				  	// A new Info Window is created and set content
 

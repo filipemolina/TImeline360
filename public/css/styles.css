@@ -1641,9 +1641,20 @@ a.gplay img {
 @media screen and (max-width: 991px) {
   .previsao.tempo {
     position: relative;
-    top: -15px;
     left: 0;
     margin-left: 10px;
+  }
+
+  .previsao.tempo.first {
+    top: -15px;
+  }
+
+  .previsao.tempo.second {
+    top: -5px;
+  }
+
+  .previsao.tempo.third {
+    top: 5px;
   }
 
   a.gplay {
@@ -1662,14 +1673,38 @@ a.gplay img {
   a.gplay div {
     color: #3D276B;
   }
+
+  .col-md-2.previsao.tempo {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 992px) {
   .previsao.tempo {
     position: fixed;
-    top: -10px;
-    left: -60px;
-    margin-left: 300px;
+    left: 30px;
+  }
+
+  .previsao.tempo.first {
+    top: 120px;
+  }
+
+  .previsao.tempo.second {
+    top: 170px;
+  }
+
+  .previsao.tempo.third {
+    top: 195px;
+  }
+
+  a.previsao.tempo label {
+    font-size: 14px;
+    color: #000;
+  }
+
+  .col-md-2.previsao {
+    top: 55px;
+    left: 15px; 
   }
 
   li a.g-store {
@@ -1684,8 +1719,8 @@ a.gplay img {
   }
 
   a.gplay {
-    top: 65px;
-    left: 15px;
+    top: 330px;
+    left: 30px;
   }
 
   a.gplay img {

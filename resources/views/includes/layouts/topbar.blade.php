@@ -19,6 +19,15 @@
     </div>
   </a>
 
+  <div class="col-md-2 previsao tempo">
+    <div class="card">
+      <div class="card-header card-header-text" data-background-color="blue">
+         <h4 class="card-title">Clima</h4>
+      </div>
+      <div class="card-content" style="height: 200px"></div>
+    </div>
+  </div>
+
   <div class="container-fluid animated fadeInDown">
     <div class="collapse navbar-collapse no-margin no-padding">
       <ul class="nav navbar-nav navbar-right">
@@ -96,7 +105,7 @@
         <li class="separator hidden-lg hidden-md"></li>
 
         <li>
-          <a class= "previsao tempo" target="_blank">
+          <a class= "previsao tempo first" target="_blank">
             <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
             <label> 
                {{ $temperatura->temperature }} ºC <!-- / {{ ($temperatura->humidity) }} % -->
@@ -105,28 +114,29 @@
             <!-- <p style="font-size:12px; color:black; "> Umidade:  {{ ($temperatura->humidity) }} %</p> -->
           </a>
         </li>
-            
-      </ul>
 
-      <div style="margin-left: 30px; float: right">
-            <canvas id="{{ $clima->icon }}" width="47" height="47"></canvas>
-            <label style="font-size:16px; color:black; margin-top: 15px; "> 
-               {{ round($clima->temperature) }}ºC - 
-               {{ round($clima->apparentTemperature) }}ºC - 
-               {{ ($clima->humidity)*100 }}%
-            </label>
-         </div>
-
-
-         <div style="margin-left: 20px; float: right">
-            {{-- <canvas id="{{ $temperatura->icon }}" width="50" height="50"></canvas> --}}
+        <li>
+          <a class="previsao tempo second" target="_blank">
             <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
-            <label style="font-size:16px; color:black; margin-top: 15px; "> 
+            <label> 
               {{ $temperatura->temperature }}ºC - 
               {{ $temperatura->sensation }}ºC - 
               {{ ($temperatura->humidity) }}% 
             </label>
-         </div>
+          </a>
+        </li>
+
+        <li>
+          <a class="previsao tempo third" target="_blank">
+            <canvas id="{{ $clima->icon }}" width="47" height="47"></canvas>
+            <label> 
+               {{ round($clima->temperature) }}ºC - 
+               {{ round($clima->apparentTemperature) }}ºC - 
+               {{ ($clima->humidity)*100 }}%
+            </label>
+          </a>          
+        </li>
+      </ul>
 
       <form method="get" action="{{ url('/pesquisa') }}" class="navbar-form navbar-right" role="search">
         <div class="form-group form-search is-empty">
