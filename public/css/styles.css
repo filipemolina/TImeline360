@@ -1635,6 +1635,12 @@ a.gplay img {
   margin-left: -30px;
 }
 
+a.temperatura canvas {
+  width: 60px;
+  height: auto;
+  margin-left: -5px;
+}
+
 /********************************************************** Fim do Mapa de Criação de Solicitação
 
 /********************************************************** Media Queries */
@@ -1694,7 +1700,11 @@ a.gplay img {
   }
 
   .previsao.tempo.third {
-    top: 195px;
+    top: 210px;
+  }
+
+  .previsao.tempo.third label {
+    margin-left: -9px;
   }
 
   a.previsao.tempo label {

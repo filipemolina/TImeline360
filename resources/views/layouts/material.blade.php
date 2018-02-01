@@ -136,6 +136,9 @@
 
 <script src="{{ asset('js/functions.js') }}"></script>
 
+{{-- jscroll --}}
+<script src="{{ asset('js/skycons/skycons.js') }}"></script>
+
 @stack('scripts')
 
 <script src="{{ asset('js/scripts.js') }}"></script>

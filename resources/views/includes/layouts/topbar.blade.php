@@ -116,7 +116,7 @@
         </li>
 
         <li>
-          <a class="previsao tempo second" target="_blank">
+          <a class="temperatura previsao tempo second" target="_blank">
             <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
             <label> 
               {{ $temperatura->temperature }}ºC - 
@@ -127,8 +127,8 @@
         </li>
 
         <li>
-          <a class="previsao tempo third" target="_blank">
-            <canvas id="{{ $clima->icon }}" width="47" height="47"></canvas>
+          <a class="temperatura previsao tempo third" target="_blank">
+            <canvas id="{{ $clima->icon }}"></canvas>
             <label> 
                {{ round($clima->temperature) }}ºC - 
                {{ round($clima->apparentTemperature) }}ºC - 
