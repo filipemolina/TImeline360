@@ -105,17 +105,6 @@
         <li class="separator hidden-lg hidden-md"></li>
 
         <li>
-          <a class= "previsao tempo first" target="_blank">
-            <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
-            <label> 
-               {{ $temperatura->temperature }} ºC <!-- / {{ ($temperatura->humidity) }} % -->
-            </label>
-
-            <!-- <p style="font-size:12px; color:black; "> Umidade:  {{ ($temperatura->humidity) }} %</p> -->
-          </a>
-        </li>
-
-        <li>
           <a class="temperatura previsao tempo second" target="_blank">
             <img class="img" src="{{ asset("img/realistic/45px/$temperatura->icon.png")}}"/>
             <label> 
@@ -123,6 +112,10 @@
               {{ $temperatura->sensation }}ºC - 
               {{ ($temperatura->humidity) }}% 
             </label>
+
+            <p style="font-size:10px; color:black; margin-left:5px; margin-top: -15px; margin-bottom: 0px; "> 
+              {{ $clima->summary }}
+            </p>
           </a>
         </li>
 

@@ -412,7 +412,7 @@
       @endif
 
 
-      // icones de tempo
+/*      // icones de tempo
       var icons = new Skycons({"color": "white"}),
       list  = [
          "clear-day", "clear-night", "partly-cloudy-day",
@@ -426,7 +426,7 @@
         icons.set(list[i], list[i]);
 
       icons.play();
-    
+*/    
    </script>
 
 @endpush
